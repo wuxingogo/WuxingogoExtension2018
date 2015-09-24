@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6397728-FDA2-4A16-A850-FF7C5748DB0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WuxingogoExtension</RootNamespace>
+    <AssemblyName>WuxingogoExtension</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Editor\CreateXBaseEditor.cs" />
+    <Compile Include="Editor\CreateXBaseWindow.cs" />
+    <Compile Include="Editor\CreateXData.cs" />
+    <Compile Include="Editor\CreateXMonoBehaviour.cs" />
+    <Compile Include="Editor\CreateXObject.cs" />
+    <Compile Include="Editor\ExprotUIToCocos.cs" />
+    <Compile Include="Editor\FindTextureRef.cs" />
+    <Compile Include="Editor\PackPipeLine.cs" />
+    <Compile Include="Editor\QuickCreatePrefabs.cs" />
+    <Compile Include="Editor\XAnimationExtension.cs" />
+    <Compile Include="Editor\XAttributeDrawer.cs" />
+    <Compile Include="Editor\XBaseEditor.cs" />
+    <Compile Include="Editor\XBaseWindow.cs" />
+    <Compile Include="Editor\XBatchingReplaces.cs" />
+    <Compile Include="Editor\XBehaviourWindow.cs" />
+    <Compile Include="Editor\XCommandTools.cs" />
+    <Compile Include="Editor\XCreateAssetBundle.cs" />
+    <Compile Include="Editor\XDataEditor.cs" />
+    <Compile Include="Editor\XEditorModel.cs" />
+    <Compile Include="Editor\XFieldExtension.cs" />
+    <Compile Include="Editor\XFileExtension.cs" />
+    <Compile Include="Editor\XHierarchy.cs" />
+    <Compile Include="Editor\XMethodExtension.cs" />
+    <Compile Include="Editor\XMonoBehaviourEditor.cs" />
+    <Compile Include="Editor\XMuiltHandle.cs" />
+    <Compile Include="Editor\XPlaymakerExtension.cs" />
+    <Compile Include="Editor\XPropertiesExtension.cs" />
+    <Compile Include="Editor\XPropertiesToSerializables.cs" />
+    <Compile Include="Editor\XQucickSetPrefs.cs" />
+    <Compile Include="Editor\XQuickSetDatabase.cs" />
+    <Compile Include="Editor\XReplaceComponent.cs" />
+    <Compile Include="Editor\XResources.cs" />
+    <Compile Include="Editor\XSelectionExtension.cs" />
+    <Compile Include="Editor\XSerializableExtension.cs" />
+    <Compile Include="Editor\XShaderExtension.cs" />
+    <Compile Include="Editor\XTextureWindow.cs" />
+    <Compile Include="Editor\XWindow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\ArrayExtension.cs" />
+    <Compile Include="Scripts\TextModel.cs" />
+    <Compile Include="Scripts\XAttribute.cs" />
+    <Compile Include="Scripts\XData.cs" />
+    <Compile Include="Scripts\XMonoBehaviour.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

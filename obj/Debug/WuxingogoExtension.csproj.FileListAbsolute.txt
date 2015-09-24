@@ -1,0 +1,7 @@
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\bin\Debug\WuxingogoExtension.dll
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\bin\Debug\WuxingogoExtension.pdb
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\bin\Debug\UnityEditor.dll
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\bin\Debug\UnityEngine.dll
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\obj\Debug\WuxingogoExtension.dll
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\obj\Debug\WuxingogoExtension.pdb
+E:\vsproject\xproject\WuxingogoExtension\WuxingogoExtension\bin\Debug\UnityEngine.UI.dll
