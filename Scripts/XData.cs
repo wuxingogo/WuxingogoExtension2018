@@ -4,9 +4,7 @@ using System.Collections;
 
 [System.Serializable]
 public class XData : ScriptableObject{
-//	[System.Serializable]
-//	public List<XDataModel<object>> m_list = new List<XDataModel<object>>();
-	public XDataModel[] Array = null;
+    public List<XDataModel> AllData = new List<XDataModel>();
 
 	public XData(){
 	}

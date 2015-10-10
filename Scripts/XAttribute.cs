@@ -4,10 +4,10 @@ using System;
 
 public class XAttribute : Attribute
 {
-    public string tooltip;
+    public string title;
  
-    public XAttribute(string tooltip, string st)
+    public XAttribute(string tooltip)
     {
-        this.tooltip = tooltip;
+        this.title = tooltip;
     }
 }

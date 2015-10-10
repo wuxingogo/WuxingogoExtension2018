@@ -25,19 +25,19 @@ public class XBaseEditor : Editor {
 		
 //		CurrHeight += EditorGUIUtility.singleLineHeight;
 		
-		return EditorGUI.FloatField(CreateRect(), fieldName, value);
+		return EditorGUI.FloatField(CreateRect(), fieldName, value );
 	}
 	
 	public int CreateGUIInt(string fieldName, int value){
 //		CurrHeight += EditorGUIUtility.singleLineHeight;
-		
-		return EditorGUI.IntField(CreateRect(), fieldName, value);
+
+        return EditorGUI.IntField( CreateRect(), fieldName, value );
 	}
 	
 	public bool CreateGUIButton(string fieldName){
 //		CurrHeight += 2 * EditorGUIUtility.singleLineHeight;
-		
-		return GUI.Button(CreateRect(1.5f), fieldName, GUI.skin.button);
+
+        return GUI.Button( CreateRect( 1.5f ), fieldName );
 	}
 	
 	public Rect CreateRect(float scaleOffsetY = 1, float offsetX = 10){
@@ -48,6 +48,25 @@ public class XBaseEditor : Editor {
 	public float CreateFloatField(string fieldName, float value){
 		return EditorGUILayout.FloatField(fieldName,value);
 	}
+
+    public Object CreateObjectField( string fieldName, Object obj, System.Type type = null )
+    {
+        if( null == type ) type = typeof( Object );
+        return EditorGUILayout.ObjectField( fieldName, obj, type, true ) as Object;
+    }
+
+    public void CreateSpaceBox(float w, float h)
+    {
+        //GUILayout.Box(new GUIContent(""), Screen.width, GUILayout.Height( 3 ) );
+        GUILayout.Box( "", GUILayout.Width(w), GUILayout.Height(h) );
+    }
+    public void CreateSpaceBox(float h = 3 )
+    {
+        //GUILayout.Box(new GUIContent(""), Screen.width, GUILayout.Height( 3 ) );
+        //GUILayout.Box( "", GUILayout.Width( Screen.width ), h );
+        CreateSpaceBox( Screen.width, h );
+
+    }
 	
 	public int CreateIntField(string fieldName, int value){
 		return EditorGUILayout.IntField(fieldName, value);
@@ -73,4 +92,21 @@ public class XBaseEditor : Editor {
 	public int CreateSelectableFromString(int rootID, string[] array){
 		return EditorGUILayout.Popup(array[rootID], rootID, array);
 	}
+
+    public void BeginHorizontal()
+    {
+        EditorGUILayout.BeginHorizontal();
+    }
+    public void EndHorizontal()
+    {
+        EditorGUILayout.EndHorizontal();
+    }
+    public void BeginVertical()
+    {
+        EditorGUILayout.BeginVertical();
+    }
+    public void EndVertical()
+    {
+        EditorGUILayout.EndVertical();
+    }
 }

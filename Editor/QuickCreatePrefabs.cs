@@ -11,7 +11,7 @@ public class QuickCreatePrefabs : XBaseWindow {
 	int copyNum = 4;
 	float radio = 20;
 	List<GameObject> myPrefablist = new List<GameObject>();
-	[MenuItem ("Wuxingogo/Quick Create Prefabs Window %#3")]
+	[MenuItem ("Wuxingogo/Quick Create Prefabs Window")]
 	static void init () {
 		
 		QuickCreatePrefabs window = (QuickCreatePrefabs)QuickCreatePrefabs.GetWindow (typeof (QuickCreatePrefabs));

@@ -36,8 +36,7 @@ public class XBaseWindow : EditorWindow {
 	}
 	
 	public bool CreateSpaceButton(string btnName, float width = XButtonWidth, float height = XButtonHeight){
-		return GUILayout.Button(btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(height) );
-//		return GUILayout.Button (btnName, EditorStyles.miniButtonMid, GUILayout.Width(50f));
+		return GUILayout.Button( btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(height) );
 	}
 	
 	public Object CreateObjectField(string fieldName, Object obj, System.Type type = null ){

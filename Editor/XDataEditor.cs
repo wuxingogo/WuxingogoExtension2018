@@ -5,8 +5,8 @@ using System.Collections;
 public class XDataEditor : XBaseEditor 
 {
 
-	XData data;
-	int Arraylength = 0;
+	XData model = null;
+	int dataSize = 0;
 
 	public override void OnInspectorGUI()
 	{
@@ -18,43 +18,25 @@ public class XDataEditor : XBaseEditor
 		{
 			return;
 		}
-		
-		data = target as XData;
-		
-//		CurrHeight = EditorGUI.FloatField(new Rect(OffsetX, 45, Screen.width - 10, EditorGUIUtility.singleLineHeight), "CurrHeight", CurrHeight);
-		
-//		CurrHeight = 0;
-		
-//		Arraylength = CreateIntField("ArrayLength", Arraylength);
-		if(data.Array != null)
-			Arraylength = data.Array.Length;
-		Arraylength = CreateGUIInt("New Array Length",Arraylength);
-		
-//		if(CreateGUIButton("asdf")){
-//			
-//		}
 
-		for( int pos = 0; pos < data.Array.Length; pos++ ){
-			
-			if(CreateGUIButton("AAA")){
-				Debug.Log("pos is " + pos );
-			}
-		}
+        model = target as XData;
+
+        dataSize = model.AllData.Count;
+        dataSize = CreateGUIInt("Array Size", dataSize);
+        if( dataSize != model.AllData.Count )
+        {
+            
+        }
 		
 		
 		if( GUI.changed ){
-//			Debug.Log(data.m_list.Count);
-//			AssetDatabase.StartAssetEditing();
-			EditorUtility.SetDirty(data);
-//			AssetDatabase.StopAssetEditing();
+            EditorUtility.SetDirty( model );
 			AssetDatabase.SaveAssets();
 		}
-//		Debug.Log(data.xxx.aaa);
 		
 	}
 	
 	public void ChangeArray(){
-		data.Array = new XDataModel[Arraylength];
 	}
 	
 
