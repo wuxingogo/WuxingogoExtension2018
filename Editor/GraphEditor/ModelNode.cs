@@ -33,15 +33,22 @@ public class ModelNode<T> : BaseNode{
         for (int i = 0; i < models.Count; i++){
             if( t is string ){
                 List<string> std = models as List<string>;
-                std[i] = EditorGUILayout.TextField( std[i] );
+//                std[i] = EditorGUILayout.TextField( std[i] );
+				std[i] = EditorGUI.TextField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );
             }
             else if( t is int ){
                 List<int> std = models as List<int>;
-                std[i] = EditorGUILayout.IntField( std[i] );
+//                std[i] = EditorGUILayout.IntField( std[i] );
+				std[i] = EditorGUI.IntField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );
             }
             else if( t is float ){
                 List<float> std = models as List<float>;
-                std[i] = EditorGUILayout.FloatField( std[i] );
+				std[i] = EditorGUI.FloatField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );  
+            }
+            else if( t is Object){
+//				List<Object> std = models as List<Object>;
+				
+//				std[i] = EditorGUI.ObjectField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight), std[i]);  
             }
 		}
     }

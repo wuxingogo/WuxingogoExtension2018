@@ -94,7 +94,12 @@ public class XCreateAssetBundle : XBaseWindow
 				asset = null;
 				return;
 			}
+			#if UNITY_5_0
 			currentBundleObjects = currBundle.LoadAllAssets();
+			#endif
+			#if UNITY_4_6
+			currentBundleObjects = currBundle.LoadAll();
+			#endif
 			LoadingConfig = false;
 			asset = null;
 //			}

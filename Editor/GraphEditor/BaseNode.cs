@@ -8,7 +8,7 @@ public class BaseNode : ScriptableObject {
 	public BaseNode(){
 		GraphType = NodeType.Base;
         GraphRect = new Rect( 0, 0, 200, 150 );
-        
+        Debug.Log("Initial BaseNode");
 	}
 	public Rect GraphRect;
 
@@ -20,7 +20,9 @@ public class BaseNode : ScriptableObject {
     public Rect JointRect{
         get
         {
-            return jointRect = new Rect( GraphRect.width - 10, GraphRect.height / 2, 20, 20 );
+            
+            jointRect = new Rect( GraphRect.width - 10, GraphRect.height / 2, 10, 20 );
+            return jointRect;
         }
     }
     private Rect jointRect;
