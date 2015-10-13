@@ -4,9 +4,9 @@ using UnityEditor;
 
 public class BehaviourNode : BaseNode {
 
-	public BehaviourNode(){
+	public BehaviourNode() : base()
+    {
 		GraphType = NodeType.Behaviour;
 		GraphTitle = "BeahaviourNode";
-        JointRect = GraphRect;
 	}
 }

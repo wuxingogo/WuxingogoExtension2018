@@ -7,6 +7,8 @@ public class BaseNode : ScriptableObject {
 
 	public BaseNode(){
 		GraphType = NodeType.Base;
+        GraphRect = new Rect( 0, 0, 200, 150 );
+        
 	}
 	public Rect GraphRect;
 
@@ -16,9 +18,12 @@ public class BaseNode : ScriptableObject {
         set;
     }
     public Rect JointRect{
-        get;
-        set;
+        get
+        {
+            return jointRect = new Rect( GraphRect.width - 10, GraphRect.height / 2, 20, 20 );
+        }
     }
+    private Rect jointRect;
 	
 	public NodeType GraphType {
 		get;
@@ -33,6 +38,12 @@ public class BaseNode : ScriptableObject {
 		
 		//  GUI.DragWindow();
 		GraphTitle = EditorGUILayout.TextField(GraphTitle);
+
+        if( GUI.Button( JointRect, "", EditorStyles.toolbarDropDown ) )
+        {
+            GraphWindow.GetInstance().SetTransition( this );
+        }
+        
 	}
 	public virtual void Draw(int id){
 		
@@ -89,7 +100,11 @@ public class BaseNode : ScriptableObject {
         rect.height = 1;
         return rect;
     }
-	
+
+    public void SetGraphPosition(float x, float y){
+        GraphRect.x = x;
+        GraphRect.y = y;
+    }
 	
 	public enum NodeType{
 		Model,

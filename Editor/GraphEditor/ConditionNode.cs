@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ConditionNode : BaseNode {
 
-    public ConditionNode()
+    public ConditionNode() : base()
     {
         GraphType = NodeType.Condition;
         GraphTitle = "ConditionNode";
@@ -22,7 +22,7 @@ public class ConditionNode : BaseNode {
         //m_Object = EditorGUILayout.ObjectField( m_Object, typeof( UnityEngine.Object ) );
         if( e.type == EventType.Repaint )
         {
-            JointRect = GUILayoutUtility.GetLastRect();
+            //JointRect = GUILayoutUtility.GetLastRect();
         }
     }
 	

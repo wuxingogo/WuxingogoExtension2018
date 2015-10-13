@@ -100,7 +100,6 @@ public class XPropertiesToSerializables : XBaseWindow
 		}
 #endif
 
-	}
-
-
 }
+
+

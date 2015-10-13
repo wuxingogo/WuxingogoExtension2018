@@ -13,7 +13,8 @@ public class ElementNode : BaseNode {
 		get;
 		set;
 	}
-	public ElementNode(){
+	public ElementNode() : base() 
+    {
 		GraphTitle = "Element Node";
 		GraphType = NodeType.Element;
 	}
@@ -25,13 +26,11 @@ public class ElementNode : BaseNode {
 		base.DrawGraph(id);
 		
 		Event e = Event.current;
-		
-		
-		
+
 		m_Object = EditorGUILayout.ObjectField(m_Object, typeof(UnityEngine.Object));
 		if(e.type == EventType.Repaint)
 		{
-			JointRect = GUILayoutUtility.GetLastRect(); 
+			//JointRect = GUILayoutUtility.GetLastRect(); 
 		}	
 	}
 

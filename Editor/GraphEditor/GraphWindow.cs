@@ -30,10 +30,19 @@ public class GraphWindow : XBaseWindow
 		get;
 		private set;
 	}
+    private static GraphWindow _instance = null;
+    public static GraphWindow GetInstance()
+    {
+        if( null == _instance )
+        {
+            _instance = ( GraphWindow )EditorWindow.GetWindow( typeof( GraphWindow ) );
+        }
+        return _instance;
+    }
 	
 	[MenuItem ("Wuxingogo/Wuxingogo GraphWindow ")]
 	static void init () {
-		GraphWindow window = (GraphWindow)EditorWindow.GetWindow (typeof (GraphWindow ) );
+        _instance = ( GraphWindow )EditorWindow.GetWindow( typeof( GraphWindow ) );
 	}
 
     
@@ -47,95 +56,72 @@ public class GraphWindow : XBaseWindow
 		if(e.button == 0 || e.button == 1){
 			ChooseNode();
 		}
-		
+        bool isFixUpConfig = false;
 		if(e.button == 1 && e.type == EventType.MouseUp){
-			GenericMenu menu = new GenericMenu();
-			if(SelectedIndex == -1){
-                menu.AddItem( new GUIContent( "Add Base Node" ), false, ContextCallback, "AddBaseNode" );
-                menu.AddItem( new GUIContent( "Add Element Node" ), false, ContextCallback, "AddElement" );
-                menu.AddItem( new GUIContent( "Add Behaviour Node" ), false, ContextCallback, "AddBehaviour" );
-                menu.AddItem( new GUIContent( "Add Condition Node" ), false, ContextCallback, "AddCondition" );
-                menu.AddItem( new GUIContent( "Add Model Node" ), false, ContextCallback, "AddModel" );
-	
-			}else{
-				menu.AddItem(new GUIContent("Make Transition"),false, ContextCallback, "MakeTransition");
-				menu.AddSeparator("");
-				menu.AddItem(new GUIContent("Delete Node"),false, ContextCallback, "DeleteNode");
-			}
-			
-			menu.ShowAsContext();
-			e.Use();
-		}
-		
-		else if(e.button == 0 && e.type == EventType.MouseDown && IsTransition){
-			if(IsClickNode && !SelectedNode.Equals(InputNode)){
-				SelectedNode.SetInputNode(InputNode, mousePosition);
-				IsTransition = false;
-				
-			}
-		}
-
-
-        if (IsTransition){
-            Rect mouseRect = new Rect(e.mousePosition.x, e.mousePosition.y, 10, 10);
-            DrawNodeCurve(InputNode.GraphRect, mouseRect);
-            Repaint();
+            GraphMenu m = new GraphMenu( SelectedIndex );
+            e.Use();
         }
-		
-		
+        else if( e.button == 0 && e.type == EventType.MouseUp && IsTransition )
+        {
+            if( IsClickNode && !SelectedNode.Equals( InputNode ) )
+            {
+                SelectedNode.SetInputNode( InputNode, mousePosition );
+            }
+            
+            isFixUpConfig = true;
+        }
 		BeginWindows();
 
 		for(int i = 0; i< nodes.Count; i++){
 			//  nodes[i].GraphRect = GUI.Window(i, nodes[i].GraphRect, DrawNodeGraph, nodes[i].GraphTitle);
 			nodes[i].Draw(i);
-			nodes[i].DrawCurves();
+			
 		}
+        if( isFixUpConfig )
+        {
+            IsTransition = false;    
+        }
 
 		EndWindows();
-	}
-	void ContextCallback(object obj){
-		string clb = obj.ToString();
-		if(clb.Equals("AddBaseNode"))
-		{
-			BaseNode inputNode = new BaseNode();
-			inputNode.GraphRect = new Rect(mousePosition.x,mousePosition.y, 200, 150);
 
-			nodes.Add(inputNode);
-		}
-		else if(clb.Equals("AddElement")){
-			ElementNode element = new ElementNode();
-			element.GraphRect =  new Rect(mousePosition.x,mousePosition.y, 200, 150);
-			nodes.Add(element);
-		}
-		else if(clb.Equals("AddBehaviour")){
-			BehaviourNode behaviour = new BehaviourNode();
-			behaviour.GraphRect =  new Rect(mousePosition.x,mousePosition.y, 200, 150);
-			nodes.Add(behaviour);
-		}
-        else if( clb.Equals( "AddCondition" ) )
+        if( IsTransition )
         {
-            ConditionNode condition = new ConditionNode();
-            condition.GraphRect = new Rect( mousePosition.x, mousePosition.y, 200, 150 );
-            nodes.Add( condition );
+            Rect mouseRect = new Rect( e.mousePosition.x, e.mousePosition.y, 10, 10 );
+            DrawNodeCurve( InputNode.GetJointRect(), mouseRect );
+            Repaint();
         }
-		else if(clb.Equals("MakeTransition")){
-			InputNode = SelectedNode;
-			IsTransition = true;
-		}
-		else if(clb.Equals("DeleteNode")){
-			nodes.RemoveAt(SelectedIndex);
+        for( int i = 0; i < nodes.Count; i++ )
+        {
+            nodes[i].DrawCurves();
         }
-        
 	}
+
+
+    public void SetTransition( BaseNode selected )
+    {
+        if( !IsTransition )
+        {
+            InputNode = selected;
+            IsTransition = true;
+        }
+    }
+
+    public void SetCurrentTransition()
+    {
+        SetTransition( SelectedNode );
+    }
 	
 	void ChooseNode(){
 		for(int i = 0; i < nodes.Count; i++){
-			if (nodes[i].GraphRect.Contains(mousePosition)){
-				SelectedNode = nodes[i];
-				IsClickNode = true;
-				SelectedIndex = i;
-				return;
-			}
+            if( nodes[i] != null ) {
+                if( nodes[i].GraphRect.Contains( mousePosition ) )
+                {
+                    SelectedNode = nodes[i];
+                    IsClickNode = true;
+                    SelectedIndex = i;
+                    return;
+                }
+            }
 		}
 		SelectedNode = null;
 		IsClickNode = false;
@@ -148,6 +134,25 @@ public class GraphWindow : XBaseWindow
 		GUI.DragWindow();
 		
 	}
+
+    public void AddNode(BaseNode node)
+    {
+        node.SetGraphPosition( mousePosition.x, mousePosition.y );
+        nodes.Add( node );
+
+        if( IsTransition && !node.Equals( InputNode ) )
+        {
+            node.SetInputNode( InputNode, mousePosition );
+            IsTransition = false;
+        }
+    }
+
+    public void DeletedNode()
+    {
+        nodes.RemoveAt( SelectedIndex );
+    }
+
+    
 	
 	public static void DrawNodeCurve(Rect start, Rect end) 
 	{
