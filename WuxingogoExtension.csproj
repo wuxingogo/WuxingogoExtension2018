@@ -52,6 +52,10 @@
     <Compile Include="Editor\CreateXObject.cs" />
     <Compile Include="Editor\ExprotUIToCocos.cs" />
     <Compile Include="Editor\FindTextureRef.cs" />
+    <Compile Include="Editor\GraphEditor\BaseNode.cs" />
+    <Compile Include="Editor\GraphEditor\BehaviourNode.cs" />
+    <Compile Include="Editor\GraphEditor\ElementNode.cs" />
+    <Compile Include="Editor\GraphEditor\GraphWindow.cs" />
     <Compile Include="Editor\PackPipeLine.cs" />
     <Compile Include="Editor\QuickCreatePrefabs.cs" />
     <Compile Include="Editor\XAnimationExtension.cs" />
@@ -80,6 +84,7 @@
     <Compile Include="Editor\XSelectionExtension.cs" />
     <Compile Include="Editor\XSerializableExtension.cs" />
     <Compile Include="Editor\XShaderExtension.cs" />
+    <Compile Include="Editor\XStyles.cs" />
     <Compile Include="Editor\XTextureWindow.cs" />
     <Compile Include="Editor\XWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,7 +94,6 @@
     <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
