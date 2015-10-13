@@ -7,5 +7,6 @@ public class BehaviourNode : BaseNode {
 	public BehaviourNode(){
 		GraphType = NodeType.Behaviour;
 		GraphTitle = "BeahaviourNode";
+        JointRect = GraphRect;
 	}
 }

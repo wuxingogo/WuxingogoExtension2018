@@ -15,7 +15,7 @@ public class XPropertiesToSerializables : XBaseWindow
 	List<Component> mComponents = new List<Component>();
 	List<PropertyInfo> mProperties = new List<PropertyInfo>();
 	PropertyInfo targetProperty = null;
-
+    object propertyinstance = null;
 	[MenuItem ("Wuxingogo/Wuxingogo XPropertiesToSerializables ")]
 	static void init () {
 		XPropertiesToSerializables window = (XPropertiesToSerializables)EditorWindow.GetWindow (typeof (XPropertiesToSerializables ) );
@@ -40,10 +40,27 @@ public class XPropertiesToSerializables : XBaseWindow
 		}
 
 		for(int pos = 0; pos < mProperties.Count; pos++ ){
-			if(CreateSpaceButton(mProperties[pos].Name, 150)){
-				targetProperty = mProperties[pos];
-				mProperties.Clear();
+            BeginHorizontal();
+			if(CreateSpaceButton(mProperties[pos].PropertyType + " : " + mProperties[pos].Name, 150)){
+                //targetProperty = mProperties[pos];
+                //mProperties.Clear();
+                propertyinstance = mProperties[pos].GetValue( targetComponent, null );
+                PropertyInfo[] properties = mProperties[pos].PropertyType.GetProperties();
+                mProperties.Clear();
+                foreach( var item in properties ){
+                    mProperties.Add( item );
+                }
+                
 			}
+            if( CreateSpaceButton( "ToString" ) ){
+                if( null == propertyinstance ){
+                    Debug.Log( mProperties[pos].GetValue( targetComponent, null ).ToString() );
+                }
+                else {
+                    Debug.Log( mProperties[pos].GetValue( propertyinstance, null ).ToString() );
+                }    
+            }
+            EndHorizontal();
 		}
 
 		if( null != targetProperty ){
@@ -58,21 +75,21 @@ public class XPropertiesToSerializables : XBaseWindow
 		// Create A Button to get all component.
 		
 
-		if( CreateSpaceButton("Get Component", 200) && targetProperty != null ){
-			if(Selection.gameObjects.Length > 0){
-				mComponents.Clear();
-				isDirtyConfig = true;
-				foreach( var item in Selection.gameObjects ){
-					Component component = item.transform.GetComponent(targetComponent.GetType());
-					if( null != component ){
-						mComponents.Add(component);
-					}
-				}
+        //if( CreateSpaceButton("Get Component", 200) && targetProperty != null ){
+        //    if(Selection.gameObjects.Length > 0){
+        //        mComponents.Clear();
+        //        isDirtyConfig = true;
+        //        foreach( var item in Selection.gameObjects ){
+        //            Component component = item.transform.GetComponent(targetComponent.GetType());
+        //            if( null != component ){
+        //                mComponents.Add(component);
+        //            }
+        //        }
 				
-				foreach( var item in mComponents ){
-					Debug.Log( item.GetType().GetProperty(targetProperty.Name).GetValue(targetComponent, null) ); 
-				}
-			}
+        //        foreach( var item in mComponents ){
+        //            Debug.Log( item.GetType().GetProperty(targetProperty.Name).GetValue(targetComponent, null) ); 
+        //        }
+        //    }
 		
 			
 		}

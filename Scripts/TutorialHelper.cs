@@ -10,9 +10,12 @@ public class TutorialHelper : XMonoBehaviour {
     [HeaderAttribute( "当前教程" )]
     public TutorialModel currentTutorial = null;
 
-    public GameObject lightObject = null;
+    public Transform lightObject = null;
     public Button currentButton = null;
-    public GameObject characterObject = null;
+    public Button touchMask = null;
+
+    private Transform lastParent = null;
+    
 
     void Start()
     {
@@ -24,17 +27,25 @@ public class TutorialHelper : XMonoBehaviour {
         Debug.Log( "index is : " + index );
         ID = 0;
         currentTutorial = allTutorials[index];
+        touchMask.gameObject.SetActive( true );
         Step();
     }
     int ID = 0;
 
     public void Step()
     {
-        if( ID < currentTutorial.orders.Length )
-        {
+        if( ID < currentTutorial.orders.Length ){
             if(!IsInvoking("ExcuteAction"))
                 Invoke( "ExcuteAction", currentTutorial.orders[ID].waitTime );
         }
+        else{
+            EndedTutorial();
+        }
+    }
+    public void EndedTutorial(){
+        Debug.Log( "EndedTutorial" );
+        touchMask.gameObject.SetActive( false );
+
     }
     void ExcuteAction()
     {
@@ -58,6 +69,7 @@ public class TutorialHelper : XMonoBehaviour {
     void OnDisplayDialog()
     {
         Debug.Log( "content : " + currentTutorial.talkContent[0] );
+        lightObject.gameObject.SetActive( false );
         currentTutorial.talkContent.RemoveAt( 0 );
         currentTutorial.talkContent.TrimExcess();
         ID++;
@@ -69,6 +81,14 @@ public class TutorialHelper : XMonoBehaviour {
         currentButton = lightGo.GetComponent<Button>();
         currentButton.onClick.AddListener( ButtonClickCallback );
         Debug.Log("button : " + lightGo);
+
+        lastParent = currentButton.transform.parent;
+        currentButton.transform.SetParent( touchMask.transform );
+        Vector3 tarPos = currentButton.transform.position;
+
+        lightObject.localPosition = tarPos;
+        lightObject.gameObject.SetActive( true );
+
         
         currentTutorial.effectObjects.RemoveAt( 0 );
         currentTutorial.effectObjects.TrimExcess();
@@ -78,6 +98,7 @@ public class TutorialHelper : XMonoBehaviour {
     void ButtonClickCallback()
     {
         currentButton.onClick.RemoveListener( ButtonClickCallback );
+        currentButton.transform.SetParent( lastParent );
         ID++;
         Step();
         //if( currentTutorial.events[0].action == XEvent.CallAction.Continue )

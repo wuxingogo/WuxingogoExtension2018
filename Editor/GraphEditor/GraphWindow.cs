@@ -51,10 +51,11 @@ public class GraphWindow : XBaseWindow
 		if(e.button == 1 && e.type == EventType.MouseUp){
 			GenericMenu menu = new GenericMenu();
 			if(SelectedIndex == -1){
-				menu.AddItem(new GUIContent("Add Base Node"), false, ContextCallback, "AddBaseNode");
-				menu.AddItem(new GUIContent("Add Element Node"), false, ContextCallback, "AddElement");
-				menu.AddItem(new GUIContent("Add Behaviour Node"), false, ContextCallback, "AddBehaviour");
-				menu.AddItem(new GUIContent("Add Model Node"), false, ContextCallback, "AddModel");
+                menu.AddItem( new GUIContent( "Add Base Node" ), false, ContextCallback, "AddBaseNode" );
+                menu.AddItem( new GUIContent( "Add Element Node" ), false, ContextCallback, "AddElement" );
+                menu.AddItem( new GUIContent( "Add Behaviour Node" ), false, ContextCallback, "AddBehaviour" );
+                menu.AddItem( new GUIContent( "Add Condition Node" ), false, ContextCallback, "AddCondition" );
+                menu.AddItem( new GUIContent( "Add Model Node" ), false, ContextCallback, "AddModel" );
 	
 			}else{
 				menu.AddItem(new GUIContent("Make Transition"),false, ContextCallback, "MakeTransition");
@@ -111,13 +112,20 @@ public class GraphWindow : XBaseWindow
 			behaviour.GraphRect =  new Rect(mousePosition.x,mousePosition.y, 200, 150);
 			nodes.Add(behaviour);
 		}
+        else if( clb.Equals( "AddCondition" ) )
+        {
+            ConditionNode condition = new ConditionNode();
+            condition.GraphRect = new Rect( mousePosition.x, mousePosition.y, 200, 150 );
+            nodes.Add( condition );
+        }
 		else if(clb.Equals("MakeTransition")){
 			InputNode = SelectedNode;
 			IsTransition = true;
 		}
 		else if(clb.Equals("DeleteNode")){
 			nodes.RemoveAt(SelectedIndex);
-		}
+        }
+        
 	}
 	
 	void ChooseNode(){
