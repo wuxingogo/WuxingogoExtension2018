@@ -6,12 +6,11 @@ using UnityEditor;
 public class ModelNode<T> : BaseNode{
     T t;
     public List<T> models = new List<T>();
-    public List<int> intModels = null;
-    public List<float> floatModels = null;
-    public List<string> stringModels = null;
+    public List<LinkJoint> joints = new List<LinkJoint>();
+    
     public ModelNode(T t) : base(){
         this.t = t;
-        models.Add( t );
+        //models.Add( t );
         GraphTitle = "ModelNode";
         GraphType = NodeType.Model;
     }
@@ -19,10 +18,16 @@ public class ModelNode<T> : BaseNode{
     
     public override void DrawGraph( int id )
     {
-        base.DrawGraph( id );
+        //base.DrawGraph( id );
+        GraphTitle = EditorGUILayout.TextField( GraphTitle );
+
         EditorGUILayout.BeginHorizontal();
         if( GUILayout.Button( "Add " + t.GetType() ) ){
             models.Add(t);
+            LinkJoint ljoint = new LinkJoint( this, ( joints.Count + 4 ) * EditorGUIUtility.singleLineHeight, EditorGUIUtility.singleLineHeight );
+            ljoint.OnClickInput = OnClickInput;
+            ljoint.OnClickOutput = OnClickOutput;
+            joints.Add( ljoint );
         }
         if( GUILayout.Button( "Sub" ) )
         {
@@ -30,34 +35,44 @@ public class ModelNode<T> : BaseNode{
             models.TrimExcess();
         }
         EditorGUILayout.EndHorizontal();
+
         for (int i = 0; i < models.Count; i++){
             if( t is string ){
                 List<string> std = models as List<string>;
-//                std[i] = EditorGUILayout.TextField( std[i] );
-				std[i] = EditorGUI.TextField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );
+                std[i] = joints[i].DrawString( std[i] );
             }
             else if( t is int ){
                 List<int> std = models as List<int>;
-//                std[i] = EditorGUILayout.IntField( std[i] );
-				std[i] = EditorGUI.IntField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );
+                std[i] = joints[i].DrawInt( std[i] );
             }
             else if( t is float ){
                 List<float> std = models as List<float>;
-				std[i] = EditorGUI.FloatField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight),std[i] );  
+                std[i] = joints[i].DrawFloat( std[i] );
             }
             else if( t is Object){
-//				List<Object> std = models as List<Object>;
-				
-//				std[i] = EditorGUI.ObjectField( new Rect(5, (i + 4) * EditorGUIUtility.singleLineHeight, 200 - 30,EditorGUIUtility.singleLineHeight), std[i]);  
+                List<Object> std = models as List<Object>;
+                //std[i] = joints[i].DrawFloat( std[i] );
+                //std[i] = EditorGUI.ObjectField( new Rect( 5, ( i + 4 ) * EditorGUIUtility.singleLineHeight, 200 - 30, EditorGUIUtility.singleLineHeight ), std[i] );  
             }
+            joints[i].DrawJoint();
+            joints[i].DrawCurves();
 		}
     }
 
-
-
-    public void SetValue( T t ){
-
+    void OnClickInput(){
+        if( GraphWindow.GetInstance().IsTransition )
+            currJoint.SetInputJoint( GraphWindow.GetInstance().InputNode.currJoint );
+        else
+            GraphWindow.GetInstance().SetTransition( this );
     }
+    void OnClickOutput(){
+        if( GraphWindow.GetInstance().IsTransition )
+            currJoint.SetInputJoint( GraphWindow.GetInstance().InputNode.currJoint );
+        else
+            GraphWindow.GetInstance().SetTransition( this );
+    }
+
+
 
     
 

@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 public class GraphWindow : XBaseWindow 
 {
+    public static Rect Rectzero = new Rect( 0, 0, 0, 0 );
 	public List<BaseNode> nodes = new List<BaseNode> ();
 	Vector2 mousePosition = Vector2.zero;
 	public bool IsTransition {
@@ -45,9 +47,12 @@ public class GraphWindow : XBaseWindow
 		_instance = (GraphWindow)EditorWindow.GetWindow (typeof(GraphWindow));
 		_instance.nodes.Clear ();
 	}
-
-    
-
+    [DidReloadScripts(1)]
+    static void DidReloadScripts()
+    {
+        Debug.Log( "Did Reload Scripts" );
+        GetInstance().nodes.Clear();
+    }
 	public override void OnXGUI ()
 	{
 		//TODO List
@@ -83,14 +88,31 @@ public class GraphWindow : XBaseWindow
 		EndWindows ();
 
 		if (IsTransition) {
-			Rect mouseRect = new Rect (e.mousePosition.x, e.mousePosition.y, 10, 10);
-			DrawNodeCurve (InputNode.GetJointRect (), mouseRect);
-			Repaint ();
+            DrawTransitionCurve();
 		}
 		for (int i = 0; i < nodes.Count; i++) {
 			nodes [i].DrawCurves ();
 		}
 	}
+
+    public void DrawTransitionCurve()
+    {
+        Rect mouseRect = new Rect( mousePosition.x, mousePosition.y, 10, 10 );
+        switch( InputNode.GraphType)
+        {
+            case BaseNode.NodeType.Model:
+                DrawNodeCurve( InputNode.LinkRect, mouseRect );
+                break;
+            case BaseNode.NodeType.Element:
+                DrawNodeCurve( InputNode.GetJointRect(), mouseRect );
+                break;
+            case BaseNode.NodeType.Condition:
+                break;
+            case BaseNode.NodeType.Behaviour:
+                break;
+        }
+        Repaint();
+    }
 
 
 	public void SetTransition (BaseNode selected)
@@ -164,6 +186,7 @@ public class GraphWindow : XBaseWindow
 		Handles.DrawBezier (startPos, endPos, startTan, endTan, Color.black, null, 1);
 		
 	}
+
 	
 
 	

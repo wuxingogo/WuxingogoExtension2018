@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class BaseNode : ScriptableObject {
 
+    public LinkJoint currJoint = null;
 	public BaseNode(){
 		GraphType = NodeType.Base;
         GraphRect = new Rect( 0, 0, 200, 150 );
@@ -24,8 +25,22 @@ public class BaseNode : ScriptableObject {
             jointRect = new Rect( GraphRect.width - 10, GraphRect.height / 2, 10, 20 );
             return jointRect;
         }
+        set
+        {
+            jointRect = value;
+        }
     }
     private Rect jointRect;
+    private Rect linkJointRect;
+    public Rect LinkRect{
+        get
+        {
+            return new Rect( linkJointRect.x + GraphRect.x, linkJointRect.y + GraphRect.y, linkJointRect.width, linkJointRect.height );
+        }
+        set{
+            linkJointRect = value;
+        }
+    }
 	
 	public NodeType GraphType {
 		get;
@@ -82,6 +97,19 @@ public class BaseNode : ScriptableObject {
 
         }
 	}
+
+    internal void SetCurrentLinkJoint( LinkJoint ljoint )
+    {
+        if( this.currJoint != null )
+        {
+            this.currJoint.SetInputJoint( ljoint );
+            this.currJoint = null;
+        }else
+        {
+            this.currJoint = ljoint;
+        }
+        
+    }
 	
 	public virtual void SetInputNode(BaseNode input, Vector2 clickPos)
 	{
