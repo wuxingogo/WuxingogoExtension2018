@@ -81,6 +81,10 @@ public class XBaseWindow : EditorWindow {
 	public System.Enum CreateEnumSelectable(string fieldName, System.Enum value){
 		return EditorGUILayout.EnumPopup(fieldName, value);
 	}
+    public System.Enum CreateEnumPopup( string fieldName, System.Enum value )
+    {
+        return EditorGUILayout.EnumMaskField( fieldName, value );
+    }
 
 	public int CreateSelectableFromString(int rootID, string[] array){
 		return EditorGUILayout.Popup(array[rootID], rootID, array);

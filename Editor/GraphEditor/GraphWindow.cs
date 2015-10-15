@@ -37,6 +37,7 @@ public class GraphWindow : XBaseWindow
 	{
 		if (null == _instance) {
 			_instance = (GraphWindow)EditorWindow.GetWindow (typeof(GraphWindow));
+            _instance.Close();
 		}
 		return _instance;
 	}
@@ -51,7 +52,12 @@ public class GraphWindow : XBaseWindow
     static void DidReloadScripts()
     {
         Debug.Log( "Did Reload Scripts" );
-        GetInstance().nodes.Clear();
+        //if( _instance == null )
+        //{
+        //    GetInstance().nodes.Clear();
+
+        //}
+            
     }
 	public override void OnXGUI ()
 	{

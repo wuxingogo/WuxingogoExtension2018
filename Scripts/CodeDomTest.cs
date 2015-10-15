@@ -5,6 +5,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEditor;
+using ccf;
 
 public class CodeDomTest : XMonoBehaviour{
     [XAttribute("generate code")]
@@ -26,6 +27,7 @@ public class CodeDomTest : XMonoBehaviour{
         //准备要生成的类的定义
         
         CodeTypeDeclaration Customerclass = new CodeTypeDeclaration("TestCompile");
+        
         
         Customerclass.IsClass = true;
         
@@ -105,5 +107,19 @@ public class CodeDomTest : XMonoBehaviour{
         AssetDatabase.Refresh();
     
     
-    } 
+    }
+    [XAttribute("generate !!!")]
+    public void Generate()
+    {
+        GenerateCodeFactory.GenerateUnit();
+        GenerateCodeFactory.GenerateAndImportNS( string.Empty, "System", "UnityEngine" );
+        GenerateCodeFactory.GenerateClass( "WuxingogoTestDom", new string[]{"XMonoBehaviour"} );
+        GenerateCodeFactory.GenerateField( typeof( string ), "strTest", MemberAttributes.Public );
+        GenerateCodeFactory.GenerateCommon( "这是Field的注释" );
+        GenerateCodeFactory.GenerateProperty( typeof( string ), "StrTest" );
+        GenerateCodeFactory.GenerateCommon("这是Property的注释");
+        GenerateCodeFactory.GenerateAndCompile( Application.streamingAssetsPath + "/TestDom.cs" );
+
+
+    }
 }
