@@ -45,17 +45,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\CreateXBaseEditor.cs" />
-    <Compile Include="Editor\CreateXBaseWindow.cs" />
-    <Compile Include="Editor\CreateXData.cs" />
-    <Compile Include="Editor\CreateXMonoBehaviour.cs" />
-    <Compile Include="Editor\CreateXObject.cs" />
+    <Compile Include="Editor\CreateAssets\CreateUnityScript.cs" />
+    <Compile Include="Editor\CreateAssets\CreateXBaseEditor.cs" />
+    <Compile Include="Editor\CreateAssets\CreateXBaseWindow.cs" />
+    <Compile Include="Editor\CreateAssets\CreateXData.cs" />
+    <Compile Include="Editor\CreateAssets\CreateXMonoBehaviour.cs" />
+    <Compile Include="Editor\CreateAssets\GenerateCodeFactory.cs" />
     <Compile Include="Editor\ExprotUIToCocos.cs" />
     <Compile Include="Editor\FindTextureRef.cs" />
+    <Compile Include="Editor\GenerateCode\CodeBase.cs" />
+    <Compile Include="Editor\GenerateCode\CodeEditor.cs" />
+    <Compile Include="Editor\GenerateCode\CodeObject.cs" />
     <Compile Include="Editor\GraphEditor\BaseNode.cs" />
     <Compile Include="Editor\GraphEditor\BehaviourNode.cs" />
+    <Compile Include="Editor\GraphEditor\ConditionNode.cs" />
     <Compile Include="Editor\GraphEditor\ElementNode.cs" />
+    <Compile Include="Editor\GraphEditor\GraphMenu.cs" />
     <Compile Include="Editor\GraphEditor\GraphWindow.cs" />
+    <Compile Include="Editor\GraphEditor\LinkCurves.cs" />
+    <Compile Include="Editor\GraphEditor\LinkJoint.cs" />
+    <Compile Include="Editor\GraphEditor\ModelNode.cs" />
     <Compile Include="Editor\PackPipeLine.cs" />
     <Compile Include="Editor\QuickCreatePrefabs.cs" />
     <Compile Include="Editor\XAnimationExtension.cs" />
@@ -68,6 +77,7 @@
     <Compile Include="Editor\XCreateAssetBundle.cs" />
     <Compile Include="Editor\XDataEditor.cs" />
     <Compile Include="Editor\XEditorModel.cs" />
+    <Compile Include="Editor\XEditorSetting.cs" />
     <Compile Include="Editor\XFieldExtension.cs" />
     <Compile Include="Editor\XFileExtension.cs" />
     <Compile Include="Editor\XHierarchy.cs" />
@@ -93,6 +103,17 @@
     <Compile Include="Scripts\XAttribute.cs" />
     <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor\CreateAssets\CreateUnityScript.cs.meta" />
+    <None Include="Editor\CreateAssets\CreateXBaseEditor.cs.meta" />
+    <None Include="Editor\CreateAssets\CreateXBaseWindow.cs.meta" />
+    <None Include="Editor\CreateAssets\CreateXData.cs.meta" />
+    <None Include="Editor\CreateAssets\CreateXMonoBehaviour.cs.meta" />
+    <None Include="Editor\CreateAssets\GenerateCodeFactory.cs.meta" />
+    <None Include="Editor\GenerateCode\CodeBase.cs.meta" />
+    <None Include="Editor\GenerateCode\CodeEditor.cs.meta" />
+    <None Include="Editor\GenerateCode\CodeObject.cs.meta" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
