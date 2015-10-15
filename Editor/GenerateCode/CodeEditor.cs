@@ -52,41 +52,56 @@ public class CodeEditor : XBaseWindow {
             {
                 codeObject.importNS[pos] = CreateStringField( "using", codeObject.importNS[pos] );
             }
-
+            
+            BeginHorizontal();
             codeObject.className = CreateStringField( "className", codeObject.className );
 
             if( CreateSpaceButton( "Add a member" ) )
             {
                 codeObject.members.Add( new CodeBase() );
             }
+            EndHorizontal();
+            
             foreach( var item in codeObject.members )
             {
                 BeginHorizontal();
+                
                 item.type = (CodeType)CreateEnumSelectable( "mode", item.type );
                 item.attrs = (MemberAttributes)CreateEnumPopup( "Type", item.attrs );
+                //                Debug.Log(item.attrs.ToString());
+                item.TypeID = CreateSelectableString(item.TypeID, supposeArray );
                 item.name = CreateStringField( "Name", item.name );
-                item.TypeID = CreateSelectableFromString( item.TypeID, supposeArray );
-                 if( CreateSpaceButton( "Add Commen" ) )
+                
+                if( CreateSpaceButton( "Add Commen" ) )
                 {
                     item.comment.Add( "//TODO List" );
                 }
                 if( CreateSpaceButton( "Delete" ) )
                 {
                     codeObject.members.Remove( item );
+                    codeObject.members.TrimExcess();
+                    //EndHorizontal();
+                    return;
                 }
                 EndHorizontal();
+                
+                item.Draw();
                 
                 for( int pos = 0; pos < item.comment.Count; pos++ )
                 {
                     BeginHorizontal();
                     item.comment[pos] = CreateStringField( "//", item.comment[pos] );
-
+                    
                     if( CreateSpaceButton( "Delete Comment" ) )
                     {
                         item.comment.RemoveAt( pos );
+                        item.comment.TrimExcess();
+                        
                     }
                     EndHorizontal();
                 }
+                
+                
                 
             }
 

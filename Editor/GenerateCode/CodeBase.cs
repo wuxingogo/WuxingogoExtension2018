@@ -10,7 +10,7 @@ public class CodeBase {
 
     public CodeType type = CodeType.Field;
     public List<string> comment = new List<string>();
-    public MemberAttributes attrs = MemberAttributes.Public;
+    public MemberAttributes attrs = MemberAttributes.Public | MemberAttributes.Final;
     public string name = "";
 
     public string memberType = "";
@@ -76,8 +76,8 @@ public class CodeBase {
     }
     public CodeTypeMember GenerateEvent()
     {
-        CodeMemberEvent field = new CodeMemberEvent();
-        return field;
+        CodeMemberEvent e = new CodeMemberEvent();
+        return e;
     }
     public CodeTypeMember GenerateProperty()
     {
@@ -91,9 +91,27 @@ public class CodeBase {
         method.ReturnType = new CodeTypeReference( objectType );
         return method;
     }
-
     
-
+    public void Draw(){
+        switch( type )
+        {
+            case CodeType.Event:
+           
+                break;
+            case CodeType.Field:
+               
+                break;
+            case CodeType.Method:
+                
+                break;
+            case CodeType.Property:
+                
+                break;
+        }
+    }
+    
+    
+    
 }
 public enum CodeType{
     Method,

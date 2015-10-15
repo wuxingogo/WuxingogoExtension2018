@@ -89,6 +89,9 @@ public class XBaseWindow : EditorWindow {
 	public int CreateSelectableFromString(int rootID, string[] array){
 		return EditorGUILayout.Popup(array[rootID], rootID, array);
 	}
+    public int CreateSelectableString(int rootID, string[] array){
+        return EditorGUILayout.Popup(rootID, array);
+    }
 	
 	public void BeginHorizontal(){
 		EditorGUILayout.BeginHorizontal();
