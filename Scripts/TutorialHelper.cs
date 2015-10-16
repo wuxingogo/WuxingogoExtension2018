@@ -1,4 +1,16 @@
-﻿using UnityEngine;
+﻿//  TUTORIALHELPER
+//
+//  Author:
+//       ${wuxingogo} <52111314ly@gmail.com>
+//
+//  Copyright (c) 2015 wuxingogo
+//
+//  You should have received a copy of the GNU Lesser General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// ------------------------------------------------------------------------------
+// 2015/10/16 
+// ------------------------------------------------------------------------------
+using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -20,7 +32,7 @@ public class TutorialHelper : XMonoBehaviour {
     void Start()
     {
     }
-
+    
     [XAttribute( "开始教程" )]
     public void BeginTutorial( int index )
     {

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿#define  PlayMaker
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+
 #if PlayMaker
 using HutongGames.PlayMaker;
 class XPlaymakerExtension : XBaseWindow

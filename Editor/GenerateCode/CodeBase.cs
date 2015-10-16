@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿//CodeBase.cs
+//
+//Author:
+//		Wuxingogo 52111314ly@gmail.com
+//
+//
+//		Copyright (c) 10/14/2015 22:38:37 
+//
+//	You should have received a copy of the GNU Lesser General Public Licensealong with this program.
+//	If not, see <http://www.gnu.org/licenses/>.
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;

@@ -31,16 +31,6 @@ public class XCommandTools : XBaseWindow
 	}
 
 	public override void OnXGUI(){
-		//TODO List
-//		if(!isEndStart){
-//			isEndStart = true;
-//			Start();
-//		}
-//		_scrollPos = GUI.BeginScrollView(
-//			new Rect(0, 105, position.width, position.height),
-//			_scrollPos,
-//			new Rect(0, 50, 550, position.height + 550)
-//			); 
 		command = CreateStringField("Input ur command : ",command);
 		
 //		isEditorAssembly = CreateCheckBox("Is Editor Command", isEditorAssembly);
@@ -66,10 +56,6 @@ public class XCommandTools : XBaseWindow
 		{
 			Listen();
 		}
-	}
-	
-	void ModifyCommand(){
-//		command = "~" + command;
 	}
 	
 	void EmptyCommand(){

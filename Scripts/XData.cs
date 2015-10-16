@@ -11,7 +11,7 @@ public class XData : ScriptableObject{
 }
 
 [System.Serializable]
-public class XDataModel{
+public class XDataModel : ScriptableObject{
 	
 	public string _title = "" ;
 	
@@ -21,8 +21,6 @@ public class XDataModel{
 	private string _StrValue;
 	private int _IntValue;
 	private float _FloatValue;
-	
-//	private DataType _
 	
 }
 
