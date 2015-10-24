@@ -30,14 +30,14 @@ Copy folder "Editor" and "Script" to a name by "Wuxingogo" in ur Unity project.C
 
 ##Copyright, License & Contributors
 -----
-WuxingogoExtension are debug under the MIT license. 
+WuxingogoExtension are release under the MIT license. 
 
 The Authors is Wuxingogo.Email:52111314ly@gmail.com
 
 ##Note:
 -----
 
-That's a debug demo,you can pull request to fix some bug.
+This is a debug version,you can pull request to fix some bug.
 
 
 
