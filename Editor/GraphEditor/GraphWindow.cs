@@ -48,7 +48,7 @@ public class GraphWindow : XBaseWindow
 		_instance = (GraphWindow)EditorWindow.GetWindow (typeof(GraphWindow));
 		_instance.nodes.Clear ();
 	}
-    [DidReloadScripts(1)]
+//    [DidReloadScripts(1)]
     static void DidReloadScripts()
     {
         Debug.Log( "Did Reload Scripts" );
