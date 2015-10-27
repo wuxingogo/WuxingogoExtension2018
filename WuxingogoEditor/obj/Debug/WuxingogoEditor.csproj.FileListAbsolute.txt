@@ -1,1 +1,0 @@
-\\psf\Home\Documents\GitHub\WuxingogoExtension\trunk\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojResolveAssemblyReference.cache
