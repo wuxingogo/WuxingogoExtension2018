@@ -1,0 +1,24 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/AssemblyInfo.cs">
+    <Files>
+      <File FileName="WuxingogoRuntime/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Scripts/TextModel.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Node name="WuxingogoRuntime" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Scripts" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
