@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/AssemblyInfo.cs">
+    <Files>
+      <File FileName="WuxingogoEditor/XExtension/ExprotUIToCocos.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/AssemblyInfo.cs" Line="10" Column="27" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="WuxingogoEditor" expanded="True">
-            <Node name="References" expanded="True">
-              <Node name="/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll" selected="True" />
-            </Node>
-          </Node>
+        <State expanded="True" selected="True">
+          <Node name="WuxingogoEditor" expanded="True" />
         </State>
       </Pad>
     </Pads>
