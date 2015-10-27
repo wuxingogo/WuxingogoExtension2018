@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Scripts/TutorialHelper.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/AssemblyInfo.cs" Line="32" Column="1" />
+      <File FileName="WuxingogoRuntime/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/TextModel.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/TutorialHelper.cs" Line="17" Column="1" />
