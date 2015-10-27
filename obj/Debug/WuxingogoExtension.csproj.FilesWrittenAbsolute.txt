@@ -1,0 +1,8 @@
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/obj/Debug/WuxingogoExtension.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/UnityEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/UnityEngine.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/UnityEngine.UI.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/WuxingogoExtension.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/WuxingogoExtension.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/obj/Debug/WuxingogoExtension.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/bin/Debug/PlayMaker.dll

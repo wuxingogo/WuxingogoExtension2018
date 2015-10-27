@@ -84,12 +84,14 @@ public class XCommandTools : XBaseWindow
 	}
 	
 	void ExcuteCommand(){
-		
+
+#if UNITY_4_6
         object obj = XReflectionManager.GetValue(command);
         if( null != obj )
             Debug.Log (command + " is : " + obj.ToString());
         else
             Debug.Log ("excute : " + command);
+#endif
 
 		
 	}
