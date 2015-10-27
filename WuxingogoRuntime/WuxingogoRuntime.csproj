@@ -42,11 +42,8 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Scripts\ArrayExtension.cs" />
     <Compile Include="Scripts\TextModel.cs" />
-    <Compile Include="Scripts\TutorialHelper.cs" />
-    <Compile Include="Scripts\TutorialModel.cs" />
     <Compile Include="Scripts\XAttribute.cs" />
     <Compile Include="Scripts\XData.cs" />
-    <Compile Include="Scripts\XEvent.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
     <Compile Include="Scripts\XReflectionManager.cs" />
   </ItemGroup>
