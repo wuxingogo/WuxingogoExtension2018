@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D2C63C42-C455-4F1B-944F-17CD39D2F2A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WuxingogoEditor</RootNamespace>
+    <AssemblyName>WuxingogoEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WuxingogoRuntime">
+      <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="XExtension\ExprotUIToCocos.cs" />
+    <Compile Include="XExtension\FindTextureRef.cs" />
+    <Compile Include="XExtension\PackPipeLine.cs" />
+    <Compile Include="XExtension\QuickCreatePrefabs.cs" />
+    <Compile Include="XExtension\XAnimationExtension.cs" />
+    <Compile Include="XExtension\XAttributeDrawer.cs" />
+    <Compile Include="XExtension\XBaseEditor.cs" />
+    <Compile Include="XExtension\XBaseWindow.cs" />
+    <Compile Include="XExtension\XBatchingReplaces.cs" />
+    <Compile Include="XExtension\XBehaviourWindow.cs" />
+    <Compile Include="XExtension\XCommandTools.cs" />
+    <Compile Include="XExtension\XCreateAssetBundle.cs" />
+    <Compile Include="XExtension\XDataEditor.cs" />
+    <Compile Include="XExtension\XEditorModel.cs" />
+    <Compile Include="XExtension\XEditorSetting.cs" />
+    <Compile Include="XExtension\XFieldExtension.cs" />
+    <Compile Include="XExtension\XFileExtension.cs" />
+    <Compile Include="XExtension\XHierarchy.cs" />
+    <Compile Include="XExtension\XMethodExtension.cs" />
+    <Compile Include="XExtension\XMonoBehaviourEditor.cs" />
+    <Compile Include="XExtension\XMuiltHandle.cs" />
+    <Compile Include="XExtension\XPropertiesExtension.cs" />
+    <Compile Include="XExtension\XPropertiesToSerializables.cs" />
+    <Compile Include="XExtension\XQucickSetPrefs.cs" />
+    <Compile Include="XExtension\XQuickSetDatabase.cs" />
+    <Compile Include="XExtension\XReplaceComponent.cs" />
+    <Compile Include="XExtension\XResources.cs" />
+    <Compile Include="XExtension\XSelectionExtension.cs" />
+    <Compile Include="XExtension\XSerializableExtension.cs" />
+    <Compile Include="XExtension\XShaderExtension.cs" />
+    <Compile Include="XExtension\XStyles.cs" />
+    <Compile Include="XExtension\XTextureWindow.cs" />
+    <Compile Include="XExtension\XWindow.cs" />
+    <Compile Include="XExtension\YMGameWindow.cs" />
+    <Compile Include="GraphEditor\BaseNode.cs" />
+    <Compile Include="GraphEditor\BehaviourNode.cs" />
+    <Compile Include="GraphEditor\ConditionNode.cs" />
+    <Compile Include="GraphEditor\ElementNode.cs" />
+    <Compile Include="GraphEditor\GraphMenu.cs" />
+    <Compile Include="GraphEditor\GraphWindow.cs" />
+    <Compile Include="GraphEditor\LinkCurves.cs" />
+    <Compile Include="GraphEditor\LinkJoint.cs" />
+    <Compile Include="GraphEditor\ModelNode.cs" />
+    <Compile Include="CreateAssets\CreateUnityScript.cs" />
+    <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
+    <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
+    <Compile Include="CreateAssets\CreateXData.cs" />
+    <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
+    <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="XExtension\" />
+    <Folder Include="GraphEditor\" />
+    <Folder Include="CreateAssets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GraphEditor\BaseNode.cs.meta" />
+    <None Include="GraphEditor\BehaviourNode.cs.meta" />
+    <None Include="GraphEditor\ConditionNode.cs.meta" />
+    <None Include="GraphEditor\ElementNode.cs.meta" />
+    <None Include="GraphEditor\GraphMenu.cs.meta" />
+    <None Include="GraphEditor\GraphWindow.cs.meta" />
+    <None Include="GraphEditor\LinkCurves.cs.meta" />
+    <None Include="GraphEditor\LinkJoint.cs.meta" />
+    <None Include="GraphEditor\ModelNode.cs.meta" />
+    <None Include="CreateAssets\CreateUnityScript.cs.meta" />
+    <None Include="CreateAssets\CreateXBaseEditor.cs.meta" />
+    <None Include="CreateAssets\CreateXBaseWindow.cs.meta" />
+    <None Include="CreateAssets\CreateXData.cs.meta" />
+    <None Include="CreateAssets\CreateXMonoBehaviour.cs.meta" />
+    <None Include="CreateAssets\GenerateCodeFactory.cs.meta" />
+  </ItemGroup>
+</Project>
