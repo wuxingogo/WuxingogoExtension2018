@@ -12,3 +12,5 @@ cp -r -f $RuntimeSrcDirctory/WuxingogoRuntime.dll $RuntimeDesDirctory
 echo "Wuxingogo:Copy Success"
 
 cp -r -f $EditorSrcDirctory/WuxingogoEditor.dll $EditorDesDirctory
+
+echo "Wuxingogo:Copy Success"
