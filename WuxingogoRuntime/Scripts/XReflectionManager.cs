@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Collections;
 
-#if UNITY_4_6
+
 public class XReflectionManager {
 
 	static Assembly _assembly = null;
@@ -168,4 +168,3 @@ public class XReflectionManager {
 		
 	}
 }
-#endif

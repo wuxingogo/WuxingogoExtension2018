@@ -1,0 +1,9 @@
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/UnityEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/UnityEngine.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/UnityEngine.UI.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/Unity.SerializationLogic.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/WuxingogoEditor.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/bin/Debug/WuxingogoEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll.mdb

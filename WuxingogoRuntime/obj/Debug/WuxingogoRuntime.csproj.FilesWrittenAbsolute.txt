@@ -1,0 +1,9 @@
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/UnityEngine.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/UnityEngine.UI.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/UnityEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/Unity.SerializationLogic.dll

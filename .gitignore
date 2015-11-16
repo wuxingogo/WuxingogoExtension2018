@@ -41,3 +41,37 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+WuxingogoEditor/XExtension/ExprotUIToCocos.cs.meta
+WuxingogoEditor/XExtension/FindTextureRef.cs.meta
+WuxingogoEditor/XExtension/PackPipeLine.cs.meta
+WuxingogoEditor/XExtension/QuickCreatePrefabs.cs.meta
+WuxingogoEditor/XExtension/XAnimationExtension.cs.meta
+WuxingogoEditor/XExtension/XAttributeDrawer.cs.meta
+WuxingogoEditor/XExtension/XBaseEditor.cs.meta
+WuxingogoEditor/XExtension/XBaseWindow.cs.meta
+WuxingogoEditor/XExtension/XBatchingReplaces.cs.meta
+WuxingogoEditor/XExtension/XBehaviourWindow.cs.meta
+WuxingogoEditor/XExtension/XCommandTools.cs.meta
+WuxingogoEditor/XExtension/XCreateAssetBundle.cs.meta
+WuxingogoEditor/XExtension/XDataEditor.cs.meta
+WuxingogoEditor/XExtension/XEditorModel.cs.meta
+WuxingogoEditor/XExtension/XEditorSetting.cs.meta
+WuxingogoEditor/XExtension/XFieldExtension.cs.meta
+WuxingogoEditor/XExtension/XFileExtension.cs.meta
+WuxingogoEditor/XExtension/XHierarchy.cs.meta
+WuxingogoEditor/XExtension/XMethodExtension.cs.meta
+WuxingogoEditor/XExtension/XMonoBehaviourEditor.cs.meta
+WuxingogoEditor/XExtension/XMuiltHandle.cs.meta
+WuxingogoEditor/XExtension/XPropertiesExtension.cs.meta
+WuxingogoEditor/XExtension/XPropertiesToSerializables.cs.meta
+WuxingogoEditor/XExtension/XQucickSetPrefs.cs.meta
+WuxingogoEditor/XExtension/XQuickSetDatabase.cs.meta
+WuxingogoEditor/XExtension/XReplaceComponent.cs.meta
+WuxingogoEditor/XExtension/XResources.cs.meta
+WuxingogoEditor/XExtension/XSelectionExtension.cs.meta
+WuxingogoEditor/XExtension/XSerializableExtension.cs.meta
+WuxingogoEditor/XExtension/XShaderExtension.cs.meta
+WuxingogoEditor/XExtension/XStyles.cs.meta
+WuxingogoEditor/XExtension/XTextureWindow.cs.meta
+WuxingogoEditor/XExtension/XWindow.cs.meta
+WuxingogoEditor/XExtension/YMGameWindow.cs.meta

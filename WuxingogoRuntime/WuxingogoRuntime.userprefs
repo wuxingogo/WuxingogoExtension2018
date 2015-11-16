@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
+﻿<Properties StartupItem="WuxingogoRuntime.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
