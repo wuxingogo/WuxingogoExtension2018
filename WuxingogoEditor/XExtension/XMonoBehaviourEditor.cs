@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using wuxingogo.Runtime;
+using XRuntime;
+
+
+
 
 [CustomEditor( typeof( XMonoBehaviour ), true )]
-
-
 public class XMonoBehaviourEditor : XBaseEditor
 {
     private Dictionary<string, object[]> methodParameters = new Dictionary<string, object[]>();

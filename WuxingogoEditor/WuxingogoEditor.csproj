@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,9 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="WuxingogoRuntime">
-      <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEditor">
       <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
     </Reference>
@@ -44,6 +42,10 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="WuxingogoRuntime, Version=1.0.5798.18462, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

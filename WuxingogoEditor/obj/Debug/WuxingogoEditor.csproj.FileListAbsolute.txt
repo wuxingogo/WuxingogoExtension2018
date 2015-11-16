@@ -1,0 +1,8 @@
+E:\new_project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojResolveAssemblyReference.cache
+E:\new_project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoEditor.dll
+E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoEditor.pdb
+E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.dll
+E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\Unity.SerializationLogic.dll
+E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.pdb
+E:\new_project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb

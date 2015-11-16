@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,9 +7,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>WuxingogoRuntime</RootNamespace>
+    <RootNamespace>XRuntime</RootNamespace>
     <AssemblyName>WuxingogoRuntime</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -31,11 +32,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -48,7 +52,5 @@
     <Compile Include="Scripts\XReflectionManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

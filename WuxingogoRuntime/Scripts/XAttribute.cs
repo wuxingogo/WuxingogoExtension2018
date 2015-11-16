@@ -14,12 +14,15 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class XAttribute : Attribute
+namespace XRuntime
 {
-    public string title;
- 
-    public XAttribute(string title)
+    public class XAttribute : Attribute
     {
-        this.title = title;
+        public string title;
+
+        public XAttribute(string title)
+        {
+            this.title = title;
+        }
     }
 }
