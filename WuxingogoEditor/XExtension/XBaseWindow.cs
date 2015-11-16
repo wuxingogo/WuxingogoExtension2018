@@ -6,6 +6,10 @@ using UnityEditor;
  * [XBaseWindow 基础类]
  * @type {[◑▂◑]}
  */
+using System;
+using Object = UnityEngine.Object;
+
+
 public class XBaseWindow : EditorWindow {
 
 	private Vector2 _scrollPos = Vector2.zero;
@@ -18,8 +22,22 @@ public class XBaseWindow : EditorWindow {
 	// 	XBaseWindow window = (XBaseWindow)EditorWindow.GetWindow (typeof (XBaseWindow));	
 	// }
 	
+	public static void Init<T>(){
+		string cmdPrefs = typeof(T).ToString() + "_isPrefix";
+		bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
+		EditorWindow.GetWindow( typeof( T ), isPrefix);
+	}
+	
 	public void OnGUI(){
 		GUILayout.Box(XResources.LogoTexture,GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
+		if(GUI.Button(GUILayoutUtility.GetLastRect(), XResources.LogoTexture)){
+			this.Close();
+			string cmdPrefs = GetType().ToString() + "_isPrefix";
+			bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
+			EditorPrefs.SetBool(cmdPrefs, !isPrefix);
+			EditorWindow.GetWindow( GetType(), !isPrefix);
+			
+		}
 		_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos); 
 
 		OnXGUI();
@@ -37,6 +55,16 @@ public class XBaseWindow : EditorWindow {
 	
 	public bool CreateSpaceButton(string btnName, float width = XButtonWidth, float height = XButtonHeight){
 		return GUILayout.Button( btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(height) );
+	}
+	public void AddButton(string btnName, Action callback){
+		if(GUILayout.Button( btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)) ){
+			callback();
+		}
+	}
+	public void AddButton<T>(string btnName, Action<T> callback, T arg){
+		if(GUILayout.Button( btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight))){
+			callback(arg);
+		}
 	}
 	
 	public Object CreateObjectField(string fieldName, Object obj, System.Type type = null ){
@@ -71,6 +99,9 @@ public class XBaseWindow : EditorWindow {
 	
 	public void CreateLabel(string fieldName){
 		EditorGUILayout.LabelField(fieldName);
+	}
+	public void CreateLabel(string fieldName, string value){
+		EditorGUILayout.LabelField(fieldName, value);
 	}
 	
 	public void CreateMessageField(string value, MessageType type){
@@ -111,7 +142,7 @@ public class XBaseWindow : EditorWindow {
 		ShowNotification(new GUIContent(message));
 	}
 	
-	
+
 	
 	
 }

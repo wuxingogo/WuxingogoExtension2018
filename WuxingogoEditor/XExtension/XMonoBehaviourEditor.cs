@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using wuxingogo.Runtime;
 
 [CustomEditor( typeof( XMonoBehaviour ), true )]
 
