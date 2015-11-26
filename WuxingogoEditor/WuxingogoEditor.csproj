@@ -31,7 +31,11 @@
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>E:\Users\Administrator\Desktop\UnityDLL\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEditor">
@@ -117,11 +121,5 @@
     <None Include="GraphEditor\LinkCurves.cs.meta" />
     <None Include="GraphEditor\LinkJoint.cs.meta" />
     <None Include="GraphEditor\ModelNode.cs.meta" />
-    <None Include="CreateAssets\CreateUnityScript.cs.meta" />
-    <None Include="CreateAssets\CreateXBaseEditor.cs.meta" />
-    <None Include="CreateAssets\CreateXBaseWindow.cs.meta" />
-    <None Include="CreateAssets\CreateXData.cs.meta" />
-    <None Include="CreateAssets\CreateXMonoBehaviour.cs.meta" />
-    <None Include="CreateAssets\GenerateCodeFactory.cs.meta" />
   </ItemGroup>
 </Project>

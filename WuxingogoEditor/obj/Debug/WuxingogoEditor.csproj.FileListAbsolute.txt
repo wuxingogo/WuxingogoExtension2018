@@ -6,3 +6,12 @@ E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.dll
 E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\Unity.SerializationLogic.dll
 E:\new_project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.pdb
 E:\new_project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoEditor.dll
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoEditor.pdb
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\Mono.Data.Sqlite.dll
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.dll
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\Unity.SerializationLogic.dll
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\bin\Debug\WuxingogoRuntime.pdb
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojResolveAssemblyReference.cache
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+D:\ly-project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
