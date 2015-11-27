@@ -4,12 +4,23 @@ using System.Collections;
 
 public class XResources {
 
-	public static Texture LogoTexture = EditorGUIUtility.LoadRequired("Texture/wuxingogo.psd") as Texture;
-//    public static XStyles Sty = EditorGUIUtility.LoadRequired( "Texture/XStyles.asset" ) as XStyles;
+	private XResources(){
+		string resPath = EditorPrefs.GetString("XLogo", "Assets/WuxingogoExtension/wuxingogo.psd");
+		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(resPath);
+	}
+	public Texture LogoTexture = null;
 
-    public static void ReimportAll()
+    public void SaveAll()
     {
-        LogoTexture = EditorGUIUtility.LoadRequired( "Texture/wuxingogo.psd" ) as Texture;
-//        Sty = EditorGUIUtility.LoadRequired( "Texture/XStyles.asset" ) as XStyles;
+        EditorPrefs.SetString("XLogo", AssetDatabase.GetAssetPath(LogoTexture));
+    }
+    
+    private static XResources _instance = null;
+    
+    public static XResources GetInstance(){
+    	if(_instance == null){
+    		_instance = new XResources();
+    	}
+    	return _instance;
     }
 }

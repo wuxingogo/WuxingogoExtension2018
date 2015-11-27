@@ -170,21 +170,19 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     public void AddItemsToMenu(GenericMenu menu)
     {
         //menu.AddItem(new GUIContent("asdfasd"), false, NoneCallback, "aaaa");
-        menu.AddItem(new GUIContent("OpenEditorScript"), false, NoneCallback, "FuckThisWindow");
+        menu.AddItem(new GUIContent("OpenEditorScript"), false, OpenEditorScript, "FuckThisWindow");
         menu.ShowAsContext();
 
     }
 
-    void NoneCallback(object handle)
+    void OpenEditorScript(object handle)
     {
         string type = this.GetType().Name;
-        string str = FindFile(type, Application.dataPath);
-        //打开指定文件夹选中文件(路径不存在则默认打开并选中我的文档)
-        System.Diagnostics.Process.Start("explorer.exe", "/select," + str);
-        Debug.Log(str);
-        Object obj = AssetDatabase.LoadMainAssetAtPath(str);
-        Debug.Log(obj);
-        AssetDatabase.OpenAsset(obj.GetInstanceID());
+		string absolutelyPath = FindFile(type, "Assets");
+
+		Object[] obj = AssetDatabase.LoadAllAssetsAtPath(absolutelyPath);
+		AssetDatabase.OpenAsset(obj);
+
     }
 
     static String FindFile(String filename, String path)

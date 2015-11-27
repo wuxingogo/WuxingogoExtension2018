@@ -1,43 +1,43 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
-//[CustomEditor(typeof(XData)), CanEditMultipleObjects]
-//public class XDataEditor : XBaseEditor 
-//{
+[CustomEditor(typeof(XData)), CanEditMultipleObjects]
+public class XDataEditor : XBaseEditor 
+{
 
-//    XData model = null;
-//    int dataSize = 0;
+	XData model = null;
+	int dataSize = 0;
 
-//    public override void OnInspectorGUI()
-//    {
-//        Init();
-////		base.OnInspectorGUI();
+	public override void OnInspectorGUI()
+	{
+		Init();
+//		base.OnInspectorGUI();
 		
-//        GUI.changed = false;
-//        if (Event.current.type == EventType.Layout)
-//        {
-//            return;
-//        }
+		GUI.changed = false;
+		if (Event.current.type == EventType.Layout)
+		{
+			return;
+		}
 
-//        model = target as XData;
+        model = target as XData;
 
-//        dataSize = model.AllData.Count;
-//        dataSize = CreateGUIInt("Array Size", dataSize);
-//        if( dataSize != model.AllData.Count )
-//        {
+        dataSize = model.AllData.Count;
+        dataSize = CreateGUIInt("Array Size", dataSize);
+        if( dataSize != model.AllData.Count )
+        {
             
-//        }
+        }
 		
 		
-//        if( GUI.changed ){
-//            EditorUtility.SetDirty( model );
-//            AssetDatabase.SaveAssets();
-//        }
+		if( GUI.changed ){
+            EditorUtility.SetDirty( model );
+			AssetDatabase.SaveAssets();
+		}
 		
-//    }
+	}
 	
-//    public void ChangeArray(){
-//    }
+	public void ChangeArray(){
+	}
 	
 
-//}
+}

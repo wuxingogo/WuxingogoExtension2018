@@ -30,9 +30,9 @@ public class XEditorSetting : XBaseWindow
 
     public override void OnXGUI()
     {
-        if (CreateSpaceButton("ReImport All Asset"))
+        if (CreateSpaceButton("Save Asset"))
         {
-            XResources.ReimportAll();
+            XResources.GetInstance().SaveAll();
         }
     }
 }
