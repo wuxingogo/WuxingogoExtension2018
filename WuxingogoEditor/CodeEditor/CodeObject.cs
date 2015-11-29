@@ -15,8 +15,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using UnityEditor;
 
-public class CodeObject{
+public class CodeObject : ScriptableObject {
     public string namespaceName = "";
     public List<string> importNS = new List<string>();
 
@@ -26,12 +27,7 @@ public class CodeObject{
 
     public string className = "";
 
-    public CodeObject()
-    {
-
-    }
-
-    public void Compile(){
+    public void Compile(string outPutPath){
         CodeCompileUnit unit = new CodeCompileUnit();
 
         CodeNamespace codeNamespace = new CodeNamespace( namespaceName );
@@ -53,12 +49,12 @@ public class CodeObject{
 
         options.BlankLinesBetweenMembers = true;
 
-        using( System.IO.StreamWriter sw = new System.IO.StreamWriter( XEditorSetting.ProjectPath + "/" + className + ".cs" ) )
+		using( System.IO.StreamWriter sw = new System.IO.StreamWriter( outPutPath ) )
         {
-
             provider.GenerateCodeFromCompileUnit( unit, sw, options );
-
         }
+        
+		AssetDatabase.Refresh();
     }
 
     public CodeTypeDeclaration GenerateClass()

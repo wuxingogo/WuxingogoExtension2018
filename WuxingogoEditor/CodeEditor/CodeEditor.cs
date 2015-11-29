@@ -25,7 +25,7 @@ public class CodeEditor : XBaseWindow {
     }
     CodeObject codeObject = null;
 
-    string[] supposeArray = new string[]{
+    public string[] supposeArray = new string[]{
         "void",
         "int",
         "float",
@@ -39,6 +39,12 @@ public class CodeEditor : XBaseWindow {
         if( CreateSpaceButton( "Create New Code Node" ) )
         {
             codeObject = new CodeObject();
+        }
+		if( CreateSpaceButton( "Open Code Templete" ) ){
+			codeObject = OpenTemplete();
+        }
+        if( CreateSpaceButton( "Save Code Templete" ) ){
+			SaveTemplete(codeObject);
         }
         if( null != codeObject )
         {
@@ -80,52 +86,83 @@ public class CodeEditor : XBaseWindow {
             
             foreach( var item in codeObject.members )
             {
-                BeginHorizontal();
-                
-                item.type = (CodeType)CreateEnumSelectable( "mode", item.type );
-                item.attrs = (MemberAttributes)CreateEnumPopup( "Type", item.attrs );
-                //                Debug.Log(item.attrs.ToString());
-                item.TypeID = CreateSelectableString(item.TypeID, supposeArray );
-                item.name = CreateStringField( "Name", item.name );
-                
-                if( CreateSpaceButton( "Add Commen" ) )
-                {
-                    item.comment.Add( "//TODO List" );
-                }
-                if( CreateSpaceButton( "Delete" ) )
-                {
-                    codeObject.members.Remove( item );
-                    codeObject.members.TrimExcess();
-                    //EndHorizontal();
-                    return;
-                }
-                EndHorizontal();
-                
-                item.Draw();
-                
-                for( int pos = 0; pos < item.comment.Count; pos++ )
-                {
-                    BeginHorizontal();
-                    item.comment[pos] = CreateStringField( "//", item.comment[pos] );
-                    
-                    if( CreateSpaceButton( "Delete Comment" ) )
-                    {
-                        item.comment.RemoveAt( pos );
-                        item.comment.TrimExcess();
-                        
-                    }
-                    EndHorizontal();
-                }
-                
-                
+				if( CreateSpaceButton( "Delete Member" ) )
+				{
+					codeObject.members.Remove( item );
+					codeObject.members.TrimExcess();
+					//EndHorizontal();
+					return;
+				}
+				item.Draw(this);
+//                BeginHorizontal();
+//                
+//                item.type = (CodeType)CreateEnumSelectable( "mode", item.type );
+//                item.attrs = (MemberAttributes)CreateEnumPopup( "Type", item.attrs );
+//                
+//                item.TypeID = CreateSelectableString(item.TypeID, supposeArray );
+//                item.name = CreateStringField( "Name", item.name );
+//                
+//                if( CreateSpaceButton( "Add Commen" ) )
+//                {
+//                    item.comment.Add( "TODO List" );
+//                }
+//                if( CreateSpaceButton( "Delete" ) )
+//                {
+//                    codeObject.members.Remove( item );
+//                    codeObject.members.TrimExcess();
+//                    //EndHorizontal();
+//                    return;
+//                }
+//                EndHorizontal();
+//                
+//                item.Draw();
+//                
+//                for( int pos = 0; pos < item.comment.Count; pos++ )
+//                {
+//                    BeginHorizontal();
+//                    item.comment[pos] = CreateStringField( "//", item.comment[pos] );
+//                    
+//                    if( CreateSpaceButton( "Delete Comment" ) )
+//                    {
+//                        item.comment.RemoveAt( pos );
+//                        item.comment.TrimExcess();
+//                        
+//                    }
+//                    EndHorizontal();
+//                } 
                 
             }
 
             if( CreateSpaceButton( "Compile Code And Update" ) ){
-                codeObject.Compile();
-                AssetDatabase.Refresh();
+				codeObject.Compile(XEditorSetting.ProjectPath + "/" + codeObject.className + ".cs");
+                
             }
         }
 
+    }
+    
+    void SaveTemplete(ScriptableObject so){
+		string path = EditorUtility.SaveFilePanel("Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset");
+		if (path == "")
+			return;
+		
+		path = FileUtil.GetProjectRelativePath(path); 
+		
+		
+		AssetDatabase.CreateAsset(so, path);
+		AssetDatabase.SaveAssets();
+			  
+    }
+    
+	CodeObject OpenTemplete(){
+		string path = EditorUtility.OpenFilePanel("Create A Data", XEditorSetting.ProjectPath, "");
+		if (path == "")
+			return null;
+		
+		path = FileUtil.GetProjectRelativePath(path); 
+		
+		CodeObject co = AssetDatabase.LoadAssetAtPath<CodeObject>(path);
+		
+		return co;
     }
 }

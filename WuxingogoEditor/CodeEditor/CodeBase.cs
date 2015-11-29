@@ -6,7 +6,7 @@ using System.CodeDom;
 using System;
 using Object = UnityEngine.Object;
 
-public class CodeBase {
+public class CodeBase : ScriptableObject {
 
     public CodeType type = CodeType.Field;
     public List<string> comment = new List<string>();
@@ -89,10 +89,27 @@ public class CodeBase {
     {
         CodeMemberMethod method = new CodeMemberMethod();
         method.ReturnType = new CodeTypeReference( objectType );
+		
         return method;
     }
     
-    public void Draw(){
+    public void Draw(CodeEditor editor){
+    
+		editor.BeginHorizontal();
+		
+		type = (CodeType)editor.CreateEnumSelectable( "mode", type );
+		attrs = (MemberAttributes)editor.CreateEnumPopup( "Type", attrs );
+		
+		TypeID = editor.CreateSelectableString(TypeID, editor.supposeArray );
+		name = editor.CreateStringField( "Name", name );
+		
+		if( editor.CreateSpaceButton( "Add Commen" ) )
+		{
+			comment.Add( "TODO List" );
+		}
+		
+		editor.EndHorizontal();
+		
         switch( type )
         {
             case CodeType.Event:
@@ -108,6 +125,20 @@ public class CodeBase {
                 
                 break;
         }
+		
+		for( int pos = 0; pos < comment.Count; pos++ )
+		{
+			editor.BeginHorizontal();
+			comment[pos] = editor.CreateStringField( "//", comment[pos] );
+			
+			if( editor.CreateSpaceButton( "Delete Comment" ) )
+			{
+				comment.RemoveAt( pos );
+				comment.TrimExcess();
+				
+			}
+			editor.EndHorizontal();
+		} 
     }
     
     
