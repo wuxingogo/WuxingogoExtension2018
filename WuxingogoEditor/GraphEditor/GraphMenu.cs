@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections;
 
-public class GraphMenu{
+public class GraphMenu {
     public GraphMenu(int menuType){
         GenericMenu menu = new GenericMenu();
         if( menuType == -1 )

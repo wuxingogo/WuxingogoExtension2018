@@ -6,7 +6,8 @@ using System.CodeDom;
 using System;
 using Object = UnityEngine.Object;
 
-public class CodeBase : ScriptableObject {
+[System.Serializable]
+public class CodeBase {
 
     public CodeType type = CodeType.Field;
     public List<string> comment = new List<string>();
@@ -62,7 +63,9 @@ public class CodeBase : ScriptableObject {
         }
         member.Name = name;
         member.Attributes = attrs;
-        for( int i = 0; i < comment.Count; i++ )
+       // add custom attribute
+//		member.CustomAttributes.Add(new CodeAttributeDeclaration(new CodeTypeReference(typeof(SerializableAttribute))));
+			for( int i = 0; i < comment.Count; i++ )
         {
             member.Comments.Add( new CodeCommentStatement( comment[i] ) );
         }

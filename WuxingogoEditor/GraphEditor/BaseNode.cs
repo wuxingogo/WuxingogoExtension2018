@@ -10,6 +10,7 @@ public class BaseNode : ScriptableObject {
 		GraphType = NodeType.Base;
         GraphRect = new Rect( 0, 0, 200, 150 );
         Debug.Log("Initial BaseNode");
+        
 	}
 	public Rect GraphRect;
 

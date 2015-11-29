@@ -93,44 +93,7 @@ public class CodeEditor : XBaseWindow {
 					//EndHorizontal();
 					return;
 				}
-				item.Draw(this);
-//                BeginHorizontal();
-//                
-//                item.type = (CodeType)CreateEnumSelectable( "mode", item.type );
-//                item.attrs = (MemberAttributes)CreateEnumPopup( "Type", item.attrs );
-//                
-//                item.TypeID = CreateSelectableString(item.TypeID, supposeArray );
-//                item.name = CreateStringField( "Name", item.name );
-//                
-//                if( CreateSpaceButton( "Add Commen" ) )
-//                {
-//                    item.comment.Add( "TODO List" );
-//                }
-//                if( CreateSpaceButton( "Delete" ) )
-//                {
-//                    codeObject.members.Remove( item );
-//                    codeObject.members.TrimExcess();
-//                    //EndHorizontal();
-//                    return;
-//                }
-//                EndHorizontal();
-//                
-//                item.Draw();
-//                
-//                for( int pos = 0; pos < item.comment.Count; pos++ )
-//                {
-//                    BeginHorizontal();
-//                    item.comment[pos] = CreateStringField( "//", item.comment[pos] );
-//                    
-//                    if( CreateSpaceButton( "Delete Comment" ) )
-//                    {
-//                        item.comment.RemoveAt( pos );
-//                        item.comment.TrimExcess();
-//                        
-//                    }
-//                    EndHorizontal();
-//                } 
-                
+				item.Draw(this);          
             }
 
             if( CreateSpaceButton( "Compile Code And Update" ) ){
@@ -147,7 +110,6 @@ public class CodeEditor : XBaseWindow {
 			return;
 		
 		path = FileUtil.GetProjectRelativePath(path); 
-		
 		
 		AssetDatabase.CreateAsset(so, path);
 		AssetDatabase.SaveAssets();

@@ -37,7 +37,7 @@ public class GraphWindow : XBaseWindow
 	{
 		if (null == _instance) {
 			_instance = (GraphWindow)EditorWindow.GetWindow (typeof(GraphWindow));
-            _instance.Close();
+//            _instance.Close();
 		}
 		return _instance;
 	}
