@@ -18,7 +18,7 @@ public class CreateXData : XBaseEditor
         
         path = FileUtil.GetProjectRelativePath(path); 
 		
-		CodeObject data = CreateInstance<CodeObject>();
+		XData data = CreateInstance<XData>();
 		AssetDatabase.CreateAsset(data, path);
 		AssetDatabase.SaveAssets();
 	}

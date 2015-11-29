@@ -7,3 +7,10 @@
 /Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/UnityEngine.UI.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/UnityEditor.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtension/trunk/WuxingogoRuntime/bin/Debug/Unity.SerializationLogic.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEditor.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.UI.dll

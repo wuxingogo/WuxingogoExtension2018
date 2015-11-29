@@ -1,9 +1,8 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="E:\SVN\Client\SunSongSunshine\Assets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XMonoBehaviourEditor.cs">
     <Files>
-      <File FileName="E:\SVN\Art\SunSongSunshineForArt\Assets\ArtResource\UI\prefab\ShowPanel.cs" Line="1" Column="1" />
-      <File FileName="E:\SVN\Client\SunSongSunshine\Assets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" Line="9" Column="40" />
+      <File FileName="WuxingogoEditor/XExtension/XMonoBehaviourEditor.cs" Line="6" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

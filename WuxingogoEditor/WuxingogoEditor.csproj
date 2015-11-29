@@ -47,8 +47,7 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="WuxingogoRuntime, Version=1.0.5798.18462, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="WuxingogoRuntime">
       <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -108,6 +107,9 @@
     <Compile Include="XmlExtensionWindow.cs" />
     <Compile Include="XPlaymakerExtension.cs" />
     <Compile Include="XReflectionWindow.cs" />
+    <Compile Include="CodeEditor\CodeBase.cs" />
+    <Compile Include="CodeEditor\CodeEditor.cs" />
+    <Compile Include="CodeEditor\CodeObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -121,5 +123,11 @@
     <None Include="GraphEditor\LinkCurves.cs.meta" />
     <None Include="GraphEditor\LinkJoint.cs.meta" />
     <None Include="GraphEditor\ModelNode.cs.meta" />
+    <None Include="CodeEditor\CodeEditor.cs.meta" />
+    <None Include="CodeEditor\templete\NewXMonoBehaviour.asset" />
+    <None Include="CodeEditor\templete\NewXWindow.asset" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeEditor\" />
   </ItemGroup>
 </Project>

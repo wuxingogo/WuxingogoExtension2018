@@ -13,7 +13,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace XRuntime {
+namespace wuxingogo.Runtime {
 	
 	public class XMonoBehaviour : MonoBehaviour {
 		

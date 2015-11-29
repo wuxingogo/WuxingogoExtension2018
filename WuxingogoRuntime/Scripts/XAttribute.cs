@@ -14,7 +14,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-namespace XRuntime
+namespace wuxingogo.Runtime
 {
     public class XAttribute : Attribute
     {

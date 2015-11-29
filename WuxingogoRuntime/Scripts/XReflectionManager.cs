@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Collections;
 
-namespace XRuntime {
+namespace wuxingogo.Runtime {
     public class XReflectionManager {
 
 	    static Assembly _assembly = null;
