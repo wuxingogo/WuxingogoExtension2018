@@ -22,6 +22,7 @@ public class XEditorSetting : XBaseWindow
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
         
     public static string ProjectPath = Application.dataPath + "/WuxingogoExtension";
+	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
     static void init()
     {

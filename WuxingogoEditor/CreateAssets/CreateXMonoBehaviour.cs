@@ -11,24 +11,37 @@ public class CreateXMonoBehaviour : CreateUnityScript {
         string path = EditorUtility.SaveFilePanel("Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs");
         if (path == "")
             return;
-        
+		string dictionary = path.Substring(0, path.LastIndexOf('/'));
+		
+            
+		string[] strArray = path.Split('/');
+		string suffix = strArray[strArray.Length - 1];
+		int suffixIndex = suffix.IndexOf('.');
+		string fileName = suffix.Substring(0, suffixIndex);
         path = FileUtil.GetProjectRelativePath(path); 
         
-        FileInfo file = new FileInfo(path);           
-        StreamWriter sw = file.AppendText(); 
+		string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/NewXMonoBehaviour.asset";
         
-        string fileName = file.Name;
-        string className = file.Name.Substring(0, file.Name.Length - 3);  
+		CodeObject co = AssetDatabase.LoadAssetAtPath<CodeObject>(assetPath);
+		co.className = fileName;
+		co.Compile(dictionary + "/" + suffix);
+		
         
-        string codeHeader = WriteHeader(file.Name);
-        string codeUs = WriteUseNameSpace("UnityEngine", "System.Collections");
-        string codeClass = WriteExtendClass(className, "XMonoBehaviour");
-        
-        sw.Write(codeHeader + codeUs + codeClass);           
-        sw.Dispose();  
-        
-        AssetDatabase.SaveAssets(); 
-        AssetDatabase.Refresh(); 
+//        FileInfo file = new FileInfo(path);           
+//        StreamWriter sw = file.AppendText(); 
+//        
+//        string fileName = file.Name;
+//        string className = file.Name.Substring(0, file.Name.Length - 3);  
+//        
+//        string codeHeader = WriteHeader(file.Name);
+//        string codeUs = WriteUseNameSpace("UnityEngine", "System.Collections");
+//        string codeClass = WriteExtendClass(className, "XMonoBehaviour");
+//        
+//        sw.Write(codeHeader + codeUs + codeClass);           
+//        sw.Dispose();  
+//        
+//        AssetDatabase.SaveAssets(); 
+//        AssetDatabase.Refresh(); 
 		
 
 	}
