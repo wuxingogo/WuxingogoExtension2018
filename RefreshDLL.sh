@@ -14,3 +14,7 @@ echo "Wuxingogo:Copy Success"
 cp -r -f $EditorSrcDirctory/WuxingogoEditor.dll $EditorDesDirctory
 
 echo "Wuxingogo:Copy Success"
+
+find .  -name "*.meta" -exec rm -rf {} \;
+
+echo "Remove all .meta"

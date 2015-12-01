@@ -111,30 +111,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <None Include="GraphEditor\BaseNode.cs.meta" />
-    <None Include="GraphEditor\BehaviourNode.cs.meta" />
-    <None Include="GraphEditor\ConditionNode.cs.meta" />
-    <None Include="GraphEditor\ElementNode.cs.meta" />
-    <None Include="GraphEditor\GraphMenu.cs.meta" />
-    <None Include="GraphEditor\GraphWindow.cs.meta" />
-    <None Include="GraphEditor\LinkCurves.cs.meta" />
-    <None Include="GraphEditor\LinkJoint.cs.meta" />
-    <None Include="GraphEditor\ModelNode.cs.meta" />
-    <None Include="CodeEditor\CodeEditor.cs.meta" />
-    <None Include="XExtension\XMonoBehaviourEditor.cs.meta" />
-    <None Include="XExtension\XPropertiesExtension.cs.meta" />
-    <None Include="XExtension\XPropertiesToSerializables.cs.meta" />
-    <None Include="XExtension\XQucickSetPrefs.cs.meta" />
-    <None Include="XExtension\XQuickSetDatabase.cs.meta" />
-    <None Include="XExtension\XReplaceComponent.cs.meta" />
-    <None Include="XExtension\XResources.cs.meta" />
-    <None Include="XExtension\XSelectionExtension.cs.meta" />
-    <None Include="XExtension\XSerializableExtension.cs.meta" />
-    <None Include="XExtension\XShaderExtension.cs.meta" />
-    <None Include="XExtension\XStyles.cs.meta" />
-    <None Include="XExtension\XTextureWindow.cs.meta" />
-    <None Include="XExtension\XWindow.cs.meta" />
-    <None Include="XExtension\YMGameWindow.cs.meta" />
     <None Include="CodeEditor\templete\NewXBaseWindow.asset" />
   </ItemGroup>
   <ItemGroup>
