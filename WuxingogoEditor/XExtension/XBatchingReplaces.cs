@@ -18,9 +18,9 @@ public class XBatchingReplaces : XBaseWindow
 	bool isShowFindParticles = false;
 	
 	string filterName = "";
-	[MenuItem ("Wuxingogo/Wuxingogo XBatchingReplaces %#2")]
+	[MenuItem ("Wuxingogo/Wuxingogo XBatchingReplaces ")]
 	static void init () {
-		XBatchingReplaces window = (XBatchingReplaces)EditorWindow.GetWindow (typeof (XBatchingReplaces ) );
+		Init<XBatchingReplaces>();
 	}
 
 	public override void OnXGUI(){

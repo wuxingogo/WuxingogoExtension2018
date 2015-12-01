@@ -9,9 +9,9 @@ public class XAnimationExtension : XBaseWindow
 {
 
 	List<AnimationClip> anims = new List<AnimationClip>();
-	[MenuItem ("Wuxingogo/Wuxingogo XAnimationExtension %#2")]
+	[MenuItem ("Wuxingogo/Wuxingogo XAnimationExtension")]
 	static void init () {
-		XAnimationExtension window = (XAnimationExtension)EditorWindow.GetWindow (typeof (XAnimationExtension ) );
+		Init<XAnimationExtension>();
 	}
 
 

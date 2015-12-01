@@ -18,7 +18,7 @@ public class XPropertiesToSerializables : XBaseWindow
     object propertyinstance = null;
 	[MenuItem ("Wuxingogo/Wuxingogo XPropertiesToSerializables ")]
 	static void init () {
-		XPropertiesToSerializables window = (XPropertiesToSerializables)EditorWindow.GetWindow (typeof (XPropertiesToSerializables ) );
+		Init<XPropertiesToSerializables>();
 	}
 
 	public override void OnXGUI(){

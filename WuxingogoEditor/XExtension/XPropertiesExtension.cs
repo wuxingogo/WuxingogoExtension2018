@@ -5,11 +5,6 @@ using System.Reflection;
 public class XPropertiesExtension : XBaseWindow 
 {
 
-	[MenuItem ("Wuxingogo/Wuxingogo XPropertiesExtension ")]
-	static void init () {
-		XPropertiesExtension window = (XPropertiesExtension)EditorWindow.GetWindow (typeof (XPropertiesExtension ) );
-	}
-
 	Object scrObj = null;
 
 	public override void OnXGUI(){

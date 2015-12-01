@@ -9,6 +9,9 @@ using System.Reflection;
  * 其实就是字符串分割 + 反射啦
  * 本来想可以设置变量也用这个的,可以到手机上来射ᕙ(⇀‸↼‵‵)ᕗ
  */
+using wuxingogo.Runtime;
+
+
 public class XCommandTools : XBaseWindow 
 {
 //	bool isEditorAssembly = false;
@@ -21,7 +24,7 @@ public class XCommandTools : XBaseWindow
 	int recordID = 0;
 	[MenuItem ("Wuxingogo/Wuxingogo XCommandTools %#2")]
 	static void init () {
-		XCommandTools window = (XCommandTools)EditorWindow.GetWindow (typeof (XCommandTools ) );
+		Init<XCommandTools>();
 		
 	}
 	
@@ -84,15 +87,11 @@ public class XCommandTools : XBaseWindow
 	}
 	
 	void ExcuteCommand(){
-
-#if UNITY_4_6
         object obj = XReflectionManager.GetValue(command);
         if( null != obj )
             Debug.Log (command + " is : " + obj.ToString());
         else
             Debug.Log ("excute : " + command);
-#endif
-
 		
 	}
 	

@@ -7,10 +7,6 @@ using System.Reflection;
 public class XFieldExtension : XBaseWindow 
 {
 	Object scrObj = null;
-	[MenuItem ("Wuxingogo/Wuxingogo XFieldExtension %#8")]
-	static void init () {
-		XFieldExtension window = (XFieldExtension)EditorWindow.GetWindow (typeof (XFieldExtension ) );
-	}
 
 	public override void OnXGUI(){
 			

@@ -97,7 +97,8 @@ public class CodeEditor : XBaseWindow {
             }
 
             if( CreateSpaceButton( "Compile Code And Update" ) ){
-				codeObject.Compile(XEditorSetting.ProjectPath + "/" + codeObject.className + ".cs");
+				string path = EditorUtility.SaveFilePanel("OutPut Path", XEditorSetting.ProjectPath, codeObject.className + ".cs", "cs");
+				codeObject.Compile(path);
                 
             }
         }

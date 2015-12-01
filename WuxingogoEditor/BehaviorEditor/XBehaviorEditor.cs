@@ -56,7 +56,6 @@ namespace XBehaviorEditor{
 		
 		public override void OnXGUI()
 		{
-			base.OnXGUI();
 			
 			FSM = (XBehaviorFSM)CreateObjectField("BehaviorNode", fsm, typeof(XBehaviorFSM));
 			

@@ -62,7 +62,6 @@
     <Compile Include="XExtension\XBaseEditor.cs" />
     <Compile Include="XExtension\XBaseWindow.cs" />
     <Compile Include="XExtension\XBatchingReplaces.cs" />
-    <Compile Include="XExtension\XBehaviourWindow.cs" />
     <Compile Include="XExtension\XCommandTools.cs" />
     <Compile Include="XExtension\XCreateAssetBundle.cs" />
     <Compile Include="XExtension\XDataEditor.cs" />
@@ -73,7 +72,6 @@
     <Compile Include="XExtension\XHierarchy.cs" />
     <Compile Include="XExtension\XMethodExtension.cs" />
     <Compile Include="XExtension\XMonoBehaviourEditor.cs" />
-    <Compile Include="XExtension\XMuiltHandle.cs" />
     <Compile Include="XExtension\XPropertiesExtension.cs" />
     <Compile Include="XExtension\XPropertiesToSerializables.cs" />
     <Compile Include="XExtension\XQucickSetPrefs.cs" />
@@ -102,14 +100,13 @@
     <Compile Include="CreateAssets\CreateXData.cs" />
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
     <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
-    <Compile Include="XFindExtension.cs" />
-    <Compile Include="XmlExtension.cs" />
-    <Compile Include="XmlExtensionWindow.cs" />
-    <Compile Include="XPlaymakerExtension.cs" />
-    <Compile Include="XReflectionWindow.cs" />
     <Compile Include="CodeEditor\CodeBase.cs" />
     <Compile Include="CodeEditor\CodeEditor.cs" />
     <Compile Include="CodeEditor\CodeObject.cs" />
+    <Compile Include="XExtension\XAnimatorExtension.cs" />
+    <Compile Include="XExtension\XmlExtensionWindow.cs" />
+    <Compile Include="XExtension\XPlaymakerExtension.cs" />
+    <Compile Include="XExtension\XReflectionWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -124,10 +121,24 @@
     <None Include="GraphEditor\LinkJoint.cs.meta" />
     <None Include="GraphEditor\ModelNode.cs.meta" />
     <None Include="CodeEditor\CodeEditor.cs.meta" />
-    <None Include="CodeEditor\templete\NewXMonoBehaviour.asset" />
-    <None Include="CodeEditor\templete\NewXWindow.asset" />
+    <None Include="XExtension\XMonoBehaviourEditor.cs.meta" />
+    <None Include="XExtension\XPropertiesExtension.cs.meta" />
+    <None Include="XExtension\XPropertiesToSerializables.cs.meta" />
+    <None Include="XExtension\XQucickSetPrefs.cs.meta" />
+    <None Include="XExtension\XQuickSetDatabase.cs.meta" />
+    <None Include="XExtension\XReplaceComponent.cs.meta" />
+    <None Include="XExtension\XResources.cs.meta" />
+    <None Include="XExtension\XSelectionExtension.cs.meta" />
+    <None Include="XExtension\XSerializableExtension.cs.meta" />
+    <None Include="XExtension\XShaderExtension.cs.meta" />
+    <None Include="XExtension\XStyles.cs.meta" />
+    <None Include="XExtension\XTextureWindow.cs.meta" />
+    <None Include="XExtension\XWindow.cs.meta" />
+    <None Include="XExtension\YMGameWindow.cs.meta" />
+    <None Include="CodeEditor\templete\NewXBaseWindow.asset" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeEditor\" />
+    <Folder Include="CodeEditor\templete\" />
   </ItemGroup>
 </Project>

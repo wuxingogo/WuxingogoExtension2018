@@ -29,7 +29,7 @@ public class XCreateAssetBundle : XBaseWindow
 	
 	[MenuItem ("Wuxingogo/Wuxingogo XCreateAssetBundle ")]
 	static void init () {
-		XCreateAssetBundle window = (XCreateAssetBundle)EditorWindow.GetWindow (typeof (XCreateAssetBundle ) );
+		Init<XCreateAssetBundle>();
 	}
 	
 	

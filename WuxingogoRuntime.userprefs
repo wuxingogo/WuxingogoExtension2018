@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="WuxingogoRuntime/WuxingogoRuntime.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Scripts/ArrayExtension.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Scripts/XReflectionManager.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Scripts/XReflectionManager.cs" Line="5" Column="28" />
-      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="16" Column="11" />
+      <File FileName="WuxingogoRuntime/Scripts/XReflectionManager.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/XData.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Scripts/XAttribute.cs" Line="17" Column="28" />
+      <File FileName="WuxingogoRuntime/Scripts/XAttribute.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/TextModel.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/ArrayExtension.cs" Line="1" Column="1" />
     </Files>

@@ -1,12 +1,18 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XMonoBehaviourEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/AssemblyInfo.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/XMonoBehaviourEditor.cs" Line="6" Column="19" />
+      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/WuxingogoExtension/Editor/ProjectAnalysis/AnalysisWindow.cs" Line="1" Column="1" />
+      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/NGUI/Scripts/Interaction/UIButton.cs" Line="1" Column="1" />
+      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/WuxingogoExtension/Editor/CodeEditor/CodeBase.cs" Line="16" Column="2" />
+      <File FileName="WuxingogoEditor/XExtension/YMGameWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/ly-user/Documents/work/public/TSPlay/SunSongSunshine/Assets/Scripts/Panels/ScrollList.cs" line="13" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

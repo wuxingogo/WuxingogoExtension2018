@@ -12,11 +12,6 @@ public class XMethodExtension : XBaseWindow
 	bool paraBool = false;
 	string paraString = "default";
 	System.Enum paraEnum = null;
-	
-	[MenuItem ("Wuxingogo/Wuxingogo XMethodExtension %#2")]
-	static void init () {
-		XMethodExtension window = (XMethodExtension)EditorWindow.GetWindow (typeof (XMethodExtension ) );
-	}
 
 	public override void OnXGUI(){
         scrObj = CreateObjectField(targetType, scrObj);

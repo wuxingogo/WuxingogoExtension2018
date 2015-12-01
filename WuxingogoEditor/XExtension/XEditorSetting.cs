@@ -23,10 +23,11 @@ public class XEditorSetting : XBaseWindow
         
     public static string ProjectPath = Application.dataPath + "/WuxingogoExtension";
 	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
+	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
     static void init()
     {
-        XEditorSetting window = (XEditorSetting)EditorWindow.GetWindow(typeof(XEditorSetting));
+		Init<XEditorSetting>();
     }
 
     public override void OnXGUI()

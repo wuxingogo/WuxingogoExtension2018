@@ -20,15 +20,13 @@ public class XWindow : XBaseWindow {
     //XDebugExtension customObject;
 	Object targetObject;
 	GameObject targetGO = null;
-	//	Texture texture = Resources.Load("Resources\\Texture\\Untitled") as Texture;
-	public static Texture LogoTexture = EditorGUIUtility.LoadRequired("Texture/wuxingogo.psd") as Texture;
+
 	const int offsetRihgt = 5;
 	
 	[MenuItem ("Wuxingogo/My Window %#6")]
 	static void Init () {
 		
-		XWindow window = (XWindow)EditorWindow.GetWindow(typeof(XWindow));
-//		EditorWindow.GetWindow( XWindow.(false,"our");
+		Init<XWindow>();
 		
 	}
 	bool isNeedSeachObj = false;

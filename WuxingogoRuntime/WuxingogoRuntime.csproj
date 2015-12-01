@@ -41,6 +41,8 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -50,7 +52,18 @@
     <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
     <Compile Include="Scripts\XReflectionManager.cs" />
+    <Compile Include="BehaviorCore\XBehaviorAction.cs" />
+    <Compile Include="BehaviorCore\XBehaviorEvent.cs" />
+    <Compile Include="BehaviorCore\XBehaviorFSM.cs" />
+    <Compile Include="BehaviorCore\XBehaviorState.cs" />
+    <Compile Include="TestBehavior\XDebugLog.cs" />
+    <Compile Include="Tools\SingletonClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BehaviorCore\" />
+    <Folder Include="TestBehavior\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
 </Project>

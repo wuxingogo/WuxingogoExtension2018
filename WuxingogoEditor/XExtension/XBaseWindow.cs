@@ -18,11 +18,11 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     const int XButtonWidth = 100;
     const int XButtonHeight = 20;
 
-    public static void Init<T>()
+    public static T Init<T>() where T : EditorWindow
     {
         string cmdPrefs = typeof(T).ToString() + "_isPrefix";
         bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
-        EditorWindow.GetWindow(typeof(T), isPrefix);
+		return EditorWindow.GetWindow<T>(isPrefix, typeof(T).Name);
     }
 
     public void OnGUI()
@@ -34,7 +34,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
             string cmdPrefs = GetType().ToString() + "_isPrefix";
             bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
             EditorPrefs.SetBool(cmdPrefs, !isPrefix);
-            EditorWindow.GetWindow(GetType(), !isPrefix);
+			EditorWindow.GetWindow(GetType(), !isPrefix, GetType().Name, true);
 
         }
         _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
@@ -44,9 +44,8 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         EditorGUILayout.EndScrollView();
     }
 
-    public virtual void OnXGUI()
-    {
-
+    public virtual void OnXGUI(){
+    
     }
 
     public void CreateSpaceBox()
@@ -78,6 +77,12 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         if (null == type) type = typeof(Object);
         return EditorGUILayout.ObjectField(fieldName, obj, type, true) as Object;
     }
+    
+	public Object CreateObjectField(Object obj, System.Type type = null)
+	{
+		if (null == type) type = typeof(Object);
+		return EditorGUILayout.ObjectField(obj, type, true) as Object;
+	}
 
     public bool CreateCheckBox(string fieldName, bool value)
     {
