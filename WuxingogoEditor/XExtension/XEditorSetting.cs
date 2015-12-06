@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using System;
 
 public class XEditorSetting : XBaseWindow
 {
@@ -23,6 +24,7 @@ public class XEditorSetting : XBaseWindow
         
     public static string ProjectPath = Application.dataPath + "/WuxingogoExtension";
 	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
+	private bool isShowIcons = false;
 	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
     static void init()
@@ -36,5 +38,38 @@ public class XEditorSetting : XBaseWindow
         {
             XResources.GetInstance().SaveAll();
         }
+        
+		AddButton("ShowAllIcon", ()=> isShowIcons = !isShowIcons);
+		
+		if(isShowIcons) ShowAllIcon();
+    }
+    
+    public void ShowAllIcon(){
+		//鼠标放在按钮上的样式
+		foreach (MouseCursor item in Enum.GetValues(typeof(MouseCursor)))
+		{
+//			GUILayout.Button(Enum.GetName(typeof(MouseCursor), item));
+			AddButton(Enum.GetName(typeof(MouseCursor),item), ()=> Debug.Log(item.ToString()));
+			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
+			GUILayout.Space(10);
+		}
+		
+		
+		//内置图标
+		for(int i =0; i< XResources.GetInstance().IconNames.Length; i+=8)
+		{
+			GUILayout.BeginHorizontal();
+			for (int j =0; j < 8; j++)
+			{
+				int index = i + j;
+				if(index < XResources.GetInstance().IconNames.Length){
+					string btnName = XResources.GetInstance().IconNames[index];
+					GUIContent content = EditorGUIUtility.IconContent(btnName);
+					AddButton(content, ()=> Debug.Log(btnName.ToString()), GUILayout.Width(50), GUILayout.Height(30));
+				}
+					
+			}
+			GUILayout.EndHorizontal();
+		}
     }
 }

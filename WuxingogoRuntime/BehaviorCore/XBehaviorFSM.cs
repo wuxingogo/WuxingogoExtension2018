@@ -14,7 +14,7 @@ namespace wuxingogo.Runtime
 		
 		public XBehaviorEvent startEvent;
 		
-		public List<XBehaviorState> allState = null;
+		public List<XBehaviorState> allState = new List<XBehaviorState>();
 		
 		
 		public void FinishEvent(){

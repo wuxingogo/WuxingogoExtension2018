@@ -7,27 +7,23 @@ public class CreateXBaseWindow : CreateUnityScript
 	[MenuItem("Assets/Create/Wuxingogo/XBaseWindow", false, 100)]
 	public static void CreateFile()
 	{
-        string path = EditorUtility.SaveFilePanel("Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs");
-        if (path == "")
-            return;
-        
-        path = FileUtil.GetProjectRelativePath(path); 
-        
-        FileInfo file = new FileInfo(path);           
-        StreamWriter sw = file.AppendText(); 
-        
-        string fileName = file.Name;
-        string className = file.Name.Substring(0, file.Name.Length - 3);  
-        
-        string codeHeader = WriteHeader(file.Name);
-        string codeUs = WriteUseNameSpace("UnityEngine", "System.Collections", "UnityEditor");
-        string codeClass = WriteExtendClass(className, "XBaseWindow");
-        
-        sw.Write(codeHeader + codeUs + codeClass);           
-        sw.Dispose();  
-        
-        AssetDatabase.SaveAssets(); 
-        AssetDatabase.Refresh(); 
+		string path = EditorUtility.SaveFilePanel("Create A Window", XEditorSetting.ProjectPath, "NewWindow.cs", "cs");
+		if (path == "")
+			return;
+		string dictionary = path.Substring(0, path.LastIndexOf('/'));
+		
+		
+		string[] strArray = path.Split('/');
+		string suffix = strArray[strArray.Length - 1];
+		int suffixIndex = suffix.IndexOf('.');
+		string fileName = suffix.Substring(0, suffixIndex);
+		path = FileUtil.GetProjectRelativePath(path); 
+		
+		string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/NewXBaseWindow.asset";
+		
+		CodeObject co = AssetDatabase.LoadAssetAtPath<CodeObject>(assetPath);
+		co.className = fileName;
+		co.Compile(dictionary + "/" + suffix);
 		
 		
 	}

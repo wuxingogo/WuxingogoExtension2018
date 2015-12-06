@@ -64,6 +64,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
             callback();
         }
     }
+	public void AddButton(GUIContent content, Action callback, params GUILayoutOption[] options)
+	{
+		if (GUILayout.Button(content, options))
+		{
+			callback();
+		}
+	}
     public void AddButton<T>(string btnName, Action<T> callback, T arg)
     {
         if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
@@ -101,6 +108,10 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     {
         return EditorGUILayout.FloatField(value);
     }
+	public int CreateIntField(int value)
+	{
+		return EditorGUILayout.IntField(value);
+	}
 
     public int CreateIntField(string fieldName, int value)
     {
@@ -172,7 +183,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         ShowNotification(new GUIContent(message));
     }
 
-    public void AddItemsToMenu(GenericMenu menu)
+    public virtual void AddItemsToMenu(GenericMenu menu)
     {
         //menu.AddItem(new GUIContent("asdfasd"), false, NoneCallback, "aaaa");
         menu.AddItem(new GUIContent("OpenEditorScript"), false, OpenEditorScript, "FuckThisWindow");

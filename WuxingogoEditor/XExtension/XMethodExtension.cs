@@ -2,73 +2,157 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Reflection;
+using System.Collections.Generic;
+using System;
+using Object = UnityEngine.Object;
 
 public class XMethodExtension : XBaseWindow 
 {
-	Object scrObj = null;
+	
+	private object _target = null;
+	public object Target {
+		get{
+			return _target;
+		}
+		set{
+			if(_target != value){
+				
+				_target = value;
+				OnChangeTarget();
+			}
+		}
+	}
+	private Object uObject = null;
+	
+	private Stack<object> storeTargets = new Stack<object>();
+	
     string targetType = "";
-	int paraInt = 0;
-	float paraFloat = 0.0f;
-	bool paraBool = false;
-	string paraString = "default";
-	System.Enum paraEnum = null;
+	
+	System.Type showType;
+	
+	private Dictionary<MethodInfo, object[]> parameters = new Dictionary<MethodInfo, object[]>();
 
 	public override void OnXGUI(){
-        scrObj = CreateObjectField(targetType, scrObj);
-		if( null != scrObj ){
-            targetType = scrObj.GetType().ToString();
+	
+		if(CreateSpaceButton("Clean")){
+			uObject = null;
+			Target = null;
+		}
+		
+		if( null == Target ){
+			uObject = CreateObjectField("", uObject);
+			Target = uObject;
+		}else{
+			if(storeTargets.Count > 0)
+				AddButton("Back To Last Object", BackToLastObject);
+			
+			BeginHorizontal();
+			CreateLabel("Filter Type : " + showType);
+			if(showType.BaseType != null)
+				AddButton( showType.BaseType.ToString(), ConvertToBase );
+			EndHorizontal();
 
-			MethodInfo[] methods = scrObj.GetType().GetMethods();
+			MethodInfo[] methods = _target.GetType().GetMethods();
+			
 			
 			
 			foreach( MethodInfo method in methods ){
-				if(method.DeclaringType == scrObj.GetType()){
-					CreateStringField(method.ReturnType.ToString() , method.Name);
+				if(method.DeclaringType == showType ){
+				
+					BeginHorizontal();
+					CreateLabel(method.ReturnType.ToString());
+					CreateLabel(method.Name);
+					EndHorizontal();
+					
+					
 					ParameterInfo[] paras = method.GetParameters();
-					object[] arr = new object[paras.Length];
-					EditorGUILayout.BeginVertical();
-					{
-						for(int pos = 0; pos < paras.Length; pos++){
-							
-							if(paras[pos].ParameterType == typeof(System.Int32)){
-								paraInt = CreateIntField(paras[pos].Name + ": int" , paraInt);
-								arr[pos] = paraInt;
-							}else if(paras[pos].ParameterType == typeof(System.String)){
-								paraString = CreateStringField(paras[pos].Name + ": string " , paraString);
-								arr[pos] = paraString;
-							}else if(paras[pos].ParameterType == typeof(System.Single)){
-								paraFloat = CreateFloatField(paras[pos].Name + ": float " , paraFloat);
-								arr[pos] = paraFloat;
-							}else if(paras[pos].ParameterType == typeof(System.Boolean)){
-								paraBool = CreateCheckBox(paras[pos].Name + ": bool ",  paraBool);
-								arr[pos] = paraBool;
-							}
-							else if(paras[pos].ParameterType.BaseType == typeof(System.Enum)){
-								 if(paraEnum == null || paraEnum.GetType() != paras[pos].ParameterType){
-                                    // paraEnum = paras[pos];
-//                                    System.Enum.Parse (paras[pos].ParameterType, "a");
-									paraEnum = (System.Enum)System.Enum.ToObject(paras[pos].ParameterType,0);
-
-                                }
-                                paraEnum = CreateEnumSelectable(paras[pos].Name + ": enum ", paraEnum);
-                                arr[pos] = paraEnum;
-							}
-							
-						}
-						
-						if(CreateSpaceButton("Invoke")){
-							method.Invoke(scrObj,arr);
-						}
+					if(!parameters.ContainsKey(method)){
+						object[] arr = new object[paras.Length];
+						parameters.Add(method, arr);
 					}
-					EditorGUILayout.EndVertical();
+					
+					object[] myParameters = parameters[method];
+					
+					BeginVertical();
+					#region Show all method Parameter Info
+					for(int pos = 0; pos < paras.Length; pos++){
+						myParameters[pos] = GetTypeGUI(myParameters[pos], paras[pos].ParameterType);
+						
+					}
+					
+					if(CreateSpaceButton("Invoke")){
+						method.Invoke(_target,myParameters);
+					}
+					
+					#endregion
+					EndVertical();
 				}
 				
 			}
 		}
 	}
+	
+	object GetTypeGUI(object t, Type type){
+		string strType = type.ToString();
+		
+		BeginHorizontal();
+		CreateLabel(strType);
+		
+		if(type == typeof(Int32)){
+			t = CreateIntField( Convert.ToInt32(t));
+		}
+		else if(type == typeof(String)){
+			t = CreateStringField((string)t);
+		}
+		else if(type == typeof(Single)){
+			t = CreateFloatField(Convert.ToSingle(t));
+		}
+		else if(type == typeof(Boolean)){
+			t = CreateCheckBox(Convert.ToBoolean(t));
+		}
+		else if(type.BaseType == typeof(Enum)){
+			t = Enum.ToObject(type, 0);
+		}
+		else if(type == typeof(Object)){
+			t = CreateObjectField( (Object)t, type);
+		}
+		else{
+			CreateLabel(" are not support");
+		}
+		EndHorizontal();
+		return t;
+			
+	}
+	
+	void ConvertToBase(){
+		showType = showType.BaseType;
+		parameters.Clear();
+	}
 
+	void BackToLastObject(){
+		
+		Target = storeTargets.Pop();
+		parameters.Clear();
+	}
+	
 	void OnSelectionChange(){
 		//TODO List
 
+	}
+	
+	public void OnChangeTarget(){
+		Debug.Log("OnChangeTarget");
+
+		
+		if(Target != null){
+			storeTargets.Push(Target);
+			
+			targetType = Target.GetType().ToString();
+			
+			showType = Target.GetType();
+		}
+		
+		
+		this.Repaint();
 	}
 }

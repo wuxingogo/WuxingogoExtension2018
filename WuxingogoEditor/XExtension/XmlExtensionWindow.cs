@@ -20,7 +20,7 @@ namespace wuxingogo.Xml{
 	public class XmlExtensionWindow : XBaseWindow {
 		
 		
-		[MenuItem( "Wuxingogo/Wuxingogo XmlExtensionWindow " )]
+		[MenuItem( "Wuxingogo/DataPaser/XmlExtensionWindow " )]
 		static void Init()
 		{
 			XBaseWindow.Init<XmlExtensionWindow>();

@@ -166,7 +166,8 @@ public class XReflectionWindow : XBaseWindow {
 				Init<XPropertiesExtension>();
 				break;
 			case "Method":
-				Init<XMethodExtension>();
+				XMethodExtension window = Init<XMethodExtension>();
+				window.Target = Target;
 				break;;
 			case "Member":
 				break;	

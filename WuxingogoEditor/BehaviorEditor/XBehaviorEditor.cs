@@ -95,7 +95,7 @@ namespace XBehaviorEditor{
 						//  TODO loop in allStateNode[pos].state.events.Count
 						if(events[idx].nextState != null){
  							DrawCurve(allStateNode[pos].GetJointPos(idx),
-							          ChooseNextState(events[pos].nextState).GraphRect.center);
+							          ChooseNextState(events[idx].nextState).GraphRect.center);
 						}
 					}
 					

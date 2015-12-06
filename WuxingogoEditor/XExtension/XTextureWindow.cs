@@ -23,7 +23,7 @@ public class XTextureWindow : XBaseWindow
 	public override void OnXGUI(){
 		//TODO List
 		
-		CreateMessageField("This is a atlas Viewer. Please Selected the GameObjects",MessageType.None);
+		CreateMessageField("This is a atlas Viewer. Please Select the GameObjects",MessageType.None);
 
 		if( m_components.Count > 0 ){
 			for( int i = 0; i < m_components.Count; i++ ){

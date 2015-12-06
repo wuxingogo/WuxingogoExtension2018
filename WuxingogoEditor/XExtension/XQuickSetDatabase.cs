@@ -128,7 +128,14 @@ public class XQuickSetDatabase : XBaseWindow
 						allTable.Clear();
 						// DataTable t = recordTableReader.GetSchemaTable();
 						int count = recordTableReader.VisibleFieldCount;
+						for (int idx = 0; idx < count; idx++) {
+							//  TODO loop in count
+							string fieldTypeName = recordTableReader.GetName(idx);
+							Debug.Log("fieldTypeName" + fieldTypeName);
+						}
 						
+						
+						isShowTable = true;
 						while (recordTableReader.Read())
 						{
 							dataTable++;
@@ -140,27 +147,31 @@ public class XQuickSetDatabase : XBaseWindow
 								if (recordTableReader.GetFieldType(root) == typeof(System.Int64))
 								{
 									if (!tableInt.ContainsKey(field)) tableInt.Add(field, new List<int>());
-									tableInt[field].Add(recordTableReader.GetInt32(recordTableReader.GetOrdinal(field)));
+									tableInt[field].Add(recordTableReader.GetInt32(root));
 									//								CreateLabel(recordTableReader.GetName(root));
 								}
 								else if (recordTableReader.GetFieldType(root) == typeof(System.String))
 								{
 									if (!tableString.ContainsKey(field)) tableString.Add(field, new List<string>());
-									tableString[field].Add(recordTableReader.GetString(recordTableReader.GetOrdinal(field)));
+									string s = recordTableReader.GetString(root).ToString();
+									tableString[field].Add(s);
 									//								CreateLabel(recordTableReader.GetName(root));
 								}
 								else if (recordTableReader.GetFieldType(root) == typeof(System.Double))
 								{
 									//								CreateLabel(recordTableReader.GetName(root));
 									if (!tableFloat.ContainsKey(field)) tableFloat.Add(field, new List<float>());
-									tableFloat[field].Add(recordTableReader.GetFloat(recordTableReader.GetOrdinal(field)));
+									tableFloat[field].Add(recordTableReader.GetFloat(root));
+								}else{
+									Debug.Log("recordTableReader.GetFieldType(root) is " + recordTableReader.GetFieldType(root).ToString());
 								}
 								if (!allTableField.Contains(field))
 									allTableField.Add(field);
 								//							CreateLabel(recordTableReader.GetName(root));
 							}
 						}
-						isShowTable = true;
+						recordTableReader.Close();
+						
 						//						 while(recordTableReader.Read()){
 						//						 	Debug.Log(recordTableReader.GetInt32 (recordTableReader.GetOrdinal ("id")));
 						//						 }
@@ -169,44 +180,47 @@ public class XQuickSetDatabase : XBaseWindow
 					}
 				}
 				
-				if (isShowTable)
-				{
-					BeginHorizontal();
-					for (int pos = 0; pos < allTableField.Count; pos++)
-					{
-						CreateLabel(allTableField[pos]);
-					}
-					EndHorizontal();
-					
-					for (int root = 0; root < dataTable; root++)
-					{
-						
-						
-						BeginHorizontal();
-						for (int pos = 0; pos < allTableField.Count; pos++)
-						{
-							//						CreateLabel( allTableField[pos] );
-							//						CreateStringField(,tableString[pos]
-							if (tableInt.ContainsKey(allTableField[pos]))
-							{
-								tableInt[allTableField[pos]][root] = EditorGUILayout.IntField(tableInt[allTableField[pos]][root]);
-							}
-							else if (tableString.ContainsKey(allTableField[pos]))
-							{
-								tableString[allTableField[pos]][root] = EditorGUILayout.TextField(tableString[allTableField[pos]][root]);
-							}
-							else if (tableFloat.ContainsKey(allTableField[pos]))
-							{
-								tableFloat[allTableField[pos]][root] = EditorGUILayout.FloatField(tableFloat[allTableField[pos]][root]);
-							}
-							//						tableInt[pos] = EditorGUILayout.IntField(tableInt[pos]);
-							//						tableFloat[pos] = EditorGUILayout.FloatField(tableFloat[pos]);
-						}
-						EndHorizontal();
-					}
-					
-				}
-				
+//				if (isShowTable)
+//				{
+//					BeginHorizontal();
+//					for (int pos = 0; pos < allTableField.Count; pos++)
+//					{
+//						CreateLabel(allTableField[pos]);
+//					}
+//					EndHorizontal();
+//					
+//					for (int root = 0; root < dataTable; root++)
+//					{
+//						
+//						
+//						BeginHorizontal();
+//						for (int pos = 0; pos < allTableField.Count; pos++)
+//						{
+//							//						CreateLabel( allTableField[pos] );
+//							//						CreateStringField(,tableString[pos]
+//							if(tableInt[allTableField[pos]][root] != null){
+//							
+//							if (tableInt.ContainsKey(allTableField[pos]))
+//							{
+//								tableInt[allTableField[pos]][root] = EditorGUILayout.IntField(tableInt[allTableField[pos]][root]);
+//							}
+//							else if (tableString.ContainsKey(allTableField[pos]))
+//							{
+//								tableString[allTableField[pos]][root] = EditorGUILayout.TextField(tableString[allTableField[pos]][root]);
+//							}
+//							else if (tableFloat.ContainsKey(allTableField[pos]))
+//							{
+//								tableFloat[allTableField[pos]][root] = EditorGUILayout.FloatField(tableFloat[allTableField[pos]][root]);
+//							}
+//							}
+//							//						tableInt[pos] = EditorGUILayout.IntField(tableInt[pos]);
+//							//						tableFloat[pos] = EditorGUILayout.FloatField(tableFloat[pos]);
+//						}
+//						EndHorizontal();
+//					}
+//					
+//				}
+//				
 			}
 			
 			

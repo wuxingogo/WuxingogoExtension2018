@@ -29,7 +29,7 @@ public class CreateUnityScript : XBaseEditor{
         
         FileInfo file = new FileInfo(path);           
         StreamWriter sw = file.AppendText(); 
-        
+		
         string fileName = file.Name;
         string className = file.Name.Substring(0, file.Name.Length - 3);  
          

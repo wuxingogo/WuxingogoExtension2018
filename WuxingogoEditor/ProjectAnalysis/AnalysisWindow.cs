@@ -18,6 +18,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System;
 using Object = UnityEngine.Object;
+using System.Linq;
+
 public class AnalysisWindow : XBaseWindow {
 	[MenuItem ("Wuxingogo/Wuxingogo AnalysisWindow ")]
 	static void init () {
@@ -32,16 +34,20 @@ public class AnalysisWindow : XBaseWindow {
 	const string STR_PROCESS = "Process";
 	const string STR_ASSEMBLY = "Assembly";
 	const string STR_OBJECT = "Object";
+	const string STR_SHOWALL = "ShowHideGameObject";
 	
 	int showID = -1;
 	SerializedObject serializedObject = null;
-		
+	
+	List<string> allTags = new List<string>();
 	
 	public override void OnXGUI()
 	{
 		AddButton<string>(STR_PROCESS, OnClick, STR_PROCESS);
 		AddButton<string>(STR_ASSEMBLY, OnClick, STR_ASSEMBLY);
 		AddButton<string>(STR_OBJECT, OnClick, STR_OBJECT);
+		AddButton<string>(STR_SHOWALL, OnClick, STR_SHOWALL);
+		
 		
 		for( int pos = 0; pos < allResult.Count; pos++ ) {
 			//  TODO loop in allResult.Count
@@ -96,13 +102,35 @@ public class AnalysisWindow : XBaseWindow {
 				break;
 			
 			case STR_OBJECT:
-				allObject = Object.FindObjectsOfType(typeof(MonoBehaviour));
+//				allObject = Object.FindObjectsOfType(typeof(MonoBehaviour));
+				Transform[] transfroms = FindObjectsOfType<Transform>();
+				var tag = from tran in transfroms
+					where !allTags.Contains(tran.tag) select tran.tag;
+				allTags.AddRange(tag);
+				
+				for (int pos = 0; pos < allTags.Count; pos++) {
+					//  TODO loop in allTags.Count
+					UnityEngine.Debug.Log("pos is : " + allTags[pos]);
+				}
+				break;
+			case STR_SHOWALL:
+				GameObject[] gos = Object.FindObjectsOfType<GameObject>();
+				foreach( var item in gos ) {
+					if((item.hideFlags & HideFlags.HideInHierarchy) == HideFlags.HideInHierarchy){
+						item.hideFlags = item.hideFlags ^ HideFlags.HideInHierarchy ^ HideFlags.DontSaveInEditor;
+						UnityEngine.Debug.Log(string.Format("{0} is hideFlags", item.name));
+					}
+				}
 				break;
 				
-		}
-		
+		}	
 		
 	}
+	
+	public T[] FindObjectsOfType<T>() where T : Object{
+		return Object.FindObjectsOfType<T>();
+	}
+	
 	
 	public void DrawProperty(SerializedObject obj){
 		SerializedProperty property = null;

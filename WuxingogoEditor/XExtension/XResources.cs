@@ -7,8 +7,11 @@ public class XResources {
 	private XResources(){
 		string resPath = EditorPrefs.GetString("XLogo", "Assets/WuxingogoExtension/wuxingogo.psd");
 		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(resPath);
+		
+		IconNames = Resources.Load<TextAsset>("icon").text.Split("\n"[0]);
 	}
 	public Texture LogoTexture = null;
+	public string[] IconNames = null;
 
     public void SaveAll()
     {
