@@ -43,10 +43,10 @@ public class AnalysisWindow : XBaseWindow {
 	
 	public override void OnXGUI()
 	{
-		AddButton<string>(STR_PROCESS, OnClick, STR_PROCESS);
-		AddButton<string>(STR_ASSEMBLY, OnClick, STR_ASSEMBLY);
-		AddButton<string>(STR_OBJECT, OnClick, STR_OBJECT);
-		AddButton<string>(STR_SHOWALL, OnClick, STR_SHOWALL);
+		DoButton<string>(STR_PROCESS, OnClick, STR_PROCESS);
+		DoButton<string>(STR_ASSEMBLY, OnClick, STR_ASSEMBLY);
+		DoButton<string>(STR_OBJECT, OnClick, STR_OBJECT);
+		DoButton<string>(STR_SHOWALL, OnClick, STR_SHOWALL);
 		
 		
 		for( int pos = 0; pos < allResult.Count; pos++ ) {
@@ -102,7 +102,6 @@ public class AnalysisWindow : XBaseWindow {
 				break;
 			
 			case STR_OBJECT:
-//				allObject = Object.FindObjectsOfType(typeof(MonoBehaviour));
 				Transform[] transfroms = FindObjectsOfType<Transform>();
 				var tag = from tran in transfroms
 					where !allTags.Contains(tran.tag) select tran.tag;
@@ -112,6 +111,9 @@ public class AnalysisWindow : XBaseWindow {
 					//  TODO loop in allTags.Count
 					UnityEngine.Debug.Log("pos is : " + allTags[pos]);
 				}
+
+				Selection.objects = FindObjectsOfType<CharacterControler>();
+
 				break;
 			case STR_SHOWALL:
 				GameObject[] gos = Object.FindObjectsOfType<GameObject>();

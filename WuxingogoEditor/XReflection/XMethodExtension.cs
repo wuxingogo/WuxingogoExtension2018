@@ -44,15 +44,15 @@ public class XMethodExtension : XBaseWindow
 			Target = uObject;
 		}else{
 			if(storeTargets.Count > 0)
-				AddButton("Back To Last Object", BackToLastObject);
+				DoButton("Back To Last Object", BackToLastObject);
 			
 			BeginHorizontal();
 			CreateLabel("Filter Type : " + showType);
 			if(showType.BaseType != null)
-				AddButton( showType.BaseType.ToString(), ConvertToBase );
+				DoButton( showType.BaseType.ToString(), ConvertToBase );
 			EndHorizontal();
 
-			MethodInfo[] methods = _target.GetType().GetMethods();
+			MethodInfo[] methods = _target.GetType().GetMethods( BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public );
 			
 			
 			
@@ -81,7 +81,8 @@ public class XMethodExtension : XBaseWindow
 					}
 					
 					if(CreateSpaceButton("Invoke")){
-						method.Invoke(_target,myParameters);
+						object result = method.Invoke(_target,myParameters);
+						Debug.Log( result ?? "Void Method");
 					}
 					
 					#endregion
@@ -113,7 +114,7 @@ public class XMethodExtension : XBaseWindow
 		else if(type.BaseType == typeof(Enum)){
 			t = Enum.ToObject(type, 0);
 		}
-		else if(type == typeof(Object)){
+		else if(type.IsSubclassOf(typeof(Object))){
 			t = CreateObjectField( (Object)t, type);
 		}
 		else{
@@ -141,8 +142,6 @@ public class XMethodExtension : XBaseWindow
 	}
 	
 	public void OnChangeTarget(){
-		Debug.Log("OnChangeTarget");
-
 		
 		if(Target != null){
 			storeTargets.Push(Target);

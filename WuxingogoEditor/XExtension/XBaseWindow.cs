@@ -18,23 +18,33 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     const int XButtonWidth = 100;
     const int XButtonHeight = 20;
 
-    public static T Init<T>() where T : EditorWindow
+	static Texture2D LogoTexture = null;
+
+	public static T Init<T>() where T : XBaseWindow
     {
         string cmdPrefs = typeof(T).ToString() + "_isPrefix";
         bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
-		return EditorWindow.GetWindow<T>(isPrefix, typeof(T).Name);
+		T window = EditorWindow.GetWindow<T>(isPrefix, typeof(T).Name);
+		window.OnInitialization();
+		return window;
+
+		LogoTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("WuxingogoExtension/wuxingogo.psd");
     }
+
+    public virtual void OnInitialization(){}
 
     public void OnGUI()
     {
-        GUILayout.Box(XResources.GetInstance().LogoTexture, GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
-        if (GUI.Button(GUILayoutUtility.GetLastRect(), XResources.GetInstance().LogoTexture))
+		GUILayout.Box(LogoTexture, GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
+		if (GUI.Button(GUILayoutUtility.GetLastRect(), LogoTexture))
         {
             this.Close();
             string cmdPrefs = GetType().ToString() + "_isPrefix";
             bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
             EditorPrefs.SetBool(cmdPrefs, !isPrefix);
-			EditorWindow.GetWindow(GetType(), !isPrefix, GetType().Name, true);
+			XBaseWindow window = EditorWindow.GetWindow(GetType(), !isPrefix, GetType().Name, true) as XBaseWindow;
+			window.OnInitialization();
+			return;
 
         }
         _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
@@ -57,21 +67,21 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     {
         return GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(height));
     }
-    public void AddButton(string btnName, Action callback)
+    public void DoButton(string btnName, Action callback)
     {
         if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
         {
             callback();
         }
     }
-	public void AddButton(GUIContent content, Action callback, params GUILayoutOption[] options)
+	public void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
 		if (GUILayout.Button(content, options))
 		{
 			callback();
 		}
 	}
-    public void AddButton<T>(string btnName, Action<T> callback, T arg)
+    public void DoButton<T>(string btnName, Action<T> callback, T arg)
     {
         if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
         {

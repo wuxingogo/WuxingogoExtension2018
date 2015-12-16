@@ -16,7 +16,7 @@ public class XPropertiesToSerializables : XBaseWindow
 	List<PropertyInfo> mProperties = new List<PropertyInfo>();
 	PropertyInfo targetProperty = null;
     object propertyinstance = null;
-	[MenuItem ("Wuxingogo/Wuxingogo XPropertiesToSerializables ")]
+	[MenuItem ("Wuxingogo/Reflection/Wuxingogo XPropertiesToSerializables ")]
 	static void init () {
 		Init<XPropertiesToSerializables>();
 	}

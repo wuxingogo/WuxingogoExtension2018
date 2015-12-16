@@ -19,7 +19,7 @@ using Object = UnityEngine.Object;
 
 public class XReflectionWindow : XBaseWindow {
 
-	[MenuItem( "Wuxingogo/Wuxingogo XReflectionWindow " )]
+	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XReflectionWindow " )]
 	static void Init()
 	{
 		Init<XReflectionWindow>();
@@ -53,7 +53,8 @@ public class XReflectionWindow : XBaseWindow {
 	private string strType = string.Empty;
 	
 	public Dictionary<string, List<string>> content = new Dictionary<string, List<string>>();
-	public BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
+
+	public BindingFlags bindingAttr = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
 
 	public override void OnXGUI()
 	{
@@ -71,13 +72,13 @@ public class XReflectionWindow : XBaseWindow {
 			CreateLabel(Target.GetType().ToString() + "||"  + Target.ToString());
 			
 			if(storeTargets.Count > 0)
-				AddButton("Back To Last Object", BackToLastObject);
+				DoButton("Back To Last Object", BackToLastObject);
 			
 			for (int pos = 0; pos < reflecteType.Length; pos++) {
 				//  TODO loop in reflecteType.Length
 				BeginHorizontal();
-				AddButton<string>(reflecteType[pos], OnClickType, reflecteType[pos]);
-				AddButton<string>("Open " + reflecteType[pos] + " Editor", OnOpenEditor, reflecteType[pos]);
+				DoButton<string>(reflecteType[pos], OnClickType, reflecteType[pos]);
+				DoButton<string>("Open " + reflecteType[pos] + " Editor", OnOpenEditor, reflecteType[pos]);
 				EndHorizontal();
 			}
 			
@@ -107,7 +108,6 @@ public class XReflectionWindow : XBaseWindow {
 	}
 	
 	public void OnChangeTarget(){
-		Debug.Log("OnChangeTarget");
 		if( Target != null)
 			Debug.Log("Target is Type is " + Target.GetType().ToString());
 		
@@ -160,14 +160,15 @@ public class XReflectionWindow : XBaseWindow {
 	void OnOpenEditor(string editorName){
 		switch( editorName ) {
 			case "Field":
-				Init<XFieldExtension>();
+				XFieldExtension fieldWindow = Init<XFieldExtension>();
+				fieldWindow.Target = Target;
 				break;
 			case "Property":
 				Init<XPropertiesExtension>();
 				break;
 			case "Method":
-				XMethodExtension window = Init<XMethodExtension>();
-				window.Target = Target;
+				XMethodExtension methodWindow = Init<XMethodExtension>();
+				methodWindow.Target = Target;
 				break;;
 			case "Member":
 				break;	

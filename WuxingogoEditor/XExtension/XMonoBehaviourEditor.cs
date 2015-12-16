@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using wuxingogo.Runtime;
 
+
 [CustomEditor( typeof( XMonoBehaviour ), true )]
 
 
@@ -32,23 +33,23 @@ public class XMonoBehaviourEditor : XBaseEditor
                     {
                         if( null == objects[pos] )
                             objects[pos] = 0;
-                        objects[pos] = ( int )CreateIntField( "parameter" + pos + ": Int ", ( int )objects[pos] );
+						objects[pos] = ( int )CreateIntField( paras[pos].Name  + ": Int ", ( int )objects[pos] );
                     }
                     else if( paras[pos].ParameterType == typeof( System.String ) )
                     {
                         if( null == objects[pos] )
                             objects[pos] = "";
-                        objects[pos] = ( string )CreateStringField( "parameter" + pos + ": String ", ( string )objects[pos] );
+						objects[pos] = ( string )CreateStringField( paras[pos].Name + ": String ", ( string )objects[pos] );
                     }
                     else if( paras[pos].ParameterType == typeof( System.Single ) )
                     {
                         if( null == objects[pos] )
                             objects[pos] = 0.0f;
-                        objects[pos] = ( float )CreateFloatField( "parameter" + pos + ": Float ", ( float )objects[pos] );
+						objects[pos] = ( float )CreateFloatField( paras[pos].Name + ": Float ", ( float )objects[pos] );
                     }
                     else if( paras[pos].ParameterType == typeof( UnityEngine.Object ) )
                     {
-                        objects[pos] = ( Object )CreateObjectField( "parameter" + pos + ": Object ", ( Object )objects[pos] );
+						objects[pos] = ( Object )CreateObjectField( paras[pos].Name + ": Object ", ( Object )objects[pos] );
                     }
                 }   
 				if(CreateSpaceButton(info.Name +"  "+ (att as XAttribute).title)){
@@ -57,5 +58,77 @@ public class XMonoBehaviourEditor : XBaseEditor
                 CreateSpaceBox();
 			}
 		}
+
+
+
+		foreach( var info in target.GetType().GetFields() ){
+			foreach(var att in info.GetCustomAttributes(typeof(XAttribute),true)){
+                CreateSpaceBox();
+                CreateLabel( "XField : " + info.Name + " || " + info.GetValue(target).ToString() );
+
+				if(typeof(IDictionary).IsAssignableFrom(info.FieldType)){
+
+					IDictionary dictionary = ( IDictionary )info.GetValue(target);
+
+					IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
+					IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
+
+					while(iteratorKey.MoveNext() && iteratorValue.MoveNext()){
+						BeginHorizontal();
+						if(iteratorKey.Current.GetType().IsSubclassOf(typeof(Object))){
+							CreateObjectField((Object)iteratorKey.Current);
+						}else{
+							CreateLabel(iteratorKey.Current.ToString());
+						}
+						if(iteratorValue.Current.GetType().IsSubclassOf(typeof(Object))){
+							CreateObjectField((Object)iteratorValue.Current);
+						}else{
+							CreateLabel(iteratorValue.Current.ToString());
+						}
+						EndHorizontal();
+					}
+				}
+
+				if(typeof(ICollection).IsAssignableFrom(info.FieldType)){
+
+					ICollection collection = ( ICollection )info.GetValue(target);
+
+					IEnumerator iteratorValue = collection.GetEnumerator();
+
+					while( iteratorValue.MoveNext()){
+						if(iteratorValue.Current.GetType().IsSubclassOf(typeof(Object))){
+							CreateObjectField((Object)iteratorValue.Current);
+						}else{
+							CreateLabel(iteratorValue.Current.ToString());
+						}
+					}
+				}
+			}
+		}
+
+
+		foreach( var info in target.GetType().GetProperties() ){
+			foreach(var att in info.GetCustomAttributes(typeof(XAttribute),true)){
+                CreateSpaceBox();
+
+				object result = info.GetValue(target, null);
+
+				BeginHorizontal();
+
+				string title = result == null ? "NULL" : result.ToString();
+
+				CreateLabel( "XProperty : " + info.Name + " || " +  title);
+
+				if(typeof(Object).IsAssignableFrom(info.PropertyType)){
+					result = CreateObjectField((Object)result);
+					if(GUI.changed)
+						info.SetValue(target, result, null);
+				}
+
+				EndHorizontal();
+			}
+		}
+
+
 	}
 }

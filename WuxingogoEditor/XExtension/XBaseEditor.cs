@@ -54,6 +54,11 @@ public class XBaseEditor : Editor {
         if( null == type ) type = typeof( Object );
         return EditorGUILayout.ObjectField( fieldName, obj, type, true ) as Object;
     }
+	public Object CreateObjectField( Object obj, System.Type type = null )
+    {
+        if( null == type ) type = typeof( Object );
+        return EditorGUILayout.ObjectField( obj, type, true ) as Object;
+    }
 
     public void CreateSpaceBox(float w, float h)
     {

@@ -25,14 +25,15 @@ using System.Reflection;
 namespace wuxingogo.analysis
 {
 
-	public class ProjectAnalysis : SingletonT<ProjectAnalysis>
-	{
-		
-		public void GetAssembly(){
-			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-			
-			
-		}
-	}
+//	public class ProjectAnalysis : SingletonT<ProjectAnalysis>
+//	{
+//		public ProjectAnalysis(){}
+//		
+//		public void GetAssembly(){
+//			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+//			
+//			
+//		}
+//	}
 }
 

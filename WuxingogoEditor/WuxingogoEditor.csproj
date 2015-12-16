@@ -38,17 +38,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEditor">
-      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="WuxingogoRuntime">
       <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\work\unity\UnityDLL\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -67,19 +67,13 @@
     <Compile Include="XExtension\XDataEditor.cs" />
     <Compile Include="XExtension\XEditorModel.cs" />
     <Compile Include="XExtension\XEditorSetting.cs" />
-    <Compile Include="XExtension\XFieldExtension.cs" />
     <Compile Include="XExtension\XFileExtension.cs" />
-    <Compile Include="XExtension\XHierarchy.cs" />
-    <Compile Include="XExtension\XMethodExtension.cs" />
     <Compile Include="XExtension\XMonoBehaviourEditor.cs" />
-    <Compile Include="XExtension\XPropertiesExtension.cs" />
-    <Compile Include="XExtension\XPropertiesToSerializables.cs" />
     <Compile Include="XExtension\XQucickSetPrefs.cs" />
     <Compile Include="XExtension\XQuickSetDatabase.cs" />
     <Compile Include="XExtension\XReplaceComponent.cs" />
     <Compile Include="XExtension\XResources.cs" />
     <Compile Include="XExtension\XSelectionExtension.cs" />
-    <Compile Include="XExtension\XSerializableExtension.cs" />
     <Compile Include="XExtension\XShaderExtension.cs" />
     <Compile Include="XExtension\XStyles.cs" />
     <Compile Include="XExtension\XTextureWindow.cs" />
@@ -106,7 +100,17 @@
     <Compile Include="XExtension\XAnimatorExtension.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
     <Compile Include="XExtension\XPlaymakerExtension.cs" />
-    <Compile Include="XExtension\XReflectionWindow.cs" />
+    <Compile Include="DataParser\JsonExtensionWindow.cs" />
+    <Compile Include="XReflection\XAssemlyWindow.cs" />
+    <Compile Include="XReflection\XFieldExtension.cs" />
+    <Compile Include="XReflection\XMethodExtension.cs" />
+    <Compile Include="XReflection\XPropertiesExtension.cs" />
+    <Compile Include="XReflection\XPropertiesToSerializables.cs" />
+    <Compile Include="XReflection\XReflectionWindow.cs" />
+    <Compile Include="XReflection\XSerializableExtension.cs" />
+    <Compile Include="BehaviorEditor\XBehaviorEditor.cs" />
+    <Compile Include="BehaviorEditor\XBehaviorMenu.cs" />
+    <Compile Include="BehaviorEditor\XBehaviorStateNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -116,5 +120,8 @@
   <ItemGroup>
     <Folder Include="CodeEditor\" />
     <Folder Include="CodeEditor\templete\" />
+    <Folder Include="DataParser\" />
+    <Folder Include="XReflection\" />
+    <Folder Include="BehaviorEditor\" />
   </ItemGroup>
 </Project>

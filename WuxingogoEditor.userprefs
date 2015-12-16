@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XBaseWindow.cs">
     <Files>
-      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/WuxingogoExtension/Editor/ProjectAnalysis/AnalysisWindow.cs" Line="1" Column="1" />
-      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/NGUI/Scripts/Interaction/UIButton.cs" Line="1" Column="1" />
-      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/WuxingogoExtension/Editor/CodeEditor/CodeBase.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/XExtension/YMGameWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XResources.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XEditorSetting.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="31" Column="59" />
+      <File FileName="WuxingogoEditor/CreateAssets/CreateUnityScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

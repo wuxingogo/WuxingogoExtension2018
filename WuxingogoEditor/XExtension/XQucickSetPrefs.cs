@@ -9,10 +9,10 @@ public class XQucickSetPrefs : XBaseWindow {
 	float FloatValue = 0.0f;
 	string StringValue = "";
 	
-	[MenuItem ("Wuxingogo/Wuxingogo Quick Set Prefs %#4")]
+	[MenuItem ("Wuxingogo/Wuxingogo Quick Set Prefs ")]
 	static void init () {
 		
-		XQucickSetPrefs window = (XQucickSetPrefs)EditorWindow.GetWindow (typeof (XQucickSetPrefs));
+		Init<XQucickSetPrefs>();
 		
 		
 	}

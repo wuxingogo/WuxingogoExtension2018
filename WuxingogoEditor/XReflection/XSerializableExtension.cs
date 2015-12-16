@@ -11,7 +11,7 @@ public class XSerializableExtension : XBaseWindow
 
 	static XmlDocument xmlDoc = null;
 	// This window to quick set serializable property.
-	[MenuItem ("Wuxingogo/Wuxingogo XSerializableExtension ")]
+	[MenuItem ("Wuxingogo/Reflection/Wuxingogo XSerializableExtension ")]
 	static void init () {
 		Init<XSerializableExtension>();
 	}

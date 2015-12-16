@@ -17,37 +17,37 @@ using UnityEngine;
 public class JsonExtensionWindow : XBaseWindow
 {
 	
-	[MenuItem( "Wuxingogo/DataPaser/JsonExtensionWindow " )]
-	static void init()
-    {
-    	Init<JsonExtensionWindow>();
-    }
-    
-    public static JSONObject JSON = null;
-    
-    public override void OnXGUI()
-    {
-    	BeginHorizontal();
-		if(CreateSpaceButton("Open")){
-		
-		}
-		if(CreateSpaceButton("Create")){
-			
-		}
-		EndHorizontal();
-		
-		if( null != JSON ){
-			for (int pos = 0; pos < JSON.keys.Count; pos++) {
-				//  TODO loop in JSON.keys.Count
-				CreateLabel(JSON.keys[pos].ToString());
-			}
-			for (int pos = 0; pos < JSON.list.Count; pos++) {
-				//  TODO loop in JSON.keys.Count
-				CreateLabel(JSON.keys[pos].ToString());
-				
-			}
-		}
-    }
+//	[MenuItem( "Wuxingogo/DataPaser/JsonExtensionWindow " )]
+//	static void init()
+//    {
+//    	Init<JsonExtensionWindow>();
+//    }
+//    
+//    public static JSONObject JSON = null;
+//    
+//    public override void OnXGUI()
+//    {
+//    	BeginHorizontal();
+//		if(CreateSpaceButton("Open")){
+//		
+//		}
+//		if(CreateSpaceButton("Create")){
+//			
+//		}
+//		EndHorizontal();
+//		
+//		if( null != JSON ){
+//			for (int pos = 0; pos < JSON.keys.Count; pos++) {
+//				//  TODO loop in JSON.keys.Count
+//				CreateLabel(JSON.keys[pos].ToString());
+//			}
+//			for (int pos = 0; pos < JSON.list.Count; pos++) {
+//				//  TODO loop in JSON.keys.Count
+//				CreateLabel(JSON.keys[pos].ToString());
+//				
+//			}
+//		}
+//    }
 	
 }
 

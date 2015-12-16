@@ -2,25 +2,48 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Reflection;
+using System.Collections.Generic;
 
 
 public class XFieldExtension : XBaseWindow 
 {
-	Object scrObj = null;
+	Object uObject = null;
+	
+	private object _target = null;
+	public object Target {
+		get{
+			return _target;
+		}
+		set{
+			if(_target != value){
+				
+				_target = value;
+				OnChangeTarget();
+			}
+		}
+	}
 
 	public override void OnXGUI(){
 			
-		scrObj = CreateObjectField("Script", scrObj);
-		if( null != scrObj ){
+		if(CreateSpaceButton("Clean")){
+			uObject = null;
+			Target = null;
+		}
 		
-			FieldInfo[] fields = scrObj.GetType().GetFields();
+		if( null == Target ){
+			uObject = CreateObjectField("", uObject);
+			Target = uObject;
+		}else{
+		
+		
+			FieldInfo[] fields = Target.GetType().GetFields();
 			foreach( FieldInfo field in fields ){
-				if( scrObj.GetType() == field.DeclaringType ) {
+				if( Target.GetType() == field.DeclaringType ) {
 //					CreateStringField("method name " , field.Name);
 					
 					EditorGUILayout.BeginVertical();{
 						
-						object value = field.GetValue(scrObj);
+						object value = field.GetValue(Target);
 						object changeValue = null;
 						if(field.FieldType == typeof(System.Int32)){
 							changeValue = CreateIntField(field.Name + ": int" , (int)value);
@@ -75,11 +98,11 @@ public class XFieldExtension : XBaseWindow
 						else{
 							changeValue = CreateObjectField(field.Name + ": " + field.FieldType, (Object)value);
 						}
-						if(GUI.changed && changeValue != value){
+						if(GUI.changed && changeValue != value && uObject != null){
 //							Debug.Log("gui change");
-							Undo.RecordObject(scrObj, "Record ScrObject");
+							Undo.RecordObject(uObject, "Record ScrObject");
 							try{
-								field.SetValue(scrObj,changeValue);
+								field.SetValue(Target,changeValue);
 							}catch(System.ArgumentException e){
 								
 							}
@@ -97,8 +120,23 @@ public class XFieldExtension : XBaseWindow
 		
 	}
 
-	void OnSelectionChange(){
-		//TODO List
+	System.Type showType;
 
+	string targetType;
+
+	private Stack<object> storeTargets = new Stack<object>();
+
+	public void OnChangeTarget(){
+		
+		if(Target != null){
+			storeTargets.Push(Target);
+			
+			targetType = Target.GetType().ToString();
+			
+			showType = Target.GetType();
+		}
+		
+		
+		this.Repaint();
 	}
 }
