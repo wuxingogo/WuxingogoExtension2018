@@ -1,12 +1,11 @@
-﻿<Properties StartupItem="WuxingogoRuntime/WuxingogoRuntime.csproj">
+﻿<Properties StartupItem="WuxingogoRuntime/WuxingogoRuntime.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Scripts/XMonoBehaviour.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="23" Column="19" />
       <File FileName="WuxingogoRuntime/Scripts/XData.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/XAttribute.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Scripts/TextModel.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Scripts/ArrayExtension.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

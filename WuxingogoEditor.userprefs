@@ -1,12 +1,8 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XBaseWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/DataParser/JsonExtensionWindow.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/YMGameWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XResources.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XEditorSetting.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="31" Column="59" />
-      <File FileName="WuxingogoEditor/CreateAssets/CreateUnityScript.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/DataParser/JsonExtensionWindow.cs" Line="18" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

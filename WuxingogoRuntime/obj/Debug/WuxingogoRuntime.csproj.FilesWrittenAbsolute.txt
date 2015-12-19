@@ -14,3 +14,4 @@
 /Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEditor.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.UI.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/WuxingogoEditor.dll
