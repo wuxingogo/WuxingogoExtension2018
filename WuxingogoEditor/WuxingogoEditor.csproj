@@ -95,7 +95,6 @@
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
     <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
     <Compile Include="CodeEditor\CodeBase.cs" />
-    <Compile Include="CodeEditor\CodeEditor.cs" />
     <Compile Include="CodeEditor\CodeObject.cs" />
     <Compile Include="XExtension\XAnimatorExtension.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
@@ -111,6 +110,8 @@
     <Compile Include="BehaviorEditor\XBehaviorEditor.cs" />
     <Compile Include="BehaviorEditor\XBehaviorMenu.cs" />
     <Compile Include="BehaviorEditor\XBehaviorStateNode.cs" />
+    <Compile Include="CodeEditor\CodeGenerateEditor.cs" />
+    <Compile Include="CodeEditor\CodeReviewEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

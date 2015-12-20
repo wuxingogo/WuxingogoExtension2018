@@ -17,11 +17,11 @@ using System.CodeDom;
 using System;
 using Object = UnityEngine.Object;
 
-public class CodeEditor : XBaseWindow {
-    [MenuItem( "Wuxingogo/Wuxingogo XCodeEditor" )]
+public class CodeGenerateEditor : XBaseWindow {
+	[MenuItem( "Wuxingogo/Code/CodeGenerateEditor" )]
     static void init()
     {
-		Init<CodeEditor>();
+		Init<CodeGenerateEditor>();
     }
     CodeObject codeObject = null;
 
@@ -35,13 +35,12 @@ public class CodeEditor : XBaseWindow {
     };
     public override void OnXGUI()
     {
-
         if( CreateSpaceButton( "Create New Code Node" ) )
         {
-            codeObject = new CodeObject();
+			codeObject = ScriptableObject.CreateInstance<CodeObject>();
         }
 		if( CreateSpaceButton( "Open Code Templete" ) ){
-			codeObject = OpenTemplete();
+			codeObject = OpenTemplate();
         }
         if( CreateSpaceButton( "Save Code Templete" ) ){
 			SaveTemplete(codeObject);
@@ -117,8 +116,8 @@ public class CodeEditor : XBaseWindow {
 			  
     }
     
-	CodeObject OpenTemplete(){
-		string path = EditorUtility.OpenFilePanel("Create A Data", XEditorSetting.ProjectPath, "");
+	CodeObject OpenTemplate(){
+		string path = EditorUtility.OpenFilePanel("Open A Template", XEditorSetting.ProjectPath, "");
 		if (path == "")
 			return null;
 		

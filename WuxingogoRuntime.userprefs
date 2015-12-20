@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="WuxingogoRuntime/WuxingogoRuntime.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Scripts/XMonoBehaviour.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="23" Column="19" />
       <File FileName="WuxingogoRuntime/Scripts/XData.cs" Line="1" Column="1" />

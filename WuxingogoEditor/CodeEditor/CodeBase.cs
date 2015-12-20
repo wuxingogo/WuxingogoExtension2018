@@ -96,7 +96,7 @@ public class CodeBase {
         return method;
     }
     
-    public void Draw(CodeEditor editor){
+    public void Draw(CodeGenerateEditor editor){
     
 		editor.BeginHorizontal();
 		
