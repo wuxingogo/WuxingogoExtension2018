@@ -8,6 +8,9 @@ using Object = UnityEngine.Object;
 
 public class XMethodExtension : XBaseWindow 
 {
+	public static XMethodExtension Init(){
+		return Init<XMethodExtension>();
+	}
 	
 	private object _target = null;
 	public object Target {

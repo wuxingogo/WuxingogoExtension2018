@@ -94,8 +94,6 @@
     <Compile Include="CreateAssets\CreateXData.cs" />
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
     <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
-    <Compile Include="CodeEditor\CodeBase.cs" />
-    <Compile Include="CodeEditor\CodeObject.cs" />
     <Compile Include="XExtension\XAnimatorExtension.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
     <Compile Include="XExtension\XPlaymakerExtension.cs" />
@@ -112,11 +110,23 @@
     <Compile Include="BehaviorEditor\XBehaviorStateNode.cs" />
     <Compile Include="CodeEditor\CodeGenerateEditor.cs" />
     <Compile Include="CodeEditor\CodeReviewEditor.cs" />
+    <Compile Include="CodeEditor\ICodeMember.cs" />
+    <Compile Include="CodeEditor\XCodeBase.cs" />
+    <Compile Include="CodeEditor\XCodeClass.cs" />
+    <Compile Include="CodeEditor\XCodeCustomAttribute.cs" />
+    <Compile Include="CodeEditor\XCodeField.cs" />
+    <Compile Include="CodeEditor\XCodeMethod.cs" />
+    <Compile Include="CodeEditor\XCodeObject.cs" />
+    <Compile Include="CodeEditor\XCodeParameter.cs" />
+    <Compile Include="CodeEditor\XCodeProperty.cs" />
+    <Compile Include="CodeEditor\XParameterEditor.cs" />
+    <Compile Include="XExtension\XWebWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <None Include="CodeEditor\templete\NewXBaseWindow.asset" />
+    <None Include="CodeEditor\templete\NewXMonoBehaviour.asset" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeEditor\" />

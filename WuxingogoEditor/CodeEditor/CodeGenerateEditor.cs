@@ -1,4 +1,4 @@
-//CodeEditor.cs
+//CodeGenerateEditor.cs
 //
 //Author:
 //		Wuxingogo 52111314ly@gmail.com
@@ -9,122 +9,88 @@
 //	You should have received a copy of the GNU Lesser General Public Licensealong with this program.
 //	If not, see <http://www.gnu.org/licenses/>.
 
-using UnityEngine;
-using System.Collections;
-using System.Reflection;
-using UnityEditor;
-using System.CodeDom;
-using System;
-using Object = UnityEngine.Object;
+namespace wuxingogo.Code
+{
+	using UnityEngine;
+	using System.Collections;
+	using System.Reflection;
+	using UnityEditor;
+	using System.CodeDom;
+	using System;
+	using Object = UnityEngine.Object;
 
-public class CodeGenerateEditor : XBaseWindow {
-	[MenuItem( "Wuxingogo/Code/CodeGenerateEditor" )]
-    static void init()
-    {
-		Init<CodeGenerateEditor>();
-    }
-    CodeObject codeObject = null;
 
-    public string[] supposeArray = new string[]{
-        "void",
-        "int",
-        "float",
-        "string",
-        "UnityObject",
-        "enum"
-    };
-    public override void OnXGUI()
-    {
-        if( CreateSpaceButton( "Create New Code Node" ) )
-        {
-			codeObject = ScriptableObject.CreateInstance<CodeObject>();
-        }
-		if( CreateSpaceButton( "Open Code Templete" ) ){
-			codeObject = OpenTemplate();
-        }
-        if( CreateSpaceButton( "Save Code Templete" ) ){
-			SaveTemplete(codeObject);
-        }
-        if( null != codeObject )
-        {
-            codeObject.namespaceName = CreateStringField( "NameSpace", codeObject.namespaceName );
+	public class CodeGenerateEditor : XBaseWindow
+	{
+		[MenuItem( "Wuxingogo/Code/CodeGenerateEditor" )]
+		static void init()
+		{
+			Init<CodeGenerateEditor>();
+		}
 
-            if( CreateSpaceButton( "Add Import Namespace" ) )
-            {
-                codeObject.importNS.Add( "" );
-            }
-            for( int pos = 0; pos < codeObject.importNS.Count; pos++ )
-            {
-                codeObject.importNS[pos] = CreateStringField( "using", codeObject.importNS[pos] );
-            }
-            
-            BeginHorizontal();
-            for (int pos = 0; pos < codeObject.baseClasses.Count; pos++) {
-            	//  TODO loop in codeObject.baseClasses
-            	codeObject.baseClasses[pos] = CreateStringField("Base", codeObject.baseClasses[pos]);
-            	if(CreateSpaceButton("Delete")){
-					codeObject.baseClasses.RemoveAt(pos);
-					codeObject.baseClasses.TrimExcess();
-					return;
-				}
+		public XCodeObject codeObject = null;
+
+		public override void OnXGUI()
+		{
+			
+        	
+
+			if( null != codeObject ) {
+
+				DoButton<ScriptableObject>( "SaveTemplate", SaveTemplete, codeObject );
+				DoButton( "Clean", () => codeObject = null );
+				DoButton("Compile", Compile);
+        		
+				codeObject.Draw( this );
+			} else {
+				DoButton( "Create", () => codeObject = ScriptableObject.CreateInstance<XCodeObject>() );
+				DoButton( "OpenTemplate", () => codeObject = OpenTemplate() );
 			}
-            EndHorizontal();
-            
-            BeginHorizontal();
-            codeObject.className = CreateStringField( "className", codeObject.className );
+		}
 
-            if( CreateSpaceButton( "Add a member" ) )
-            {
-                codeObject.members.Add( new CodeBase() );
-            }
-            
-            if( CreateSpaceButton( "Add a baseClass" ) ){
-            	codeObject.baseClasses.Add( "object" );
-            }
-            EndHorizontal();
-            
-            foreach( var item in codeObject.members )
-            {
-				if( CreateSpaceButton( "Delete Member" ) )
-				{
-					codeObject.members.Remove( item );
-					codeObject.members.TrimExcess();
-					//EndHorizontal();
-					return;
-				}
-				item.Draw(this);          
-            }
-
-            if( CreateSpaceButton( "Compile Code And Update" ) ){
-				string path = EditorUtility.SaveFilePanel("OutPut Path", XEditorSetting.ProjectPath, codeObject.className + ".cs", "cs");
-				codeObject.Compile(path);
-                
-            }
-        }
-
-    }
-    
-    void SaveTemplete(ScriptableObject so){
-		string path = EditorUtility.SaveFilePanel("Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset");
-		if (path == "")
-			return;
+		void SaveTemplete(ScriptableObject so)
+		{
+			string path = EditorUtility.SaveFilePanel( "Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset" );
+			if( path == "" )
+				return;
 		
-		path = FileUtil.GetProjectRelativePath(path); 
+			path = FileUtil.GetProjectRelativePath( path ); 
 		
-		AssetDatabase.CreateAsset(so, path);
-		AssetDatabase.SaveAssets();
+			AssetDatabase.CreateAsset( so, path );
+			AssetDatabase.SaveAssets();
 			  
-    }
-    
-	CodeObject OpenTemplate(){
-		string path = EditorUtility.OpenFilePanel("Open A Template", XEditorSetting.ProjectPath, "");
-		if (path == "")
-			return null;
+		}
+
+		void Compile(){
+			string path = EditorUtility.SaveFilePanel("OutPut Path", XEditorSetting.ProjectPath, codeObject.className + ".cs", "cs");
+
+			codeObject.Compile(path);
+		}
+
+		XCodeObject OpenTemplate()
+		{
+			string path = EditorUtility.OpenFilePanel( "Open A Template", XEditorSetting.ProjectPath, "" );
+			if( path == "" )
+				return null;
 		
-		path = FileUtil.GetProjectRelativePath(path); 
+			path = FileUtil.GetProjectRelativePath( path ); 
 		
-		CodeObject co = AssetDatabase.LoadAssetAtPath<CodeObject>(path);
+			XCodeObject co = AssetDatabase.LoadAssetAtPath<XCodeObject>( path );
 		
-		return co;
-    }
+			return co;
+		}
+	}
+
+	[CustomEditor(typeof(XCodeObject))]
+	public class XCodeInspector : XBaseEditor{
+		public override void OnInspectorGUI()
+		{
+			base.OnInspectorGUI();
+
+			if(CreateSpaceButton("Open In XCodeWindow")){
+				CodeGenerateEditor window = XBaseWindow.Init<CodeGenerateEditor>();
+				window.codeObject = target as XCodeObject;
+			}
+		}
+	}
 }

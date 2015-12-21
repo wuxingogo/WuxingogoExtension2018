@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections;
+using wuxingogo.Code;
+
 public class CreateXBaseWindow : CreateUnityScript 
 {
 	[MenuItem("Assets/Create/Wuxingogo/XBaseWindow", false, 100)]
@@ -21,7 +23,7 @@ public class CreateXBaseWindow : CreateUnityScript
 		
 		string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/NewXBaseWindow.asset";
 		
-		CodeObject co = AssetDatabase.LoadAssetAtPath<CodeObject>(assetPath);
+		XCodeObject co = AssetDatabase.LoadAssetAtPath<XCodeObject>(assetPath);
 		co.className = fileName;
 		co.Compile(dictionary + "/" + suffix);
 		

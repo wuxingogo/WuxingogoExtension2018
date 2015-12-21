@@ -53,7 +53,6 @@ public class XWebWindow : XBaseWindow
 	static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 	
 	object webView;
-	dynamic x;
 	Type webViewType;
 	MethodInfo doGUIMethod;
 	MethodInfo loadURLMethod;

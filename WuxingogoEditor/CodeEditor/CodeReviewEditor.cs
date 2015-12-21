@@ -11,7 +11,7 @@
 
 
 
-namespace wuxingogo.Editor
+namespace wuxingogo.Code
 {
 	using UnityEditor;
 	using System.Collections;

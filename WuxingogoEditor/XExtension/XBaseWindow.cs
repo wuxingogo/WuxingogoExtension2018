@@ -18,8 +18,6 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     const int XButtonWidth = 100;
     const int XButtonHeight = 20;
 
-	static Texture2D LogoTexture = null;
-
 	public static T Init<T>() where T : XBaseWindow
     {
         string cmdPrefs = typeof(T).ToString() + "_isPrefix";
@@ -27,16 +25,14 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		T window = EditorWindow.GetWindow<T>(isPrefix, typeof(T).Name);
 		window.OnInitialization();
 		return window;
-
-		LogoTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("WuxingogoExtension/wuxingogo.psd");
     }
 
     public virtual void OnInitialization(){}
 
     public void OnGUI()
     {
-		GUILayout.Box(LogoTexture, GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
-		if (GUI.Button(GUILayoutUtility.GetLastRect(), LogoTexture))
+		GUILayout.Box(XResources.LogoTexture, GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
+		if (GUI.Button(GUILayoutUtility.GetLastRect(), XResources.LogoTexture))
         {
             this.Close();
             string cmdPrefs = GetType().ToString() + "_isPrefix";
@@ -151,7 +147,10 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         EditorGUILayout.HelpBox(value, type);
 
     }
-
+	public System.Enum CreateEnumSelectable(System.Enum value)
+    {
+        return EditorGUILayout.EnumPopup(value);
+    }
     public System.Enum CreateEnumSelectable(string fieldName, System.Enum value)
     {
         return EditorGUILayout.EnumPopup(fieldName, value);

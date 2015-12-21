@@ -1,8 +1,8 @@
-﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
+﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/DataParser/JsonExtensionWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../work/public/TSPlay/SunSongSunshine/Assets/Scripts/Utility/Joystick.cs">
     <Files>
-      <File FileName="WuxingogoEditor/DataParser/JsonExtensionWindow.cs" Line="18" Column="4" />
+      <File FileName="../../work/public/TSPlay/SunSongSunshine/Assets/Scripts/Utility/Joystick.cs" Line="27" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -36,7 +36,7 @@ public class XEditorSetting : XBaseWindow
     {
         if (CreateSpaceButton("Save Asset"))
         {
-//            XResources.GetInstance().SaveAll();
+            XResources.SaveAll();
         }
         
 		DoButton("ShowAllIcon", ()=> isShowIcons = !isShowIcons);
