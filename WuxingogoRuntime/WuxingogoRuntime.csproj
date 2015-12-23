@@ -61,6 +61,7 @@
     <Compile Include="BehaviorCore\XBehaviorState.cs" />
     <Compile Include="TestBehavior\XDebugLog.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
+    <Compile Include="Attribute\DisableAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -68,5 +69,6 @@
     <Folder Include="BehaviorCore\" />
     <Folder Include="TestBehavior\" />
     <Folder Include="Tools\" />
+    <Folder Include="Attribute\" />
   </ItemGroup>
 </Project>

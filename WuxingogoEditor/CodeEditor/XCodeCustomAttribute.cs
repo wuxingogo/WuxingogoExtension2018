@@ -31,9 +31,9 @@ namespace wuxingogo.Code
 		public CodeAttributeDeclaration Compile()
 		{
 			CodeAttributeDeclaration declaration = null;
-			object para = parameter.Compile();
+			CodeExpression para = parameter.Compile();
 			if( null != para)
-				declaration = new CodeAttributeDeclaration(name, new CodeAttributeArgument(new CodePrimitiveExpression(para)));
+				declaration = new CodeAttributeDeclaration(name, new CodeAttributeArgument(para));
 			else
 				declaration = new CodeAttributeDeclaration(name);
 

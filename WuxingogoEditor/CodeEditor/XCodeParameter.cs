@@ -9,13 +9,15 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.CodeDom;
 
 
 namespace wuxingogo.Code
 {
 	[Serializable]
-	public class XCodeParameter
+	public class XCodeParameter : ICodeExpression
 	{
+		public string name = "";
 		public string type = "";
 		public string value = "";
 		public XCodeParameter()
@@ -23,7 +25,7 @@ namespace wuxingogo.Code
 			
 		}
 
-		public object Compile(){
+		public object GetValue(){
 			switch(type){
 				case "void":
 				break;
@@ -42,6 +44,22 @@ namespace wuxingogo.Code
 				break;
 			}
 			return null;
+		}
+
+		public void Draw(XBaseWindow window){
+			
+		}
+
+		public System.CodeDom.CodeExpression Compile()
+		{
+			CodePrimitiveExpression expression = null;
+
+			object value = GetValue();
+			if( null != value ){
+				expression = new CodePrimitiveExpression(value);
+			}
+//			expression.Value = GetValue();
+			return expression;
 		}
 	}
 }

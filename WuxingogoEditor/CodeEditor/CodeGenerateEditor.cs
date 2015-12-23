@@ -43,7 +43,9 @@ namespace wuxingogo.Code
         		
 				codeObject.Draw( this );
 			} else {
-				DoButton( "Create", () => codeObject = ScriptableObject.CreateInstance<XCodeObject>() );
+				if(CreateSpaceButton("Create")){
+					GenerateNewCode();
+				}
 				DoButton( "OpenTemplate", () => codeObject = OpenTemplate() );
 			}
 		}
@@ -78,6 +80,11 @@ namespace wuxingogo.Code
 			XCodeObject co = AssetDatabase.LoadAssetAtPath<XCodeObject>( path );
 		
 			return co;
+		}
+
+		public XCodeObject GenerateNewCode(){
+			codeObject = ScriptableObject.CreateInstance<XCodeObject>();
+			return codeObject;
 		}
 	}
 
