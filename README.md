@@ -62,12 +62,8 @@ WuxingogoExtension are release under the MIT license.
 
 The Authors is Wuxingogo.Email:52111314ly@gmail.com
 
-##Note:
------
-
-
-
 To be continue!
+
 
 
 
