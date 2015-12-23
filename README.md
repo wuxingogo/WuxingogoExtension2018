@@ -3,7 +3,7 @@
 ## Intro
 ------
 
-WuxingogoExtension is a plugin collection for the Unity Editor.
+WuxingogoExtension is my tools of Unity Editor extension.
 
 
 ##Features
