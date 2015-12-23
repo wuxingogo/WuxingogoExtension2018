@@ -10,16 +10,16 @@ WuxingogoExtension is a plugin collection for the Unity Editor.
 ------
 
 * Unity UGUI export Cocos2D-X native UI.
-* Call Script from Command line .
+* Call Script from Command line(Reflection).
 * Create AssetBundle extension.
 * Serlizable extension.
 * Quick set unity prefs.
-* Animation extension(include fbx import extension).
-* Replace shader in batching.
+* Animation extension(include fbx animation).
+* Batching Replace Shader.
 * A playmaker extension.
-* Generate C# Script in Editor.
+* Generate C# Script in Editor(CodeDom).
 * Find reference Texture from UI.
-* Replace Component in batching.
+* A Simple FSM and Editor.
 * Quick checking Database in editor window.
 
 
@@ -37,7 +37,16 @@ The Authors is Wuxingogo.Email:52111314ly@gmail.com
 ##Note:
 -----
 
-This is a debug version,you can pull request to fix some bug.
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/AssetBundle.png "github") 
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/BehaviourFSM.png "github") 
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/CodeGenerate.png "github") 
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/Reflection.png "github") 
+
+
+To be continue!
 
 
 
