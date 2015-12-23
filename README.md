@@ -19,14 +19,42 @@ WuxingogoExtension is a plugin collection for the Unity Editor.
 * A playmaker extension.
 * Generate C# Script in Editor(CodeDom).
 * Find reference Texture from UI.
-* A Simple FSM and Editor.
+* A Simple FSM with Editor.
 * Quick checking Database in editor window.
 
 
 ##Usage
 -----------
-Copy folder "Editor" and "Script" to a name by "Wuxingogo" in ur Unity project.Copy folder "Editor Default Resources" to ur Unity project.
 
+####XAssetBundleWindow.
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/AssetBundle.png "github") 
+
+####XBehaviour Window (Finite-State-Machine)
+
+a Simple editor about FSM
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/BehaviourFSM.png "github") 
+
+####XCodeGenerateEditor:
+
+`Save Template`
+
+Generate `Namesace`,`Field`, `Method`, `Class`, `Comment`, `Attribute`, `Property`
+
+TODO LIST: 
+
+Compile Code From XReflectionWindow.
+
+A Visual CodeEditor about `Node` 
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/CodeGenerate.png "github") 
+
+XReflectionWindow:
+
+![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/Reflection.png "github") 
+
+Etc.
 
 ##Copyright, License & Contributors
 -----
@@ -37,13 +65,6 @@ The Authors is Wuxingogo.Email:52111314ly@gmail.com
 ##Note:
 -----
 
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/AssetBundle.png "github") 
-
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/BehaviourFSM.png "github") 
-
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/CodeGenerate.png "github") 
-
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/Reflection.png "github") 
 
 
 To be continue!
