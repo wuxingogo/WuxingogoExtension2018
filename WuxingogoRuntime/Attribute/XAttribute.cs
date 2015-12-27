@@ -16,9 +16,10 @@ using System;
 
 namespace wuxingogo.Runtime
 {
-    public class XAttribute : Attribute
+	public class XAttribute : Attribute
     {
         public string title;
+        protected XAttribute(){}
 
         public XAttribute(string title)
         {
