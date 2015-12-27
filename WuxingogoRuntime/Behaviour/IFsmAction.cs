@@ -13,8 +13,9 @@
 namespace wuxingogo.Fsm
 {
 
-	public interface IFsmAction
+	public interface IFsmAction : IFsmLifecycle
 	{
+
 		bool isActive {
 			get;
 			set;
@@ -23,12 +24,5 @@ namespace wuxingogo.Fsm
 			get;
 			set;
 		}
-
-		void Init();
-		void OnEnter();
-		void OnExit();
-		void OnUpdate();
-		void OnLateUpdate();
-		void Reset();
 	}
 }

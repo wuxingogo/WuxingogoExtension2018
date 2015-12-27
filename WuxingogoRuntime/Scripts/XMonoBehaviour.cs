@@ -24,7 +24,7 @@ namespace wuxingogo.Runtime {
 		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){
-			Type XMethod = GetTypeFromAllAssemblies("XMethodExtension");
+			Type XMethod = GetTypeFromAllAssemblies("XMethodWindow");
 			object window = XMethod.GetMethod("Init").Invoke(null, null);
 			XMethod.GetProperty("Target").SetValue(window, this, null);
 

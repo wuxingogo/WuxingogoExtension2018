@@ -17,8 +17,7 @@ public class XQucickSetPrefs : XBaseWindow {
 		
 	}
 	
-	public void OnGUI(){
-		base.OnGUI();
+	public override void OnXGUI(){
 		
 		
 		CreateSpaceBox();

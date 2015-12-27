@@ -17,12 +17,15 @@ namespace wuxingogo.Fsm
 	[Serializable]
 	public class XFsmActionComponent : wuxingogo.Runtime.XMonoBehaviour, IFsmAction
 	{
+		public bool IsInit {
+			get;
+			set;
+		}
 
 		#region IFsmAction implementation
 
-		public void Init()
-		{
-			throw new NotImplementedException();
+		public void Init(){
+
 		}
 
 		public void OnEnter()

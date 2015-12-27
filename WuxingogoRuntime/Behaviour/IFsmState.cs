@@ -10,28 +10,25 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+
 namespace wuxingogo.Fsm
 {
 	using System.Collections.Generic;
+	using System.Collections;
 
-	public interface IFsmState
+
+	public interface IFsmState : IFsmLifecycle
 	{
-		IBehaviourFsm OnwerFsm{
+		IBehaviourFsm OnwerFsm {
 			get;
 			set;
 		}
 
-		List<IFsmAction> Actions
-		{
+		IList FsmActions<T>() where T : IFsmAction;
+
+		IFsmAction CurrAction {
 			get;
 			set;
 		}
-		
-		void Init();
-		void OnEnter();
-		void OnExit();
-		void OnUpdate();
-		void OnLateUpdate();
-		void Reset();
 	}
 }

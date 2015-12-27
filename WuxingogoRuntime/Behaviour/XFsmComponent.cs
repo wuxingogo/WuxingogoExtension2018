@@ -21,86 +21,101 @@ namespace wuxingogo.Fsm
 	[Serializable]
 	public class XFsmComponent : wuxingogo.Runtime.XMonoBehaviour, IBehaviourFsm
 	{
+		public IFsmState CurrState {
+			get{
+				return currState;
+			}
+			set{
+				currState = value as XFsmStateComponent;
+			}
+		}
+		private XFsmStateComponent currState = null;
+
 		#region IBehaviourFsm implementation
+		public bool IsInit {
+			get;
+			set;
+		}
+
+		void Awake(){
+			Init();
+		}
+		void OnEnable(){
+			OnEnter();
+		}
+		void OnDisable(){
+			OnExit();
+		}
+		void Update(){
+			OnUpdate();
+		}
+		void LateUpdate()
+		{
+		    OnLateUpdate();
+		}
+
+
 
 		[XAttribute( "" )]
-		public void Init()
+		public virtual void Init()
 		{
-			Debug.Log( "States Count : " + States.Count );
-		}
+			if(IsInit){
+				IsInit = false;
 
-		public void OnEnter()
-		{
-			
-		}
-
-		public void OnExit()
-		{
-			
-		}
-
-		public void OnUpdate()
-		{
-			
-		}
-
-		public void OnLateUpdate()
-		{
-			
-		}
-
-		public void Reset()
-		{
-			
-		}
-
-		public List<IFsmState> States {
-			get {
-				return XFsmComponent.I2CFunction<XFsmStateComponent, IFsmState>( states );
+				for( int pos = 0; pos < states.Count; pos++ ) {
+					//  TODO loop in states.Count
+					states[pos].Init();
+				}
 			}
-			set {
-				states = C2IFunction<IFsmState, XFsmStateComponent>( value );
+		}
+
+		public virtual void OnEnter()
+		{
+
+		}
+
+		public virtual void OnExit()
+		{
+			
+		}
+
+		public virtual void OnUpdate()
+		{
+			if( null == CurrState ) {
+				
 			}
+		}
+
+		public virtual void OnLateUpdate()
+		{
+			
+		}
+
+		public virtual void Reset()
+		{
+			
+		}
+
+		public virtual IList FsmStates<T>() where T : IFsmState
+		{
+			return states;
 		}
 
 		[SerializeField] List<XFsmStateComponent> states = new List<XFsmStateComponent>();
 
+		public void RegistState(XFsmStateComponent state)
+		{
+			state.OnwerFsm = this;
+			states.Add( state as XFsmStateComponent );
+		}
+
+		public void UngistState(XFsmStateComponent state)
+		{
+			state.OnwerFsm = null;
+			states.Remove( state );
+		}
+
 		#endregion
-
-		public virtual void RegistState(XFsmStateComponent component)
-		{
-			states.Add( component );
-			component.OnwerFsm = this;
-		}
-
-		public virtual void UngistState(XFsmStateComponent component)
-		{
-			states.Remove( component );
-			component.OnwerFsm = null;
-		}
-
-		public static List<TResult> I2CFunction<TSource,TResult>(List<TSource> sources) 
-		where TSource : TResult
-		{
-			List<TResult> results = new List<TResult>();
-			for( int pos = 0; pos < sources.Count; pos++ ) {
-				//  TODO loop in states.Count
-				results.Add( sources[pos] );
-			}
-			return results;
-		}
-
-		public static List<TResult> C2IFunction<TSource,TResult>(List<TSource> sources) 
-		where TResult : TSource
-		{
-			List<TResult> results = new List<TResult>();
-			for( int pos = 0; pos < sources.Count; pos++ ) {
-				//  TODO loop in states.Count
-				results.Add( (TResult)sources[pos] );
-			}
-			return results;
-		}
-
 		
 		
 	}

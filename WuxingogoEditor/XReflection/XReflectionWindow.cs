@@ -160,14 +160,15 @@ public class XReflectionWindow : XBaseWindow {
 	void OnOpenEditor(string editorName){
 		switch( editorName ) {
 			case "Field":
-				XFieldExtension fieldWindow = Init<XFieldExtension>();
+				XFieldWindow fieldWindow = Init<XFieldWindow>();
 				fieldWindow.Target = Target;
 				break;
 			case "Property":
-				Init<XPropertiesExtension>();
+				XPropertyWindow propertyWindow = Init<XPropertyWindow>();
+				propertyWindow.Target = Target;
 				break;
 			case "Method":
-				XMethodExtension methodWindow = Init<XMethodExtension>();
+				XMethodWindow methodWindow = Init<XMethodWindow>();
 				methodWindow.Target = Target;
 				break;;
 			case "Member":

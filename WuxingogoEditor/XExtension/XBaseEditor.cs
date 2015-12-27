@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using System;
+using Object = UnityEngine.Object;
+
 public class XBaseEditor : Editor {
 
 	public float CurrHeight = 0;
@@ -16,6 +19,27 @@ public class XBaseEditor : Editor {
 		return GUILayout.Button(btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(height) );
 		//		return GUILayout.Button (btnName, EditorStyles.miniButtonMid, GUILayout.Width(50f));
 	}
+	public void DoButton(string btnName, Action callback)
+    {
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        {
+            callback();
+        }
+    }
+	public void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
+	{
+		if (GUILayout.Button(content, options))
+		{
+			callback();
+		}
+	}
+    public void DoButton<T>(string btnName, Action<T> callback, T arg)
+    {
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        {
+            callback(arg);
+        }
+    }
 	
 	public virtual void Init(){
 		CurrHeight = StartY;

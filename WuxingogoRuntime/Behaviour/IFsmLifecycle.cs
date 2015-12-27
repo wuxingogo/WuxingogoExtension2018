@@ -1,5 +1,5 @@
-﻿//
-//  IBehaviourFsm.cs
+//
+//  IFsmLifecycle.cs
 //
 //  Author:
 //       ${wuxingogo} <52111314ly@gmail.com>
@@ -8,23 +8,24 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 
 
 namespace wuxingogo.Fsm
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections;
 
-	public interface IBehaviourFsm : IFsmLifecycle
+	public interface IFsmLifecycle
 	{
-		IList FsmStates<T>() where T : IFsmState;
-
-		IFsmState CurrState{
+		bool IsInit{
 			get;
 			set;
 		}
+		void Init();
+		void OnEnter();
+		void OnExit();
+		void OnUpdate();
+		void OnLateUpdate();
+		void Reset();
 	}
 }
 

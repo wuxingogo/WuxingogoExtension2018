@@ -51,7 +51,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Scripts\ArrayExtension.cs" />
     <Compile Include="Scripts\TextModel.cs" />
-    <Compile Include="Scripts\XAttribute.cs" />
     <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
     <Compile Include="Scripts\XReflectionManager.cs" />
@@ -62,6 +61,19 @@
     <Compile Include="TestBehavior\XDebugLog.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
+    <Compile Include="Attribute\XAttribute.cs" />
+    <Compile Include="Attribute\XSerializeAttribute.cs" />
+    <Compile Include="Scripts\TestLinq.cs" />
+    <Compile Include="Scripts\XScriptableObject.cs" />
+    <Compile Include="Tools\JsonExtension.cs" />
+    <Compile Include="Tools\SerializeUtils.cs" />
+    <Compile Include="Tools\UnityDictionary.cs" />
+    <Compile Include="Behaviour\IBehaviourFsm.cs" />
+    <Compile Include="Behaviour\IFsmAction.cs" />
+    <Compile Include="Behaviour\IFsmState.cs" />
+    <Compile Include="Behaviour\XFsmActionComponent.cs" />
+    <Compile Include="Behaviour\XFsmComponent.cs" />
+    <Compile Include="Behaviour\XFsmStateComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -70,5 +82,6 @@
     <Folder Include="TestBehavior\" />
     <Folder Include="Tools\" />
     <Folder Include="Attribute\" />
+    <Folder Include="Behaviour\" />
   </ItemGroup>
 </Project>

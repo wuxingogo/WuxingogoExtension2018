@@ -52,7 +52,7 @@ public class XWebWindow : XBaseWindow
 	static BindingFlags fullBinding = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 	static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 	
-	object webView;
+	object webView; 
 	Type webViewType;
 	MethodInfo doGUIMethod;
 	MethodInfo loadURLMethod;
@@ -90,7 +90,7 @@ public class XWebWindow : XBaseWindow
 		}
 
 		if(CreateSpaceButton("Setting")){
-			XMethodExtension window = Init<XMethodExtension>();
+			XMethodWindow window = Init<XMethodWindow>();
 			window.Target = webView;
 		}
 		

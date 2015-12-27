@@ -11,13 +11,42 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using wuxingogo.Runtime;
 
 
 namespace wuxingogo.Fsm
 {
 	[Serializable]
-	public class XFsmStateComponent : wuxingogo.Runtime.XMonoBehaviour, IFsmState
+	public class XFsmStateComponent : XScriptableObject, IFsmState
 	{
+		public IFsmAction CurrAction {
+			get {
+				return currAction;
+			}
+			set {
+				currAction = value as XFsmActionComponent;
+			}
+		}
+
+		private XFsmActionComponent currAction = null;
+
+		public bool IsInit {
+			get;
+			set;
+		}
+
+		public IBehaviourFsm OnwerFsm {
+			get;
+			set;
+		}
+
+		public IList FsmActions<T>() where T : IFsmAction
+		{
+			return actions;
+		}
+
+
 		#region IFsmState implementation
 		public void Init()
 		{
@@ -43,23 +72,6 @@ namespace wuxingogo.Fsm
 		{
 			
 		}
-		private IBehaviourFsm ownerFsm = null;
-		public IBehaviourFsm OnwerFsm {
-			get {
-				return ownerFsm;
-			}
-			set {
-				ownerFsm = value;
-			}
-		}
-		public List<IFsmAction> Actions {
-			get {
-				return actions;
-			}
-			set {
-				actions = value;
-			}
-		}
 
 		private List<IFsmAction> actions = new List<IFsmAction>();
 
@@ -74,6 +86,7 @@ namespace wuxingogo.Fsm
 			actions.Remove(component);
 			component.OwnerState = null;
 		}
+
 	}
 }
 

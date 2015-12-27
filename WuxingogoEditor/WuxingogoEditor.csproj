@@ -68,7 +68,6 @@
     <Compile Include="XExtension\XEditorModel.cs" />
     <Compile Include="XExtension\XEditorSetting.cs" />
     <Compile Include="XExtension\XFileExtension.cs" />
-    <Compile Include="XExtension\XMonoBehaviourEditor.cs" />
     <Compile Include="XExtension\XQucickSetPrefs.cs" />
     <Compile Include="XExtension\XQuickSetDatabase.cs" />
     <Compile Include="XExtension\XReplaceComponent.cs" />
@@ -99,9 +98,6 @@
     <Compile Include="XExtension\XPlaymakerExtension.cs" />
     <Compile Include="DataParser\JsonExtensionWindow.cs" />
     <Compile Include="XReflection\XAssemlyWindow.cs" />
-    <Compile Include="XReflection\XFieldExtension.cs" />
-    <Compile Include="XReflection\XMethodExtension.cs" />
-    <Compile Include="XReflection\XPropertiesExtension.cs" />
     <Compile Include="XReflection\XPropertiesToSerializables.cs" />
     <Compile Include="XReflection\XReflectionWindow.cs" />
     <Compile Include="XReflection\XSerializableExtension.cs" />
@@ -121,6 +117,13 @@
     <Compile Include="CodeEditor\XCodeProperty.cs" />
     <Compile Include="CodeEditor\XParameterEditor.cs" />
     <Compile Include="XExtension\XWebWindow.cs" />
+    <Compile Include="RuntimeEditor\UnityDictionaryDrawer.cs" />
+    <Compile Include="ScriptEditor\XMonoBehaviourEditor.cs" />
+    <Compile Include="ScriptEditor\XScriptObjectEditor.cs" />
+    <Compile Include="XReflection\XFieldWindow.cs" />
+    <Compile Include="XReflection\XMethodWindow.cs" />
+    <Compile Include="XReflection\XPropertyWindow.cs" />
+    <Compile Include="CodeEditor\ICodeExpression.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -134,5 +137,7 @@
     <Folder Include="DataParser\" />
     <Folder Include="XReflection\" />
     <Folder Include="BehaviorEditor\" />
+    <Folder Include="RuntimeEditor\" />
+    <Folder Include="ScriptEditor\" />
   </ItemGroup>
 </Project>
