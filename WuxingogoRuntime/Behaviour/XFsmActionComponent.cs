@@ -10,13 +10,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using UnityEngine;
+using wuxingogo.Runtime;
+using UnityEngine.Events;
 
 
 namespace wuxingogo.Fsm
 {
 	[Serializable]
-	public class XFsmActionComponent : wuxingogo.Runtime.XMonoBehaviour, IFsmAction
+	public class XFsmActionComponent : XScriptableObject, IFsmAction
 	{
+
+		public UnityAction OnFinish = null;
 		public bool IsInit {
 			get;
 			set;
@@ -24,26 +28,26 @@ namespace wuxingogo.Fsm
 
 		#region IFsmAction implementation
 
-		public void Init(){
+		public virtual void Init(){
 
 		}
 
-		public void OnEnter()
+		public virtual void OnEnter()
 		{
-			throw new NotImplementedException();
+			OnFinish();
 		}
 
-		public void OnExit()
+		public virtual void OnExit()
 		{
-			throw new NotImplementedException();
+			
 		}
 
-		public void OnUpdate()
+		public virtual void OnUpdate()
 		{
-			throw new NotImplementedException();
+			
 		}
 
-		public void OnLateUpdate()
+		public virtual void OnLateUpdate()
 		{
 			throw new NotImplementedException();
 		}

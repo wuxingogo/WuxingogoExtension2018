@@ -1,4 +1,4 @@
-﻿//
+//
 //  XFsmStateComponent.cs
 //
 //  Author:
@@ -13,13 +13,17 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using wuxingogo.Runtime;
+using UnityEngine.Events;
 
 
 namespace wuxingogo.Fsm
 {
-	[Serializable]
+	
 	public class XFsmStateComponent : XScriptableObject, IFsmState
 	{
+	#if UNITY_EDITOR
+		public Vector2 position;
+	#endif
 		public IFsmAction CurrAction {
 			get {
 				return currAction;
@@ -46,6 +50,8 @@ namespace wuxingogo.Fsm
 			return actions;
 		}
 
+		public UnityAction OnFinish = null;
+
 
 		#region IFsmState implementation
 		public void Init()
@@ -54,19 +60,21 @@ namespace wuxingogo.Fsm
 		}
 		public void OnEnter()
 		{
-			
+			if( CurrAction == null )
+				CurrAction = actions[currIndex];
+			CurrAction.OnEnter();
 		}
-		public void OnExit()
+		public virtual void OnExit()
 		{
 			
 		}
-		public void OnUpdate()
+		public virtual void OnUpdate()
 		{
-			
+			CurrAction.OnUpdate();
 		}
-		public void OnLateUpdate()
+		public virtual void OnLateUpdate()
 		{
-			
+			currAction.OnLateUpdate();
 		}
 		public void Reset()
 		{
@@ -80,12 +88,59 @@ namespace wuxingogo.Fsm
 		public virtual void RegistAction(XFsmActionComponent component){
 			actions.Add(component);
 			component.OwnerState = this;
+			component.OnFinish += NextAction;
 		}
 
 		public virtual void UngistAction(XFsmActionComponent component){
 			actions.Remove(component);
 			component.OwnerState = null;
+			component.OnFinish -= NextAction;
 		}
+
+
+		public List<XFsmEvent> FsmEvents {
+			get {
+				return fsmEvents;
+			}
+			private set {
+				fsmEvents = value;
+			}
+		}
+		public XFsmEvent FinishEvent {
+			get;
+			set;
+		}
+
+		private List<XFsmEvent> fsmEvents = new List<XFsmEvent>();
+
+		public virtual void RegistEvent(XFsmEvent component){
+			fsmEvents.Add(component);
+			component.OwnerState = this;
+		}
+
+		public virtual void UngistEvent(XFsmEvent component){
+			fsmEvents.Remove(component);
+			component.OwnerState = null;
+		}
+
+		public virtual void RegistFinishEvent(){
+			FinishEvent = new XFsmEvent();
+			RegistEvent( FinishEvent );
+		}
+
+		private void NextAction(){
+			if(currIndex < actions.Count - 1){
+				currIndex++;
+				CurrAction.OnExit();
+				CurrAction = actions[currIndex];
+				CurrAction.OnEnter();
+			}else{
+				OnFinish();
+			}
+		}
+
+		public int currIndex = 0;
+
 
 	}
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 //  IBehaviourFsm.cs
 //
 //  Author:

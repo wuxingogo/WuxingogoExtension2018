@@ -1,3 +1,18 @@
+
+echo "Build WuxingogoRuntime Start by wuxingogo     ================"
+
+xbuild WuxingogoRuntime.sln
+
+echo "Build WuxingogoRuntime Success by wuxingogo ================"
+
+echo "Build WuxingogoEditor Start by wuxingogo     ================"
+
+xbuild WuxingogoEditor.sln
+
+echo "Build WuxingogoEditor Success by wuxingogo ================"
+
+
+
 #
 RuntimeSrcDirctory="./WuxingogoRuntime/bin/Debug/"
 #

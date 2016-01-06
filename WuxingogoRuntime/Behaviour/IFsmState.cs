@@ -30,5 +30,9 @@ namespace wuxingogo.Fsm
 			get;
 			set;
 		}
+
+		List<XFsmEvent> FsmEvents {
+			get;
+		}
 	}
 }

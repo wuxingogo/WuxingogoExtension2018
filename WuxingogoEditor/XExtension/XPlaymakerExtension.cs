@@ -1,4 +1,4 @@
-﻿#define  PlayMaker1
+#define  PlayMaker1
 using UnityEngine;
 using UnityEditor;
 using System.Collections;

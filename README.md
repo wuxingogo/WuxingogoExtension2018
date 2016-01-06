@@ -17,10 +17,10 @@ WuxingogoExtension is my tools of Unity Editor extension.
 * Animation extension(include fbx animation).
 * Batching Replace Shader.
 * A playmaker extension.
-* Generate C# Script in Editor(CodeDom).
+* The Editor Window of generate C# code(CodeDom).
 * Find reference Texture from UI.
-* A Simple FSM with Editor.
-* Quick checking Database in editor window.
+* The Editor Window of Fsm.
+* The Editor window of set Database.
 
 
 ##Usage
@@ -50,7 +50,7 @@ A Visual CodeEditor about `Node`
 
 ![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/CodeGenerate.png "github") 
 
-XReflectionWindow:
+####XReflectionWindow:
 
 ![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/Reflection.png "github") 
 
@@ -60,7 +60,7 @@ Etc.
 -----
 WuxingogoExtension are release under the MIT license. 
 
-The Authors is Wuxingogo.Email:52111314ly@gmail.com
+The authors is Wuxingogo.Email:52111314ly@gmail.com
 
 To be continue!
 

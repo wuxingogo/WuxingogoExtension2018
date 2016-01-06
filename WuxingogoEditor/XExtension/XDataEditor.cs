@@ -11,7 +11,6 @@ public class XDataEditor : XBaseEditor
 	public override void OnInspectorGUI()
 	{
 		Init();
-//		base.OnInspectorGUI();
 		
 		GUI.changed = false;
 		if (Event.current.type == EventType.Layout)

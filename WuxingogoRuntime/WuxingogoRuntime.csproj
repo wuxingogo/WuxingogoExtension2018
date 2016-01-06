@@ -33,19 +33,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="UnityEditor">
-      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEditor.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\UnityDLL\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\UnityDLL\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\Administrator\Desktop\unitydll\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\UnityDLL\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WuxingogoEditor">
-      <HintPath>..\WuxingogoEditor\bin\Debug\WuxingogoEditor.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -74,6 +71,9 @@
     <Compile Include="Behaviour\XFsmActionComponent.cs" />
     <Compile Include="Behaviour\XFsmComponent.cs" />
     <Compile Include="Behaviour\XFsmStateComponent.cs" />
+    <Compile Include="Behaviour\IFsmComState.cs" />
+    <Compile Include="Behaviour\IFsmLifecycle.cs" />
+    <Compile Include="Attribute\CustomJsonDrawer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

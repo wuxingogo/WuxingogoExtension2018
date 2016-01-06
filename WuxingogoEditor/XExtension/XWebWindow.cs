@@ -23,7 +23,7 @@ public class XWebWindow : XBaseWindow
 		XWebWindow window = Init<XWebWindow>();
     }
 
-	public override void OnInitialization(){
+	public override void OnInitialization(params object[] args){
 	    
 		webViewType = GetTypeFromAllAssemblies("WebView");
 		//Init web view

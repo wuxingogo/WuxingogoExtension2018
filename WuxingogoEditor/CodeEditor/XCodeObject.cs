@@ -25,6 +25,8 @@ namespace wuxingogo.Code
 	{
 		public XCodeClass classUnit = new XCodeClass();
 
+		public string defaultLanguage = "CSharp";
+
 		public string className {
 			get{
 				return classUnit.name;
@@ -48,7 +50,7 @@ namespace wuxingogo.Code
 
 			codeNamespace.Types.Add((CodeTypeDeclaration)classUnit.Compile());
 
-			CodeDomProvider provider = CodeDomProvider.CreateProvider( "CSharp" );
+			CodeDomProvider provider = CodeDomProvider.CreateProvider( defaultLanguage );
 
 			CodeGeneratorOptions options = new CodeGeneratorOptions();
 

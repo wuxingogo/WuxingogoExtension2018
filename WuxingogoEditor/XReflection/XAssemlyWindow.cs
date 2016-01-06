@@ -1,4 +1,4 @@
-﻿//XAssemlyWindow.cs
+//XAssemlyWindow.cs
 //
 //Author:
 //		Wuxingogo 52111314ly@gmail.com

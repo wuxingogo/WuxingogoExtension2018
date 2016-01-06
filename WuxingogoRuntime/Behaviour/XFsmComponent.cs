@@ -1,4 +1,4 @@
-﻿//
+//
 //  XFsmComponent.cs
 //
 //  Author:
@@ -15,43 +15,59 @@ using UnityEngine;
 using wuxingogo.Runtime;
 
 
+
 namespace wuxingogo.Fsm
 {
-
-	[Serializable]
 	public class XFsmComponent : wuxingogo.Runtime.XMonoBehaviour, IBehaviourFsm
 	{
+		#if UNITY_EDITOR
+		public XFsmComponent(){
+			XFsmStateComponent startState = new XFsmStateComponent();
+			startState.name = "Start";
+			RegistState(startState);
+		}
+		#endif
 		public IFsmState CurrState {
-			get{
+			get {
 				return currState;
 			}
-			set{
+			set {
 				currState = value as XFsmStateComponent;
 			}
 		}
+
 		private XFsmStateComponent currState = null;
 
 		#region IBehaviourFsm implementation
+
 		public bool IsInit {
 			get;
 			set;
 		}
 
-		void Awake(){
+		void Awake()
+		{
 			Init();
 		}
-		void OnEnable(){
+
+		void OnEnable()
+		{
 			OnEnter();
 		}
-		void OnDisable(){
+
+		void OnDisable()
+		{
 			OnExit();
 		}
-		void Update(){
+
+		void Update()
+		{
 			OnUpdate();
 		}
+
 		void LateUpdate()
 		{
-		    OnLateUpdate();
+			OnLateUpdate();
 		}
 
 
@@ -59,12 +75,12 @@ namespace wuxingogo.Fsm
 		[XAttribute( "" )]
 		public virtual void Init()
 		{
-			if(IsInit){
+			if( IsInit ) {
 				IsInit = false;
 
-				for( int pos = 0; pos < states.Count; pos++ ) {
+				for( int pos = 0; pos < fsmState.Count; pos++ ) {
 					//  TODO loop in states.Count
-					states[pos].Init();
+					fsmState[pos].Init();
 				}
 			}
 		}
@@ -81,14 +97,30 @@ namespace wuxingogo.Fsm
 
 		public virtual void OnUpdate()
 		{
-			if( null == CurrState ) {
-				
+			if(CurrState != null){
+				CurrState.OnUpdate();
+			}else{
+				Debug.LogWarning("XFsm CurrentState is NULL================");
 			}
+		}
+
+		public virtual void OnExecutingEvent(XFsmEvent fsmEvent){
+			fsmEvent.OnEnter();
+			if( null != fsmEvent.NextState ){
+				CurrState.OnExit();
+				CurrState = fsmEvent.NextState;
+				CurrState.OnEnter();
+			}
+			fsmEvent.OnExit();
 		}
 
 		public virtual void OnLateUpdate()
 		{
-			
+			if( null == CurrState ) {
+				Debug.LogWarning("XFsm CurrentState is NULL================");
+			} else {
+				CurrState.OnLateUpdate();
+			}
 		}
 
 		public virtual void Reset()
@@ -98,21 +130,25 @@ namespace wuxingogo.Fsm
 
 		public virtual IList FsmStates<T>() where T : IFsmState
 		{
-			return states;
+			return fsmState;
 		}
 
-		[SerializeField] List<XFsmStateComponent> states = new List<XFsmStateComponent>();
+		[SerializeField] List<XFsmStateComponent> fsmState = new List<XFsmStateComponent>();
 
 		public void RegistState(XFsmStateComponent state)
 		{
 			state.OnwerFsm = this;
-			states.Add( state as XFsmStateComponent );
+			fsmState.Add( state as XFsmStateComponent );
 		}
 
 		public void UngistState(XFsmStateComponent state)
 		{
-			state.OnwerFsm = null;
-			states.Remove( state );
+			if( fsmState.Count > 0 ) {
+
+
+				state.OnwerFsm = null;
+				fsmState.Remove( state );
+			}
 		}
 
 		#endregion

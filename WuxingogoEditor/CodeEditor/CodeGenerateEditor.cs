@@ -32,9 +32,6 @@ namespace wuxingogo.Code
 
 		public override void OnXGUI()
 		{
-			
-        	
-
 			if( null != codeObject ) {
 
 				DoButton<ScriptableObject>( "SaveTemplate", SaveTemplete, codeObject );
@@ -90,9 +87,8 @@ namespace wuxingogo.Code
 
 	[CustomEditor(typeof(XCodeObject))]
 	public class XCodeInspector : XBaseEditor{
-		public override void OnInspectorGUI()
+		public override void OnXGUI()
 		{
-			base.OnInspectorGUI();
 
 			if(CreateSpaceButton("Open In XCodeWindow")){
 				CodeGenerateEditor window = XBaseWindow.Init<CodeGenerateEditor>();

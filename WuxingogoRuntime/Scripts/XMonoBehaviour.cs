@@ -1,4 +1,4 @@
-﻿//  XMONOBEHAVIOUR
+//  XMONOBEHAVIOUR
 //
 //  Author:
 //       ${wuxingogo} <52111314ly@gmail.com>

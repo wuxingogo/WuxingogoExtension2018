@@ -18,10 +18,10 @@ namespace wuxingogo.Runtime
 {
 	public class XAttribute : Attribute
     {
-        public string title;
-        protected XAttribute(){}
+        public string title = "";
+        public XAttribute(){}
 
-        public XAttribute(string title)
+        public XAttribute(string title) : this()
         {
             this.title = title;
         }

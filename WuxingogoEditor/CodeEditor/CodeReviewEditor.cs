@@ -29,6 +29,7 @@ namespace wuxingogo.Code
 		}
 
 		private UnityEngine.Object ScriptFile = null;
+		private BindingFlags flags = BindingFlags.Default;
 
 		public override void OnXGUI()
 		{
@@ -38,32 +39,59 @@ namespace wuxingogo.Code
 
 			ScriptFile = CreateObjectField( ScriptFile );
 
+			flags = (BindingFlags)CreateEnumPopup( "BindingFlags", flags );
+
 			if( null != ScriptFile ) {
 
 				Type scriptType = ScriptFile.GetType();
 
-				CreateLabel("Fields");
-				ShowMemberInfo(scriptType.GetFields());
+				CreateLabel( "Fields" );
+				if( scriptType == typeof( MonoScript ) ) {
+					scriptType = ( ScriptFile as MonoScript ).GetClass();
+				}
+				ShowMemberInfo( scriptType.GetFields( flags ) );
 
-//				CreateLabel("Properties");
-//				ShowMemberInfo(scriptType.GetProperties());
-//
-//				CreateLabel("Members");
-//				ShowMemberInfo(scriptType.GetMembers());
+				CreateLabel( "Properties" );
+				ShowMemberInfo( scriptType.GetProperties( flags ) );
+
+				CreateLabel( "Members" );
+				ShowMemberInfo( scriptType.GetMembers( flags ) );
 			}
         	
 		}
 
-		public void ShowMemberInfo(MemberInfo[] memberInfo){
-			
+		public void ShowMemberInfo(MemberInfo[] memberInfo)
+		{
 			for( int pos = 0; pos < memberInfo.Length; pos++ ) {
 				//  TODO loop in memberInfo.Length
 				BeginHorizontal();
 				CreateLabel( memberInfo[pos].ToString() );
-				CreateLabel( memberInfo[pos].DeclaringType.ToString());
+				CreateLabel( memberInfo[pos].DeclaringType.ToString() );
+				ShowBaseType( memberInfo[pos] );
 				CreateSpaceButton( memberInfo[pos].Name );
 				EndHorizontal();
 			}
+		}
+
+		private void ShowBaseType(MemberInfo memberInfo)
+		{
+			MemberTypes type = memberInfo.MemberType;
+			CreateEnumPopup(type);
+			switch( type ) {
+				case MemberTypes.Field:
+					FieldInfo field = (FieldInfo)memberInfo;
+					CreateEnumPopup(field.Attributes );
+				break;
+				case MemberTypes.Method:
+					MethodInfo method = (MethodInfo)memberInfo;
+					CreateEnumPopup(method.Attributes );
+				break;
+				case MemberTypes.Property:
+					PropertyInfo property = (PropertyInfo)memberInfo;
+					CreateEnumPopup(property.Attributes );
+				break;
+			}
+
 		}
 
 		private void OpenMonoScript()

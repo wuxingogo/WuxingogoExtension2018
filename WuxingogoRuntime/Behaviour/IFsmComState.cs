@@ -1,4 +1,4 @@
-﻿//
+//
 //  IFsmComState.cs
 //
 //  Author:

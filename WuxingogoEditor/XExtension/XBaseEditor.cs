@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using System;
@@ -12,16 +12,39 @@ public class XBaseEditor : Editor {
 	public const float FieldOffset = 5;
 	const int XButtonWidth = 100;
 	const int XButtonHeight = 20;
-	
+
+	internal Vector2 _scrollPos = Vector2.zero;
+    const int Xoffset = 5;
+
 	
 	static Rect _StyleRect = new Rect(StartX, 45, Screen.width - 10, EditorGUIUtility.singleLineHeight);
+
+	public static float EditorImageWidth = 80;
+	public override void OnInspectorGUI()
+	{
+//		GUILayout.FlexibleSpace();
+
+		GUILayout.Box(XResources.LogoTexture, GUILayout.Width(Screen.width - Xoffset), GUILayout.Height(100));
+//		GUILayout.FlexibleSpace();
+//		GUILayout.Label(statusText, statusStyleForErrorMode, new GUILayoutOption[]
+//					{
+//						GUILayout.MaxWidth((float)(Screen.width - 52))
+//					});
+		base.OnInspectorGUI();
+		OnXGUI();
+	}
+
+	public virtual void OnXGUI(){
+		
+	}
+
 	public bool CreateSpaceButton(string btnName, float width = XButtonWidth, float height = XButtonHeight){
-		return GUILayout.Button(btnName,  GUILayout.ExpandWidth(true), GUILayout.Height(height) );
+		return GUILayout.Button(btnName, GUILayout.Height(height) );
 		//		return GUILayout.Button (btnName, EditorStyles.miniButtonMid, GUILayout.Width(50f));
 	}
 	public void DoButton(string btnName, Action callback)
     {
-        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        if (GUILayout.Button(btnName, GUILayout.Height(XButtonHeight)))
         {
             callback();
         }
@@ -35,7 +58,7 @@ public class XBaseEditor : Editor {
 	}
     public void DoButton<T>(string btnName, Action<T> callback, T arg)
     {
-        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        if (GUILayout.Button(btnName, GUILayout.Height(XButtonHeight)))
         {
             callback(arg);
         }
@@ -53,24 +76,26 @@ public class XBaseEditor : Editor {
 	}
 	
 	public int CreateGUIInt(string fieldName, int value){
-//		CurrHeight += EditorGUIUtility.singleLineHeight;
 
         return EditorGUI.IntField( CreateRect(), fieldName, value );
 	}
-	
-	public bool CreateGUIButton(string fieldName){
-//		CurrHeight += 2 * EditorGUIUtility.singleLineHeight;
 
-        return GUI.Button( CreateRect( 1.5f ), fieldName );
-	}
-	
+
+	public bool CreateCheckBox(bool value)
+    {
+        return EditorGUILayout.Toggle(value);
+    }
+
 	public Rect CreateRect(float scaleOffsetY = 1, float offsetX = 10){
 		CurrHeight += EditorGUIUtility.singleLineHeight * scaleOffsetY + FieldOffset;
 		return new Rect(offsetX, CurrHeight, Screen.width - 2 * offsetX, EditorGUIUtility.singleLineHeight * scaleOffsetY );
 	}
 	
+	public float CreateFloatField(float value){
+		return EditorGUILayout.FloatField(value);
+	}
 	public float CreateFloatField(string fieldName, float value){
-		return EditorGUILayout.FloatField(fieldName,value);
+		return EditorGUILayout.FloatField(fieldName, value);
 	}
 
     public Object CreateObjectField( string fieldName, Object obj, System.Type type = null )
@@ -86,23 +111,28 @@ public class XBaseEditor : Editor {
 
     public void CreateSpaceBox(float w, float h)
     {
-        //GUILayout.Box(new GUIContent(""), Screen.width, GUILayout.Height( 3 ) );
-        GUILayout.Box( "", GUILayout.Width(w), GUILayout.Height(h) );
+//        GUILayout.Box( "", GUILayout.Width(w), GUILayout.Height(h) );
     }
     public void CreateSpaceBox(float h = 3 )
     {
         //GUILayout.Box(new GUIContent(""), Screen.width, GUILayout.Height( 3 ) );
         //GUILayout.Box( "", GUILayout.Width( Screen.width ), h );
-        CreateSpaceBox( Screen.width, h );
+//        CreateSpaceBox( 1, h );
 
     }
 	
 	public int CreateIntField(string fieldName, int value){
 		return EditorGUILayout.IntField(fieldName, value);
 	}
+	public int CreateIntField(int value){
+		return EditorGUILayout.IntField(value);
+	}
 	
 	public string CreateStringField(string fieldName, string value){
 		return EditorGUILayout.TextField(fieldName, value);
+	}
+	public string CreateStringField(string value){
+		return EditorGUILayout.TextField(value);
 	}
 	
 	public void CreateLabel(string fieldName){

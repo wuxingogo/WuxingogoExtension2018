@@ -39,7 +39,18 @@ public class XReflectionWindow : XBaseWindow {
 			}
 		}
 	}
-	
+
+	public override object[] closeRecordArgs {
+		get {
+			return new object[]{ Target };
+		}
+	}
+	public override void OnInitialization(params object[] args)
+	{
+		if(args.Length > 0)
+			Target = args[0];
+	}
+
 	private Stack<object> storeTargets = new Stack<object>();
 	
 	

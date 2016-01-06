@@ -1,4 +1,4 @@
-﻿////
+////
 ////  XSerializeAttribute.cs
 ////
 ////  Author:
@@ -14,7 +14,7 @@
 //namespace wuxingogo.Attribute
 //{
 //
-//	public class XSerializeAttribute : System.SerializableAttribute
+//	public class XSerializeAttribute : IUnitySerializable
 //	{
 //		public XSerializeAttribute()
 //		{

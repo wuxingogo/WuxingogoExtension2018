@@ -21,6 +21,7 @@ public class XPropertiesToSerializables : XBaseWindow
 		Init<XPropertiesToSerializables>();
 	}
 
+
 	public override void OnXGUI(){
 
 		if(CreateSpaceButton("Clean")){

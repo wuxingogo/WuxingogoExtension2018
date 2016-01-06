@@ -1,4 +1,4 @@
-﻿//
+//
 //  XCodeMethod.cs
 //
 //  Author:

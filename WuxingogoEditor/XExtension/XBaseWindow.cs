@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
@@ -27,27 +27,40 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return window;
     }
 
-    public virtual void OnInitialization(){}
+    public virtual void OnInitialization(params object[] args){}
 
     public void OnGUI()
     {
 		GUILayout.Box(XResources.LogoTexture, GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(100));
 		if (GUI.Button(GUILayoutUtility.GetLastRect(), XResources.LogoTexture))
         {
-            this.Close();
+        	this.Close();
             string cmdPrefs = GetType().ToString() + "_isPrefix";
             bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);
             EditorPrefs.SetBool(cmdPrefs, !isPrefix);
 			XBaseWindow window = EditorWindow.GetWindow(GetType(), !isPrefix, GetType().Name, true) as XBaseWindow;
-			window.OnInitialization();
+			window.OnInitialization(closeRecordArgs);
 			return;
 
         }
-        _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+		if(IsAutoScroll)
+        	_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
         OnXGUI();
 
-        EditorGUILayout.EndScrollView();
+		if(IsAutoScroll)
+        	EditorGUILayout.EndScrollView();
+    }
+
+    public virtual bool IsAutoScroll {
+		get{
+			return true;
+		}
+    }
+
+    public virtual object[] closeRecordArgs{
+    	get;
+    	set;
     }
 
     public virtual void OnXGUI(){
@@ -85,10 +98,10 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         }
     }
 
-    public Object CreateObjectField(string fieldName, Object obj, System.Type type = null)
+	public Object CreateObjectField(string fieldName, Object obj, System.Type type = null, params GUILayoutOption[] options)
     {
         if (null == type) type = typeof(Object);
-        return EditorGUILayout.ObjectField(fieldName, obj, type, true) as Object;
+		return EditorGUILayout.ObjectField(fieldName, obj, type, true, options) as Object;
     }
     
 	public Object CreateObjectField(Object obj, System.Type type = null)
@@ -158,6 +171,10 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     public System.Enum CreateEnumPopup(string fieldName, System.Enum value)
     {
         return EditorGUILayout.EnumMaskField(fieldName, value);
+    }
+	public System.Enum CreateEnumPopup(System.Enum value)
+    {
+        return EditorGUILayout.EnumMaskField(value);
     }
 
     public int CreateSelectableFromString(int rootID, string[] array)

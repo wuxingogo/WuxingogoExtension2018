@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+
 public class DisableAttribute : PropertyAttribute
 {
 }
+
 
 #if UNITY_EDITOR
 
