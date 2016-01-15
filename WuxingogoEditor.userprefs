@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Behaviour/IFsmState.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Behaviour/IFsmState.cs" Line="31" Column="8" />
+      <File FileName="WuxingogoRuntime/Behaviour/IFsmState.cs" Line="17" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
