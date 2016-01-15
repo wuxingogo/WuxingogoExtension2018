@@ -16,6 +16,7 @@ using System.Collections;
 #if UNITY_EDITOR
 using System;
 using System.Reflection;
+using wuxingogo.Reflection;
 #endif
 namespace wuxingogo.Runtime {
 	
@@ -24,25 +25,29 @@ namespace wuxingogo.Runtime {
 		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){
-			Type XMethod = GetTypeFromAllAssemblies("XMethodWindow");
-			object window = XMethod.GetMethod("Init").Invoke(null, null);
-			XMethod.GetProperty("Target").SetValue(window, this, null);
+//			Type XMethod = GetTypeFromAllAssemblies("XMethodWindow");
+//			object window = XMethod.GetMethod("Init").Invoke(null, null);
+			
+			object window = ScriptableObject.CreateInstance(XReflectionUtils.TryGetClass( "XMethodWindow"));
+			window.TryInvokeMethod("Init");
+			window.TrySetProperty("Target", this);
+//			window.GetType().GetProperty("Target").SetValue(window, this, null);
 
 
 		}
 
 
-		public static Type GetTypeFromAllAssemblies(string typeName) {
-			Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-			foreach(Assembly assembly in assemblies) {
-				Type[] types = assembly.GetTypes();
-				foreach(Type type in types) {
-					if(type.Name.Equals(typeName, ignoreCase) || type.Name.Contains('+' + typeName)) //+ check for inline classes
-						return type;
-				}
-			}
-			return null;
-		}
+//		public static Type GetTypeFromAllAssemblies(string typeName) {
+//			Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
+//			foreach(Assembly assembly in assemblies) {
+//				Type[] types = assembly.GetTypes();
+//				foreach(Type type in types) {
+//					if(type.Name.Equals(typeName, ignoreCase) || type.Name.Contains('+' + typeName)) //+ check for inline classes
+//						return type;
+//				}
+//			}
+//			return null;
+//		}
 		#endif
 	}
 

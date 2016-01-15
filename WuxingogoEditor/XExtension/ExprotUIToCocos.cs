@@ -20,7 +20,7 @@ public class ExprotUIToCocos : XBaseWindow
 	static XmlElement rootDoc;
 	static XmlDocument xmlDoc;
 	
-	[MenuItem ("Wuxingogo/Wuxingogo ExprotUIToCocos %#2")]
+	[MenuItem ("Wuxingogo/Wuxingogo ExprotUIToCocos")]
 	static void init () {
 		ExprotUIToCocos window = (ExprotUIToCocos)EditorWindow.GetWindow (typeof (ExprotUIToCocos ) );
 	}

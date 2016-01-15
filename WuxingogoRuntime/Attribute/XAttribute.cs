@@ -16,7 +16,8 @@ using System;
 
 namespace wuxingogo.Runtime
 {
-	public class XAttribute : Attribute
+	[AttributeUsage( AttributeTargets.All, Inherited = true, AllowMultiple = false )]
+	public class XAttribute : PropertyAttribute
     {
         public string title = "";
         public XAttribute(){}

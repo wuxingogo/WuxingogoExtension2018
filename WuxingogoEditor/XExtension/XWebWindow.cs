@@ -13,6 +13,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 using System.Reflection;
+using wuxingogo.Reflection;
 
 
 public class XWebWindow : XBaseWindow
@@ -25,26 +26,21 @@ public class XWebWindow : XBaseWindow
 
 	public override void OnInitialization(params object[] args){
 	    
-		webViewType = GetTypeFromAllAssemblies("WebView");
+		webViewType = XReflectionUtils.TryGetClass("WebView");
 		//Init web view
 		InitWebView();
-		//Get docked property getter MethodInfo
-//		dockedGetterMethod = typeof(EditorWindow).GetProperty("docked", fullBinding).GetGetMethod(true);
+
     }
 
     void InitWebView(){
 		webView = ScriptableObject.CreateInstance(webViewType);
 		Type type = this.GetType().BaseType;
-		object hostView = type.GetField("m_Parent",BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-		webViewType.GetMethod("InitWebView").Invoke(webView, new object[] { hostView, 20,150,(int)position.width - 40 ,(int)position.height - 200,false});
-		webViewType.GetMethod("set_hideFlags").Invoke(webView, new object[] {13});
-		
-		loadURLMethod = webViewType.GetMethod("LoadURL");
-		loadURLMethod.Invoke(webView, new object[] {urlText});
-		webViewType.GetMethod("SetDelegateObject").Invoke(webView, new object[] {this});
-		
-		doGUIMethod = webViewType.GetMethod("DoGUI");
-		focusMethod = webViewType.GetMethod("SetFocus");
+		object hostView = this.TryGetFieldValue("m_Parent");
+		webView.TryInvokeMethod("InitWebView", hostView, 20, 150,(int)position.width - 40 ,(int)position.height - 200,false);
+		webView.TryInvokeMethod("set_hideFlags", 13);
+
+		webView.TryInvokeMethod("LoadURL", urlText);
+		webView.TryInvokeMethod("SetDelegateObject", this);
 
 		this.wantsMouseMove = true;
     }
@@ -54,13 +50,10 @@ public class XWebWindow : XBaseWindow
 	
 	object webView; 
 	Type webViewType;
-	MethodInfo doGUIMethod;
-	MethodInfo loadURLMethod;
-	MethodInfo focusMethod;
+
 	
 	Vector2 resizeStartPos;
 	Rect resizeStartWindowSize;
-//	MethodInfo dockedGetterMethod;
 	
 	string urlText = EditorPrefs.GetString("xwebview_store", "unity3d.com/cn/");
 
@@ -68,7 +61,7 @@ public class XWebWindow : XBaseWindow
     {
     	BeginHorizontal();
 		if(CreateSpaceButton("DeFocus"))
-			focusMethod.Invoke(webView, new object[] { false });
+			webView.TryInvokeMethod("SetFocus", false);
 
 		DoButton<string>("UnityScript", SetUrl, "http://docs.unity3d.com/ScriptReference/index.html");
 		DoButton<string>("Google", SetUrl, "www.gooogle.com");
@@ -93,32 +86,15 @@ public class XWebWindow : XBaseWindow
 			XMethodWindow window = Init<XMethodWindow>();
 			window.Target = webView;
 		}
-		
-		//Web view
-//		if(webView != null)
-//			doGUIMethod.Invoke(webView, new object[] {webViewRect});
     }
-
-
-	public static Type GetTypeFromAllAssemblies(string typeName) {
-		Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-		foreach(Assembly assembly in assemblies) {
-			Type[] types = assembly.GetTypes();
-			foreach(Type type in types) {
-				if(type.Name.Equals(typeName, ignoreCase) || type.Name.Contains('+' + typeName)) //+ check for inline classes
-					return type;
-			}
-		}
-		return null;
-	}
 
 	private void OnWebViewDirty() {
 		this.Repaint();
 	}
 
 	public void SetUrl(string str){
-		loadURLMethod.Invoke(webView, new object[] {urlText});
-		focusMethod.Invoke(webView, new object[] { true });
+		webView.TryInvokeMethod("LoadURL", urlText);
+		webView.TryInvokeMethod("SetFocus", true);
 		urlText = str;
 		EditorPrefs.SetString("xwebview_store", urlText);
 	}

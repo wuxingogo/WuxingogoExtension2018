@@ -76,80 +76,80 @@ namespace FsmEditor
 				DoButton( "Save A Template", SaveTemplate );
 			}
 
-			Profiler.BeginSample("StateMachineMaker");
-            Event e = Event.current;
-			if (e.type == EventType.Repaint)
-            {
-				Rect rect = GUILayoutUtility.GetLastRect();
-				ToolbarHeight = rect.yMax + rect.height / 2;
-				Styles.BackgroudStyle.Draw(new Rect(0, ToolbarHeight, position.width, position.height - ToolbarHeight),
-                    false, false, false, false);
-                DrawGrid();
-            }
-
+//			Profiler.BeginSample("StateMachineMaker");
+//            Event e = Event.current;
+//			if (e.type == EventType.Repaint)
+//            {
+//				Rect rect = GUILayoutUtility.GetLastRect();
+//				ToolbarHeight = rect.yMax + rect.height / 2;
+//				Styles.BackgroudStyle.Draw(new Rect(0, ToolbarHeight, position.width, position.height - ToolbarHeight),
+//                    false, false, false, false);
+//                DrawGrid();
+//            }
+//
 
 
 			DrawRectabgle();
-            Profiler.EndSample();
+//            Profiler.EndSample();
 		}
 		private Vector2 dragPos;
         private List<Vector3[]> drawRect = new List<Vector3[]>();
 		private void DrawRectabgle()
         {
-            Event e = Event.current;
-            if (e.type == EventType.MouseDrag)
-            {
-                Vector2 mousePos = e.mousePosition;
+//            Event e = Event.current;
+//            if (e.type == EventType.MouseDrag)
+//            {
+//                Vector2 mousePos = e.mousePosition;
+//
+//                if (dragPos == Vector2.zero)
+//                {
+//                    dragPos = mousePos;
+//                }
+//
+//                Vector3[] vector3s = new Vector3[]
+//                {
+//                    mousePos, new Vector2(dragPos.x, mousePos.y), dragPos,
+//                    new Vector2(mousePos.x, dragPos.y)
+//                };
+//                drawRect.Add(vector3s);
+//                Repaint();
+//            }
+//
+//
+//
+//            if (e.type == EventType.Repaint)
+//            {
+//                if (drawRect.Count != 0)
+//                {
+//                    DrawSolidRectangleWithOutline(drawRect[0], new Color32(90, 105, 126, 255), Color.white);
+//
+////                    Rect rect = Vector3sToRect(drawRect[0]);
+////                    foreach (S state in stateMachine.GetAllStates())
+////                    {
+////                        Rect pos = state.position;
+////                        if (rect.Contains(pos))
+////                        {
+////                            if (!forcusedStates.Contains(state))
+////                                ArrayUtility.Add(ref forcusedStates, state);
+////                        }
+////                    }
+//
+//                    if (drawRect.Count != 1)
+//                        drawRect.RemoveAt(0);
+//
+//                    Repaint();
+//                }
+//            }
 
-                if (dragPos == Vector2.zero)
-                {
-                    dragPos = mousePos;
-                }
-
-                Vector3[] vector3s = new Vector3[]
-                {
-                    mousePos, new Vector2(dragPos.x, mousePos.y), dragPos,
-                    new Vector2(mousePos.x, dragPos.y)
-                };
-                drawRect.Add(vector3s);
-                Repaint();
-            }
-
-
-
-            if (e.type == EventType.Repaint)
-            {
-                if (drawRect.Count != 0)
-                {
-                    DrawSolidRectangleWithOutline(drawRect[0], new Color32(90, 105, 126, 255), Color.white);
-
-//                    Rect rect = Vector3sToRect(drawRect[0]);
-//                    foreach (S state in stateMachine.GetAllStates())
-//                    {
-//                        Rect pos = state.position;
-//                        if (rect.Contains(pos))
-//                        {
-//                            if (!forcusedStates.Contains(state))
-//                                ArrayUtility.Add(ref forcusedStates, state);
-//                        }
-//                    }
-
-                    if (drawRect.Count != 1)
-                        drawRect.RemoveAt(0);
-
-                    Repaint();
-                }
-            }
-
-			scrollPos = GUI.BeginScrollView(new Rect(0, 0, position.width, position.height), scrollPos,
-                    new Rect(0, 0, position.width * 2f, position.height * 2f), false, false);
-//                OnGraphGUI();
-            GUI.EndScrollView();
-            if (e.type == EventType.MouseUp)
-            {
-                drawRect = new List<Vector3[]>();
-                dragPos = Vector2.zero;
-            }
+//			scrollPos = GUI.BeginScrollView(new Rect(0, 0, position.width, position.height), scrollPos,
+//                    new Rect(0, 0, position.width * 2f, position.height * 2f), false, false);
+            OnGraphGUI();
+//            GUI.EndScrollView();
+//            if (e.type == EventType.MouseUp)
+//            {
+//                drawRect = new List<Vector3[]>();
+//                dragPos = Vector2.zero;
+//            }
         }
 
 		private Rect Vector3sToRect(Vector3[] vactor3s)
@@ -191,6 +191,15 @@ namespace FsmEditor
 			get {
 				return new object[]{ FSM };
 			}
+		}
+
+		private void OnGraphGUI(){
+			BeginWindows();
+			for( int pos = 0; pos < nodeWindos.Count; pos++ ) {
+				//  TODO loop in nodeWindos.Count
+				nodeWindos[pos].Draw( pos );
+			}
+			EndWindows();
 		}
 
 		private void DrawGrid()

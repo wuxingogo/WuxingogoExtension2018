@@ -16,15 +16,39 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(JSONObject), true)]
-public class JsonDrawer : PropertyDrawer {
-	
-	override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-	{
-		EditorGUI.BeginProperty (position, label, property);
-		
-		//todo: put nice drawing code here
-		
-		EditorGUI.EndProperty ();
-	}
-}
+//[CustomPropertyDrawer(typeof(JSONObject), true)]
+//public class JsonDrawer : PropertyDrawer {
+//	
+//	override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+//	{
+//		base.OnGUI( position, property, label );
+////		EditorGUI.BeginProperty (position, label, property);
+//		
+//		//todo: put nice drawing code here
+////		JSONObject json = property.serializedObject.targetObject as JSONObject;
+////		switch( json.type ) {
+////			case JSONObject.Type.NUMBER:
+////				json.n = EditorGUILayout.DoubleField( json.n );
+////			break;
+////			case JSONObject.Type.BOOL:
+////				json.b = EditorGUILayout.Toggle( json.b );
+////			break;
+////			case JSONObject.Type.STRING:
+////				json.str = EditorGUILayout.TextField( json.str );
+////			break;
+////			default:
+////			break;
+////		}
+//
+////		EditorGUI.EndProperty ();
+//	}
+//}
+
+//[CustomPropertyDrawer(typeof(JSONObject))]
+//internal sealed class JsonDraw : DecoratorDrawer
+//{
+//	public override float GetHeight()
+//	{
+//		return (base.attribute as SpaceAttribute).height;
+//	}
+//}

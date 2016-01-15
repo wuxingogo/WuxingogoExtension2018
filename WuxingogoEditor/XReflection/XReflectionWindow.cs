@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System;
 using Object = UnityEngine.Object;
 
+
 public class XReflectionWindow : XBaseWindow {
 
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XReflectionWindow " )]
@@ -70,7 +71,7 @@ public class XReflectionWindow : XBaseWindow {
 	public override void OnXGUI()
 	{
 		base.OnXGUI();
-		
+
 		if(CreateSpaceButton("Clean")){
 			uObject = null;
 			Target = null;

@@ -74,6 +74,13 @@
     <Compile Include="Behaviour\IFsmComState.cs" />
     <Compile Include="Behaviour\IFsmLifecycle.cs" />
     <Compile Include="Attribute\CustomJsonDrawer.cs" />
+    <Compile Include="Behaviour\StateColor.cs" />
+    <Compile Include="Behaviour\XFsmEvent.cs" />
+    <Compile Include="Behaviour\XFsmTemplate.cs" />
+    <Compile Include="Behaviour\XTemplateComponent.cs" />
+    <Compile Include="Tools\StringUtils.cs" />
+    <Compile Include="Tools\XReflectionUtils.cs" />
+    <Compile Include="Tools\XRegexTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

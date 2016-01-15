@@ -98,6 +98,14 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         }
     }
 
+	public void DoButton<T, T1>(string btnName, Action<T, T1> callback, T arg, T1 arg1)
+    {
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        {
+            callback(arg, arg1);
+        }
+    }
+
 	public Object CreateObjectField(string fieldName, Object obj, System.Type type = null, params GUILayoutOption[] options)
     {
         if (null == type) type = typeof(Object);

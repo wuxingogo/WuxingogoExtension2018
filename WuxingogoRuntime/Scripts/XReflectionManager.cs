@@ -1,49 +1,12 @@
 using UnityEngine;
 using System.Reflection;
 using System.Collections;
-
+using wuxingogo.Reflection;
 namespace wuxingogo.Runtime {
     public class XReflectionManager {
-
-	    static Assembly _assembly = null;
-	
-	    static Assembly MyAssembly{
-		    get{
-			    if( null == _assembly)
-			    // _assembly = Assembly.GetCallingAssembly();
-			    // _assembly = Assembly.GetExecutingAssembly();
-				    _assembly = Assembly.GetAssembly(typeof(XReflectionManager));
-			    return _assembly;
-		    }
-		
-	    }
 	
 	    public static System.Type GetClass(string className){
-		    var classType = MyAssembly.GetType(className);
-		    if( null == classType){
-    //			Debug.Log(MyAssembly.ToString() + "not found " + className);
-			    string assPath = typeof(GameObject).Assembly.Location;
-			    var ass = typeof(Application).Assembly;
-			
-			    System.Type[ ] mytypes = ass.GetExportedTypes();
-			    foreach (var item in mytypes) {
-				    if(item.Name == className) return item;
-			    }
-    //			GameObject.
-    //			foreach (System.Type t in mytypes) {
-    //				Debug.Log("t.ToString() is : " + t.ToString());
-    //			}
-			
-    //			var assemblys = System.AppDomain.CurrentDomain.GetAssemblies();
-    //			foreach (var item in assemblys) {
-    //				classType = item.GetType(className);
-    //				if( null != classType){
-    //					return classType;
-    //				} 
-    //			}
-			    return classType;
-		    }
-		    return classType;
+			return XReflectionUtils.TryGetClass(className);
 	    }
 	
 	    public static object CallMethod(object target, System.Type type, string methodCMD){
@@ -150,7 +113,7 @@ namespace wuxingogo.Runtime {
 				    if( null != returnValue )
 					    classType = returnValue.GetType();
 			    }else{
-				
+
 				    returnValue = GetField(returnValue, classType, strs[pos]);
 				    if( null != returnValue )
 					    classType = returnValue.GetType();

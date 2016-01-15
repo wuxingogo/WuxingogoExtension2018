@@ -1,4 +1,4 @@
-﻿//
+//
 //  XTemplateComponent.cs
 //
 //  Author:

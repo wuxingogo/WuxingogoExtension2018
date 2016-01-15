@@ -125,6 +125,8 @@ public class XMonoBehaviourEditor : XBaseEditor
 		}
 	}
 
+
+
 	private void OpenInMethod(object target){
 		XReflectionWindow method = XBaseWindow.Init<XReflectionWindow>();
 		method.Target = target;

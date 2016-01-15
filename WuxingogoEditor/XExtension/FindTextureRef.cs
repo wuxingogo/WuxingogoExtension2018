@@ -12,7 +12,7 @@ public class FindTextureRef : Editor {
 	static List<GameObject> allChilds = new List<GameObject>();
 	static List<Texture> usedAsset = new List<Texture>();
 	
-	[MenuItem("Wuxingogo/Find Texture All GameObjects %#2")]
+	[MenuItem("Wuxingogo/Find Texture All GameObjects")]
 	static void Execute()
 	{
 	
