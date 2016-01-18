@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="WuxingogoEditor/CodeEditor/XCodeType.cs" Line="20" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/ly-user/Documents/work/public/TSPlay/SunSongSunshine/Assets/Scripts/Panels/ScrollList.cs" line="13" column="1" />
