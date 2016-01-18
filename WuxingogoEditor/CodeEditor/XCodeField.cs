@@ -15,14 +15,13 @@ using System.CodeDom;
 namespace wuxingogo.Code
 {
 	[Serializable]
-	public class XCodeField : XCodeBase, ICodeMember
+	public class XCodeField : XCodeMember, ICodeMember
 	{
 		bool isShowAll = false;
 
 		public XCodeField()
 		{
 			name = "DefaultField";
-			codeType = XCodeType.Field;
 		}
 
 		#region implemented abstract members of CodeBase
@@ -33,8 +32,9 @@ namespace wuxingogo.Code
 			window.DoButton( name, () => isShowAll = !isShowAll );
 			if( isShowAll ) {
 				name = window.CreateStringField(name);
-				window.CreateEnumSelectable( codeType );
-				TypeID = window.CreateSelectableString(TypeID, StrTypes );
+//				window.CreateEnumSelectable( codeType );
+//				TypeID = window.CreateSelectableString(TypeID, StrTypes );
+				DrawType(window);
 				window.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
 				window.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
 			}
@@ -50,7 +50,7 @@ namespace wuxingogo.Code
 
 		public System.CodeDom.CodeTypeMember Compile()
 		{
-			CodeMemberField field = new CodeMemberField(objectType, name);
+			CodeMemberField field = new CodeMemberField(type.Target, name);
 			for( int pos = 0; pos < comments.Count; pos++ ) {
 				//  TODO loop in comments.Count
 				field.Comments.Add(new CodeCommentStatement(comments[pos]));

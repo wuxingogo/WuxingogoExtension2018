@@ -20,7 +20,7 @@ public class XBatchingReplaces : XBaseWindow
 	string filterName = "";
 	[MenuItem ("Wuxingogo/Wuxingogo XBatchingReplaces ")]
 	static void init () {
-		Init<XBatchingReplaces>();
+		InitWindow<XBatchingReplaces>();
 	}
 
 	public override void OnXGUI(){

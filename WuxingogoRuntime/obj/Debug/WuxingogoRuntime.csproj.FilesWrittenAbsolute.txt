@@ -1,13 +1,4 @@
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll.mdb
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/WuxingogoRuntime.dll
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoRuntime.dll.mdb
+/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoRuntime.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
 /Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEditor.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/UnityEngine.UI.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/Mono.Cecil.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/nunit.framework.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/Unity.DataContract.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/ICSharpCode.NRefactory.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/Unity.SerializationLogic.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/bin/Debug/Unity.CecilTools.dll

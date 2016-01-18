@@ -21,7 +21,7 @@ public class XReplaceComponent : XBaseWindow
 
 	[MenuItem ("Wuxingogo/Wuxingogo XReplaceComponent ")]
 	static void init () {
-		Init<XReplaceComponent>();
+		InitWindow<XReplaceComponent>();
 	}
 
 	public override void OnXGUI(){

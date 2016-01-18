@@ -16,7 +16,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\OutPutDll</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,15 +25,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\OutPutDll</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>E:\Users\Administrator\Desktop\UnityDLL\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -47,8 +44,11 @@
     <Reference Include="UnityEditor">
       <HintPath>..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\..\..\..\Desktop\UnityDLL\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="WuxingogoRuntime">
-      <HintPath>..\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll</HintPath>
+      <HintPath>..\OutPutDll\WuxingogoRuntime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +106,6 @@
     <Compile Include="CodeEditor\CodeGenerateEditor.cs" />
     <Compile Include="CodeEditor\CodeReviewEditor.cs" />
     <Compile Include="CodeEditor\ICodeMember.cs" />
-    <Compile Include="CodeEditor\XCodeBase.cs" />
     <Compile Include="CodeEditor\XCodeClass.cs" />
     <Compile Include="CodeEditor\XCodeCustomAttribute.cs" />
     <Compile Include="CodeEditor\XCodeField.cs" />
@@ -124,12 +123,17 @@
     <Compile Include="XReflection\XPropertyWindow.cs" />
     <Compile Include="CodeEditor\ICodeExpression.cs" />
     <Compile Include="XReflection\XCommandTools.cs" />
+    <Compile Include="CodeEditor\XCodeMember.cs" />
+    <Compile Include="CodeEditor\XCodeType.cs" />
+    <Compile Include="CodeEditor\XCodeTypeTemplate.cs" />
+    <Compile Include="XExtension\QuickSetComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <None Include="CodeEditor\templete\NewXBaseWindow.asset" />
     <None Include="CodeEditor\templete\NewXMonoBehaviour.asset" />
+    <None Include="CodeEditor\templete\XCodeTypeTemplate.asset" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeEditor\" />

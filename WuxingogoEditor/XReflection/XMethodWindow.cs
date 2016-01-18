@@ -11,7 +11,7 @@ public class XMethodWindow : XBaseWindow
 {
 	public static XMethodWindow Init()
 	{
-		return Init<XMethodWindow>();
+		return InitWindow<XMethodWindow>();
 	}
 
 	private object _target = null;
@@ -144,7 +144,7 @@ public class XMethodWindow : XBaseWindow
 	void OpenInGenerateCodeWindow()
 	{
 
-		wuxingogo.Code.CodeGenerateEditor codeEditor = Init<wuxingogo.Code.CodeGenerateEditor>();
+		wuxingogo.Code.CodeGenerateEditor codeEditor = InitWindow<wuxingogo.Code.CodeGenerateEditor>();
 		wuxingogo.Code.XCodeObject codeObject = codeEditor.GenerateNewCode();
 		wuxingogo.Code.XCodeClass classUnit = codeObject.classUnit;
 		classUnit.name = Target.GetType().DeclaringType.Name;

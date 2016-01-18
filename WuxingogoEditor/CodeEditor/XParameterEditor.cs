@@ -43,9 +43,9 @@ namespace wuxingogo.Code
 
 			if( null != target ) {
 				typeID = CreateSelectableFromString( typeID, StrTypes );
-				target.type = StrTypes[typeID];
+//				target.type = StrTypes[typeID];
 
-				target.value = CreateStringField( "value", target.value );
+//				target.value = CreateStringField( "value", target.value );
 			}
 
 			return true;

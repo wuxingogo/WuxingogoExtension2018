@@ -18,7 +18,7 @@ public class XPropertiesToSerializables : XBaseWindow
     object propertyinstance = null;
 	[MenuItem ("Wuxingogo/Reflection/Wuxingogo XPropertiesToSerializables ")]
 	static void init () {
-		Init<XPropertiesToSerializables>();
+		InitWindow<XPropertiesToSerializables>();
 	}
 
 

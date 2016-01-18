@@ -21,7 +21,7 @@ public class XWebWindow : XBaseWindow
 	[MenuItem( "Wuxingogo/Wuxingogo XWebWindow #]" )]
     static void init()
     {
-		XWebWindow window = Init<XWebWindow>();
+		XWebWindow window = InitWindow<XWebWindow>();
     }
 
 	public override void OnInitialization(params object[] args){
@@ -83,7 +83,7 @@ public class XWebWindow : XBaseWindow
 		}
 
 		if(CreateSpaceButton("Setting")){
-			XMethodWindow window = Init<XMethodWindow>();
+			XMethodWindow window = InitWindow<XMethodWindow>();
 			window.Target = webView;
 		}
     }

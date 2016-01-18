@@ -26,7 +26,7 @@ public class XWindow : XBaseWindow {
 	[MenuItem ("Wuxingogo/My Window %#6")]
 	static void Init () {
 		
-		Init<XWindow>();
+		InitWindow<XWindow>();
 		
 	}
 	bool isNeedSeachObj = false;

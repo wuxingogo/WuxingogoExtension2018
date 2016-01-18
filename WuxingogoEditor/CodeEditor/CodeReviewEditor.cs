@@ -25,7 +25,7 @@ namespace wuxingogo.Code
 		[MenuItem( "Wuxingogo/Code/CodeReviewEditor" )]
 		static void Initialization()
 		{
-			Init<CodeReviewEditor>();
+			InitWindow<CodeReviewEditor>();
 		}
 
 		private UnityEngine.Object ScriptFile = null;

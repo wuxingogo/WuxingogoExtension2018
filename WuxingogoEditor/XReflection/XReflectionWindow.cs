@@ -23,7 +23,7 @@ public class XReflectionWindow : XBaseWindow {
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XReflectionWindow " )]
 	static void Init()
 	{
-		Init<XReflectionWindow>();
+		InitWindow<XReflectionWindow>();
 	}
 	
 	
@@ -172,15 +172,15 @@ public class XReflectionWindow : XBaseWindow {
 	void OnOpenEditor(string editorName){
 		switch( editorName ) {
 			case "Field":
-				XFieldWindow fieldWindow = Init<XFieldWindow>();
+				XFieldWindow fieldWindow = InitWindow<XFieldWindow>();
 				fieldWindow.Target = Target;
 				break;
 			case "Property":
-				XPropertyWindow propertyWindow = Init<XPropertyWindow>();
+				XPropertyWindow propertyWindow = InitWindow<XPropertyWindow>();
 				propertyWindow.Target = Target;
 				break;
 			case "Method":
-				XMethodWindow methodWindow = Init<XMethodWindow>();
+				XMethodWindow methodWindow = InitWindow<XMethodWindow>();
 				methodWindow.Target = Target;
 				break;;
 			case "Member":

@@ -23,9 +23,8 @@ namespace FsmEditor
 	[CustomEditor( typeof( XFsmComponent ) )]
 	public class XFsmEditor : XBaseEditor
 	{
-		public override void OnInspectorGUI()
+		public override void OnXGUI()
 		{
-			base.OnInspectorGUI();
 			DoButton( "Open In Fsm Editor", () => XFsmWindow.GetInstance().FSM = (XFsmComponent)target );
 		}
 	}
@@ -39,7 +38,7 @@ namespace FsmEditor
 		[MenuItem( "Wuxingogo/Wuxingogo XBehaviorEditor" )]
 		static void Init()
 		{
-			XBaseWindow.Init<XFsmWindow>();
+			XBaseWindow.InitWindow<XFsmWindow>();
 		}
 
 		public XFsmComponent FSM {
@@ -55,7 +54,7 @@ namespace FsmEditor
 
 		public static XFsmWindow GetInstance()
 		{
-			return XBaseWindow.Init<XFsmWindow>();
+			return XBaseWindow.InitWindow<XFsmWindow>();
 		}
 
 		private XFsmComponent fsm = null;

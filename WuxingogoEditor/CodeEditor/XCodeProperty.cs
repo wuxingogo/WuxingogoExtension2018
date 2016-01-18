@@ -14,12 +14,12 @@ using System;
 namespace wuxingogo.Code
 {
 	[Serializable]
-	public class XCodeProperty : XCodeBase, ICodeMember
+	public class XCodeProperty : XCodeMember, ICodeMember
 	{
 		bool isShowAll = false;
 		public XCodeProperty()
 		{
-			codeType = XCodeType.Property;
+//			codeType = XCodeTypeEnum.Property;
 			name = "DefalutProperty";
 		}
 

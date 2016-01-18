@@ -18,7 +18,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     const int XButtonWidth = 100;
     const int XButtonHeight = 20;
 
-	public static T Init<T>() where T : XBaseWindow
+	public static T InitWindow<T>() where T : XBaseWindow
     {
         string cmdPrefs = typeof(T).ToString() + "_isPrefix";
         bool isPrefix = EditorPrefs.GetBool(cmdPrefs, false);

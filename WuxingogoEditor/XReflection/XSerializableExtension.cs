@@ -13,7 +13,7 @@ public class XSerializableExtension : XBaseWindow
 	// This window to quick set serializable property.
 	[MenuItem ("Wuxingogo/Reflection/Wuxingogo XSerializableExtension ")]
 	static void init () {
-		Init<XSerializableExtension>();
+		InitWindow<XSerializableExtension>();
 	}
 
 	Component targetComponent = null;

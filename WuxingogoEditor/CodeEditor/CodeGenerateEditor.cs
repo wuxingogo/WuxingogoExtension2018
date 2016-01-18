@@ -25,7 +25,7 @@ namespace wuxingogo.Code
 		[MenuItem( "Wuxingogo/Code/CodeGenerateEditor" )]
 		static void init()
 		{
-			Init<CodeGenerateEditor>();
+			InitWindow<CodeGenerateEditor>();
 		}
 
 		public XCodeObject codeObject = null;
@@ -91,7 +91,7 @@ namespace wuxingogo.Code
 		{
 
 			if(CreateSpaceButton("Open In XCodeWindow")){
-				CodeGenerateEditor window = XBaseWindow.Init<CodeGenerateEditor>();
+				CodeGenerateEditor window = XBaseWindow.InitWindow<CodeGenerateEditor>();
 				window.codeObject = target as XCodeObject;
 			}
 		}

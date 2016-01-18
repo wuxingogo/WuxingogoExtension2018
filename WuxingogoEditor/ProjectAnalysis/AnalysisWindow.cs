@@ -23,7 +23,7 @@ using System.Linq;
 public class AnalysisWindow : XBaseWindow {
 	[MenuItem ("Wuxingogo/Wuxingogo AnalysisWindow ")]
 	static void init () {
-		Init<AnalysisWindow>();
+		InitWindow<AnalysisWindow>();
 	}
 	
 	List<string> allResult = new List<string>();

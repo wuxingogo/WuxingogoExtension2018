@@ -26,6 +26,16 @@ namespace wuxingogo.tools
 		public static string CutString(string value, int start, int end){
 			return value.Substring(start, end - start);
 		}
+
+		public static string CutOnCharLeft(string value, string single)
+		{
+			
+			if(value.Contains(single))
+			{
+				value = value.Substring(0, value.IndexOf(single));
+			}
+			return value;
+		}
 	}
 }
 

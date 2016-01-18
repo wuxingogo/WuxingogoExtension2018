@@ -11,7 +11,7 @@ public class XAnimationExtension : XBaseWindow
 	List<AnimationClip> anims = new List<AnimationClip>();
 	[MenuItem ("Wuxingogo/Wuxingogo XAnimationExtension")]
 	static void init () {
-		Init<XAnimationExtension>();
+		InitWindow<XAnimationExtension>();
 	}
 
 

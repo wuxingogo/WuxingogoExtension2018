@@ -16,7 +16,7 @@ public class XAnimatorExtension : XBaseWindow
     [MenuItem("Wuxingogo/Wuxingogo XAnimatorExtension ")]
     static void init()
     {
-        Init<XAnimatorExtension>();
+        InitWindow<XAnimatorExtension>();
     }
 
     public override void OnXGUI()

@@ -32,7 +32,7 @@ public class XAssemlyWindow : XBaseWindow
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XAssemlyWindow " )]
 	static void Init()
 	{
-		Init<XAssemlyWindow>();
+		InitWindow<XAssemlyWindow>();
 	}
 
 	public override void OnXGUI()

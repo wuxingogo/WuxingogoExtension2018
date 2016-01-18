@@ -19,16 +19,29 @@ namespace wuxingogo.Code
 	using System;
 	using Object = UnityEngine.Object;
 
-	[System.Serializable]
-	public class XCodeBase
+//	[System.Serializable]
+	public class XCodeMember
 	{
 		public string name = "Default";
-		public XCodeType codeType = XCodeType.Default;
 
-		public virtual void DrawSelf(XBaseWindow window){}
+		public virtual void DrawSelf(XBaseWindow window){
+		}
 
 		public List<string> comments = new List<string>();
 		public List<XCodeCustomAttribute> attributes = new List<XCodeCustomAttribute>();
+
+		public XCodeType type = XCodeTypeTemplate.GetInstance().GetTemplate(typeof(void));
+
+		public XCodeMember()
+		{
+		}
+
+		public virtual void DrawType(XBaseWindow window)
+		{
+			window.DoButton("Type", ()=> {
+				XCodeTypeTemplate.SelectType(x => type = x);
+			});
+		}
 
 		public virtual void DrawComments(XBaseWindow window)
 		{
@@ -58,55 +71,7 @@ namespace wuxingogo.Code
 		public void ParameterCreate(XCodeParameter parameter){
 			XParameterEditor.Init<XParameterEditor>(parameter);
 		}
-
-		private int typeID = 0;
-
-		public int TypeID {
-			get {
-				return typeID;
-			}
-			set {
-				typeID = value;
-				objectType = supposeArray[typeID];
-			}
-		}
-
-		public Type objectType = null;
-
-		public virtual Type[] supposeArray {
-
-			get {
-				return new Type[] {
-					typeof( void ),
-					typeof( int ),
-					typeof( float ),
-					typeof( string ),
-					typeof( Object ),
-					typeof( Enum )
-				};
-			}
-
-		}
-
-		public string[] StrTypes = new string[]{
-        "void",
-        "int",
-        "float",
-        "string",
-        "UnityObject",
-        "enum"
-   		};
    
-	}
-
-	public enum XCodeType
-	{
-		Class,
-		Method,
-		Field,
-		Property,
-		Event,
-		Default
 	}
 }
 

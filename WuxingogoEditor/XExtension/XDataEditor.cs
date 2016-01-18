@@ -8,7 +8,7 @@ public class XDataEditor : XBaseEditor
 	XData model = null;
 	int dataSize = 0;
 
-	public override void OnInspectorGUI()
+	public override void OnXGUI()
 	{
 		Init();
 		

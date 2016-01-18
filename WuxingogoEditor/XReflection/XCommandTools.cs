@@ -37,7 +37,7 @@ public class XCommandTools : XBaseWindow
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XCommandTools" )]
 	static void init()
 	{
-		Init<XCommandTools>();
+		InitWindow<XCommandTools>();
 		
 	}
 

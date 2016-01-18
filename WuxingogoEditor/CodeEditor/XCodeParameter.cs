@@ -17,50 +17,53 @@ namespace wuxingogo.Code
 	[Serializable]
 	public class XCodeParameter : ICodeExpression
 	{
-		public string name = "";
-		public string type = "";
-		public string value = "";
+		public string name = "arg";
+		public XCodeType type = XCodeTypeTemplate.GetInstance().GetTemplate(typeof(int));
 		public XCodeParameter()
 		{
-			
 		}
 
 		public object GetValue(){
-			switch(type){
-				case "void":
-				break;
-				case "int":
-				return int.Parse(value);
-				break;
-				case "float":
-				return float.Parse(value);
-				break;
-				case "string":
-				return value;
-				break;
-				case "UnityObject":
-				break;
-				case "enum":
-				break;
-			}
+//			switch(type.Target.Name){
+//				case typeof(Object).Name:
+//				break;
+//				case typeof(int).Name:
+//				return int.Parse(value);
+//				break;
+//				case typeof(float).Name:
+//				return float.Parse(value);
+//				break;
+//				case typeof(string).Name:
+//				return value;
+//				break;
+//				case typeof(UnityEngine.GameObject).Name:
+//				break;
+//				case "enum":
+//				break;
+//			}
 			return null;
 		}
 
 		public void Draw(XBaseWindow window){
-			
+			window.DoButton("Type", ()=> {
+				XCodeTypeTemplate.SelectType(x => type = x);
+			});
 		}
 
 		public System.CodeDom.CodeExpression Compile()
 		{
-			CodePrimitiveExpression expression = null;
-
-			object value = GetValue();
-			if( null != value ){
-				expression = new CodePrimitiveExpression(value);
-			}
-//			expression.Value = GetValue();
+			
+			CodeParameterDeclarationExpression expression = null;
+			expression = new CodeParameterDeclarationExpression(type.Target, name);
 			return expression;
 		}
+
+		
+	}
+
+	internal class GenericaType<T> 
+	{
+		public T Value;
 	}
 }
 

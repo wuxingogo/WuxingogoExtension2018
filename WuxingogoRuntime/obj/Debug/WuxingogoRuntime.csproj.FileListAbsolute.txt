@@ -1,8 +1,0 @@
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.dll
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\bin\Debug\WuxingogoRuntime.pdb
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\bin\Debug\UnityEditor.dll
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\bin\Debug\UnityEngine.dll
-E:\new_project\WuxingogoExtension\WuxingogoRuntime\bin\Debug\UnityEngine.UI.dll

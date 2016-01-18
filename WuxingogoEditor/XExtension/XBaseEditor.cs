@@ -20,7 +20,7 @@ public class XBaseEditor : Editor {
 	static Rect _StyleRect = new Rect(StartX, 45, Screen.width - 10, EditorGUIUtility.singleLineHeight);
 
 	public static float EditorImageWidth = 80;
-	public override void OnInspectorGUI()
+	public sealed override void OnInspectorGUI()
 	{
 //		GUILayout.FlexibleSpace();
 

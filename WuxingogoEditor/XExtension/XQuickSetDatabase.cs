@@ -47,7 +47,7 @@ public class XQuickSetDatabase : XBaseWindow
 	[MenuItem("Wuxingogo/Wuxingogo XQuickSetDatabase ")]
 	static void init()
 	{
-		Init<XQuickSetDatabase>();
+		InitWindow<XQuickSetDatabase>();
 	}
 	
 	const string GET_ALL_TABLE = "select name from sqlite_master where type='table' order by name;";

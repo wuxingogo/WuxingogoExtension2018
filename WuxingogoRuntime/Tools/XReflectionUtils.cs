@@ -4,6 +4,7 @@ using System.Reflection;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using wuxingogo.tools;
 
 
 namespace wuxingogo.Reflection
@@ -12,24 +13,33 @@ namespace wuxingogo.Reflection
 	public static class XReflectionUtils
 	{
 
-		private static BindingFlags INSTANCE_FLAGS = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static;
-		private static BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+		private const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.Public;
+		private const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+		private const BindingFlags NOVIRTUAL_FLAGS = BindingFlags.DeclaredOnly;
 
 		public static Assembly TryGetAssembly(string assemblyName, bool isPrecise = true)
 		{
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+
 			for( int pos = 0; pos < assemblies.Length; pos++ ) {
 				//  TODO loop in assemblies.Length
+				string currAssem = StringUtils.CutOnCharLeft(assemblies[pos].ManifestModule.Name, ".");
 				if( isPrecise ) {
-					if( assemblies[pos].FullName.Equals( assemblyName ) )
+					if( currAssem.Equals( assemblyName ) )
 						return assemblies[pos];
 				} else {
-					if( assemblies[pos].FullName.Contains( assemblyName ) || assemblyName.Contains( assemblies[pos].FullName ) )
+					if( currAssem.Contains( assemblyName ) || assemblyName.Contains( currAssem ) )
 						return assemblies[pos];
 				}
 			}
-			Debug.LogError( "Try Get Assembly Not Found!" );
+			Debug.LogError( string.Format( "Try Get Assembly {0} Not Found!", assemblyName ) );
 			return null;
+		}
+
+		public static Assembly GetUnitySolotion()
+		{
+			return TryGetAssembly( "Assembly-CSharp" );
 		}
 
 		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
@@ -152,33 +162,33 @@ namespace wuxingogo.Reflection
 			return info;
 		}
 
-		private static FieldInfo[] FieldMatch(this Type target, string fieldName, bool isStatic)
+		public static FieldInfo[] FieldMatch(this Type target, string fieldName, bool isStatic, bool isVirtual = true)
 		{
-			FieldInfo[] fieldCollection = target.GetFields( isStatic ? STATIC_FLAGS : INSTANCE_FLAGS );
+			FieldInfo[] fieldCollection = target.GetFields( DetectFlags( isStatic, isVirtual ) );
 			return fieldCollection.Where( field => 
 				field.Name.Contains( fieldName )
 			).ToArray();
 		}
 
-		private static PropertyInfo[] PropertyMatch(this Type target, string fieldName, bool isStatic)
+		public static PropertyInfo[] PropertyMatch(this Type target, string fieldName, bool isStatic, bool isVirtual = true)
 		{
-			PropertyInfo[] fieldCollection = target.GetProperties( isStatic ? STATIC_FLAGS : INSTANCE_FLAGS );
+			PropertyInfo[] fieldCollection = target.GetProperties( DetectFlags( isStatic, isVirtual ) );
 			return fieldCollection.Where( field => 
 				field.Name.Contains( fieldName )
 			).ToArray();
 		}
 
-		private static EventInfo[] EventMatch(this Type target, string fieldName, bool isStatic)
+		public static EventInfo[] EventMatch(this Type target, string fieldName, bool isStatic, bool isVirtual = true)
 		{
-			EventInfo[] fieldCollection = target.GetEvents( isStatic ? STATIC_FLAGS : INSTANCE_FLAGS );
+			EventInfo[] fieldCollection = target.GetEvents( DetectFlags( isStatic, isVirtual ) );
 			return fieldCollection.Where( field => 
 				field.Name.Contains( fieldName )
 			).ToArray();
 		}
 
-		private static MethodInfo[] MethodMatch(this Type target, string fieldName, bool isStatic)
+		public static MethodInfo[] MethodMatch(this Type target, string fieldName, bool isStatic, bool isVirtual = true)
 		{
-			MethodInfo[] fieldCollection = target.GetMethods( isStatic ? STATIC_FLAGS : INSTANCE_FLAGS );
+			MethodInfo[] fieldCollection = target.GetMethods( DetectFlags( isStatic, isVirtual ) );
 			return fieldCollection.Where( field => 
 				field.Name.Contains( fieldName )
 			).ToArray();
@@ -194,6 +204,11 @@ namespace wuxingogo.Reflection
 			memberCollection.AddRange( target.MethodMatch( memberName, isStatic ) );
 			
 			return memberCollection.ToArray();
+		}
+
+		private static BindingFlags DetectFlags(bool isStatic, bool isVirtual)
+		{
+			return isStatic ? STATIC_FLAGS : isVirtual ? INSTANCE_FLAGS : BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | NOVIRTUAL_FLAGS;
 		}
 
 		/// <summary>
@@ -238,6 +253,16 @@ namespace wuxingogo.Reflection
 		public static void TrySetProperty(this object target, string propertyName, object value)
 		{
 			target.TryGetPropertyInfo( propertyName ).TrySetPropertyValue( target, value );
+		}
+
+		public static IEnumerable<Type> FindSubClass(Type type)
+		{
+			return type.Assembly.GetTypes().Where( sub => sub.IsSubclassOf( type ) );
+		}
+
+		public static bool isSubClassOrEquals<T>(this Type type)
+		{
+			return type.IsSubclassOf( typeof( T ) ) || type == typeof( T );
 		}
 
 

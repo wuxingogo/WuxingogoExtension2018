@@ -12,7 +12,7 @@ public class XQucickSetPrefs : XBaseWindow {
 	[MenuItem ("Wuxingogo/Wuxingogo Quick Set Prefs ")]
 	static void init () {
 		
-		Init<XQucickSetPrefs>();
+		InitWindow<XQucickSetPrefs>();
 		
 		
 	}

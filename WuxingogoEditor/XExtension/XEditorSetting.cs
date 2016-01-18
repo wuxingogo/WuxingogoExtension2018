@@ -29,7 +29,7 @@ public class XEditorSetting : XBaseWindow
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
     static void init()
     {
-		Init<XEditorSetting>();
+		InitWindow<XEditorSetting>();
     }
 
     public override void OnXGUI()

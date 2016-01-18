@@ -17,14 +17,13 @@ using wuxingogo.Runtime;
 namespace wuxingogo.Code
 {
 	[Serializable]
-	public class XCodeMethod : XCodeBase, ICodeMember
+	public class XCodeMethod : XCodeMember, ICodeMember
 	{
 		bool isShowAll = false;
 		public List<XCodeParameter> parameters = new List<XCodeParameter>();
-
+		public List<CodeStatement> statements = new List<CodeStatement>();
 		public XCodeMethod()
 		{
-			codeType = XCodeType.Method;
 			name = "DefalutMethod";
 		}
 
@@ -37,11 +36,10 @@ namespace wuxingogo.Code
 			if( isShowAll ) {
 				window.BeginHorizontal();
 				name = window.CreateStringField(name);
-				window.CreateEnumSelectable( codeType );
-				TypeID = window.CreateSelectableString(TypeID, StrTypes );
 				window.EndHorizontal();
 
 				window.BeginHorizontal();
+				DrawType(window);
 				window.DoButton("Add Parameter", ()=> parameters.Add(new XCodeParameter()));
 				window.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
 				window.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
@@ -63,7 +61,8 @@ namespace wuxingogo.Code
 			for( int pos = 0; pos < parameters.Count; pos++ ) {
 				//  TODO loop in comments.Count
 				window.BeginHorizontal();
-				parameters[pos].type = window.CreateStringField( parameters[pos].type );
+//				parameters[pos].type = window.CreateStringField( parameters[pos].type );
+				parameters[pos].Draw( window );
 				window.DoButton( "Delete", () => parameters.RemoveAt( pos ) );
 				window.EndHorizontal();
 			}
@@ -74,7 +73,8 @@ namespace wuxingogo.Code
 		{
 			CodeMemberMethod method = new CodeMemberMethod();
 			method.Name = name;
-//			method.Statements.Add(new CodeStatement());
+			if(statements.Count > 0)
+				method.Statements.AddRange(statements.ToArray());
 
 			for( int pos = 0; pos < comments.Count; pos++ ) {
 				//  TODO loop in comments.Count
@@ -87,10 +87,9 @@ namespace wuxingogo.Code
 
 			for( int pos = 0; pos < parameters.Count; pos++ ) {
 				//  TODO loop in parameters.Count
-				method.Parameters.Add(new CodeParameterDeclarationExpression(typeof(XBehaviorFSM), "aaa"));
-//				new code new XCodeParameter().Compile());
+				method.Parameters.Add(parameters[pos].Compile() as CodeParameterDeclarationExpression);
 			}
-			method.ReturnType = new CodeTypeReference(objectType);
+			method.ReturnType = new CodeTypeReference(type.Target);
 			return method;
 		}
 

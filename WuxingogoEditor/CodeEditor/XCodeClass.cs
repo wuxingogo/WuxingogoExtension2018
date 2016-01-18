@@ -11,12 +11,14 @@
 using System;
 using System.Collections.Generic;
 using System.CodeDom;
+using System.CodeDom.Compiler;
+using UnityEditor;
 
 
 namespace wuxingogo.Code
 {
 	[System.Serializable]
-	public class XCodeClass : XCodeBase, ICodeMember
+	public class XCodeClass : ICodeMember
 	{
 		public string useNamespace = "";
 		public List<string> importNamespace = new List<string>();
@@ -25,21 +27,22 @@ namespace wuxingogo.Code
 		public List<XCodeField> fields = new List<XCodeField>();
 		public List<XCodeMethod> methods = new List<XCodeMethod>();
 		public List<XCodeProperty> properties = new List<XCodeProperty>();
+		public string name = "";
+
+		public string defaultLanguage = "CSharp";
 
 		public XCodeClass()
 		{
 			name = "DefaultClass";
 
-			codeType = XCodeType.Class;
 		}
 
 		#region implemented abstract members of CodeBase
 
-		public override void DrawSelf(XBaseWindow window)
+		public void DrawSelf(XBaseWindow window)
 		{
 			
 			name = window.CreateStringField("ClassName", name);
-			window.CreateEnumSelectable(codeType);
 
 			window.DoButton("Add New NameSpace", ()=> importNamespace.Add("UnityEngine"));
 			for( int pos = 0; pos < importNamespace.Count; pos++ ) {
@@ -90,7 +93,7 @@ namespace wuxingogo.Code
 
 		#region implemented abstract members of ICodeMember
 
-		public System.CodeDom.CodeTypeMember Compile()
+		public CodeTypeMember Compile()
 		{
 			CodeTypeDeclaration declarationClass = new CodeTypeDeclaration( name );
 
@@ -117,7 +120,40 @@ namespace wuxingogo.Code
 				declarationClass.Members.Add(member);
 			}
 
+
+
+
+
 			return declarationClass;
+		}
+
+		public void Compile(string outPut)
+		{
+			CodeCompileUnit unit = new CodeCompileUnit();
+
+			CodeNamespace codeNamespace = new CodeNamespace( useNamespace );
+
+			for( int i = 0; i < importNamespace.Count; i++ ) {
+				codeNamespace.Imports.Add( new CodeNamespaceImport( importNamespace[i] ) );
+			}
+
+			unit.Namespaces.Add( codeNamespace );
+
+			codeNamespace.Types.Add((CodeTypeDeclaration)Compile());
+
+			CodeDomProvider provider = CodeDomProvider.CreateProvider( defaultLanguage );
+
+			CodeGeneratorOptions options = new CodeGeneratorOptions();
+
+			options.BracingStyle = "C";
+
+			options.BlankLinesBetweenMembers = true;
+
+			using( System.IO.StreamWriter sw = new System.IO.StreamWriter( outPut ) ) {
+				provider.GenerateCodeFromCompileUnit( unit, sw, options );
+			}
+        
+			AssetDatabase.Refresh();
 		}
 
 		#endregion
