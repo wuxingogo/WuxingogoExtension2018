@@ -82,6 +82,7 @@
     <Compile Include="Tools\XReflectionUtils.cs" />
     <Compile Include="Tools\XRegexTools.cs" />
     <Compile Include="Scripts\TestBinary.cs" />
+    <Compile Include="Attribute\EnumFlagAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

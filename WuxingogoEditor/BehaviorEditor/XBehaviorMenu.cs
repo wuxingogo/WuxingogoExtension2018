@@ -19,9 +19,8 @@
 // ------------------------------------------------------------------------------
 using UnityEditor;
 using UnityEngine;
-
-using wuxingogo.Runtime;
 using XBehaviorRunntime;
+using wuxingogo.Runtime;
 
 
 namespace XBehaviorEditor

@@ -23,6 +23,7 @@ public class XEditorSetting : XBaseWindow
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
         
     public static string ProjectPath = Application.dataPath + "/WuxingogoExtension";
+	public static string TemplatesPath = Application.dataPath + "/WuxingogoExtension/Templates";
 	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
 	private bool isShowIcons = false;
 	

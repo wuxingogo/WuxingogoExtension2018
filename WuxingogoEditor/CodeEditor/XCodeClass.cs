@@ -27,6 +27,7 @@ namespace wuxingogo.Code
 		public List<XCodeField> fields = new List<XCodeField>();
 		public List<XCodeMethod> methods = new List<XCodeMethod>();
 		public List<XCodeProperty> properties = new List<XCodeProperty>();
+		public List<XCodeEvent> events = new List<XCodeEvent>();
 		public string name = "";
 
 		public string defaultLanguage = "CSharp";
@@ -120,7 +121,11 @@ namespace wuxingogo.Code
 				declarationClass.Members.Add(member);
 			}
 
-
+			for( int pos = 0; pos < events.Count; pos++ ) {
+				//  TODO loop in events.Count
+				CodeTypeMember member = events[pos].Compile();
+				declarationClass.Members.Add(member);;
+			}
 
 
 

@@ -51,6 +51,7 @@ namespace wuxingogo.Code
 		public System.CodeDom.CodeTypeMember Compile()
 		{
 			CodeMemberField field = new CodeMemberField(type.Target, name);
+			field.Attributes = memberAttribute;
 			for( int pos = 0; pos < comments.Count; pos++ ) {
 				//  TODO loop in comments.Count
 				field.Comments.Add(new CodeCommentStatement(comments[pos]));

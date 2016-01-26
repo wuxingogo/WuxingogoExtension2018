@@ -28,9 +28,9 @@ namespace wuxingogo.Runtime {
 //			Type XMethod = GetTypeFromAllAssemblies("XMethodWindow");
 //			object window = XMethod.GetMethod("Init").Invoke(null, null);
 			
-			object window = ScriptableObject.CreateInstance(XReflectionUtils.TryGetClass( "XMethodWindow"));
-			window.TryInvokeMethod("Init");
-			window.TrySetProperty("Target", this);
+			Type windowType = XReflectionUtils.TryGetClass( "XMethodWindow" );
+			object window = windowType.TryInvokeGlobalMethod("Init");
+			windowType.GetType().TrySetProperty(window, "Target", this);
 //			window.GetType().GetProperty("Target").SetValue(window, this, null);
 
 

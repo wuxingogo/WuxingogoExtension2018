@@ -21,8 +21,8 @@ public class CreateXMonoBehaviour : CreateUnityScript {
 		string fileName = suffix.Substring(0, suffixIndex);
         path = FileUtil.GetProjectRelativePath(path); 
         
-		string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/NewXMonoBehaviour.asset";
-        
+		string assetPath = XEditorSetting.TemplatesPath + "/" + "NewXMonoBehaviour.asset";
+		assetPath = FileUtil.GetProjectRelativePath( assetPath );
 		XCodeObject co = AssetDatabase.LoadAssetAtPath<XCodeObject>(assetPath);
 		co.className = fileName;
 		co.Compile(dictionary + "/" + suffix);

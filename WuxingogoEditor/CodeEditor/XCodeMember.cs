@@ -31,6 +31,7 @@ namespace wuxingogo.Code
 		public List<XCodeCustomAttribute> attributes = new List<XCodeCustomAttribute>();
 
 		public XCodeType type = XCodeTypeTemplate.GetInstance().GetTemplate(typeof(void));
+		public MemberAttributes memberAttribute = MemberAttributes.Public;
 
 		public XCodeMember()
 		{
@@ -41,7 +42,14 @@ namespace wuxingogo.Code
 			window.DoButton("Type", ()=> {
 				XCodeTypeTemplate.SelectType(x => type = x);
 			});
+
+			memberAttribute = (MemberAttributes)window.CreateEnumSelectable( memberAttribute );
+		
 		}
+//		public virtual void DrawMemberAttribute(XBaseWindow window)
+//		{
+//			memberAttribute = window.CreateEnumSelectable( memberAttribute ) as MemberAttributes;
+//		}
 
 		public virtual void DrawComments(XBaseWindow window)
 		{
@@ -55,7 +63,7 @@ namespace wuxingogo.Code
 			}
 		}
 
-		public virtual void DrawAttribute(XBaseWindow window)
+		public virtual void DrawCustomeAttribute(XBaseWindow window)
 		{
 			window.CreateLabel( "CustomAttributes" );
 			for( int pos = 0; pos < attributes.Count; pos++ ) {

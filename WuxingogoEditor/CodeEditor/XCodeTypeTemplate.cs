@@ -26,12 +26,14 @@ namespace wuxingogo.Code
 		{
 //			if(null == instance)
 //			{
-			string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/XCodeTypeTemplate.asset";
+			string assetPath = XEditorSetting.TemplatesPath + "/" + "XCodeTypeTemplate.asset";
+			assetPath = FileUtil.GetProjectRelativePath( assetPath );
 			instance = AssetDatabase.LoadAssetAtPath<XCodeTypeTemplate>( assetPath );
 //			}
 		}
 
 		[SerializeField] internal List<XCodeType> templates = new List<XCodeType>();
+		[SerializeField] internal List<string> snippets = new List<string>();
 
 		public void AddTemplate(Type type)
 		{
@@ -47,6 +49,15 @@ namespace wuxingogo.Code
 				}
 			}
 			return null;
+		}
+
+		public string GetSnippets(int index)
+		{
+			if(snippets.Count > index)
+			{
+				return snippets[index];
+			}
+			return "";
 		}
 
 		public static void SelectType(Action<XCodeType> callback)
@@ -90,12 +101,19 @@ namespace wuxingogo.Code
 		{
 			if( null == Target )
 				DoButton( "AddStructType", AddStuctType );
+			
 			else if( null != currentAction ) {
 				var templates = Target.templates;
 				for( int pos = 0; pos < templates.Count; pos++ ) {
 					//  TODO loop in Target.
 					DoButton<XCodeType>( templates[pos].ToString(), DoSelectType, templates[pos] );
 				}
+			}
+
+			DoButton( "AddSnippet", ()=> Target.snippets.Add( "" ) );
+			for( int pos = 0; pos < Target.snippets.Count; pos++ ) {
+				//  TODO loop in Target.snippets.Count
+				Target.snippets[pos] = CreateStringField( Target.snippets[pos] );
 			}
 		}
 

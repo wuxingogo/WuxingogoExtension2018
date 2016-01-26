@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/RuntimeEditor/UnityDictionaryDrawer.cs">
     <Files>
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeType.cs" Line="20" Column="28" />
+      <File FileName="WuxingogoEditor/RuntimeEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

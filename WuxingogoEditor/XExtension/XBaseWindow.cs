@@ -72,13 +72,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         GUILayout.Box("", GUILayout.Width(this.position.width - Xoffset), GUILayout.Height(3));
     }
 
-    public bool CreateSpaceButton(string btnName, float width = XButtonWidth, float height = XButtonHeight)
+    public bool CreateSpaceButton(string btnName, float width = XButtonWidth)
     {
-        return GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(height));
+        return GUILayout.Button(btnName, GUILayout.ExpandWidth(true));
     }
     public void DoButton(string btnName, Action callback)
     {
-        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true)))
         {
             callback();
         }
@@ -92,7 +92,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 	}
     public void DoButton<T>(string btnName, Action<T> callback, T arg)
     {
-        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true)))
         {
             callback(arg);
         }
@@ -100,7 +100,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public void DoButton<T, T1>(string btnName, Action<T, T1> callback, T arg, T1 arg1)
     {
-        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true), GUILayout.Height(XButtonHeight)))
+        if (GUILayout.Button(btnName, GUILayout.ExpandWidth(true)))
         {
             callback(arg, arg1);
         }

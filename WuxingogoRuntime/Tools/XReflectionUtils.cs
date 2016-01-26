@@ -13,7 +13,7 @@ namespace wuxingogo.Reflection
 	public static class XReflectionUtils
 	{
 
-		private const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.Public;
+		private const BindingFlags INSTANCE_FLAGS = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
 		private const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
 		private const BindingFlags NOVIRTUAL_FLAGS = BindingFlags.DeclaredOnly;
 
@@ -24,7 +24,7 @@ namespace wuxingogo.Reflection
 
 			for( int pos = 0; pos < assemblies.Length; pos++ ) {
 				//  TODO loop in assemblies.Length
-				string currAssem = StringUtils.CutOnCharLeft(assemblies[pos].ManifestModule.Name, ".");
+				string currAssem = StringUtils.CutOnCharLeft( assemblies[pos].ManifestModule.Name, "." );
 				if( isPrecise ) {
 					if( currAssem.Equals( assemblyName ) )
 						return assemblies[pos];
@@ -72,9 +72,9 @@ namespace wuxingogo.Reflection
 		/// <param name="target">Target.</param>
 		/// <param name="methodName">Method name.</param>
 		/// <param name="methodParams">Method parameters.</param>
-		public static object TryInvokeMethod(this object target, string methodName, params object[] methodParams)
+		public static object TryInvokeMethod(this Type type, object target, string methodName, params object[] methodParams)
 		{
-			return target.TryGetMethodInfo( methodName ).Invoke( target, methodParams );
+			return type.TryGetMethodInfo( methodName ).Invoke( target, methodParams );
 		}
 
 		public static object TryInvokeGlobalMethod(this Type target, string methodName, params object[] methodParams)
@@ -88,7 +88,7 @@ namespace wuxingogo.Reflection
 		/// <returns>The get field value.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="fieldName">Field name.</param>
-		public static object TryGetFieldValue(this object target, string fieldName)
+		public static object TryGetFieldValue(this Type target, string fieldName)
 		{
 			return target.TryGetFieldInfo( fieldName ).GetValue( target );
 		}
@@ -99,7 +99,7 @@ namespace wuxingogo.Reflection
 		/// <returns>The get property value.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="propertyName">Property name.</param>
-		public static object TryGetPropertyValue(this object target, string propertyName)
+		public static object TryGetPropertyValue(this Type target, string propertyName)
 		{
 			return target.TryGetPropertyInfo( propertyName ).GetValue( target, null );
 		}
@@ -110,9 +110,9 @@ namespace wuxingogo.Reflection
 		/// <returns>The get field info.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="fieldName">Field name.</param>
-		private static FieldInfo TryGetFieldInfo(this object target, string fieldName)
+		private static FieldInfo TryGetFieldInfo(this Type target, string fieldName)
 		{
-			return target.GetType().GetField( fieldName, INSTANCE_FLAGS );
+			return target.GetField( fieldName, INSTANCE_FLAGS );
 		}
 
 		/// <summary>
@@ -121,7 +121,7 @@ namespace wuxingogo.Reflection
 		/// <returns>The get method info.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="methodName">Method name.</param>
-		private static MethodInfo TryGetMethodInfo(this object target, string methodName)
+		private static MethodInfo TryGetMethodInfo(this Type target, string methodName)
 		{
 			return target.GetType().GetMethod( methodName, INSTANCE_FLAGS );
 		}
@@ -138,28 +138,32 @@ namespace wuxingogo.Reflection
 		/// <returns>The get property info.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="propertyName">Property name.</param>
-		private static PropertyInfo TryGetPropertyInfo(this object target, string propertyName)
+		private static PropertyInfo TryGetPropertyInfo(this Type target, string propertyName)
 		{
-			return target.GetType().GetProperty( propertyName, INSTANCE_FLAGS );
+			return target.GetProperty( propertyName, INSTANCE_FLAGS );
 		}
 
-		private static EventInfo TryGetEventInfo(this object target, string eventName)
+		private static EventInfo TryGetEventInfo(this Type target, string eventName)
 		{
-			return target.GetType().GetEvent( eventName, INSTANCE_FLAGS );
+			return target.GetEvent( eventName, INSTANCE_FLAGS );
 		}
 
-		public static MemberInfo TrySearchMember(this object target, string memberName)
+		public static Type TrySearchMember(this Type target, string memberName)
 		{
-			MemberInfo info = null;
-			info = target.TryGetFieldInfo( memberName );
-			if( null == info )
-				target.TryGetPropertyInfo( memberName );
-			if( null == info )
-				target.TryGetMethodInfo( memberName );
-			if( null == info )
-				target.TryGetEventInfo( memberName );
+			FieldInfo field = target.TryGetFieldInfo( memberName );
+			if(field != null)
+				return field.FieldType;
+			PropertyInfo property = target.TryGetPropertyInfo( memberName );
+			if( null != property )
+				return property.PropertyType;
+			MethodInfo method = target.TryGetMethodInfo( memberName );
+			if( null != method )
+				return method.ReturnType;
+			EventInfo eventInfo = target.TryGetEventInfo( memberName );
+			if( null != eventInfo )
+				return eventInfo.EventHandlerType;
 			Debug.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
-			return info;
+			return null;
 		}
 
 		public static FieldInfo[] FieldMatch(this Type target, string fieldName, bool isStatic, bool isVirtual = true)
@@ -239,7 +243,7 @@ namespace wuxingogo.Reflection
 		/// <param name="target">Target.</param>
 		/// <param name="fieldName">Field name.</param>
 		/// <param name="value">Value.</param>
-		public static void TrySetField(this object target, string fieldName, object value)
+		public static void TrySetField(this Type target, string fieldName, object value)
 		{
 			target.TryGetFieldInfo( fieldName ).TrySetFieldValue( target, value );
 		}
@@ -250,9 +254,9 @@ namespace wuxingogo.Reflection
 		/// <param name="target">Target.</param>
 		/// <param name="propertyName">Property name.</param>
 		/// <param name="value">Value.</param>
-		public static void TrySetProperty(this object target, string propertyName, object value)
+		public static void TrySetProperty(this Type type, object target, string propertyName, object value)
 		{
-			target.TryGetPropertyInfo( propertyName ).TrySetPropertyValue( target, value );
+			type.TryGetPropertyInfo( propertyName ).TrySetPropertyValue( target, value );
 		}
 
 		public static IEnumerable<Type> FindSubClass(Type type)

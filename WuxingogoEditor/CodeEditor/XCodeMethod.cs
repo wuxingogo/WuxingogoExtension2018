@@ -21,6 +21,7 @@ namespace wuxingogo.Code
 	{
 		bool isShowAll = false;
 		public List<XCodeParameter> parameters = new List<XCodeParameter>();
+		public List<ICodeStatement> snippet = new List<ICodeStatement>();
 		public List<CodeStatement> statements = new List<CodeStatement>();
 		public XCodeMethod()
 		{
@@ -49,7 +50,7 @@ namespace wuxingogo.Code
 				
 			if(isShowAll){
 				DrawComments(window);
-				DrawAttribute(window);
+				DrawCustomeAttribute(window);
 				DrawParameters(window);
 			}
 		}
@@ -73,6 +74,14 @@ namespace wuxingogo.Code
 		{
 			CodeMemberMethod method = new CodeMemberMethod();
 			method.Name = name;
+			method.Attributes = memberAttribute;
+
+
+			for( int pos = 0; pos < snippet.Count; pos++ ) {
+				//  TODO loop in snippet.Count
+				method.Statements.Add( snippet[pos].Compile() );
+			}
+				
 			if(statements.Count > 0)
 				method.Statements.AddRange(statements.ToArray());
 

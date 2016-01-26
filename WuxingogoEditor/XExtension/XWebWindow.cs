@@ -35,12 +35,12 @@ public class XWebWindow : XBaseWindow
     void InitWebView(){
 		webView = ScriptableObject.CreateInstance(webViewType);
 		Type type = this.GetType().BaseType;
-		object hostView = this.TryGetFieldValue("m_Parent");
-		webView.TryInvokeMethod("InitWebView", hostView, 20, 150,(int)position.width - 40 ,(int)position.height - 200,false);
-		webView.TryInvokeMethod("set_hideFlags", 13);
+		object hostView = this.GetType().TryGetFieldValue("m_Parent");
+		webView.GetType().TryInvokeMethod(webView, "InitWebView", hostView, 20, 150,(int)position.width - 40 ,(int)position.height - 200,false);
+		webView.GetType().TryInvokeMethod(webView, "set_hideFlags", 13);
 
-		webView.TryInvokeMethod("LoadURL", urlText);
-		webView.TryInvokeMethod("SetDelegateObject", this);
+		webView.GetType().TryInvokeMethod(webView, "LoadURL", urlText);
+		webView.GetType().TryInvokeMethod(webView, "SetDelegateObject", this);
 
 		this.wantsMouseMove = true;
     }
@@ -61,7 +61,7 @@ public class XWebWindow : XBaseWindow
     {
     	BeginHorizontal();
 		if(CreateSpaceButton("DeFocus"))
-			webView.TryInvokeMethod("SetFocus", false);
+			webView.GetType().TryInvokeMethod(webView, "SetFocus", false);
 
 		DoButton<string>("UnityScript", SetUrl, "http://docs.unity3d.com/ScriptReference/index.html");
 		DoButton<string>("Google", SetUrl, "www.gooogle.com");
@@ -93,8 +93,8 @@ public class XWebWindow : XBaseWindow
 	}
 
 	public void SetUrl(string str){
-		webView.TryInvokeMethod("LoadURL", urlText);
-		webView.TryInvokeMethod("SetFocus", true);
+		webView.GetType().TryInvokeMethod(webView, "LoadURL", urlText);
+		webView.GetType().TryInvokeMethod(webView, "SetFocus", true);
 		urlText = str;
 		EditorPrefs.SetString("xwebview_store", urlText);
 	}

@@ -115,7 +115,6 @@
     <Compile Include="CodeEditor\XCodeProperty.cs" />
     <Compile Include="CodeEditor\XParameterEditor.cs" />
     <Compile Include="XExtension\XWebWindow.cs" />
-    <Compile Include="RuntimeEditor\UnityDictionaryDrawer.cs" />
     <Compile Include="ScriptEditor\XMonoBehaviourEditor.cs" />
     <Compile Include="ScriptEditor\XScriptObjectEditor.cs" />
     <Compile Include="XReflection\XFieldWindow.cs" />
@@ -127,21 +126,22 @@
     <Compile Include="CodeEditor\XCodeType.cs" />
     <Compile Include="CodeEditor\XCodeTypeTemplate.cs" />
     <Compile Include="XExtension\QuickSetComponent.cs" />
+    <Compile Include="CodeEditor\ICodeStatement.cs" />
+    <Compile Include="CodeEditor\XCodeSnippet.cs" />
+    <Compile Include="ScriptEditor\XDisableDrawer.cs" />
+    <Compile Include="ScriptEditor\JsonDrawer.cs" />
+    <Compile Include="ScriptEditor\UnityDictionaryDrawer.cs" />
+    <Compile Include="ScriptEditor\XAttributeDrawer.cs" />
+    <Compile Include="ScriptEditor\EnumFlagDrawer.cs" />
+    <Compile Include="CodeEditor\XCodeEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <None Include="CodeEditor\templete\NewXBaseWindow.asset" />
-    <None Include="CodeEditor\templete\NewXMonoBehaviour.asset" />
-    <None Include="CodeEditor\templete\XCodeTypeTemplate.asset" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="CodeEditor\" />
-    <Folder Include="CodeEditor\templete\" />
     <Folder Include="DataParser\" />
     <Folder Include="XReflection\" />
     <Folder Include="BehaviorEditor\" />
-    <Folder Include="RuntimeEditor\" />
     <Folder Include="ScriptEditor\" />
   </ItemGroup>
 </Project>
