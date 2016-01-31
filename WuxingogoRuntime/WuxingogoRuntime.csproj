@@ -83,6 +83,13 @@
     <Compile Include="Tools\XRegexTools.cs" />
     <Compile Include="Scripts\TestBinary.cs" />
     <Compile Include="Attribute\EnumFlagAttribute.cs" />
+    <Compile Include="Attribute\XClassAttribute.cs" />
+    <Compile Include="Attribute\XFieldAttribute.cs" />
+    <Compile Include="Attribute\XMethodAttribute.cs" />
+    <Compile Include="Attribute\XPropertyAttribute.cs" />
+    <Compile Include="Tools\SectorShape.cs" />
+    <Compile Include="Tools\ShowFPS.cs" />
+    <Compile Include="Tools\MathOp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

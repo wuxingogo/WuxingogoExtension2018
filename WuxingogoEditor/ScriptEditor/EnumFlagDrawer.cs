@@ -17,37 +17,30 @@ namespace WuxingogoEditor
 	using UnityEditor;
 	using UnityEngine;
 	using wuxingogo.Runtime;
-	[CustomPropertyDrawer(typeof(EnumFlagAttribute))]
-	public class EnumFlagDrawer : PropertyDrawer {
+
+
+	[CustomPropertyDrawer( typeof( EnumFlagAttribute ) )]
+	public class EnumFlagDrawer : PropertyDrawer
+	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			EnumFlagAttribute flagSettings = (EnumFlagAttribute)attribute;
-			Enum targetEnum = GetBaseProperty<Enum>(property);
-
+			Enum targetEnum = (System.Enum)System.Enum.ToObject( fieldInfo.FieldType, property.intValue );
 			string propName = flagSettings.enumName;
-			if (string.IsNullOrEmpty(propName))
+			if( string.IsNullOrEmpty( propName ) )
 				propName = property.name;
 
-			EditorGUI.BeginProperty(position, label, property);
-			Enum enumNew = EditorGUI.EnumMaskField(position, propName, targetEnum);
-			property.intValue = (int) Convert.ChangeType(enumNew, targetEnum.GetType());
-			EditorGUI.EndProperty();
-		}
+			EditorGUI.BeginProperty( position, label, property );
+			Enum newEnum = EditorGUI.EnumMaskField( position, propName, targetEnum );
 
-		static T GetBaseProperty<T>(SerializedProperty prop)
-		{
-			// Separate the steps it takes to get to this property
-			string[] separatedPaths = prop.propertyPath.Split('.');
-
-			// Go down to the root of this serialized property
-			System.Object reflectionTarget = prop.serializedObject.targetObject as object;
-			// Walk down the path to get the target object
-			foreach (var path in separatedPaths)
-			{
-				FieldInfo fieldInfo = reflectionTarget.GetType().GetField(path);
-				reflectionTarget = fieldInfo.GetValue(reflectionTarget);
+			int old = (int)Convert.ChangeType( targetEnum, targetEnum.GetType() );
+			int newE = (int)Convert.ChangeType( newEnum, targetEnum.GetType() );
+			if(old != newE){
+				property.intValue = newE;
 			}
-			return (T) reflectionTarget;
+
+			EditorGUI.EndProperty();
+
 		}
 	}
 }

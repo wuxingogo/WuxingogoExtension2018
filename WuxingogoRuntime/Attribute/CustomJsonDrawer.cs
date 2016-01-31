@@ -19,23 +19,23 @@ namespace WuxingogoExtension.Runtime.Attribute
 {
 
 
-	#if UNITY_EDITOR
-
-	[CustomPropertyDrawer( typeof( CardModel ) )]
-	public class XingyuJsonDrawer : PropertyDrawer
-	{
-		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-		{
-			if( !EditorApplication.isPlaying ) {
-				EditorGUI.PropertyField( position, property, label );
-			} else {
-				EditorGUI.BeginDisabledGroup( true );
-				EditorGUI.PropertyField( position, property, label );
-				EditorGUI.EndDisabledGroup();
-			}
-		}
-	}
-
-	#endif
+//	#if UNITY_EDITOR
+//
+//	[CustomPropertyDrawer( typeof( CardModel ) )]
+//	public class XingyuJsonDrawer : PropertyDrawer
+//	{
+//		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+//		{
+//			if( !EditorApplication.isPlaying ) {
+//				EditorGUI.PropertyField( position, property, label );
+//			} else {
+//				EditorGUI.BeginDisabledGroup( true );
+//				EditorGUI.PropertyField( position, property, label );
+//				EditorGUI.EndDisabledGroup();
+//			}
+//		}
+//	}
+//
+//	#endif
 }
 
