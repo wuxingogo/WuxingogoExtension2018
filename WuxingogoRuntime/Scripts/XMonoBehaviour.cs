@@ -30,7 +30,7 @@ namespace wuxingogo.Runtime {
 			
 			Type windowType = XReflectionUtils.TryGetClass( "XMethodWindow" );
 			object window = windowType.TryInvokeGlobalMethod("Init");
-			windowType.GetType().TrySetProperty(window, "Target", this);
+			windowType.TrySetProperty(window, "Target", this);
 //			window.GetType().GetProperty("Target").SetValue(window, this, null);
 
 

@@ -27,32 +27,10 @@ public class XScriptObjectEditor : XBaseEditor {
                 object[] objects = methodParameters[info.Name];
                 for( int pos = 0; pos < paras.Length; pos++ )
                 {
-                    if( paras[pos].ParameterType == typeof( System.Int32 ) )
-                    {
-                        if( null == objects[pos] )
-                            objects[pos] = 0;
-						objects[pos] = ( int )CreateIntField( paras[pos].Name  + ": Int ", ( int )objects[pos] );
-                    }
-                    else if( paras[pos].ParameterType == typeof( System.String ) )
-                    {
-                        if( null == objects[pos] )
-                            objects[pos] = "";
-						objects[pos] = ( string )CreateStringField( paras[pos].Name + ": String ", ( string )objects[pos] );
-                    }
-                    else if( paras[pos].ParameterType == typeof( System.Single ) )
-                    {
-                        if( null == objects[pos] )
-                            objects[pos] = 0.0f;
-						objects[pos] = ( float )CreateFloatField( paras[pos].Name + ": Float ", ( float )objects[pos] );
-                    }
-                    else if( paras[pos].ParameterType == typeof( UnityEngine.Object ) )
-                    {
-						objects[pos] = ( Object )CreateObjectField( paras[pos].Name + ": Object ", ( Object )objects[pos] );
-                    }
-                   
-					else {
-						objects[pos] = GetTypeGUI(objects[pos], paras[pos].ParameterType);
-					}
+					BeginHorizontal();
+					CreateLabel(paras[pos].ParameterType.Name);
+					objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType );
+					EndHorizontal();
                 }   
 				if(CreateSpaceButton(info.Name +"  "+ (att as XAttribute).title)){
                     info.Invoke( target, objects );
@@ -63,52 +41,36 @@ public class XScriptObjectEditor : XBaseEditor {
 
 
 
-		foreach( var info in target.GetType().GetFields() ){
-			foreach(var att in info.GetCustomAttributes(typeof(XAttribute),true)){
-                CreateSpaceBox();
-                CreateLabel( "XField : " + info.Name + " || " + info.GetValue(target).ToString() );
+		foreach( var info in target.GetType().GetFields() ) {
+			foreach( var att in info.GetCustomAttributes(typeof(XAttribute),true) ) {
+				CreateSpaceBox();
+				CreateLabel( "XField : " + info.Name + " || " + info.GetValue( target ).ToString() );
 
-				if(typeof(IDictionary).IsAssignableFrom(info.FieldType)){
-
-					IDictionary dictionary = ( IDictionary )info.GetValue(target);
-
+				if( typeof( IDictionary ).IsAssignableFrom( info.FieldType ) ) {
+					SortedDictionary<int,int> sd;
+					IDictionary dictionary = (IDictionary)info.GetValue( target );
 					IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
 					IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
+					ICollection collection = dictionary.Values;
+					while ( iteratorKey.MoveNext() && iteratorValue.MoveNext() ) {
 
-					while(iteratorKey.MoveNext() && iteratorValue.MoveNext()){
-						BeginHorizontal();
-						if(iteratorKey.Current.GetType().IsSubclassOf(typeof(Object))){
-							CreateObjectField((Object)iteratorKey.Current);
-						}else{
-							CreateLabel(iteratorKey.Current.ToString());
-						}
-						if(iteratorValue.Current.GetType().IsSubclassOf(typeof(Object))){
-							CreateObjectField((Object)iteratorValue.Current);
-						}else{
-//							BeginHorizontal();
-							CreateLabel(iteratorValue.Current.ToString());
-
-//							EndHorizontal();
-						}
-						EndHorizontal();
+						var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
+						if( oldValue != dictionary[iteratorKey.Current] )
+							dictionary[iteratorKey.Current] = oldValue;
 					}
+
 				}
 
-				if(typeof(ICollection).IsAssignableFrom(info.FieldType)){
+				if( typeof( IList ).IsAssignableFrom( info.FieldType ) ) {
 
-					ICollection collection = ( ICollection )info.GetValue(target);
+					IList collection = (IList)info.GetValue( target );
 
 					IEnumerator iteratorValue = collection.GetEnumerator();
-
-					while( iteratorValue.MoveNext()){
-						if(iteratorValue.Current.GetType().IsSubclassOf(typeof(Object))){
-							CreateObjectField((Object)iteratorValue.Current);
-						}else{
-							BeginHorizontal();
-							CreateLabel(iteratorValue.Current.ToString());
-							DoButton<object>("Reflection", OpenInMethod, iteratorValue.Current);
-							EndHorizontal();
-						}
+					int index = 0;
+					while ( iteratorValue.MoveNext() ) {
+						if(collection[index] != null)
+							collection[index] = GetTypeGUI( collection[index], collection[index].GetType() );
+						index++;
 					}
 				}
 			}
@@ -123,19 +85,19 @@ public class XScriptObjectEditor : XBaseEditor {
 
 				BeginHorizontal();
 
-				string title = result == null ? "NULL" : result.ToString();
+				CreateLabel( "XProperty : " + info.Name + " || ");
 
-				CreateLabel( "XProperty : " + info.Name + " || " +  title);
+				EditorGUI.BeginDisabledGroup( !info.CanWrite );
+				var newValue = GetTypeGUI( result, info.PropertyType );
+				EditorGUI.EndDisabledGroup();
 
-				if(typeof(Object).IsAssignableFrom(info.PropertyType)){
-					result = CreateObjectField((Object)result);
-					if(GUI.changed)
-						info.SetValue(target, result, null);
-				}
+				if( null != newValue && !newValue.Equals(result)  )
+					info.SetValue( target, newValue, null);
 
 				EndHorizontal();
 			}
 		}
+	
 	}
 
 	private void OpenInMethod(object target){
@@ -145,11 +107,6 @@ public class XScriptObjectEditor : XBaseEditor {
 
 	object GetTypeGUI(object t, Type type)
 	{
-		string strType = type.ToString();
-		
-		BeginHorizontal();
-		CreateLabel( strType );
-		
 		if( type == typeof( Int32 ) ) {
 			t = CreateIntField( Convert.ToInt32( t ) );
 		} else if( type == typeof( String ) ) {
@@ -163,9 +120,8 @@ public class XScriptObjectEditor : XBaseEditor {
 		} else if( type.IsSubclassOf( typeof( Object ) ) ) {
 			t = CreateObjectField( (Object)t, type );
 		} else {
-			CreateLabel( " are not support" );
+			CreateLabel(type.Name + " is not support" );
 		}
-		EndHorizontal();
 		return t;
 			
 	}

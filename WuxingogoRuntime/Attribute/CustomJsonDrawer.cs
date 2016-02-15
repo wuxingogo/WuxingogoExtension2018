@@ -15,7 +15,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace WuxingogoExtension.Runtime.Attribute
+namespace wuxingogo.Runtime
 {
 
 

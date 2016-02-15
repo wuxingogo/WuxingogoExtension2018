@@ -133,7 +133,7 @@ public class XMethodWindow : XBaseWindow
 			t = Enum.ToObject( type, 0 );
 		} else if( type.IsSubclassOf( typeof( Object ) ) ) {
 			t = CreateObjectField( (Object)t, type );
-		} else {
+		}  else {
 			CreateLabel( " are not support" );
 		}
 		EndHorizontal();

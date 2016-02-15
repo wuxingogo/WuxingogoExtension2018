@@ -7,7 +7,5 @@ namespace wuxingogo.Runtime
 
 	public class XScriptableObject : ScriptableObject
 	{
-
-	
 	}
 }

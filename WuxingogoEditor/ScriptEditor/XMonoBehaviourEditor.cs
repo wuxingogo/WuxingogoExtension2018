@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using wuxingogo.Runtime;
-
+using System;
+using Object = UnityEngine.Object;
 
 [CustomEditor( typeof( XMonoBehaviour ), true )]
 public class XMonoBehaviourEditor : XBaseEditor
@@ -22,23 +23,13 @@ public class XMonoBehaviourEditor : XBaseEditor
 					methodParameters.Add( info.Name, o );
 				}
 				object[] objects = methodParameters[info.Name];
-				for( int pos = 0; pos < paras.Length; pos++ ) {
-					if( paras[pos].ParameterType == typeof( System.Int32 ) ) {
-						if( null == objects[pos] )
-							objects[pos] = 0;
-						objects[pos] = (int)CreateIntField( paras[pos].Name + ": Int ", (int)objects[pos] );
-					} else if( paras[pos].ParameterType == typeof( System.String ) ) {
-						if( null == objects[pos] )
-							objects[pos] = "";
-						objects[pos] = (string)CreateStringField( paras[pos].Name + ": String ", (string)objects[pos] );
-					} else if( paras[pos].ParameterType == typeof( System.Single ) ) {
-						if( null == objects[pos] )
-							objects[pos] = 0.0f;
-						objects[pos] = (float)CreateFloatField( paras[pos].Name + ": Float ", (float)objects[pos] );
-					} else if( paras[pos].ParameterType == typeof( UnityEngine.Object ) ) {
-						objects[pos] = (Object)CreateObjectField( paras[pos].Name + ": Object ", (Object)objects[pos] );
-					}
-				}   
+				for( int pos = 0; pos < paras.Length; pos++ )
+                {
+					BeginHorizontal();
+					CreateLabel(paras[pos].ParameterType.Name);
+					objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType );
+					EndHorizontal();
+                }   
 				if( CreateSpaceButton( info.Name + "  " + ( att as XAttribute ).title ) ) {
 					info.Invoke( target, objects );
 				}
@@ -54,48 +45,30 @@ public class XMonoBehaviourEditor : XBaseEditor
 				CreateLabel( "XField : " + info.Name + " || " + info.GetValue( target ).ToString() );
 
 				if( typeof( IDictionary ).IsAssignableFrom( info.FieldType ) ) {
-
+					SortedDictionary<int,int> sd;
 					IDictionary dictionary = (IDictionary)info.GetValue( target );
-
 					IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
 					IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
-
+					ICollection collection = dictionary.Values;
 					while ( iteratorKey.MoveNext() && iteratorValue.MoveNext() ) {
-						BeginHorizontal();
-						if( iteratorKey.Current.GetType().IsSubclassOf( typeof( Object ) ) ) {
-							CreateObjectField( (Object)iteratorKey.Current );
-						} else {
-							CreateLabel( iteratorKey.Current.ToString() );
-						}
-						if( iteratorValue.Current.GetType().IsSubclassOf( typeof( Object ) ) ) {
-							CreateObjectField( (Object)iteratorValue.Current );
-						} else {
-//							BeginHorizontal();
-							CreateLabel( iteratorValue.Current.ToString() );
 
-//							EndHorizontal();
-						}
-						EndHorizontal();
+						var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
+						if( oldValue != dictionary[iteratorKey.Current] )
+							dictionary[iteratorKey.Current] = oldValue;
 					}
+
 				}
 
-				if( typeof( ICollection ).IsAssignableFrom( info.FieldType ) ) {
+				if( typeof( IList ).IsAssignableFrom( info.FieldType ) ) {
 
-					ICollection collection = (ICollection)info.GetValue( target );
+					IList collection = (IList)info.GetValue( target );
 
 					IEnumerator iteratorValue = collection.GetEnumerator();
-
+					int index = 0;
 					while ( iteratorValue.MoveNext() ) {
-						if( iteratorValue.Current != null ) {
-							if( iteratorValue.Current.GetType().IsSubclassOf( typeof( Object ) ) ) {
-								CreateObjectField( (Object)iteratorValue.Current );
-							} else {
-								BeginHorizontal();
-								CreateLabel( iteratorValue.Current.ToString() );
-								DoButton<object>( "Reflection", OpenInMethod, iteratorValue.Current );
-								EndHorizontal();
-							}
-						}
+						if(collection[index] != null)
+							collection[index] = GetTypeGUI( collection[index], collection[index].GetType() );
+						index++;
 					}
 				}
 			}
@@ -110,21 +83,39 @@ public class XMonoBehaviourEditor : XBaseEditor
 
 				BeginHorizontal();
 
-				string title = result == null ? "NULL" : result.ToString();
+				CreateLabel( "XProperty : " + info.Name + " || ");
+		
+				EditorGUI.BeginDisabledGroup( !info.CanWrite );
+				var newValue = GetTypeGUI( result, info.PropertyType );
+				EditorGUI.EndDisabledGroup();
 
-				CreateLabel( "XProperty : " + info.Name + " || " +  title);
-
-				if(typeof(Object).IsAssignableFrom(info.PropertyType)){
-					result = CreateObjectField((Object)result);
-					if(GUI.changed)
-						info.SetValue(target, result, null);
-				}
-
+				if( null != newValue && !newValue.Equals(result)  )
+					info.SetValue( target, newValue, null);
 				EndHorizontal();
 			}
 		}
 	}
 
+	object GetTypeGUI(object t, Type type)
+	{
+		if( type == typeof( Int32 ) ) {
+			t = CreateIntField( Convert.ToInt32( t ) );
+		} else if( type == typeof( String ) ) {
+			t = CreateStringField( (string)t );
+		} else if( type == typeof( Single ) ) {
+			t = CreateFloatField( Convert.ToSingle( t ) );
+		} else if( type == typeof( Boolean ) ) {
+			t = CreateCheckBox( Convert.ToBoolean( t ) );
+		} else if( type.BaseType == typeof( Enum ) ) {
+			t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject( type, 0 ));
+		} else if( type.IsSubclassOf( typeof( Object ) ) ) {
+			t = CreateObjectField( (Object)t, type );
+		} else {
+			CreateLabel(type.Name + " is not support" );
+		}
+		return t;
+			
+	}
 
 
 	private void OpenInMethod(object target){

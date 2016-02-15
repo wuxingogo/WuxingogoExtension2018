@@ -46,8 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Scripts\ArrayExtension.cs" />
-    <Compile Include="Scripts\TextModel.cs" />
     <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
     <Compile Include="Scripts\XReflectionManager.cs" />
@@ -60,7 +58,6 @@
     <Compile Include="Attribute\DisableAttribute.cs" />
     <Compile Include="Attribute\XAttribute.cs" />
     <Compile Include="Attribute\XSerializeAttribute.cs" />
-    <Compile Include="Scripts\TestLinq.cs" />
     <Compile Include="Scripts\XScriptableObject.cs" />
     <Compile Include="Tools\JsonExtension.cs" />
     <Compile Include="Tools\SerializeUtils.cs" />
@@ -81,7 +78,6 @@
     <Compile Include="Tools\StringUtils.cs" />
     <Compile Include="Tools\XReflectionUtils.cs" />
     <Compile Include="Tools\XRegexTools.cs" />
-    <Compile Include="Scripts\TestBinary.cs" />
     <Compile Include="Attribute\EnumFlagAttribute.cs" />
     <Compile Include="Attribute\XClassAttribute.cs" />
     <Compile Include="Attribute\XFieldAttribute.cs" />
