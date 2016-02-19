@@ -27,7 +27,7 @@
     <Optimize>True</Optimize>
     <OutputPath>..\OutPutDll</OutputPath>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
@@ -46,9 +46,6 @@
     </Reference>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>..\..\..\..\Desktop\UnityDLL\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="WuxingogoRuntime">
-      <HintPath>..\OutPutDll\WuxingogoRuntime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,5 +140,11 @@
     <Folder Include="XReflection\" />
     <Folder Include="BehaviorEditor\" />
     <Folder Include="ScriptEditor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">
+      <Project>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</Project>
+      <Name>WuxingogoRuntime</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

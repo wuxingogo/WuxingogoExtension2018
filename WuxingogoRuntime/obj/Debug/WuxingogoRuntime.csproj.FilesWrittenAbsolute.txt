@@ -1,4 +1,0 @@
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoRuntime.dll.mdb
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoRuntime.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb

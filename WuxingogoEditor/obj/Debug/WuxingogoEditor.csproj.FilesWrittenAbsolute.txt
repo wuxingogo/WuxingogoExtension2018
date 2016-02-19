@@ -1,4 +1,0 @@
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoEditor.dll.mdb
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/OutPutDll/WuxingogoEditor.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
-/Users/ly-user/Documents/GitHub/WuxingogoExtensionSourceTree/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll.mdb

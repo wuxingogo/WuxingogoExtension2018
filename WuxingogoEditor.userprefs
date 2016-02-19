@@ -1,15 +1,17 @@
-﻿<Properties StartupItem="WuxingogoEditor/WuxingogoEditor.csproj" GitUserInfo="UsingMD">
+﻿<Properties GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/CodeEditor/XCodeClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs">
     <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="19" Column="26" />
-      <File FileName="WuxingogoEditor/ScriptEditor/JsonDrawer.cs" Line="19" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/JsonDrawer.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/XAttributeDrawer.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeClass.cs" Line="30" Column="15" />
+      <File FileName="WuxingogoEditor/CodeEditor/XCodeClass.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/CodeEditor/XCodeTypeTemplate.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs" Line="15" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -19,4 +21,8 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
+  <StartupItems>
+    <String>WuxingogoRuntime/WuxingogoRuntime.csproj</String>
+    <String>WuxingogoEditor/WuxingogoEditor.csproj</String>
+  </StartupItems>
 </Properties>
