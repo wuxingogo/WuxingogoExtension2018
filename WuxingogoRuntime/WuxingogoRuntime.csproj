@@ -87,6 +87,8 @@
     <Compile Include="Tools\SectorShape.cs" />
     <Compile Include="Tools\ShowFPS.cs" />
     <Compile Include="Tools\MathOp.cs" />
+    <Compile Include="Attribute\DisableExpresionAttribute.cs" />
+    <Compile Include="Attribute\XObjectAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

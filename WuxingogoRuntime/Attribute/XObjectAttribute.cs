@@ -1,5 +1,5 @@
-﻿//
-//  XMethodAttribute.cs
+//
+//  XObjectAttribute.cs
 //
 //  Author:
 //       ${wuxingogo} <52111314ly@gmail.com>
@@ -9,11 +9,14 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using UnityEngine;
+
+
 namespace wuxingogo.Runtime
 {
-	public class XMethodAttribute : XObjectAttribute
-	{
 
+	public class XObjectAttribute : Attribute
+	{
+		
 	}
 }
+

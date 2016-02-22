@@ -24,12 +24,9 @@ namespace wuxingogo.Code
 	{
 		static XCodeTypeTemplate()
 		{
-//			if(null == instance)
-//			{
 			string assetPath = XEditorSetting.TemplatesPath + "/" + "XCodeTypeTemplate.asset";
 			assetPath = FileUtil.GetProjectRelativePath( assetPath );
 			instance = AssetDatabase.LoadAssetAtPath<XCodeTypeTemplate>( assetPath );
-//			}
 		}
 
 		[SerializeField] internal List<XCodeType> templates = new List<XCodeType>();
@@ -70,11 +67,6 @@ namespace wuxingogo.Code
 
 		public static XCodeTypeTemplate GetInstance()
 		{
-//			if(null == instance)
-//			{
-//				string assetPath = XEditorSetting.relativePath + "/Editor/CodeEditor/templete/XCodeTypeTemplate.asset";
-//				instance = AssetDatabase.LoadAssetAtPath<XCodeTypeTemplate>(assetPath);
-//			}
 			return instance;
 		}
 

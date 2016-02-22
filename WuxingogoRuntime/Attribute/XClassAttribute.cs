@@ -5,7 +5,7 @@ using System.Collections;
 namespace wuxingogo.Runtime
 {
 
-	public class XClassAttribute : MonoBehaviour
+	public class XClassAttribute : XObjectAttribute
 	{
 
 	}

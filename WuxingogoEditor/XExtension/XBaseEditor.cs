@@ -31,7 +31,9 @@ public class XBaseEditor : Editor {
 //						GUILayout.MaxWidth((float)(Screen.width - 52))
 //					});
 		base.OnInspectorGUI();
+
 		OnXGUI();
+
 	}
 
 	public virtual void OnXGUI(){
@@ -126,6 +128,10 @@ public class XBaseEditor : Editor {
 	}
 	public int CreateIntField(int value){
 		return EditorGUILayout.IntField(value);
+	}
+	public long CreateLongField(long value)
+	{
+		return EditorGUILayout.LongField(value);
 	}
 	
 	public string CreateStringField(string fieldName, string value){

@@ -7,14 +7,30 @@ using wuxingogo.Runtime;
 using System;
 using Object = UnityEngine.Object;
 
+
 [CustomEditor( typeof( XMonoBehaviour ), true )]
 public class XMonoBehaviourEditor : XBaseEditor
 {
-    private Dictionary<string, object[]> methodParameters = new Dictionary<string, object[]>();
-    public override void OnXGUI()
+	private Dictionary<string, object[]> methodParameters = new Dictionary<string, object[]>();
+
+	public override void OnXGUI()
 	{
+		
+		GetTargetMethod<XAttribute>( target );
+		GetTargetField<XAttribute>( target );
+		GetTargetProperty<XAttribute>( target );
+
+
+	}
+
+	void GetTargetMethod<T>(object target)
+	{
+		if( target == null )
+			return;
 		foreach( var info in target.GetType().GetMethods() ) {
-			foreach( var att in info.GetCustomAttributes(typeof(XAttribute),true) ) {
+			foreach( var att in info.GetCustomAttributes(typeof(T),true) ) {
+				BeginVertical();
+
 				CreateSpaceBox();
 				CreateLabel( "XMethod : " + info.Name );
 				ParameterInfo[] paras = info.GetParameters();
@@ -23,24 +39,30 @@ public class XMonoBehaviourEditor : XBaseEditor
 					methodParameters.Add( info.Name, o );
 				}
 				object[] objects = methodParameters[info.Name];
-				for( int pos = 0; pos < paras.Length; pos++ )
-                {
+				for( int pos = 0; pos < paras.Length; pos++ ) {
 					BeginHorizontal();
-					CreateLabel(paras[pos].ParameterType.Name);
+					CreateLabel( paras[pos].ParameterType.Name );
 					objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType );
 					EndHorizontal();
-                }   
-				if( CreateSpaceButton( info.Name + "  " + ( att as XAttribute ).title ) ) {
+				}   
+				if( CreateSpaceButton( info.Name ) ){
 					info.Invoke( target, objects );
 				}
 				CreateSpaceBox();
+
+				EndVertical();
 			}
 		}
+	}
 
-
-
+	void GetTargetField<T>(object target)
+	{
+		if( target == null )
+			return;
 		foreach( var info in target.GetType().GetFields() ) {
-			foreach( var att in info.GetCustomAttributes(typeof(XAttribute),true) ) {
+			foreach( var att in info.GetCustomAttributes(typeof(T), true) ) {
+				BeginVertical();
+
 				CreateSpaceBox();
 				CreateLabel( "XField : " + info.Name + " || " + info.GetValue( target ).ToString() );
 
@@ -51,8 +73,10 @@ public class XMonoBehaviourEditor : XBaseEditor
 					IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
 					ICollection collection = dictionary.Values;
 					while ( iteratorKey.MoveNext() && iteratorValue.MoveNext() ) {
-
+						BeginHorizontal();
+						GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType() );
 						var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
+						EndHorizontal();
 						if( oldValue != dictionary[iteratorKey.Current] )
 							dictionary[iteratorKey.Current] = oldValue;
 					}
@@ -66,40 +90,55 @@ public class XMonoBehaviourEditor : XBaseEditor
 					IEnumerator iteratorValue = collection.GetEnumerator();
 					int index = 0;
 					while ( iteratorValue.MoveNext() ) {
-						if(collection[index] != null)
+						if( collection[index] != null )
 							collection[index] = GetTypeGUI( collection[index], collection[index].GetType() );
 						index++;
 					}
 				}
+				EndVertical();
 			}
 		}
 
+	}
 
-		foreach( var info in target.GetType().GetProperties() ){
-			foreach(var att in info.GetCustomAttributes(typeof(XAttribute),true)){
-                CreateSpaceBox();
+	void GetTargetProperty<T>(object target)
+	{
+		if( target == null )
+			return;
+		foreach( var info in target.GetType().GetProperties() ) {
+			foreach( var att in info.GetCustomAttributes(typeof(T),true) ) {
+				BeginVertical();
 
-				object result = info.GetValue(target, null);
+				CreateSpaceBox();
 
-				BeginHorizontal();
+				object result = info.GetValue( target, null );
 
-				CreateLabel( "XProperty : " + info.Name + " || ");
+				CreateLabel( "XProperty : " + info.Name + " || " );
 		
 				EditorGUI.BeginDisabledGroup( !info.CanWrite );
 				var newValue = GetTypeGUI( result, info.PropertyType );
 				EditorGUI.EndDisabledGroup();
 
-				if( null != newValue && !newValue.Equals(result)  )
-					info.SetValue( target, newValue, null);
-				EndHorizontal();
+				if( null != newValue && !newValue.Equals( result ) )
+					info.SetValue( target, newValue, null );
+				
+
+				EndVertical();
 			}
 		}
 	}
 
 	object GetTypeGUI(object t, Type type)
 	{
-		if( type == typeof( Int32 ) ) {
+		if( t is int || t is System.Int32 || type == typeof( int ) ) {
 			t = CreateIntField( Convert.ToInt32( t ) );
+		} else if( t is System.Int16 ) {
+			t = (short)CreateIntField( Convert.ToInt16( t ) );
+		} else if( t is System.Int64 ) {
+			t = CreateLongField( Convert.ToInt64( t ) );
+		} else if( t is byte ) {
+			int value = Convert.ToInt32( t );
+			t = Convert.ToByte( CreateIntField( value ) );
 		} else if( type == typeof( String ) ) {
 			t = CreateStringField( (string)t );
 		} else if( type == typeof( Single ) ) {
@@ -107,18 +146,40 @@ public class XMonoBehaviourEditor : XBaseEditor
 		} else if( type == typeof( Boolean ) ) {
 			t = CreateCheckBox( Convert.ToBoolean( t ) );
 		} else if( type.BaseType == typeof( Enum ) ) {
-			t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject( type, 0 ));
+			t = CreateEnumSelectable( "", (Enum)t ?? (Enum)Enum.ToObject( type, 0 ) );
 		} else if( type.IsSubclassOf( typeof( Object ) ) ) {
 			t = CreateObjectField( (Object)t, type );
+		} else if( typeof( IList ).IsAssignableFrom( type ) ) {
+			IList list = t as IList;
+			if( list == null )
+				return t;
+			BeginVertical();
+			for( int pos = 0; pos < list.Count; pos++ ) {
+				//  TODO loop in list.Count
+				var o = list[pos];
+				GetTypeGUI( o, o.GetType() );
+			}
+			EndVertical();
 		} else {
-			CreateLabel(type.Name + " is not support" );
+			
+			CreateLabel( type.Name + " is not support" );
+
+
+			GetTargetMethod<XAttribute>(t);
+			GetTargetField<XAttribute>(t);
+			GetTargetProperty<XAttribute>(t);
+
 		}
+
 		return t;
 			
 	}
 
 
-	private void OpenInMethod(object target){
+
+
+	private void OpenInMethod(object target)
+	{
 		XReflectionWindow method = XBaseWindow.InitWindow<XReflectionWindow>();
 		method.Target = target;
 	}

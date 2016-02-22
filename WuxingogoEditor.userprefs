@@ -1,19 +1,6 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs">
-    <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/JsonDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XAttributeDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeClass.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeTypeTemplate.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs" Line="15" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/ly-user/Documents/work/public/TSPlay/SunSongSunshine/Assets/Scripts/Panels/ScrollList.cs" line="13" column="1" />
