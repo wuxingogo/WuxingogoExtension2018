@@ -147,8 +147,26 @@ public class XMethodWindow : XBaseWindow
 		wuxingogo.Code.CodeGenerateEditor codeEditor = InitWindow<wuxingogo.Code.CodeGenerateEditor>();
 		wuxingogo.Code.XCodeObject codeObject = codeEditor.GenerateNewCode();
 		wuxingogo.Code.XCodeClass classUnit = codeObject.classUnit;
-		classUnit.name = Target.GetType().DeclaringType.Name;
-
+		classUnit.name = Target.GetType().Name;
+		var type = Target.GetType();
+		foreach( var item in type.GetMethods()){
+			classUnit.methods.Add(new wuxingogo.Code.XCodeMethod(){
+				name = item.Name,
+				type = new wuxingogo.Code.XCodeType( item.ReturnType),
+			} );
+		}
+		foreach( var item in type.GetProperties()){
+			classUnit.properties.Add(new wuxingogo.Code.XCodeProperty(){
+				name = item.Name,
+				type = new wuxingogo.Code.XCodeType( item.PropertyType)
+			} );
+		}
+		foreach( var item in type.GetFields()){
+			classUnit.fields.Add(new wuxingogo.Code.XCodeField(){
+				name = item.Name,
+				type = new wuxingogo.Code.XCodeType( item.FieldType)
+			} );
+		}
 
 
 

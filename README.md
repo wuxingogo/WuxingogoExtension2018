@@ -3,24 +3,21 @@
 ## Intro
 ------
 
-WuxingogoExtension is my tools of Unity Editor extension.
+Unity Editor extension.
 
 
 ##Features
 ------
 
-* Unity UGUI export Cocos2D-X native UI.
-* Call Script from Command line(Reflection).
+* Export UGUI(Can Use to Cross-Engine work).
+* Call Function & Command from EditorWindow(Reflection).
 * Create AssetBundle extension.
-* Serlizable extension.
 * Quick set unity prefs.
-* Animation extension(include fbx animation).
-* Batching Replace Shader.
+* Animation extension(import fbx animation).
 * A playmaker extension.
 * The Editor Window of generate C# code(CodeDom).
-* Find reference Texture from UI.
-* The Editor Window of Fsm.
-* The Editor window of set Database.
+* A simpler of fsm.
+* The ThVirtual DataBase.
 
 
 ##Usage
@@ -28,39 +25,41 @@ WuxingogoExtension is my tools of Unity Editor extension.
 
 ####XAssetBundleWindow.
 
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/AssetBundle.png "github") 
+![github](ScreenShot/AssetBundle.png "github") 
 
 ####XBehaviour Window (Finite-State-Machine)
 
-a Simple editor about FSM
+Finite-State-Machine Window.
 
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/BehaviourFSM.png "github") 
+![github](ScreenShot/BehaviourFSM.png "github") 
 
 ####XCodeGenerateEditor:
 
 `Save Template`
 
-Generate `Namesace`,`Field`, `Method`, `Class`, `Comment`, `Attribute`, `Property`
+Generate `Namespace`,`Field`, `Method`, `Class`, `Comment`, `Attribute`, `Property`
 
 TODO LIST: 
 
 Compile Code From XReflectionWindow.
 
-A Visual CodeEditor about `Node` 
+A visual window to generate csharp code.
 
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/CodeGenerate.png "github") 
+![github](ScreenShot/CodeGenerate.png "github") 
 
 ####XReflectionWindow:
 
-![github](https://github.com/wuxingogo/WuxingogoExtension/blob/master/ScreenShot/Reflection.png "github") 
+![github](ScreenShot/Reflection.png "github") 
 
 Etc.
 
 ##Copyright, License & Contributors
 -----
-WuxingogoExtension are release under the MIT license. 
+WuxingogoExtension has been release under the MIT license. 
 
-The authors is Wuxingogo.Email:52111314ly@gmail.com
+The authors is Wuxingogo.
+
+Contcat:52111314ly@gmail.com
 
 To be continue!
 

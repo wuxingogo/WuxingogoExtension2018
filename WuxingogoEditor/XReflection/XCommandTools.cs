@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Reflection;
+using System.Linq;
 
 
 /**
@@ -30,9 +31,8 @@ public class XCommandTools : XBaseWindow
 	bool isMethodIntent = false;
 	bool isFieldIntent = false;
 
-	int count = 0;
-
 	Type type;
+	object currValue = null;
 
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XCommandTools" )]
 	static void init()
@@ -48,32 +48,32 @@ public class XCommandTools : XBaseWindow
 	
 		if( Event.current != null && Event.current.isKey ) {
 			Listen();
-			count = StringUtils.RegexCharCount( command, "." );
-			switch( count ) {
-				case 0:
+			string[] paras = command.Split( '.' );
+			
+
+			switch( paras.Length ) {
+				case 1:
 					isClassIntent = false;
 					isMethodIntent = false;
 					isFieldIntent = false;
-					searchCollection = TryGetClass( command );
+					searchCollection = TryGetClass( paras[0] );
 				break;
-				case 1:
+				case 2:
 					if( !isClassIntent ) {	
-						type = XReflectionUtils.TryGetClass( command.Substring( 0, command.IndexOf( "." ) ) );
+						type = XReflectionUtils.TryGetClass( paras[0] );
 						isClassIntent = true;
 						isMethodIntent = false;
 						isFieldIntent = false;
 					}
-					searchCollection = TryGetMember( command.Substring(command.IndexOf(".") + 1) );
+					searchCollection = TryGetMember( paras[1], true );
 				break;
-				case 2:
+				case 3:
 					if( !isMethodIntent ) {
-						object instance = type.TryInvokeGlobalMethod( StringUtils.CutString(command, command.IndexOf(".") + 1, command.LastIndexOf( "." ) ) );
-						type = instance.GetType();
-						isMethodIntent = true;
+//						object instance = TryInvokeGlobalFunction( paras[1] );
+//						type = instance.GetType();
+//						isMethodIntent = true;
 					}
-
-//					XReflectionUtils.TryGetClass( command.Substring(0, command.IndexOf(".")) );
-					searchCollection = TryGetMember( command.Substring( command.LastIndexOf( "." ) + 1 ) );
+					searchCollection = TryGetMember( paras[2], false );
 				break;
 				default:
 				break;
@@ -89,15 +89,17 @@ public class XCommandTools : XBaseWindow
 
 		for( int pos = 0; pos < searchCollection.Count; pos++ ) {
 			//  TODO loop in searchCollection.Count
-			GUI.SetNextControlName(searchCollection[pos]);
-			DoButton( searchCollection[pos], () =>{ 
+			GUI.SetNextControlName( searchCollection[pos] );
+			DoButton( searchCollection[pos], () => { 
 				command = searchCollection[pos];
-				GUI.FocusControl("");
+				GUI.FocusControl( "" );
 				searchCollection.Clear();
 				return;
-			});
+			} );
 		}
 	}
+
+
 
 	static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 
@@ -115,13 +117,13 @@ public class XCommandTools : XBaseWindow
 				//  TODO loop in types.Length
 				if( types[idx].Name.Contains( className ) || className.Contains( types[idx].Name ) ) {
 					string entry = types[idx].Name;
-					entry.Replace("<", "")
-					.Replace(">", "")
-					.Replace("\t", "")
-					.Replace("\n", "")
-					.Replace("(", "")
-					.Replace(")", "")
-					.Replace("$", "");
+					entry.Replace( "<", "" )
+					.Replace( ">", "" )
+					.Replace( "\t", "" )
+					.Replace( "\n", "" )
+					.Replace( "(", "" )
+					.Replace( ")", "" )
+					.Replace( "$", "" );
 					result.Add( types[idx].Name );
 				}
 
@@ -130,12 +132,31 @@ public class XCommandTools : XBaseWindow
 		return result;
 	}
 
-	public List<string> TryGetMember(string memberName){
-		
+	object TryInvokeGlobalFunction(string memberName, List<string> paraStr)
+	{
+		string[] array = paraStr.ToArray();
+		object[] paras = new object[array.Length];
+		for( int pos = 0; pos < array.Length; pos++ ) {
+			//  TODO loop in array.Length
+			var str = array[pos];
+			if( str.Contains( "\"" ) ) {
+				str = str.Replace( "\"", "" );
+				paras[pos] = str;
+			} else {
+				paras[pos] = float.Parse( str );
+			}
+		}
+		return type.TryInvokeGlobalMethod( memberName, paras );
+	}
+
+	public List<string> TryGetMember(string memberName, bool isStatic)
+	{
+		string[] array = memberName.Split( '(', ')' );
+
 		List<string> result = new List<string>();
 		if( type == null )
 			return result;
-		MemberInfo[] memberCollection = type.MemberMatch( memberName, count == 1 ? true : false );
+		MemberInfo[] memberCollection = type.MemberMatch( array[0], isStatic );
 		for( int pos = 0; pos < memberCollection.Length; pos++ ) {
 			//  TODO loop in memberCollection.Length
 			result.Add( memberCollection[pos].Name );
@@ -143,32 +164,60 @@ public class XCommandTools : XBaseWindow
 		return result;
 	}
 
-	void ModifyCommand()
-	{
-//		command = "~" + command;
-	}
-
 	void EmptyCommand()
 	{
 		
 		command = "";
+		type = null;
+		currValue = null;
 
-	}
-
-	void OnSelectionChange()
-	{
-		//TODO List
-		
 	}
 
 	void ExcuteCommand()
 	{
-		object obj = XReflectionManager.GetValue( command );
-		if( null != obj )
-			Debug.Log( command + " is : " + obj.ToString() );
-		else
-			Debug.Log( "excute : " + command );
+//		object obj = XReflectionManager.GetValue( command );
+//		if( null != obj )
+//			Debug.Log( command + " is : " + obj.ToString() );
+//		else
+//			Debug.Log( "excute : " + command );
+
+//		string[] paras = command.Split( '(', ')' );
+//		List<string> parasList = new List<string>();
+//		if( paras.Length > 1 ) {
+//			parasList = paras.ToList();
+//			parasList.RemoveAt( 0 );
+//			parasList.ForEach( (t) => {
+//				if( t == null || t == "" )
+//					parasList.Remove( t );
+//			} );
+//		}
+//
+//
+//		string[] cmd = paras[0].Split( '.' );
+//		type = XReflectionUtils.TryGetClass( cmd[0] );
+//		Debug.Log( TryInvokeGlobalFunction( cmd[1], parasList ) );
+		MatchPara();
 		
+	}
+
+	void MatchPara()
+	{
+		var functions = command.RegexCutString( "(", ")" );
+		var clear = command.RegexCutStringReverse( "(", ")" );
+
+		string[] commandPara = clear.Split( '.' );
+		if( commandPara.Length > 0 && type == null )
+			type = XReflectionUtils.TryGetClass( commandPara[0] );
+		int funCount = functions.Length;
+		for( int i = 1; i < funCount; i++ ) {
+			//  TODO loop in funCount
+			if( currValue == null ) {
+				currValue = type.TryInvokeGlobalMethod( commandPara[i] );
+			} else {
+				currValue = currValue.GetType().TryInvokeMethod( currValue, commandPara[i] );
+			}
+		}
+		Debug.Log( "currValue is : " + currValue.ToString() );
 	}
 
 	public bool Listen()

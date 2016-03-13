@@ -9,6 +9,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.CodeDom;
 
 
 namespace wuxingogo.Code
@@ -37,7 +38,19 @@ namespace wuxingogo.Code
 
 		public System.CodeDom.CodeTypeMember Compile()
 		{
-			throw new NotImplementedException();
+			CodeMemberProperty property = new CodeMemberProperty();
+			property.Name = name;
+			property.Type = new CodeTypeReference(type.Target);
+			property.Attributes = memberAttribute;
+			for( int pos = 0; pos < comments.Count; pos++ ) {
+				//  TODO loop in comments.Count
+				property.Comments.Add(new CodeCommentStatement(comments[pos]));
+			}
+			for( int pos = 0; pos < attributes.Count; pos++ ) {
+				//  TODO loop in attributes
+				property.CustomAttributes.Add(new CodeAttributeDeclaration(attributes[pos].name));
+			}
+			return property;
 		}
 
 		#endregion

@@ -21,14 +21,17 @@ namespace wuxingogo.Code
 		{
 			this.typeName = typeName;
 		}
-		public XCodeType(Type type) : this(type.AssemblyQualifiedName)
+		public XCodeType(Type type)
 		{
-			
+			this.typeName = type.AssemblyQualifiedName;
+			this.type = type;
 		}
-
+		private Type type;
 		public Type Target {
 			get
 			{
+				if( type != null )
+					return type;
 				return Type.GetType( typeName);
 			}
 		}

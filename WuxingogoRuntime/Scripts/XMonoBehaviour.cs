@@ -25,29 +25,12 @@ namespace wuxingogo.Runtime {
 		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){
-//			Type XMethod = GetTypeFromAllAssemblies("XMethodWindow");
-//			object window = XMethod.GetMethod("Init").Invoke(null, null);
 			
 			Type windowType = XReflectionUtils.TryGetClass( "XMethodWindow" );
-			object window = windowType.TryInvokeGlobalMethod("Init");
-			windowType.TrySetProperty(window, "Target", this);
-//			window.GetType().GetProperty("Target").SetValue(window, this, null);
-
+//			object window = windowType.TryInvokeGlobalMethod("InitWindow");
+//			windowType.TrySetPropertsy(window, "Target", this);
 
 		}
-
-
-//		public static Type GetTypeFromAllAssemblies(string typeName) {
-//			Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-//			foreach(Assembly assembly in assemblies) {
-//				Type[] types = assembly.GetTypes();
-//				foreach(Type type in types) {
-//					if(type.Name.Equals(typeName, ignoreCase) || type.Name.Contains('+' + typeName)) //+ check for inline classes
-//						return type;
-//				}
-//			}
-//			return null;
-//		}
 		#endif
 	}
 

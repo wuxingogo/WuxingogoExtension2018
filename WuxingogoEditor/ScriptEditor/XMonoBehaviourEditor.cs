@@ -6,13 +6,13 @@ using System.Reflection;
 using wuxingogo.Runtime;
 using System;
 using Object = UnityEngine.Object;
-
+using System.Linq;
 
 [CustomEditor( typeof( XMonoBehaviour ), true )]
 public class XMonoBehaviourEditor : XBaseEditor
 {
 	private Dictionary<string, object[]> methodParameters = new Dictionary<string, object[]>();
-
+	BindingFlags bindFlags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
 	public override void OnXGUI()
 	{
 		
@@ -27,7 +27,7 @@ public class XMonoBehaviourEditor : XBaseEditor
 	{
 		if( target == null )
 			return;
-		foreach( var info in target.GetType().GetMethods() ) {
+		foreach( var info in target.GetType().GetMethods(bindFlags) ) {
 			foreach( var att in info.GetCustomAttributes(typeof(T),true) ) {
 				BeginVertical();
 
@@ -59,7 +59,7 @@ public class XMonoBehaviourEditor : XBaseEditor
 	{
 		if( target == null )
 			return;
-		foreach( var info in target.GetType().GetFields() ) {
+		foreach( var info in target.GetType().GetFields(bindFlags) ) {
 			foreach( var att in info.GetCustomAttributes(typeof(T), true) ) {
 				BeginVertical();
 
@@ -72,13 +72,15 @@ public class XMonoBehaviourEditor : XBaseEditor
 					IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
 					IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
 					ICollection collection = dictionary.Values;
+
+
 					while ( iteratorKey.MoveNext() && iteratorValue.MoveNext() ) {
 						BeginHorizontal();
 						GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType() );
 						var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
 						EndHorizontal();
-						if( oldValue != dictionary[iteratorKey.Current] )
-							dictionary[iteratorKey.Current] = oldValue;
+//						if( oldValue != dictionary[iteratorKey.Current] )
+//							dictionary[iteratorKey.Current] = oldValue;
 					}
 
 				}
@@ -105,8 +107,8 @@ public class XMonoBehaviourEditor : XBaseEditor
 	{
 		if( target == null )
 			return;
-		foreach( var info in target.GetType().GetProperties() ) {
-			foreach( var att in info.GetCustomAttributes(typeof(T),true) ) {
+		foreach( var info in target.GetType().GetProperties(bindFlags) ) {
+			foreach( var att in info.GetCustomAttributes(typeof(XAttribute),true) ) {
 				BeginVertical();
 
 				CreateSpaceBox();

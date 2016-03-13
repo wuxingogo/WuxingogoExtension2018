@@ -17,6 +17,7 @@ public class AssetBundleModel {
 			XCreateAssetBundle.Instance.BundlePath + ModelName + ".assetbundle" ,
 			BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets
 			| BuildAssetBundleOptions.DeterministicAssetBundle, BuildTarget.Android);
+		
 		if(Childs.Count > 0){
 			BuildPipeline.PushAssetDependencies();
 			for(int pos = 0; pos < Childs.Count; pos++)

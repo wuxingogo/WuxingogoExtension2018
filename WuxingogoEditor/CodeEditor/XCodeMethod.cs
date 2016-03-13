@@ -99,6 +99,8 @@ namespace wuxingogo.Code
 				method.Parameters.Add(parameters[pos].Compile() as CodeParameterDeclarationExpression);
 			}
 			method.ReturnType = new CodeTypeReference(type.Target);
+			if(type.Target.ContainsGenericParameters && type.Target.IsGenericType)
+				method.TypeParameters.Add(new CodeTypeParameter (type.Target.DeclaringType.ToString()));
 			return method;
 		}
 
