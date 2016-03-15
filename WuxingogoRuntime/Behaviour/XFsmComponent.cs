@@ -20,7 +20,7 @@ namespace wuxingogo.Fsm
 {
 	public class XFsmComponent : wuxingogo.Runtime.XMonoBehaviour, IBehaviourFsm
 	{
-		#if UNITY_EDITOR
+		#if !UNITY_ANDROID && !UNITY_IPHONE
 		public XFsmComponent(){
 			XFsmStateComponent startState = new XFsmStateComponent();
 			startState.name = "Start";

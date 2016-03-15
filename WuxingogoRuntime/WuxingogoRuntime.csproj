@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Scripts\XData.cs" />
     <Compile Include="Scripts\XMonoBehaviour.cs" />
     <Compile Include="Scripts\XReflectionManager.cs" />
     <Compile Include="BehaviorCore\XBehaviorAction.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="Behaviour\XFsmStateComponent.cs" />
     <Compile Include="Behaviour\IFsmComState.cs" />
     <Compile Include="Behaviour\IFsmLifecycle.cs" />
-    <Compile Include="Attribute\CustomJsonDrawer.cs" />
     <Compile Include="Behaviour\StateColor.cs" />
     <Compile Include="Behaviour\XFsmEvent.cs" />
     <Compile Include="Behaviour\XFsmTemplate.cs" />

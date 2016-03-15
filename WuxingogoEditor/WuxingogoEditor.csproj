@@ -60,7 +60,6 @@
     <Compile Include="XExtension\XBaseWindow.cs" />
     <Compile Include="XExtension\XBatchingReplaces.cs" />
     <Compile Include="XExtension\XCreateAssetBundle.cs" />
-    <Compile Include="XExtension\XDataEditor.cs" />
     <Compile Include="XExtension\XEditorModel.cs" />
     <Compile Include="XExtension\XEditorSetting.cs" />
     <Compile Include="XExtension\XFileExtension.cs" />
@@ -86,7 +85,6 @@
     <Compile Include="CreateAssets\CreateUnityScript.cs" />
     <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
     <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
-    <Compile Include="CreateAssets\CreateXData.cs" />
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
     <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
     <Compile Include="XExtension\XAnimatorExtension.cs" />
@@ -151,37 +149,5 @@
       <Project>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</Project>
       <Name>WuxingogoRuntime</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BehaviorWindow\Images\aqua on.png" />
-    <None Include="BehaviorWindow\Images\aqua on_p.png" />
-    <None Include="BehaviorWindow\Images\aqua.png" />
-    <None Include="BehaviorWindow\Images\aqua_p.png" />
-    <None Include="BehaviorWindow\Images\background.png" />
-    <None Include="BehaviorWindow\Images\background_p.png" />
-    <None Include="BehaviorWindow\Images\blue on.png" />
-    <None Include="BehaviorWindow\Images\blue on_p.png" />
-    <None Include="BehaviorWindow\Images\blue.png" />
-    <None Include="BehaviorWindow\Images\blue_p.png" />
-    <None Include="BehaviorWindow\Images\green on.png" />
-    <None Include="BehaviorWindow\Images\green on_p.png" />
-    <None Include="BehaviorWindow\Images\green.png" />
-    <None Include="BehaviorWindow\Images\green_p.png" />
-    <None Include="BehaviorWindow\Images\grey on.png" />
-    <None Include="BehaviorWindow\Images\grey on_p.png" />
-    <None Include="BehaviorWindow\Images\grey.png" />
-    <None Include="BehaviorWindow\Images\grey_p.png" />
-    <None Include="BehaviorWindow\Images\orange on.png" />
-    <None Include="BehaviorWindow\Images\orange on_p.png" />
-    <None Include="BehaviorWindow\Images\orange.png" />
-    <None Include="BehaviorWindow\Images\orange_p.png" />
-    <None Include="BehaviorWindow\Images\red on.png" />
-    <None Include="BehaviorWindow\Images\red on_p.png" />
-    <None Include="BehaviorWindow\Images\red.png" />
-    <None Include="BehaviorWindow\Images\red_p.png" />
-    <None Include="BehaviorWindow\Images\yellow on.png" />
-    <None Include="BehaviorWindow\Images\yellow on_p.png" />
-    <None Include="BehaviorWindow\Images\yellow.png" />
-    <None Include="BehaviorWindow\Images\yellow_p.png" />
   </ItemGroup>
 </Project>

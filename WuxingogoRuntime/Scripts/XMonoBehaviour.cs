@@ -10,28 +10,34 @@
 // ------------------------------------------------------------------------------
 // 2014/3/3 
 // ------------------------------------------------------------------------------
-using UnityEngine;
-using System.Collections;
 
-#if UNITY_EDITOR
+
+#if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_IPHONE)
+#define Wuxingogo_Core
+#endif
+
+#if Wuxingogo_Core
 using System;
 using System.Reflection;
 using wuxingogo.Reflection;
 #endif
+
+using UnityEngine;
+using System.Collections;
+
 namespace wuxingogo.Runtime {
-	
+
 	public class XMonoBehaviour : MonoBehaviour {
-		#if UNITY_EDITOR
-		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
+#if Wuxingogo_Core
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){
-			
+
 			Type windowType = XReflectionUtils.TryGetClass( "XMethodWindow" );
-//			object window = windowType.TryInvokeGlobalMethod("InitWindow");
-//			windowType.TrySetPropertsy(window, "Target", this);
+			object window = windowType.TryInvokeGlobalMethod("Init");
+			windowType.TrySetProperty(window, "Target", this);
 
 		}
-		#endif
+#endif
 	}
 
 }
