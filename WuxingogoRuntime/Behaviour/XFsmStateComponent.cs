@@ -21,9 +21,8 @@ namespace wuxingogo.Fsm
 	
 	public class XFsmStateComponent : XScriptableObject, IFsmState
 	{
-	#if UNITY_EDITOR
 		public Vector2 position;
-	#endif
+
 		public IFsmAction CurrAction {
 			get {
 				return currAction;

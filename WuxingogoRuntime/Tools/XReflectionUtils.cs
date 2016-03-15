@@ -79,7 +79,7 @@ namespace wuxingogo.Reflection
 
 		public static object TryInvokeGlobalMethod(this Type target, string methodName, params object[] methodParams)
 		{
-			return target.TryGetGlobalInfo( methodName ).Invoke( null, methodParams );
+			return target.TryGetGlobalMethodInfo( methodName ).Invoke( null, methodParams );
 		}
 
 		/// <summary>
@@ -88,9 +88,14 @@ namespace wuxingogo.Reflection
 		/// <returns>The get field value.</returns>
 		/// <param name="target">Target.</param>
 		/// <param name="fieldName">Field name.</param>
-		public static object TryGetFieldValue(this Type target, string fieldName)
+		public static object TryGetFieldValue(this object target, string fieldName)
 		{
-			return target.TryGetFieldInfo( fieldName ).GetValue( target );
+			return target.GetType().TryGetFieldInfo( fieldName ).GetValue( target );
+		}
+
+		public static object TryGetGlobalFieldValue(this Type target, string fieldName)
+		{
+			return target.TryGetGlobalFieldInfo( fieldName ).GetValue( null );
 		}
 
 		/// <summary>
@@ -112,7 +117,12 @@ namespace wuxingogo.Reflection
 		/// <param name="fieldName">Field name.</param>
 		private static FieldInfo TryGetFieldInfo(this Type target, string fieldName)
 		{
-			return target.GetField( fieldName, INSTANCE_FLAGS );
+			return target.GetField( fieldName, DetectFlags(false, true) );
+		}
+
+		private static FieldInfo TryGetGlobalFieldInfo(this Type target, string fieldName)
+		{
+			return target.GetField( fieldName, STATIC_FLAGS );
 		}
 
 		/// <summary>
@@ -123,10 +133,10 @@ namespace wuxingogo.Reflection
 		/// <param name="methodName">Method name.</param>
 		private static MethodInfo TryGetMethodInfo(this Type target, string methodName)
 		{
-			return target.GetType().GetMethod( methodName, INSTANCE_FLAGS );
+			return target.GetMethod( methodName, INSTANCE_FLAGS );
 		}
 
-		private static MethodInfo TryGetGlobalInfo(this Type target, string methodName)
+		private static MethodInfo TryGetGlobalMethodInfo(this Type target, string methodName)
 		{
 			return target.GetMethod( methodName, STATIC_FLAGS );
 		}
@@ -142,10 +152,36 @@ namespace wuxingogo.Reflection
 		{
 			return target.GetProperty( propertyName, INSTANCE_FLAGS );
 		}
+		private static PropertyInfo TryGetGlobalPropertyInfo(this Type target, string propertyName)
+		{
+			return target.GetProperty( propertyName, STATIC_FLAGS );
+		}
 
 		private static EventInfo TryGetEventInfo(this Type target, string eventName)
 		{
 			return target.GetEvent( eventName, INSTANCE_FLAGS );
+		}
+		private static EventInfo TryGetGlobalEventInfo(this Type target, string eventName)
+		{
+			return target.GetEvent( eventName, STATIC_FLAGS );
+		}
+
+		public static object TrySearchGlobalMemberValue(this Type target, string memberName)
+		{
+			FieldInfo field = target.TryGetGlobalFieldInfo( memberName );
+			if(field != null)
+				return field.GetValue(null);
+			PropertyInfo property = target.TryGetGlobalPropertyInfo( memberName );
+			if( null != property )
+				return property.GetValue(null, null);
+			MethodInfo method = target.TryGetGlobalMethodInfo( memberName );
+			if( null != method )
+				return method.Invoke( null, null );
+			EventInfo eventInfo = target.TryGetGlobalEventInfo( memberName );
+			if( null != eventInfo )
+				return eventInfo;
+			Debug.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
+			return null;
 		}
 
 		public static Type TrySearchMember(this Type target, string memberName)

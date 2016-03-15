@@ -35,7 +35,7 @@ public class XWebWindow : XBaseWindow
     void InitWebView(){
 		webView = ScriptableObject.CreateInstance(webViewType);
 		Type type = this.GetType().BaseType;
-		object hostView = this.GetType().TryGetFieldValue("m_Parent");
+		object hostView = this.TryGetFieldValue("m_Parent");
 		webView.GetType().TryInvokeMethod(webView, "InitWebView", hostView, 20, 150,(int)position.width - 40 ,(int)position.height - 200,false);
 		webView.GetType().TryInvokeMethod(webView, "set_hideFlags", 13);
 

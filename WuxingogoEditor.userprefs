@@ -1,6 +1,11 @@
 ﻿<Properties GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/BehaviorWindow/XFsmStateWindow.cs">
+    <Files>
+      <File FileName="WuxingogoEditor/BehaviorWindow/XFsmStateWindow.cs" Line="39" Column="5" />
+      <File FileName="WuxingogoRuntime/Behaviour/XFsmStateComponent.cs" Line="23" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/ly-user/Documents/work/public/TSPlay/SunSongSunshine/Assets/Scripts/Panels/ScrollList.cs" line="13" column="1" />

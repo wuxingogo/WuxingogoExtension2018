@@ -76,7 +76,6 @@ namespace wuxingogo.Code
 			method.Name = name;
 			method.Attributes = memberAttribute;
 
-
 			for( int pos = 0; pos < snippet.Count; pos++ ) {
 				//  TODO loop in snippet.Count
 				method.Statements.Add( snippet[pos].Compile() );

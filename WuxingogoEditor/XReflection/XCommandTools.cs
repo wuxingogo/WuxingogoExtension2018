@@ -34,6 +34,9 @@ public class XCommandTools : XBaseWindow
 	Type type;
 	object currValue = null;
 
+	Object draggedObject = null;
+	int intentIndex = 0;
+
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XCommandTools" )]
 	static void init()
 	{
@@ -43,59 +46,27 @@ public class XCommandTools : XBaseWindow
 
 	public override void OnXGUI()
 	{
-		
+		GUI.SetNextControlName("CommandControl");
 		command = CreateStringField( "Input ur command : ", command );
-	
-		if( Event.current != null && Event.current.isKey ) {
-			Listen();
-			string[] paras = command.Split( '.' );
-			
 
-			switch( paras.Length ) {
-				case 1:
-					isClassIntent = false;
-					isMethodIntent = false;
-					isFieldIntent = false;
-					searchCollection = TryGetClass( paras[0] );
-				break;
-				case 2:
-					if( !isClassIntent ) {	
-						type = XReflectionUtils.TryGetClass( paras[0] );
-						isClassIntent = true;
-						isMethodIntent = false;
-						isFieldIntent = false;
-					}
-					searchCollection = TryGetMember( paras[1], true );
-				break;
-				case 3:
-					if( !isMethodIntent ) {
-//						object instance = TryInvokeGlobalFunction( paras[1] );
-//						type = instance.GetType();
-//						isMethodIntent = true;
-					}
-					searchCollection = TryGetMember( paras[2], false );
-				break;
-				default:
-				break;
-			}
-
-//			if(!isClassIntent){
-//				isClassIntent = true;
-//			}else{
-//				
-//			}
-			Repaint();
+		if( Event.current != null ) {
+			HandleInput( Event.current );
 		}
 
+		DisableFragment( true, () => {
+			CreateLabel( string.Format( "Type : {0}", type == null ? "None" : type.FullName ) );
+		} );
+		draggedObject = CreateObjectField( draggedObject );
+
 		for( int pos = 0; pos < searchCollection.Count; pos++ ) {
-			//  TODO loop in searchCollection.Count
 			GUI.SetNextControlName( searchCollection[pos] );
+
+			GUIStyle style = pos == intentIndex ? XStyles.GetInstance().button : XStyles.GetInstance().window;
+
 			DoButton( searchCollection[pos], () => { 
-				command = searchCollection[pos];
-				GUI.FocusControl( "" );
-				searchCollection.Clear();
+				OnSelectionButton();
 				return;
-			} );
+			}, style );
 		}
 	}
 
@@ -132,23 +103,6 @@ public class XCommandTools : XBaseWindow
 		return result;
 	}
 
-	object TryInvokeGlobalFunction(string memberName, List<string> paraStr)
-	{
-		string[] array = paraStr.ToArray();
-		object[] paras = new object[array.Length];
-		for( int pos = 0; pos < array.Length; pos++ ) {
-			//  TODO loop in array.Length
-			var str = array[pos];
-			if( str.Contains( "\"" ) ) {
-				str = str.Replace( "\"", "" );
-				paras[pos] = str;
-			} else {
-				paras[pos] = float.Parse( str );
-			}
-		}
-		return type.TryInvokeGlobalMethod( memberName, paras );
-	}
-
 	public List<string> TryGetMember(string memberName, bool isStatic)
 	{
 		string[] array = memberName.Split( '(', ')' );
@@ -164,6 +118,54 @@ public class XCommandTools : XBaseWindow
 		return result;
 	}
 
+	void HandleInput(Event e)
+	{
+		if( Event.current.isKey ) {
+			Listen();
+			string[] paras = command.Split( '.' );
+			
+
+			switch( paras.Length ) {
+				case 1:
+					isClassIntent = false;
+					isMethodIntent = false;
+					isFieldIntent = false;
+					searchCollection = TryGetClass( paras[0] );
+				break;
+				case 2:
+					if( !isClassIntent ) {	
+						type = XReflectionUtils.TryGetClass( paras[0] );
+						isClassIntent = true;
+						isMethodIntent = false;
+						isFieldIntent = false;
+					}
+					searchCollection = TryGetMember( paras[1], true );
+				break;
+				case 3:
+					if( !isMethodIntent ) {
+//						object instance = TryInvokeGlobalFunction( paras[1] );
+//						type = instance.GetType();
+//						isMethodIntent = true;
+					}
+					searchCollection = TryGetMember( paras[2], false );
+				break;
+				default:
+				break;
+			}
+
+		}
+		DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+		if( Event.current.type == EventType.DragPerform ) {
+			
+			DragAndDrop.AcceptDrag();
+			foreach( var draggedObject in DragAndDrop.objectReferences ) {
+				this.draggedObject = draggedObject;	
+			}
+		}
+
+		Repaint();
+	}
+
 	void EmptyCommand()
 	{
 		
@@ -175,29 +177,24 @@ public class XCommandTools : XBaseWindow
 
 	void ExcuteCommand()
 	{
-//		object obj = XReflectionManager.GetValue( command );
-//		if( null != obj )
-//			Debug.Log( command + " is : " + obj.ToString() );
-//		else
-//			Debug.Log( "excute : " + command );
-
-//		string[] paras = command.Split( '(', ')' );
-//		List<string> parasList = new List<string>();
-//		if( paras.Length > 1 ) {
-//			parasList = paras.ToList();
-//			parasList.RemoveAt( 0 );
-//			parasList.ForEach( (t) => {
-//				if( t == null || t == "" )
-//					parasList.Remove( t );
-//			} );
-//		}
-//
-//
-//		string[] cmd = paras[0].Split( '.' );
-//		type = XReflectionUtils.TryGetClass( cmd[0] );
-//		Debug.Log( TryInvokeGlobalFunction( cmd[1], parasList ) );
-		MatchPara();
+		if( command.Contains( ";" ) ) {
+			command = command.Replace(";", "");
+			EditorPrefs.SetString( "command_string", command );
+			MatchPara();
+			EmptyCommand();
+		} else {
+			OnSelectionButton();
+		}
 		
+	}
+
+	void OnSelectionButton()
+	{
+		int last = command.LastIndexOf(".");
+		command = command.CutString(0, last == -1 ? 0 : last + 1);
+		command += searchCollection[intentIndex];
+		EditorGUI.FocusTextInControl("CommandControl");
+
 	}
 
 	void MatchPara()
@@ -206,15 +203,36 @@ public class XCommandTools : XBaseWindow
 		var clear = command.RegexCutStringReverse( "(", ")" );
 
 		string[] commandPara = clear.Split( '.' );
-		if( commandPara.Length > 0 && type == null )
+		if( commandPara.Length > 0 && type == null && currValue == null )
 			type = XReflectionUtils.TryGetClass( commandPara[0] );
+
+		currValue = draggedObject;
+
+		int allLenght = commandPara.Length;
 		int funCount = functions.Length;
-		for( int i = 1; i < funCount; i++ ) {
+
+		int startIndex = 1;
+		if( currValue != null )
+			startIndex = 0;
+		for( int i = startIndex; i < startIndex + funCount; i++ ) {
 			//  TODO loop in funCount
 			if( currValue == null ) {
 				currValue = type.TryInvokeGlobalMethod( commandPara[i] );
 			} else {
 				currValue = currValue.GetType().TryInvokeMethod( currValue, commandPara[i] );
+			}
+		}
+		int fieldCount = commandPara.Length - funCount;
+
+		int fieldIndex = 1;
+		if( currValue != null )
+			fieldIndex = 0;
+		for( int pos = fieldIndex; pos < fieldCount; pos++ ) {
+			//  TODO loop in Length
+			if( currValue == null ) {
+				currValue = type.TrySearchGlobalMemberValue( commandPara[pos + startIndex] );
+			} else {
+				currValue = currValue.TryGetFieldValue( commandPara[pos + startIndex] );
 			}
 		}
 		Debug.Log( "currValue is : " + currValue.ToString() );
@@ -225,12 +243,7 @@ public class XCommandTools : XBaseWindow
 		bool c = false;
 		switch( Event.current.keyCode ) {
 			case KeyCode.Return:
-				if( "" != command )
-					EditorPrefs.SetString( "command_string", command );
 				ExcuteCommand();
-				EmptyCommand();
-				Repaint();
-				c = true;
 			break;
 			case KeyCode.UpArrow:
 				command = EditorPrefs.GetString( "command_string", "" );

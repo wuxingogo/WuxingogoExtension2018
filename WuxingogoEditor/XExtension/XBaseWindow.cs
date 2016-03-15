@@ -88,6 +88,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		}
 	}
 
+	public void DoButton(string btnName, Action callback, GUIStyle style)
+	{
+		if( GUILayout.Button( btnName, style, GUILayout.ExpandWidth( true ) ) ) {
+			callback();
+		}
+	}
+
 	public void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
 		if( GUILayout.Button( content, options ) ) {
@@ -226,6 +233,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 	public void EndVertical()
 	{
 		EditorGUILayout.EndVertical();
+	}
+
+	public void DisableFragment(bool isDisable, Action action)
+	{
+		EditorGUI.BeginDisabledGroup( true );
+		action();
+		EditorGUI.EndDisabledGroup();
 	}
 
 	public void CreateNotification(string message)
