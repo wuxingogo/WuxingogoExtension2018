@@ -3,27 +3,24 @@
 ## Intro
 ------
 
-Unity Editor extension.
+My Unity Editor extension.
 
 
 ##Features
 ------
 
-* Export UGUI(Can Use to Cross-Engine work).
-* Call Function & Command from EditorWindow(Reflection).
-* Create AssetBundle extension.
+* Export UGUI.
+* Virtual variable edit.
+* Create AssetBundle extension (Unity version 4.x).
 * Quick set unity prefs.
-* Animation extension(import fbx animation).
-* A playmaker extension.
 * The Editor Window of generate C# code(CodeDom).
-* A simpler of fsm.
-* The ThVirtual DataBase.
+* Finite-State-Machine
 
 
 ##Usage
 -----------
 
-####XAssetBundleWindow.
+####XAssetBundleWindow. (Unity Version 4.X)
 
 ![github](ScreenShot/AssetBundle.png "github") 
 

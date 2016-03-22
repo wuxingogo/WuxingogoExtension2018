@@ -21,7 +21,7 @@ namespace FsmEditor
 		{
 			List<Object> assets = new List<Object>();
 			if( assets.Count == 0 ) {
-				GetAssets( "Assets/WuxingogoExtension/Editor/BehaviorWindow/" + path, assets );
+				GetAssets( "Assets/WuxingogoExtension/Templates/" + path, assets );
 			}
 			return assets.Where( obj => obj.GetType() == type ).ToArray();
 		}

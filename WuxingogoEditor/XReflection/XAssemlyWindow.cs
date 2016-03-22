@@ -62,7 +62,6 @@ public class XAssemlyWindow : XBaseWindow
 			}
 		} else if( null != currentType ) {
 			DoButton( "FindObjectByType", ()=> Selection.objects = Object.FindObjectsOfType( currentType ) );
-//			DoButton( "FindGameObjectByType", ()=> Selection.gameObjects = GameObject.FindObjectsOfType( currentType ) );
 		}
 	}
 

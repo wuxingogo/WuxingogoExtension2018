@@ -22,7 +22,35 @@ public class EditorExportLevelScript
     
     public static void Export(UnityEngine.Transform cTransform, JSONObject lastElement)
     {
-		if( lastElement["Children"].IsNullJO ) 			lastElement["Children"] = new JSONObject(); 		JSONObject currElement = new JSONObject(); 		lastElement["Children"].Add( currElement ); 		currElement["type"] = new JSONObject( "Transform" ); 		currElement["name"] = new JSONObject( cTransform.name ); 		currElement["position"] = new JSONObject( cTransform.position.ToString() ); 		currElement["rotation"] = new JSONObject( cTransform.eulerAngles.ToString() ); 		currElement["scale"] = new JSONObject( cTransform.localScale.ToString() ); 		currElement["layer"] = new JSONObject( cTransform.gameObject.layer ); 		CurrentIndex++;  		if( PrefabType.None != PrefabUtility.GetPrefabType( cTransform ) ) { 			{ 				var o = EditorUtility.GetPrefabParent( cTransform.gameObject );  				string path = AssetDatabase.GetAssetPath( o );  				string vpattern = @"Resources\/"; 				System.Text.RegularExpressions.MatchCollection matches = System.Text.RegularExpressions.Regex.Matches(path, vpattern); 				int endIndex = matches[0].Index + matches[0].Length;  				path = path.Substring( endIndex, path.Length - endIndex );  				int nameIndex = path.LastIndexOf( "/" ); 				string prefabStr = path.Substring(nameIndex + 1); 				int suffixIndex = prefabStr.LastIndexOf( "." ); 				prefabStr = prefabStr.Substring( 0, suffixIndex); 				path = path.Substring( 0, nameIndex ); 				currElement["path"] = new JSONObject(path); 				currElement["prefab"] = new JSONObject(prefabStr); 				return; 			}  		}
+		if( lastElement["Children"].IsNullJO )
+			lastElement["Children"] = new JSONObject();
+		JSONObject currElement = new JSONObject();
+		lastElement["Children"].Add( currElement );
+		currElement["type"] = new JSONObject( "Transform" );
+		currElement["name"] = new JSONObject( cTransform.name );
+		currElement["position"] = new JSONObject( cTransform.position.ToString() );
+		currElement["rotation"] = new JSONObject( cTransform.eulerAngles.ToString() );
+		currElement["scale"] = new JSONObject( cTransform.localScale.ToString() );
+		currElement["layer"] = new JSONObject( cTransform.gameObject.layer );
+		CurrentIndex++;
+		if( PrefabType.None != PrefabUtility.GetPrefabType( cTransform ) ) {
+
+			var o = EditorUtility.GetPrefabParent( cTransform.gameObject );
+			string path = AssetDatabase.GetAssetPath( o );
+			string vpattern = @"Resources\/";
+			System.Text.RegularExpressions.MatchCollection matches = System.Text.RegularExpressions.Regex.Matches( path, vpattern );
+			int endIndex = matches[0].Index + matches[0].Length;
+			path = path.Substring( endIndex, path.Length - endIndex );
+			int nameIndex = path.LastIndexOf( "/" );
+			string prefabStr = path.Substring( nameIndex + 1 );
+			int suffixIndex = prefabStr.LastIndexOf( "." );
+			prefabStr = prefabStr.Substring( 0, suffixIndex );
+			path = path.Substring( 0, nameIndex );
+			currElement["path"] = new JSONObject( path );
+			currElement["prefab"] = new JSONObject( prefabStr );
+			return; 			
+
+		}
         //  <summary>
         //  Wuxingogo ======> BoxCollider
         //  </summary>

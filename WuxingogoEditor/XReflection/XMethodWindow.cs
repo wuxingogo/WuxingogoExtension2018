@@ -39,71 +39,80 @@ public class XMethodWindow : XBaseWindow
 	
 	private Dictionary<MethodInfo, object[]> parameters = new Dictionary<MethodInfo, object[]>();
 
-	public override void OnXGUI()
-	{
-	
-		if( CreateSpaceButton( "Clean" ) ) {
-			uObject = null;
-			Target = null;
-		}
-		
-		if( null == Target ) {
-			uObject = CreateObjectField( "", uObject );
-			Target = uObject;
-		} else {
-			if( storeTargets.Count > 0 )
-				DoButton( "Back To Last Object", BackToLastObject );
+    public override void OnXGUI()
+    {
 
-			DoButton( "Open Generate Code Window", OpenInGenerateCodeWindow );
+        if (CreateSpaceButton("Clean"))
+        {
+            uObject = null;
+            Target = null; 
+        }
 
-			BeginHorizontal();
-			CreateLabel( "Filter Type : " + showType );
-			if( showType.BaseType != null )
-				DoButton( showType.BaseType.ToString(), ConvertToBase );
-			EndHorizontal();
+        if (null == Target)
+        {
+            uObject = CreateObjectField("", uObject);
+            Target = uObject;
+        }
+        else
+        {
+            if (storeTargets.Count > 0)
+                DoButton("Back To Last Object", BackToLastObject);
 
-			MethodInfo[] methods = _target.GetType().GetMethods( BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public );
-			
-			
-			
-			foreach( MethodInfo method in methods ) {
-				if( method.DeclaringType == showType ) {
-				
-					BeginHorizontal();
-					CreateLabel( method.ReturnType.ToString() );
-					CreateLabel( method.Name );
-					EndHorizontal();
-					
-					
-					ParameterInfo[] paras = method.GetParameters();
-					if( !parameters.ContainsKey( method ) ) {
-						object[] arr = new object[paras.Length];
-						parameters.Add( method, arr );
-					}
-					
-					object[] myParameters = parameters[method];
-					
-					BeginVertical();
-					#region Show all method Parameter Info
-					for( int pos = 0; pos < paras.Length; pos++ ) {
-						myParameters[pos] = GetTypeGUI( myParameters[pos], paras[pos].ParameterType );
-						
-					}
-					
-					if( CreateSpaceButton( "Invoke" ) ) {
-						object result = method.Invoke( _target, myParameters );
-						Debug.Log( result ?? "Void Method" );
-					}
-					
-					#endregion
-					EndVertical();
-				}
-				
-			}
-		}
-	}
+            DoButton("Open Generate Code Window", OpenInGenerateCodeWindow);
 
-	public override object[] closeRecordArgs {
+            BeginHorizontal();
+            CreateLabel("Filter Type : " + showType);
+            if (showType.BaseType != null)
+                DoButton(showType.BaseType.ToString(), ConvertToBase);
+            EndHorizontal();
+
+            MethodInfo[] methods = _target.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+
+
+
+            foreach (MethodInfo method in methods)
+            {
+                if (method.DeclaringType == showType)
+                {
+
+                    BeginHorizontal();
+                    CreateLabel(method.ReturnType.ToString());
+                    CreateLabel(method.Name);
+                    EndHorizontal();
+
+
+                    ParameterInfo[] paras = method.GetParameters();
+                    if (!parameters.ContainsKey(method))
+                    {
+                        object[] arr = new object[paras.Length];
+                        parameters.Add(method, arr);
+                    }
+
+                    object[] myParameters = parameters[method];
+
+                    BeginVertical();
+                    #region Show all method Parameter Info
+                    for (int pos = 0; pos < paras.Length; pos++)
+                    {
+                        myParameters[pos] = GetTypeGUI(myParameters[pos], paras[pos].ParameterType);
+
+                    }
+
+                    if (CreateSpaceButton("Invoke"))
+                    {
+                        object result = method.Invoke(_target, myParameters);
+                        Debug.Log(result ?? "Void Method");
+                    }
+
+                    #endregion
+                    EndVertical();
+                }
+
+            }
+        }
+    }
+
+    public override object[] closeRecordArgs {
 		get {
 			return new object[]{ Target };
 		}

@@ -170,14 +170,20 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.TextField( value );
 	}
 
-	public void CreateLabel(string fieldName)
+	public void CreateLabel(string fieldName, bool canSelect = false)
 	{
-		EditorGUILayout.LabelField( fieldName );
+		if( canSelect )
+			EditorGUILayout.SelectableLabel( fieldName );
+		else
+			EditorGUILayout.LabelField( fieldName );
 	}
 
-	public void CreateLabel(string fieldName, string value)
+	public void CreateLabel(string fieldName, string value, bool canSelect = false)
 	{
-		EditorGUILayout.LabelField( fieldName, value );
+		if( canSelect )
+			EditorGUILayout.SelectableLabel( fieldName, value );
+		else
+			EditorGUILayout.LabelField( fieldName, value );
 	}
 
 	public void CreateMessageField(string value, MessageType type)
