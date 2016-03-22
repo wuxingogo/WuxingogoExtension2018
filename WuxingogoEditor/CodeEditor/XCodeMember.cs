@@ -39,11 +39,11 @@ namespace wuxingogo.Code
 
 		public virtual void DrawType(XBaseWindow window)
 		{
-			window.DoButton("Type", ()=> {
+			XBaseWindow.DoButton("Type", ()=> {
 				XCodeTypeTemplate.SelectType(x => type = x);
 			});
 
-			memberAttribute = (MemberAttributes)window.CreateEnumSelectable( memberAttribute );
+			memberAttribute = (MemberAttributes)XBaseWindow.CreateEnumSelectable( memberAttribute );
 		
 		}
 //		public virtual void DrawMemberAttribute(XBaseWindow window)
@@ -53,26 +53,26 @@ namespace wuxingogo.Code
 
 		public virtual void DrawComments(XBaseWindow window)
 		{
-			window.CreateLabel( "Comments" );
+			XBaseWindow.CreateLabel( "Comments" );
 			for( int pos = 0; pos < comments.Count; pos++ ) {
 				//  TODO loop in comments.Count
-				window.BeginHorizontal();
-				comments[pos] = window.CreateStringField( comments[pos] );
-				window.DoButton( "Delete", () => comments.RemoveAt( pos ) );
-				window.EndHorizontal();
+				XBaseWindow.BeginHorizontal();
+				comments[pos] = XBaseWindow.CreateStringField( comments[pos] );
+				XBaseWindow.DoButton( "Delete", () => comments.RemoveAt( pos ) );
+				XBaseWindow.EndHorizontal();
 			}
 		}
 
 		public virtual void DrawCustomeAttribute(XBaseWindow window)
 		{
-			window.CreateLabel( "CustomAttributes" );
+			XBaseWindow.CreateLabel( "CustomAttributes" );
 			for( int pos = 0; pos < attributes.Count; pos++ ) {
 				//  TODO loop in comments.Count
-				window.BeginHorizontal();
-				attributes[pos].name = window.CreateStringField( attributes[pos].name );
-				window.DoButton<XCodeParameter>( "Parameter", ParameterCreate, attributes[pos].parameter);
-				window.DoButton( "Delete", () => attributes.RemoveAt( pos ) );
-				window.EndHorizontal();
+				XBaseWindow.BeginHorizontal();
+				attributes[pos].name = XBaseWindow.CreateStringField( attributes[pos].name );
+				XBaseWindow.DoButton<XCodeParameter>( "Parameter", ParameterCreate, attributes[pos].parameter);
+				XBaseWindow.DoButton( "Delete", () => attributes.RemoveAt( pos ) );
+				XBaseWindow.EndHorizontal();
 			}
 		}
 

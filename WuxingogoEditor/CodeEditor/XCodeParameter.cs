@@ -45,7 +45,7 @@ namespace wuxingogo.Code
 		}
 
 		public void Draw(XBaseWindow window){
-			window.DoButton("Type", ()=> {
+			XBaseWindow.DoButton("Type", ()=> {
 				XCodeTypeTemplate.SelectType(x => type = x);
 			});
 		}

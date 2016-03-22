@@ -28,17 +28,17 @@ namespace wuxingogo.Code
 
 		public override void DrawSelf(XBaseWindow window)
 		{
-			window.BeginHorizontal();
-			window.DoButton( name, () => isShowAll = !isShowAll );
+			XBaseWindow.BeginHorizontal();
+			XBaseWindow.DoButton( name, () => isShowAll = !isShowAll );
 			if( isShowAll ) {
-				name = window.CreateStringField(name);
+				name = XBaseWindow.CreateStringField(name);
 //				window.CreateEnumSelectable( codeType );
 //				TypeID = window.CreateSelectableString(TypeID, StrTypes );
 				DrawType(window);
-				window.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
-				window.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
+				XBaseWindow.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
+				XBaseWindow.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
 			}
-			window.EndHorizontal();
+			XBaseWindow.EndHorizontal();
 
 			if(isShowAll)
 				DrawComments(window);

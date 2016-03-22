@@ -43,48 +43,48 @@ namespace wuxingogo.Code
 		public void DrawSelf(XBaseWindow window)
 		{
 			
-			name = window.CreateStringField("ClassName", name);
+			name = XBaseWindow.CreateStringField("ClassName", name);
 
-			window.DoButton("Add New NameSpace", ()=> importNamespace.Add("UnityEngine"));
+			XBaseWindow.DoButton("Add New NameSpace", ()=> importNamespace.Add("UnityEngine"));
 			for( int pos = 0; pos < importNamespace.Count; pos++ ) {
 				//  TODO loop in importNamespace.Count
-				window.BeginHorizontal();
-				importNamespace[pos] = window.CreateStringField(importNamespace[pos]);
-				window.DoButton("Delete", ()=> importNamespace.RemoveAt(pos));
-				window.EndHorizontal();
+				XBaseWindow.BeginHorizontal();
+				importNamespace[pos] = XBaseWindow.CreateStringField(importNamespace[pos]);
+				XBaseWindow.DoButton("Delete", ()=> importNamespace.RemoveAt(pos));
+				XBaseWindow.EndHorizontal();
 			}
 
-			window.DoButton("Add New BaseClass", ()=> baseClass.Add("Object"));
+			XBaseWindow.DoButton("Add New BaseClass", ()=> baseClass.Add("Object"));
 			for( int pos = 0; pos < baseClass.Count; pos++ ) {
 				//  TODO loop in importNamespace.Count
-				window.BeginHorizontal();
-				baseClass[pos] = window.CreateStringField(baseClass[pos]);
-				window.DoButton("Delete", ()=> baseClass.RemoveAt(pos));
-				window.EndHorizontal();
+				XBaseWindow.BeginHorizontal();
+				baseClass[pos] = XBaseWindow.CreateStringField(baseClass[pos]);
+				XBaseWindow.DoButton("Delete", ()=> baseClass.RemoveAt(pos));
+				XBaseWindow.EndHorizontal();
 			}
 
-			window.BeginHorizontal();
-			window.DoButton("Add Method", ()=> methods.Add(new XCodeMethod()));
-			window.DoButton("Add Field", ()=> fields.Add(new XCodeField()));
-			window.DoButton("Add Property", ()=> properties.Add(new XCodeProperty()));
-			window.EndHorizontal();
+			XBaseWindow.BeginHorizontal();
+			XBaseWindow.DoButton("Add Method", ()=> methods.Add(new XCodeMethod()));
+			XBaseWindow.DoButton("Add Field", ()=> fields.Add(new XCodeField()));
+			XBaseWindow.DoButton("Add Property", ()=> properties.Add(new XCodeProperty()));
+			XBaseWindow.EndHorizontal();
 
 			for( int pos = 0; pos < methods.Count; pos++ ) {
 				//  TODO loop in classChildren.Count
 				methods[pos].DrawSelf(window);
-				window.DoButton("Delete", ()=> methods.RemoveAt(pos));
+				XBaseWindow.DoButton("Delete", ()=> methods.RemoveAt(pos));
 
 			}
 			for( int pos = 0; pos < fields.Count; pos++ ) {
 				//  TODO loop in classChildren.Count
 				fields[pos].DrawSelf(window);
-				window.DoButton("Delete", ()=> fields.RemoveAt(pos));
+				XBaseWindow.DoButton("Delete", ()=> fields.RemoveAt(pos));
 
 			}
 			for( int pos = 0; pos < properties.Count; pos++ ) {
 				//  TODO loop in classChildren.Count
 				properties[pos].DrawSelf(window);
-				window.DoButton("Delete", ()=> properties.RemoveAt(pos));
+				XBaseWindow.DoButton("Delete", ()=> properties.RemoveAt(pos));
 
 			}
 

@@ -33,18 +33,18 @@ namespace wuxingogo.Code
 		public override void DrawSelf(XBaseWindow window)
 		{
 			
-			window.DoButton( name, () => isShowAll = !isShowAll );
+			XBaseWindow.DoButton( name, () => isShowAll = !isShowAll );
 			if( isShowAll ) {
-				window.BeginHorizontal();
-				name = window.CreateStringField(name);
-				window.EndHorizontal();
+				XBaseWindow.BeginHorizontal();
+				name = XBaseWindow.CreateStringField(name);
+				XBaseWindow.EndHorizontal();
 
-				window.BeginHorizontal();
+				XBaseWindow.BeginHorizontal();
 				DrawType(window);
-				window.DoButton("Add Parameter", ()=> parameters.Add(new XCodeParameter()));
-				window.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
-				window.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
-				window.EndHorizontal();
+				XBaseWindow.DoButton("Add Parameter", ()=> parameters.Add(new XCodeParameter()));
+				XBaseWindow.DoButton("Add Attribute", ()=> attributes.Add(new XCodeCustomAttribute()));
+				XBaseWindow.DoButton("Add Comment", ()=> comments.Add("TODO LIST"));
+				XBaseWindow.EndHorizontal();
 			}
 
 				
@@ -58,14 +58,14 @@ namespace wuxingogo.Code
 
 		void DrawParameters(XBaseWindow window){
 
-			window.CreateLabel( "Parameters" );
+			XBaseWindow.CreateLabel( "Parameters" );
 			for( int pos = 0; pos < parameters.Count; pos++ ) {
 				//  TODO loop in comments.Count
-				window.BeginHorizontal();
+				XBaseWindow.BeginHorizontal();
 //				parameters[pos].type = window.CreateStringField( parameters[pos].type );
 				parameters[pos].Draw( window );
-				window.DoButton( "Delete", () => parameters.RemoveAt( pos ) );
-				window.EndHorizontal();
+				XBaseWindow.DoButton( "Delete", () => parameters.RemoveAt( pos ) );
+				XBaseWindow.EndHorizontal();
 			}
 		}
 
