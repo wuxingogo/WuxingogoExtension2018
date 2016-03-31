@@ -87,6 +87,7 @@
     <Compile Include="Tools\MathOp.cs" />
     <Compile Include="Attribute\DisableExpresionAttribute.cs" />
     <Compile Include="Attribute\XObjectAttribute.cs" />
+    <Compile Include="Tools\GameManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

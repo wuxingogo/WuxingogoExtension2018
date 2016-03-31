@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Reflection;
-using System.Linq;
+using wuxingogo.Reflection;
+using wuxingogo.tools;
 
 
 /**
@@ -11,9 +11,6 @@ using System.Linq;
  * 其实就是字符串分割 + 反射啦
  * 本来想可以设置变量也用这个的,可以到手机上来射ᕙ(⇀‸↼‵‵)ᕗ
  */
-using wuxingogo.Runtime;
-using wuxingogo.Reflection;
-using wuxingogo.tools;
 using System.Collections.Generic;
 using System;
 using Object = UnityEngine.Object;
@@ -61,7 +58,7 @@ public class XCommandTools : XBaseWindow
 		for( int pos = 0; pos < searchCollection.Count; pos++ ) {
 			GUI.SetNextControlName( searchCollection[pos] );
 
-			GUIStyle style = pos == intentIndex ? XStyles.GetInstance().button : XStyles.GetInstance().window;
+			GUIStyle style = XStyles.GetInstance().button;
 
 			DoButton( searchCollection[pos], () => { 
 				OnSelectionButton();

@@ -54,7 +54,8 @@ public class XEditorSetting : XBaseWindow
 			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
 			GUILayout.Space(10);
 		}
-		
+
+
 		
 		//内置图标
 //		for(int i =0; i< XResources.GetInstance().IconNames.Length; i+=8)

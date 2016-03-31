@@ -19,7 +19,6 @@ public class XMonoBehaviourEditor : XBaseEditor
 		GetTargetField<XAttribute>( target );
 		GetTargetProperty<XAttribute>( target );
 
-
 	}
 
 	void GetTargetMethod<T>(object target)
@@ -78,8 +77,6 @@ public class XMonoBehaviourEditor : XBaseEditor
 						GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType() );
 						var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
 						EndHorizontal();
-//						if( oldValue != dictionary[iteratorKey.Current] )
-//							dictionary[iteratorKey.Current] = oldValue;
 						
 					}
 

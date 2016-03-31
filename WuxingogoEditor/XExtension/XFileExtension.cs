@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class XFileExtension : XBaseWindow
 {
-	[MenuItem( "Wuxingogo/XFileExtension" )]
+	[MenuItem( "Wuxingogo/Wuxingogo XFileExtension" )]
 	static void Init()
 	{
 		InitWindow<XFileExtension>();
