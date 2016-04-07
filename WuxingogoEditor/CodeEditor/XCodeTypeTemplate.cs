@@ -1,4 +1,4 @@
-﻿//
+//
 //  XCodeTypeTemplate.cs
 //
 //  Author:

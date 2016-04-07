@@ -20,12 +20,12 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 	const int XButtonWidth = 100;
 	const int XButtonHeight = 20;
 
-	public static T InitWindow<T>() where T : XBaseWindow
+	public static T InitWindow<T>(params object[] args) where T : XBaseWindow
 	{
 		string cmdPrefs = typeof( T ).ToString() + "_isPrefix";
 		bool isPrefix = EditorPrefs.GetBool( cmdPrefs, false );
 		T window = EditorWindow.GetWindow<T>( isPrefix, typeof( T ).Name );
-		window.OnInitialization();
+		window.OnInitialization(args);
 		return window;
 	}
 
@@ -246,7 +246,27 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		EditorGUILayout.EndVertical();
 	}
 
-	public static void DisableFragment(bool isDisable, Action action)
+    public Vector2 CreateVector2Field(string fieldName, Vector2 value)
+    {
+        return EditorGUILayout.Vector2Field(fieldName, value);
+    }
+
+    public Vector3 CreateVector3Field(string fieldName, Vector3 value)
+    {
+        return EditorGUILayout.Vector3Field(fieldName, value);
+    }
+
+    public Vector4 CreateVector4Field(string fieldName, Vector4 value)
+    {
+        return EditorGUILayout.Vector4Field(fieldName, value);
+    }
+
+    public long CreateLongField(long value)
+    {
+        return EditorGUILayout.LongField(value);
+    }
+
+    public static void DisableFragment(bool isDisable, Action action)
 	{
 		EditorGUI.BeginDisabledGroup( true );
 		action();

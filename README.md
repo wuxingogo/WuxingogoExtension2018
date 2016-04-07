@@ -10,10 +10,10 @@ My Unity Editor extension.
 ------
 
 * Export UGUI.
-* Virtual variable edit.
+* Visual variable edit.
 * Create AssetBundle extension (Unity version 4.x).
 * Quick set unity prefs.
-* The Editor Window of generate C# code(CodeDom).
+* Visual CSharpCode Generated(CodeDom).
 * Finite-State-Machine
 
 

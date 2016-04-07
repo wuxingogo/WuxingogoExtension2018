@@ -1,4 +1,4 @@
-﻿//
+//
 //  Style.cs
 //
 //  Author:

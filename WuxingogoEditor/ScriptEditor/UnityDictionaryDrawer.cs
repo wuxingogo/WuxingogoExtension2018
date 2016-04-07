@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using System;
-using Mono.CSharp;
 
 
 
@@ -20,15 +19,16 @@ using Mono.CSharp;
 using System.Collections.Generic;
 using System.Collections;
 
-[CustomPropertyDrawer(typeof(IDictionary), true)]
-public class UnityDictionaryDrawer : PropertyDrawer {
+[CustomPropertyDrawer(typeof( IDictionary ), true)]
+public class UnityDictionaryDrawer : PropertyDrawer
+{
 	
-	override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+	override public void OnGUI( Rect position, SerializedProperty property, GUIContent label )
 	{
-		EditorGUI.BeginProperty (position, label, property);
+		EditorGUI.BeginProperty( position, label, property );
 		
 		//todo: put nice drawing code here
 		
-		EditorGUI.EndProperty ();
+		EditorGUI.EndProperty();
 	}
 }

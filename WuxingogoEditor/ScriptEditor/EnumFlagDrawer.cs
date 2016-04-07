@@ -1,4 +1,4 @@
-﻿//
+//
 //  EnumFlagDrawer.cs
 //
 //  Author:

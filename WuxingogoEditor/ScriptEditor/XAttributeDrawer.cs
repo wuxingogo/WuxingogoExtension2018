@@ -1,4 +1,4 @@
-﻿//
+//
 //  XAttributeDrawer.cs
 //
 //  Author:

@@ -9,8 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>WuxingogoEditor</RootNamespace>
     <AssemblyName>WuxingogoEditor</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -35,17 +34,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\work\unity\UnityDLL\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\work\unity\UnityDLL\UnityEngine.dll</HintPath>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\OutPutDll\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>..\..\..\work\unity\UnityDLL\UnityEditor.dll</HintPath>
+      <HintPath>..\OutPutDll\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>..\..\..\..\Desktop\UnityDLL\Mono.Data.Sqlite.dll</HintPath>
+    <Reference Include="UnityEngine">
+      <HintPath>..\OutPutDll\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\OutPutDll\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +119,6 @@
     <Compile Include="CodeEditor\XCodeMember.cs" />
     <Compile Include="CodeEditor\XCodeType.cs" />
     <Compile Include="CodeEditor\XCodeTypeTemplate.cs" />
-    <Compile Include="XExtension\QuickSetComponent.cs" />
     <Compile Include="CodeEditor\ICodeStatement.cs" />
     <Compile Include="CodeEditor\XCodeSnippet.cs" />
     <Compile Include="ScriptEditor\XDisableDrawer.cs" />

@@ -129,7 +129,7 @@ public class XMonoBehaviourEditor : XBaseEditor
 		}
 	}
 
-	object GetTypeGUI(object t, Type type)
+	protected object GetTypeGUI(object t, Type type)
 	{
 		if (t is int || t is System.Int32 || type == typeof(int)) {
 			t = CreateIntField (Convert.ToInt32 (t));

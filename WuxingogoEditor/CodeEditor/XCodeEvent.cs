@@ -1,4 +1,4 @@
-﻿//
+//
 //  XCodeEventType.cs
 //
 //  Author:

@@ -1,4 +1,4 @@
-﻿//
+//
 //  JsonDrawer.cs
 //
 //  Author:

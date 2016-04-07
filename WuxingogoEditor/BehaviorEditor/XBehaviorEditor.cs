@@ -32,15 +32,10 @@ namespace XBehaviorEditor
 			get {
 				return fsm;
 			}
-			set {
-//				if(fsm != value){
-					
+			set {	
 				if( fsm != value )
 					isDirty = true;
-				fsm = value;
-					
-//				}
-				
+				fsm = value;	
 			}
 		}
 

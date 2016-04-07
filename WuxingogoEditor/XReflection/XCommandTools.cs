@@ -43,7 +43,7 @@ public class XCommandTools : XBaseWindow
 
 	public override void OnXGUI()
 	{
-		GUI.SetNextControlName("CommandControl");
+		GUI.SetNextControlName( "CommandControl" );
 		command = CreateStringField( "Input ur command : ", command );
 
 		if( Event.current != null ) {
@@ -193,10 +193,30 @@ public class XCommandTools : XBaseWindow
 		EditorGUI.FocusTextInControl("CommandControl");
 
 	}
+	
+	object[] paserPara(string para)
+	{
+	     List<object> result = new List<object>();
+	     if(para != null)
+	     {
+			string[] temp = para.Split(',');
+			for(int i = 0; i < temp.Length; i ++)
+			{
+			
+			}
+	     }
+	     return null;
+	}
 
 	void MatchPara()
 	{
 		var functions = command.RegexCutString( "(", ")" );
+		for(int i = 0; i < functions.Length; i++){
+			var objs = paserPara(functions[i]);
+			
+		}
+		List<object[]> paras = new List<object[]>();
+		
 		var clear = command.RegexCutStringReverse( "(", ")" );
 
 		string[] commandPara = clear.Split( '.' );

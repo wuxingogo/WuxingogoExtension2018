@@ -1,246 +1,273 @@
-using UnityEngine;
-using UnityEditor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.Sqlite;
-using System;
+using UnityEditor;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class XQuickSetDatabase : XBaseWindow
 {
-	
-	Object dbFile = null;
-	bool isDirty = true;
-	List<string> allTable = new List<string>();
-	
-	List<string> allTableField = new List<string>();
-	bool isShowTable = false;
-	
-	Dictionary<string, List<string>> tableString = new Dictionary<string, List<string>>();
-	Dictionary<string, List<int>> tableInt = new Dictionary<string, List<int>>();
-	Dictionary<string, List<float>> tableFloat = new Dictionary<string, List<float>>();
-	string currTable = "";
-	
-	int dataTable = 0;
-	
-	/// <summary>
-	///  ˝æ›ø‚¡¨Ω”∂®“Â
-	/// </summary>
-	private SqliteConnection dbConnection;
-	
-	/// <summary>
-	/// SQL√¸¡Ó∂®“Â
-	/// </summary>
-	private SqliteCommand dbCommand;
-	
-	/// <summary>
-	///  ˝æ›∂¡»°∂®“Â
-	/// </summary>
-	private SqliteDataReader dataReader;
-	
-	/// <summary>
-	/// ππ‘Ï∫Ø ˝    
-	/// </summary>
-	/// <param name="connectionString"> ˝æ›ø‚¡¨Ω”◊÷∑˚¥Æ</param>
-	
-	
-	[MenuItem("Wuxingogo/Wuxingogo XQuickSetDatabase ")]
-	static void init()
-	{
-		InitWindow<XQuickSetDatabase>();
-	}
-	
-	const string GET_ALL_TABLE = "select name from sqlite_master where type='table' order by name;";
-	public override void OnXGUI()
-	{
-		//TODO List
-		
-		if (CreateSpaceButton("Clean"))
-		{
-			isDirty = true;
-		}
-		
-		if (isDirty)
-		{
-			dbFile = null;
-			dbFile = CreateObjectField("DBFile", dbFile);
-			dbConnection = null;
-			dataTable = 0;
-		}
-		
-		if (null == dbFile)
-		{
-			CreateMessageField("Drag a db file.", MessageType.None);
-		}
-		else
-		{
-			if (!AssetDatabase.GetAssetPath(dbFile).Contains(".db"))
-			{
-				dbFile = null;
-				Debug.Log("DB File 's Format Error");
-				isDirty = true;
-			}
-			else if (isDirty)
-			{
-				isDirty = false;
-				string appDBPath = AssetDatabase.GetAssetPath(dbFile);
-				try
-				{
-					//ππ‘Ï ˝æ›ø‚¡¨Ω”
-					dbConnection = new SqliteConnection("URI=file:" + appDBPath);
-					//¥Úø™ ˝æ›ø‚
-					dbConnection.Open();
-				}
-				catch (Exception e)
-				{
-					Debug.Log(e.Message);
-				}
-				
-				allTable.Clear();
-				currTable = "";
-			}
-			
-			if (null != dbConnection)
-			{
-				if (CreateSpaceButton("DataBase"))
-				{
-					allTable.Clear();
-					
-					SqliteDataReader recordTableReader = ExecuteQuery(GET_ALL_TABLE);
-					while (recordTableReader.Read())
-					{
-						allTable.Add(recordTableReader.GetString(recordTableReader.GetOrdinal("name")));
-					}
-					dataTable = 0;
-				}
-				for (int pos = 0; pos < allTable.Count; pos++)
-				{
-					if (CreateSpaceButton(allTable[pos]))
-					{
-						dataTable = 0;
-						tableFloat.Clear();
-						tableInt.Clear();
-						tableString.Clear();
-						allTableField.Clear();
-						string sql = "SELECT * FROM " + allTable[pos];
-						SqliteDataReader recordTableReader = ExecuteQuery(sql);
-						currTable = allTable[pos];
-						allTable.Clear();
-						// DataTable t = recordTableReader.GetSchemaTable();
-						int count = recordTableReader.VisibleFieldCount;
-						for (int idx = 0; idx < count; idx++) {
-							//  TODO loop in count
-							string fieldTypeName = recordTableReader.GetName(idx);
-							Debug.Log("fieldTypeName" + fieldTypeName);
-						}
-						
-						
-						isShowTable = true;
-						while (recordTableReader.Read())
-						{
-							dataTable++;
-							for (int root = 0; root < count; root++)
-							{
-								//							Debug.Log( recordTableReader.GetName(root));
-								string field = recordTableReader.GetName(root);
-								
-								if (recordTableReader.GetFieldType(root) == typeof(System.Int64))
-								{
-									if (!tableInt.ContainsKey(field)) tableInt.Add(field, new List<int>());
-									tableInt[field].Add(recordTableReader.GetInt32(root));
-									//								CreateLabel(recordTableReader.GetName(root));
-								}
-								else if (recordTableReader.GetFieldType(root) == typeof(System.String))
-								{
-									if (!tableString.ContainsKey(field)) tableString.Add(field, new List<string>());
-									string s = recordTableReader.GetString(root).ToString();
-									tableString[field].Add(s);
-									//								CreateLabel(recordTableReader.GetName(root));
-								}
-								else if (recordTableReader.GetFieldType(root) == typeof(System.Double))
-								{
-									//								CreateLabel(recordTableReader.GetName(root));
-									if (!tableFloat.ContainsKey(field)) tableFloat.Add(field, new List<float>());
-									tableFloat[field].Add(recordTableReader.GetFloat(root));
-								}else{
-									Debug.Log("recordTableReader.GetFieldType(root) is " + recordTableReader.GetFieldType(root).ToString());
-								}
-								if (!allTableField.Contains(field))
-									allTableField.Add(field);
-								//							CreateLabel(recordTableReader.GetName(root));
-							}
-						}
-						recordTableReader.Close();
-						
-						//						 while(recordTableReader.Read()){
-						//						 	Debug.Log(recordTableReader.GetInt32 (recordTableReader.GetOrdinal ("id")));
-						//						 }
-						
-						
-					}
-				}
-				
-//				if (isShowTable)
-//				{
-//					BeginHorizontal();
-//					for (int pos = 0; pos < allTableField.Count; pos++)
-//					{
-//						CreateLabel(allTableField[pos]);
-//					}
-//					EndHorizontal();
-//					
-//					for (int root = 0; root < dataTable; root++)
-//					{
-//						
-//						
-//						BeginHorizontal();
-//						for (int pos = 0; pos < allTableField.Count; pos++)
-//						{
-//							//						CreateLabel( allTableField[pos] );
-//							//						CreateStringField(,tableString[pos]
-//							if(tableInt[allTableField[pos]][root] != null){
-//							
-//							if (tableInt.ContainsKey(allTableField[pos]))
-//							{
-//								tableInt[allTableField[pos]][root] = EditorGUILayout.IntField(tableInt[allTableField[pos]][root]);
-//							}
-//							else if (tableString.ContainsKey(allTableField[pos]))
-//							{
-//								tableString[allTableField[pos]][root] = EditorGUILayout.TextField(tableString[allTableField[pos]][root]);
-//							}
-//							else if (tableFloat.ContainsKey(allTableField[pos]))
-//							{
-//								tableFloat[allTableField[pos]][root] = EditorGUILayout.FloatField(tableFloat[allTableField[pos]][root]);
-//							}
-//							}
-//							//						tableInt[pos] = EditorGUILayout.IntField(tableInt[pos]);
-//							//						tableFloat[pos] = EditorGUILayout.FloatField(tableFloat[pos]);
-//						}
-//						EndHorizontal();
-//					}
-//					
-//				}
-//				
-			}
-			
-			
-			
-			
-		}
-	}
-	
-	/// <summary>
-	/// ÷¥––SQL√¸¡Ó
-	/// </summary>
-	/// <returns>The query.</returns>
-	/// <param name="queryString">SQL√¸¡Ó◊÷∑˚¥Æ</param>
-	public SqliteDataReader ExecuteQuery(string queryString)
-	{
-		dbCommand = dbConnection.CreateCommand();
-		dbCommand.CommandText = queryString;
-		dataReader = dbCommand.ExecuteReader();
-		return dataReader;
-	}
-	
-	
+    [UnityEditor.Callbacks.OnOpenAsset(2)]
+    public static bool OnOpenAsset(int instanceID, int line)
+    {
+        var obj = EditorUtility.InstanceIDToObject(instanceID);
+        string appDBPath = AssetDatabase.GetAssetPath(obj);
+        if (obj != null && appDBPath.Contains(".db"))
+        {
+            InitWindow<XQuickSetDatabase>();
+            dbFile = obj;
+            return true;
+        }
+        return false;
+    }
+
+
+    static Object dbFile = null;
+    List<string> allTable = new List<string>();
+
+    List<string> allTableField = new List<string>();
+
+    bool isShowTable = true;
+
+    Dictionary<string, List<object>> tableDataDict = new Dictionary<string, List<object>>();
+    Dictionary<string, Type> tableTypeDict = new Dictionary<string, Type>();
+    string currTable = "";
+
+    int dataTable = 0;
+
+    private SqliteConnection dbConnection;
+    private SqliteCommand dbCommand;
+    private SqliteDataReader dataReader;
+
+    const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
+    public override void OnXGUI()
+    {
+        //TODO List
+        if (dbFile == null)
+            Close();
+
+        if (dbFile != null)
+        {
+            if (dbConnection == null)
+            {
+                string appDBPath = AssetDatabase.GetAssetPath(dbFile);
+                try
+                {
+                    dbConnection = new SqliteConnection("URI=file:" + appDBPath);
+                    dbConnection.Open();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e.Message);
+                }
+
+                currTable = "";
+                GetAllTableName();
+            }
+            else
+            {
+                ReadAllTable();
+            }
+        }
+    }
+    public void GetAllTableName()
+    {
+        allTable.Clear();
+        allTableField.Clear();
+        SqliteDataReader recordTableReader = ExecuteQuery(GET_ALL_TABLE_NAME);
+        while (recordTableReader.Read())
+        {
+            allTable.Add(recordTableReader.GetString(recordTableReader.GetOrdinal("name")));
+        }
+        dataTable = 0;
+    }
+    public void ReadAllTable()
+    {
+        if (CreateSpaceButton("DataBase"))
+        {
+            GetAllTableName();
+        }
+        for (int pos = 0; pos < allTable.Count; pos++)
+        {
+            if (CreateSpaceButton(allTable[pos]))
+            {
+                dataTable = 0;
+                allTableField.Clear();
+                string sql = "SELECT * FROM " + allTable[pos];
+                SqliteDataReader recordTableReader = ExecuteQuery(sql);
+                currTable = allTable[pos];
+                allTable.Clear();
+                int count = recordTableReader.VisibleFieldCount;
+                for (int idx = 0; idx < count; idx++)
+                {
+                    //  TODO loop in count
+                    string fieldTypeName = recordTableReader.GetName(idx);
+                    Debug.Log("fieldTypeName" + fieldTypeName);
+                }
+
+
+                isShowTable = true;
+
+                while (recordTableReader.Read())
+                {
+                    dataTable++;
+                    for (int root = 0; root < count; root++)
+                    {
+                        string field = recordTableReader.GetName(root);
+                        if (!allTableField.Contains(field))
+                            allTableField.Add(field);
+                        Type type = recordTableReader.GetFieldType(root);
+ 
+                        if (!tableTypeDict.ContainsKey(field))
+                            tableTypeDict.Add(field, type);
+                        PushData(field, recordTableReader.GetValue(root));
+                        
+
+                        
+                    }
+                }
+                recordTableReader.Close();
+            }
+        }
+
+        if (isShowTable)
+        {
+            ShowAllFields();
+        }
+    }
+
+    public void PushData(string fieldName, object o)
+    {
+        if (!tableDataDict.ContainsKey(fieldName))
+            tableDataDict.Add(fieldName, new List<object>());
+        var tableSet = tableDataDict[fieldName];
+        tableSet.Add(o);
+
+        
+
+    }
+
+    public void ShowAllFields()
+    {
+        BeginHorizontal();
+        for (int pos = 0; pos < allTableField.Count; pos++)
+        {
+            CreateLabel(allTableField[pos]);
+        }
+        EndHorizontal();
+
+        for (int root = 0; root < dataTable; root++)
+        {
+            BeginHorizontal();
+            for (int pos = 0; pos < allTableField.Count; pos++)
+            {
+                var fieldName = allTableField[pos];
+                if (tableDataDict[fieldName].Count > root && tableDataDict[fieldName][root] != null)
+                tableDataDict[fieldName][root] = GetTypeGUI(tableDataDict[fieldName][root], tableDataDict[fieldName][root].GetType());
+            }
+            EndHorizontal();
+        }
+    }
+
+
+    protected object GetTypeGUI(object t, Type type)
+    {
+        if (t is int || t is System.Int32 || type == typeof(int))
+        {
+            t = CreateIntField(Convert.ToInt32(t));
+        }
+        else if (t is System.Int16)
+        {
+            t = (short)CreateIntField(Convert.ToInt16(t));
+        }
+        else if (t is System.Int64)
+        {
+            t = CreateLongField(Convert.ToInt64(t));
+        }
+        else if (t is byte)
+        {
+            int value = Convert.ToInt32(t);
+            t = Convert.ToByte(CreateIntField(value));
+        }
+        else if (type == typeof(String))
+        {
+            t = CreateStringField((string)t);
+        }
+        else if (type == typeof(Single) || type == typeof(Double))
+        {
+            t = CreateFloatField(Convert.ToSingle(t));
+        }
+        else if (type == typeof(Boolean))
+        {
+            t = CreateCheckBox(Convert.ToBoolean(t));
+        }
+        else if(type == typeof(DBNull))
+        {
+            CreateLabel("DBNull");
+        }
+        else if (type.BaseType == typeof(Enum))
+        {
+            t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject(type, 0));
+        }
+        else if (type.IsSubclassOf(typeof(Object)))
+        {
+            t = CreateObjectField((Object)t, type);
+        }
+        else if (t is Vector2)
+        {
+            Vector2 v = (Vector2)t;
+            t = CreateVector2Field(type.Name, v);
+        }
+        else if (t is Vector3)
+        {
+            Vector3 v = (Vector3)t;
+            t = CreateVector3Field(type.Name, v);
+        }
+        else if (t is Vector4)
+        {
+            Vector4 v = (Vector4)t;
+            t = CreateVector4Field(type.Name, v);
+        }
+        else if (t is Quaternion)
+        {
+            Quaternion q = (Quaternion)t;
+            Vector4 v = new Vector4(q.x, q.y, q.z, q.w);
+            v = CreateVector4Field(type.Name, v);
+            q.x = v.x;
+            q.y = v.y;
+            q.z = v.z;
+            q.w = v.w;
+            t = q;
+        }
+        else if (typeof(IList).IsAssignableFrom(type))
+        {
+            IList list = t as IList;
+            if (list == null)
+                return t;
+            BeginVertical();
+            for (int pos = 0; pos < list.Count; pos++)
+            {
+                //  TODO loop in list.Count
+                var o = list[pos];
+                GetTypeGUI(o, o.GetType());
+            }
+            EndVertical();
+        }
+        else
+        {
+            CreateLabel(type.Name + " is not support");
+        }
+
+        return t;
+
+    }
+
+    public SqliteDataReader ExecuteQuery(string queryString)
+    {
+        dbCommand = dbConnection.CreateCommand();
+        dbCommand.CommandText = queryString;
+        dataReader = dbCommand.ExecuteReader();
+        return dataReader;
+    }
 }
