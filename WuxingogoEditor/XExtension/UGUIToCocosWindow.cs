@@ -7,11 +7,8 @@ using UnityEngine.UI;
 #if TINYTIME
 using TMPro;
 #endif
-public class ExprotUIToCocos : XBaseWindow 
+public class UGUIToCocosWindow : XBaseWindow 
 {
-
-	
-	Transform[] transWithImages = null;
 	Transform[] transAll = null;
 	
 	Animator _transAnimator = null;
@@ -20,9 +17,9 @@ public class ExprotUIToCocos : XBaseWindow
 	static XmlElement rootDoc;
 	static XmlDocument xmlDoc;
 	
-	[MenuItem ("Wuxingogo/Wuxingogo ExprotUIToCocos")]
+	[MenuItem ("Wuxingogo/Wuxingogo UGUIToCocosWindow")]
 	static void init () {
-		ExprotUIToCocos window = (ExprotUIToCocos)EditorWindow.GetWindow (typeof (ExprotUIToCocos ) );
+        InitWindow<UGUIToCocosWindow>();
 	}
 
 	public override void OnXGUI(){

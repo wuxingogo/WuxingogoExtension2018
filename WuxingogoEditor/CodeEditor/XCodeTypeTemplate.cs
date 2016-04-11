@@ -67,7 +67,13 @@ namespace wuxingogo.Code
 
 		public static XCodeTypeTemplate GetInstance()
 		{
-			return instance;
+            if (instance == null)
+            {
+                string assetPath = XEditorSetting.TemplatesPath + "/" + "XCodeTypeTemplate.asset";
+                assetPath = FileUtil.GetProjectRelativePath(assetPath);
+                instance = AssetDatabase.LoadAssetAtPath<XCodeTypeTemplate>(assetPath);
+            }
+            return instance;
 		}
 
 

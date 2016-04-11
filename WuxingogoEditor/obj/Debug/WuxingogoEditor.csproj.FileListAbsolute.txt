@@ -3,3 +3,12 @@ D:\ly-project\WuxingogoExtension\OutPutDll\WuxingogoEditor.dll
 D:\ly-project\WuxingogoExtension\OutPutDll\WuxingogoEditor.pdb
 D:\ly-project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
 D:\ly-project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+E:\Work\Wuxingogo\OutPutDll\WuxingogoEditor.dll
+E:\Work\Wuxingogo\OutPutDll\WuxingogoEditor.pdb
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojResolveAssemblyReference.cache
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Editor\WuxingogoEditor.dll
+E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Editor\WuxingogoEditor.pdb
+E:\Work\Wuxingogo\DebugDLL\WuxingogoEditor.dll
+E:\Work\Wuxingogo\DebugDLL\WuxingogoEditor.pdb

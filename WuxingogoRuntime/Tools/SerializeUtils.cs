@@ -15,33 +15,37 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SerializeUtils
+namespace wuxingogo.tools
 {
-	public static string Serialize<T> (T obj)
-	{
-		var b = new BinaryFormatter();
 
-		var m = new MemoryStream();
+    public class SerializeUtils
+    {
+        public static string Serialize<T>(T obj)
+        {
+            var b = new BinaryFormatter();
 
-		b.Serialize(m, obj);
+            var m = new MemoryStream();
 
-		string outputStr = Convert.ToBase64String(m.ToArray());
-		
-		m.Close();
+            b.Serialize(m, obj);
 
-		return outputStr;
-	}
+            string outputStr = Convert.ToBase64String(m.ToArray());
 
-	public static T Deserialize<T> (string str)
-	{
-		var b = new BinaryFormatter();
+            m.Close();
 
-		var m = new MemoryStream(Convert.FromBase64String(str));
+            return outputStr;
+        }
 
-		T obj = (T)b.Deserialize(m);
+        public static T Deserialize<T>(string str)
+        {
+            var b = new BinaryFormatter();
 
-		m.Close();
+            var m = new MemoryStream(Convert.FromBase64String(str));
 
-		return obj;
-	}
+            T obj = (T)b.Deserialize(m);
+
+            m.Close();
+
+            return obj;
+        }
+    }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-// Analysis disable once CheckNamespace
 public static class XResources {
 
 	static XResources(){

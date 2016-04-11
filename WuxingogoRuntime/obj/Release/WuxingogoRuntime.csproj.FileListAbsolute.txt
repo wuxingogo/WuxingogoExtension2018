@@ -1,0 +1,2 @@
+E:\Work\Wuxingogo\ReleaseDLL\WuxingogoRuntime.dll
+E:\Work\Wuxingogo\WuxingogoRuntime\obj\Release\WuxingogoRuntime.dll

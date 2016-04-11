@@ -18,17 +18,19 @@ using System;
 //}
 using System.Collections.Generic;
 using System.Collections;
-
-[CustomPropertyDrawer(typeof( IDictionary ), true)]
-public class UnityDictionaryDrawer : PropertyDrawer
+namespace wuxingogoEditor
 {
-	
-	override public void OnGUI( Rect position, SerializedProperty property, GUIContent label )
-	{
-		EditorGUI.BeginProperty( position, label, property );
-		
-		//todo: put nice drawing code here
-		
-		EditorGUI.EndProperty();
-	}
+    [CustomPropertyDrawer(typeof(IDictionary), true)]
+    public class UnityDictionaryDrawer : PropertyDrawer
+    {
+
+        override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property);
+
+            //todo: put nice drawing code here
+
+            EditorGUI.EndProperty();
+        }
+    }
 }

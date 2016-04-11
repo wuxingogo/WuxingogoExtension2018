@@ -15,11 +15,6 @@ namespace wuxingogo.tools{
 		[SerializeField] Color _color = Color.red;
 
 		public bool isDebug = true;
-		// Use this for initialization
-		void Start()
-		{
-			
-		}
 
 		void OnDrawGizmos()
 		{

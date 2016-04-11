@@ -3,3 +3,12 @@ D:\ly-project\WuxingogoExtension\OutPutDll\WuxingogoRuntime.pdb
 D:\ly-project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache
 D:\ly-project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
 D:\ly-project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache
+E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
+E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.dll
+E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.pdb
+E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll
+E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.pdb
+E:\Work\Wuxingogo\DebugDLL\WuxingogoRuntime.dll
+E:\Work\Wuxingogo\DebugDLL\WuxingogoRuntime.pdb

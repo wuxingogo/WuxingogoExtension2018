@@ -2,11 +2,15 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-public class BehaviourNode : BaseNode {
-
-	public BehaviourNode() : base()
+namespace GraphEditor
+{
+    public class BehaviourNode : BaseNode
     {
-		GraphType = NodeType.Behaviour;
-		GraphTitle = "BeahaviourNode";
-	}
+
+        public BehaviourNode() : base()
+        {
+            GraphType = NodeType.Behaviour;
+            GraphTitle = "BeahaviourNode";
+        }
+    }
 }

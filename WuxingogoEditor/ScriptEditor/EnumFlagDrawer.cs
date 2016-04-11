@@ -10,7 +10,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-namespace WuxingogoEditor
+namespace wuxingogoEditor
 {
 	using System;
 	using System.Reflection;

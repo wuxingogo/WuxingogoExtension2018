@@ -14,25 +14,29 @@ using UnityEditor;
 using wuxingogo.Runtime;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(XAttribute), true)]
-public class XAttributeDrawer : PropertyDrawer {
-	
-	override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-	{
-		XAttribute xTarget = (XAttribute)base.attribute;
-		EditorGUILayout.TextField(xTarget.title);
+namespace wuxingogo.Attribute
+{
+    [CustomPropertyDrawer(typeof(XAttribute), true)]
+    public class XAttributeDrawer : PropertyDrawer
+    {
 
-		if (property.propertyType == SerializedPropertyType.Float)
-		{
-			EditorGUI.FloatField(position, property.floatValue);
-		}
-		else if (property.propertyType == SerializedPropertyType.Integer)
-		{
-			EditorGUI.FloatField(position, property.intValue);
-		}
-		else if(property.propertyType == SerializedPropertyType.ObjectReference)
-		{
-			EditorGUI.ObjectField(position, property.objectReferenceValue, typeof(Object));
-		}
-	}
+        override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            XAttribute xTarget = (XAttribute)base.attribute;
+            EditorGUILayout.TextField(xTarget.title);
+
+            if (property.propertyType == SerializedPropertyType.Float)
+            {
+                EditorGUI.FloatField(position, property.floatValue);
+            }
+            else if (property.propertyType == SerializedPropertyType.Integer)
+            {
+                EditorGUI.FloatField(position, property.intValue);
+            }
+            else if (property.propertyType == SerializedPropertyType.ObjectReference)
+            {
+                EditorGUI.ObjectField(position, property.objectReferenceValue, typeof(Object));
+            }
+        }
+    }
 }

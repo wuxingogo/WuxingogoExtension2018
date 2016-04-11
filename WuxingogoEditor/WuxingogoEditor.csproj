@@ -9,13 +9,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>WuxingogoEditor</RootNamespace>
     <AssemblyName>WuxingogoEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\OutPutDll</OutputPath>
+    <Optimize>false</Optimize>
+    <OutputPath>..\OutPutDll\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,10 +25,20 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>..\OutPutDll</OutputPath>
+    <OutputPath>..\OutPutDll\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>0</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Wuxingogo.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,9 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="XExtension\ExprotUIToCocos.cs" />
+    <Compile Include="XExtension\UGUIToCocosWindow.cs" />
     <Compile Include="XExtension\FindTextureRef.cs" />
-    <Compile Include="XExtension\PackPipeLine.cs" />
     <Compile Include="XExtension\QuickCreatePrefabs.cs" />
     <Compile Include="XExtension\XAnimationExtension.cs" />
     <Compile Include="XExtension\XAttributeDrawer.cs" />
@@ -70,26 +80,21 @@
     <Compile Include="XExtension\XShaderExtension.cs" />
     <Compile Include="XExtension\XStyles.cs" />
     <Compile Include="XExtension\XTextureWindow.cs" />
-    <Compile Include="XExtension\XWindow.cs" />
-    <Compile Include="XExtension\YMGameWindow.cs" />
     <Compile Include="GraphEditor\BaseNode.cs" />
     <Compile Include="GraphEditor\BehaviourNode.cs" />
     <Compile Include="GraphEditor\ConditionNode.cs" />
     <Compile Include="GraphEditor\ElementNode.cs" />
     <Compile Include="GraphEditor\GraphMenu.cs" />
     <Compile Include="GraphEditor\GraphWindow.cs" />
-    <Compile Include="GraphEditor\LinkCurves.cs" />
     <Compile Include="GraphEditor\LinkJoint.cs" />
     <Compile Include="GraphEditor\ModelNode.cs" />
     <Compile Include="CreateAssets\CreateUnityScript.cs" />
     <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
     <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
-    <Compile Include="CreateAssets\GenerateCodeFactory.cs" />
     <Compile Include="XExtension\XAnimatorExtension.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
     <Compile Include="XExtension\XPlaymakerExtension.cs" />
-    <Compile Include="DataParser\JsonExtensionWindow.cs" />
     <Compile Include="XReflection\XAssemlyWindow.cs" />
     <Compile Include="XReflection\XPropertiesToSerializables.cs" />
     <Compile Include="XReflection\XReflectionWindow.cs" />
@@ -133,15 +138,10 @@
     <Compile Include="BehaviorWindow\XFsmWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CodeEditor\" />
-    <Folder Include="DataParser\" />
-    <Folder Include="XReflection\" />
-    <Folder Include="BehaviorEditor\" />
-    <Folder Include="ScriptEditor\" />
-    <Folder Include="BehaviorWindow\" />
+    <None Include="Wuxingogo.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">
       <Project>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</Project>

@@ -5,7 +5,7 @@ namespace wuxingogo.Runtime
 {
 	
 	public class GameManager<T> : XScriptableObject where T : XScriptableObject
-    {
+	{
 		private static T m_instance;
 
 		public static T instance
@@ -20,5 +20,5 @@ namespace wuxingogo.Runtime
 				return m_instance;
 			}
 		}
-    }
+	}
 }

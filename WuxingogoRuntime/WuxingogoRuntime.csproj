@@ -9,13 +9,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>XRuntime</RootNamespace>
     <AssemblyName>WuxingogoRuntime</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>..\OutPutDll</OutputPath>
+    <OutputPath>..\OutPutDll\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,11 +25,21 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>..\OutPutDll</OutputPath>
+    <OutputPath>..\OutPutDll\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,7 +63,6 @@
     <Compile Include="Attribute\XAttribute.cs" />
     <Compile Include="Attribute\XSerializeAttribute.cs" />
     <Compile Include="Scripts\XScriptableObject.cs" />
-    <Compile Include="Tools\JsonExtension.cs" />
     <Compile Include="Tools\SerializeUtils.cs" />
     <Compile Include="Tools\UnityDictionary.cs" />
     <Compile Include="Behaviour\IBehaviourFsm.cs" />
@@ -84,11 +94,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="BehaviorCore\" />
-    <Folder Include="TestBehavior\" />
-    <Folder Include="Tools\" />
-    <Folder Include="Attribute\" />
-    <Folder Include="Behaviour\" />
-  </ItemGroup>
 </Project>
