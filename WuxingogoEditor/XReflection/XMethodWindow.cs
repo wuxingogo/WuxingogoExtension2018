@@ -9,6 +9,9 @@ using Object = UnityEngine.Object;
 
 public class XMethodWindow : XBaseWindow
 {
+
+    public delegate object MethodInvoke( MethodInfo methodInfo, object[] paras );
+
 	public static XMethodWindow Init()
 	{
 		return InitWindow<XMethodWindow>();
@@ -39,6 +42,10 @@ public class XMethodWindow : XBaseWindow
 	
 	private Dictionary<MethodInfo, object[]> parameters = new Dictionary<MethodInfo, object[]>();
 
+    private bool isDebugBreak = false;
+
+    public event MethodInvoke MethodInvokeDelegate;
+
     public override void OnXGUI()
     {
 
@@ -59,6 +66,8 @@ public class XMethodWindow : XBaseWindow
                 DoButton("Back To Last Object", BackToLastObject);
 
             DoButton("Open Generate Code Window", OpenInGenerateCodeWindow);
+
+            isDebugBreak = CreateCheckBox( "DebugBreak", isDebugBreak );
 
             BeginHorizontal();
             CreateLabel("Filter Type : " + showType);
@@ -100,8 +109,7 @@ public class XMethodWindow : XBaseWindow
 
                     if (CreateSpaceButton("Invoke"))
                     {
-                        object result = method.Invoke(_target, myParameters);
-                        Debug.Log(result ?? "Void Method");
+                        MethodInvokeDelegate( method, myParameters );
                     }
 
                     #endregion
@@ -112,6 +120,17 @@ public class XMethodWindow : XBaseWindow
         }
     }
 
+    object InvokeMethod( MethodInfo methodInfo, params object[] paras )
+    {
+
+        object result = methodInfo.Invoke( _target, paras );
+        Debug.Log( result ?? "Void Method" );
+        if( isDebugBreak )
+            Debug.Break();
+        return result;
+    }
+
+
     public override object[] closeRecordArgs {
 		get {
 			return new object[]{ Target };
@@ -121,7 +140,10 @@ public class XMethodWindow : XBaseWindow
 	{
 		if( args.Length > 0 )
 		Target = args[0];
-	}
+
+        MethodInvokeDelegate += InvokeMethod;
+
+    }
 
 	object GetTypeGUI(object t, Type type)
 	{

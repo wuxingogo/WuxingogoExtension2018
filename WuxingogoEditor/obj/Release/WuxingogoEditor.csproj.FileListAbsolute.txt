@@ -1,3 +1,4 @@
 E:\Work\Wuxingogo\ReleaseDLL\WuxingogoEditor.dll
 E:\Work\Wuxingogo\WuxingogoEditor\obj\Release\WuxingogoEditor.csprojResolveAssemblyReference.cache
 E:\Work\Wuxingogo\WuxingogoEditor\obj\Release\WuxingogoEditor.dll
+E:\Work\Wuxingogo\OutPutDll\WuxingogoEditor.dll

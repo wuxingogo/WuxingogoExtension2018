@@ -26,7 +26,7 @@ namespace wuxingogoEditor
 
         override public void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.BeginProperty(position, new GUIContent(label.text + "IDictionary"), property);
 
             //todo: put nice drawing code here
 

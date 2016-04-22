@@ -16,10 +16,14 @@ namespace wuxingogoEditor
         BindingFlags bindFlags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
         public override void OnXGUI()
         {
+            serializedObject.Update();
+            serializedObject.UpdateIfDirtyOrScript();
 
             GetTargetMethod<XAttribute>( target );
             GetTargetField<XAttribute>( target );
             GetTargetProperty<XAttribute>( target );
+
+            
 
         }
 

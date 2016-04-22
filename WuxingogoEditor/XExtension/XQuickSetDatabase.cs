@@ -33,8 +33,11 @@ public class XQuickSetDatabase : XBaseWindow
     Dictionary<string, List<object>> tableDataDict = new Dictionary<string, List<object>>();
     Dictionary<string, Type> tableTypeDict = new Dictionary<string, Type>();
     string currTable = "";
+    string filterStr = "";
 
     int dataTable = 0;
+
+    int selectField = -1;
 
     private SqliteConnection dbConnection;
     private SqliteCommand dbCommand;
@@ -88,47 +91,16 @@ public class XQuickSetDatabase : XBaseWindow
         {
             GetAllTableName();
         }
+
+        filterStr = CreateStringField( "Filter : ", filterStr );
         for (int pos = 0; pos < allTable.Count; pos++)
         {
-            if (CreateSpaceButton(allTable[pos]))
+            string tableName = allTable[pos];
+            if( tableName.Contains( filterStr ) || filterStr.Contains( tableName ))
             {
-                dataTable = 0;
-                allTableField.Clear();
-                string sql = "SELECT * FROM " + allTable[pos];
-                SqliteDataReader recordTableReader = ExecuteQuery(sql);
-                currTable = allTable[pos];
-                allTable.Clear();
-                int count = recordTableReader.VisibleFieldCount;
-                for (int idx = 0; idx < count; idx++)
-                {
-                    //  TODO loop in count
-                    string fieldTypeName = recordTableReader.GetName(idx);
-                    Debug.Log("fieldTypeName" + fieldTypeName);
-                }
-
-
-                isShowTable = true;
-
-                while (recordTableReader.Read())
-                {
-                    dataTable++;
-                    for (int root = 0; root < count; root++)
-                    {
-                        string field = recordTableReader.GetName(root);
-                        if (!allTableField.Contains(field))
-                            allTableField.Add(field);
-                        Type type = recordTableReader.GetFieldType(root);
- 
-                        if (!tableTypeDict.ContainsKey(field))
-                            tableTypeDict.Add(field, type);
-                        PushData(field, recordTableReader.GetValue(root));
-                        
-
-                        
-                    }
-                }
-                recordTableReader.Close();
+                CreateTableButton( tableName );
             }
+           
         }
 
         if (isShowTable)
@@ -136,6 +108,46 @@ public class XQuickSetDatabase : XBaseWindow
             ShowAllFields();
         }
     }
+
+    public void CreateTableButton( string tableName )
+    {
+        if( CreateSpaceButton( tableName ) )
+        {
+            dataTable = 0;
+            allTableField.Clear();
+            string sql = "SELECT * FROM " + tableName;
+            SqliteDataReader recordTableReader = ExecuteQuery( sql );
+            currTable = tableName;
+            allTable.Clear();
+            int count = recordTableReader.VisibleFieldCount;
+            for( int idx = 0; idx < count; idx++ )
+            {
+                //  TODO loop in count
+                string fieldTypeName = recordTableReader.GetName( idx );
+            }
+
+            selectField = -1;
+            isShowTable = true;
+
+            while( recordTableReader.Read() )
+            {
+                dataTable++;
+                for( int root = 0; root < count; root++ )
+                {
+                    string field = recordTableReader.GetName( root );
+                    if( !allTableField.Contains( field ) )
+                        allTableField.Add( field );
+                    Type type = recordTableReader.GetFieldType( root );
+
+                    if( !tableTypeDict.ContainsKey( field ) )
+                        tableTypeDict.Add( field, type );
+                    PushData( field, recordTableReader.GetValue( root ) );
+                }
+            }
+            recordTableReader.Close();
+        }
+    }
+
 
     public void PushData(string fieldName, object o)
     {
@@ -147,13 +159,24 @@ public class XQuickSetDatabase : XBaseWindow
         
 
     }
+    public void ReSelectField()
+    {
+
+    }
+
 
     public void ShowAllFields()
     {
         BeginHorizontal();
+
         for (int pos = 0; pos < allTableField.Count; pos++)
         {
-            CreateLabel(allTableField[pos]);
+            DoButton( allTableField[pos], () =>
+           {
+               selectField = pos;
+               ReSelectField();
+           }, selectField == pos ? XStyles.GetInstance().window : XStyles.GetInstance().button );
+
         }
         EndHorizontal();
 
@@ -163,8 +186,22 @@ public class XQuickSetDatabase : XBaseWindow
             for (int pos = 0; pos < allTableField.Count; pos++)
             {
                 var fieldName = allTableField[pos];
-                if (tableDataDict[fieldName].Count > root && tableDataDict[fieldName][root] != null)
-                tableDataDict[fieldName][root] = GetTypeGUI(tableDataDict[fieldName][root], tableDataDict[fieldName][root].GetType());
+
+                var dataObject = tableDataDict[fieldName][root];
+
+                if( selectField == pos )
+                {
+                    var dataText = dataObject.ToString();
+                    if( !dataText.Contains( filterStr ) )
+                    {
+                        break;
+                    }
+                }
+
+                if( tableDataDict[fieldName].Count > root && dataObject != null )
+                {
+                    tableDataDict[fieldName][root] = GetTypeGUI( dataObject, dataObject.GetType() );
+                }
             }
             EndHorizontal();
         }
