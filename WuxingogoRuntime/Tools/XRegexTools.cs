@@ -17,7 +17,5 @@ namespace wuxingogo.tools
 			MatchCollection matches = Regex.Matches(value, numberRegex);
 			return "";
 		}
-
-//		public static int 
 	}
 }

@@ -1,13 +1,9 @@
-using UnityEngine;
-using System.Collections;
-using UnityEditor;
-using wuxingogo.Runtime;
-using System.Reflection;
-using wuxingogo.Reflection;
-using System;
 
 namespace wuxingogo.Attribute
 {
+    using UnityEngine;
+    using UnityEditor;
+    using wuxingogo.Runtime;
 
     [CustomPropertyDrawer(typeof(DisableAttribute), true)]
     public class DisableDrawer : PropertyDrawer

@@ -8,19 +8,19 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using UnityEditor;
-using wuxingogo.Fsm;
-using System.Collections;
-using UnityEngine;
-using Object = UnityEngine.Object;
-using System.Collections.Generic;
 
 
 namespace FsmEditor
 {
+    using System;
+    using UnityEditor;
+    using wuxingogo.Fsm;
+    using System.Collections;
+    using UnityEngine;
+    using Object = UnityEngine.Object;
+    using System.Collections.Generic;
 
-	[CustomEditor( typeof( XFsmComponent ) )]
+    [CustomEditor( typeof( XFsmComponent ) )]
 	public class XFsmEditor : XBaseEditor
 	{
 		public override void OnXGUI()

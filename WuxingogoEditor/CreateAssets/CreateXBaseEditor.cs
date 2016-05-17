@@ -1,10 +1,11 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
-using System.Collections;
+
 
 namespace CreateAssets
 {
+    using UnityEngine;
+    using UnityEditor;
+    using System.IO;
+    using System.Collections;
     public class CreateXBaseEditor : CreateUnityScript
     {
         [MenuItem("Assets/Create/Wuxingogo/XBaseEditor", false, 100)]

@@ -10,24 +10,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using UnityEditor;
-using UnityEngine;
-using Object = UnityEngine.Object;
-using System;
-using wuxingogo.Fsm;
-
-
 namespace FsmEditor
 {
+    using System.Collections.Generic;
+    using UnityEditor;
+    using UnityEngine;
+    using wuxingogo.Fsm;
 
-
-	public class Styles
+    public class Styles
 	{
 		private static Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
 

@@ -8,14 +8,16 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
-using System.Collections;
-using UnityEditor;
-using wuxingogo.Runtime;
-using UnityEngine;
 
-namespace wuxingogo.Attribute
+
+namespace wuxingogo.Editor
 {
+    using System.Collections.Generic;
+    using System.Collections;
+    using UnityEditor;
+    using wuxingogo.Runtime;
+    using UnityEngine;
+
     [CustomPropertyDrawer(typeof(XAttribute), true)]
     public class XAttributeDrawer : PropertyDrawer
     {

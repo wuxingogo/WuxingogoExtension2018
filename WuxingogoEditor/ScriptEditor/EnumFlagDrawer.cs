@@ -10,16 +10,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-namespace wuxingogoEditor
+namespace wuxingogo.Editor
 {
-	using System;
-	using System.Reflection;
-	using UnityEditor;
-	using UnityEngine;
-	using wuxingogo.Runtime;
+    using System;
+    using UnityEditor;
+    using UnityEngine;
+    using wuxingogo.Runtime;
 
 
-	[CustomPropertyDrawer( typeof( EnumFlagAttribute ) )]
+    [CustomPropertyDrawer( typeof( EnumFlagAttribute ) )]
 	public class EnumFlagDrawer : PropertyDrawer
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

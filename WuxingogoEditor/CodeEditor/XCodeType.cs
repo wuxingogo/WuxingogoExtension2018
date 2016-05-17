@@ -10,8 +10,6 @@ using wuxingogo.Code;
 
 namespace wuxingogo.Code
 {
-	
-
 	[System.Serializable]
 	public class XCodeType
 	{

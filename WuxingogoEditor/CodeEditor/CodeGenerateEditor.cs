@@ -19,7 +19,7 @@ namespace wuxingogo.Code
 	using System;
 	using Object = UnityEngine.Object;
 
-	public class CodeGenerateEditor : XBaseWindow
+    public class CodeGenerateEditor : XBaseWindow
 	{
 		[MenuItem( "Wuxingogo/Code/CodeGenerateEditor" )]
 		static void init()

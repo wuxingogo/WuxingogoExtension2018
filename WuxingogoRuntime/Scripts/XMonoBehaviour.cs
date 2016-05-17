@@ -26,9 +26,8 @@ using UnityEngine;
 using System.Collections;
 
 namespace wuxingogo.Runtime {
-
 	public class XMonoBehaviour : MonoBehaviour {
-#if Wuxingogo_Core
+        #if Wuxingogo_Core
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){
 
@@ -37,8 +36,18 @@ namespace wuxingogo.Runtime {
 			windowType.TrySetProperty(window, "Target", this);
 
 		}
-#endif
-	}
+        #endif
+
+        public T Instanie<T>(T original ) where T : UnityEngine.Object
+        {
+            if( Application.isPlaying )
+            {
+                return Instantiate<T>( original );
+            }
+            
+            return original;
+        }
+    }
 
 }
 

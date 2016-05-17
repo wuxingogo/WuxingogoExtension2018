@@ -1,60 +1,75 @@
-using UnityEngine;
-using UnityEditor;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Xml;
-using System.IO;
 
-public class XSerializableExtension : XBaseWindow 
+namespace wuxingogo.Reflection
 {
+    using UnityEngine;
+    using UnityEditor;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Xml;
+    using System.IO;
 
-	static XmlDocument xmlDoc = null;
-	// This window to quick set serializable property.
-	[MenuItem ("Wuxingogo/Reflection/Wuxingogo XSerializableExtension ")]
-	static void init () {
-		InitWindow<XSerializableExtension>();
-	}
+    public class XSerializableExtension : XBaseWindow
+    {
 
-	Component targetComponent = null;
-	bool isDirty = true;
-	List<FieldInfo> mProperties = new List<FieldInfo>();
-	FieldInfo targetProperty = null;
-	
-	public override void OnXGUI(){
-		
-		targetComponent = (Component)CreateObjectField("target", targetComponent, typeof(Component));
-		if( null == targetComponent){
-			CreateMessageField("Drag a Component.", MessageType.None);
-		}
-		else{
-			
-			if(CreateSpaceButton("Clean")){
-				isDirty = true;
-			}
-			if(isDirty){
-				isDirty = false;
-				mProperties.Clear();
-				targetProperty = null;
-				// targetComponent.GetType().
-				foreach( var item in targetComponent.GetType().GetFields() ){
-					if( targetComponent.GetType() == item.DeclaringType && !item.IsNotSerialized ) {
-						mProperties.Add(item);
-					}
-				}
-			}
+        static XmlDocument xmlDoc = null;
+        // This window to quick set serializable property.
+        [MenuItem( "Wuxingogo/Reflection/Wuxingogo XSerializableExtension " )]
+        static void init()
+        {
+            InitWindow<XSerializableExtension>();
+        }
 
-			for(int pos = 0; pos < mProperties.Count; pos++ ){
-				if(CreateSpaceButton(mProperties[pos].Name)){
-					targetProperty = mProperties[pos];
-					mProperties.Clear();
-				}
-			}
-			
-			if( null != targetProperty ){
-				if(CreateSpaceButton(targetProperty.Name)){
-					isDirty = true;
-				}
+        Component targetComponent = null;
+        bool isDirty = true;
+        List<FieldInfo> mProperties = new List<FieldInfo>();
+        FieldInfo targetProperty = null;
+
+        public override void OnXGUI()
+        {
+
+            targetComponent = ( Component )CreateObjectField( "target", targetComponent, typeof( Component ) );
+            if( null == targetComponent )
+            {
+                CreateMessageField( "Drag a Component.", MessageType.None );
+            }
+            else
+            {
+
+                if( CreateSpaceButton( "Clean" ) )
+                {
+                    isDirty = true;
+                }
+                if( isDirty )
+                {
+                    isDirty = false;
+                    mProperties.Clear();
+                    targetProperty = null;
+                    // targetComponent.GetType().
+                    foreach( var item in targetComponent.GetType().GetFields() )
+                    {
+                        if( targetComponent.GetType() == item.DeclaringType && !item.IsNotSerialized )
+                        {
+                            mProperties.Add( item );
+                        }
+                    }
+                }
+
+                for( int pos = 0; pos < mProperties.Count; pos++ )
+                {
+                    if( CreateSpaceButton( mProperties[pos].Name ) )
+                    {
+                        targetProperty = mProperties[pos];
+                        mProperties.Clear();
+                    }
+                }
+
+                if( null != targetProperty )
+                {
+                    if( CreateSpaceButton( targetProperty.Name ) )
+                    {
+                        isDirty = true;
+                    }
 #if TINYTIME
 				if(targetProperty.FieldType == typeof(System.Collections.Generic.List<TutorialModel>) ){
 					List<TutorialModel>list = (List<TutorialModel>)targetProperty.GetValue(targetComponent);
@@ -114,10 +129,10 @@ public class XSerializableExtension : XBaseWindow
 					}
 				}
 #endif
+                }
             }
-		}
-	}
-#if TINYTIME	
+        }
+#if TINYTIME
 	void GetElements(List<TutorialModel> list, string filepath){
 		xmlDoc = new XmlDocument();
 	
@@ -160,47 +175,59 @@ public class XSerializableExtension : XBaseWindow
 		return xmlElement;
 	}
 #endif
-	XmlElement CreateElementFromArray(System.Array array, string fieldname){
-		XmlElement xmlElement = xmlDoc.CreateElement(fieldname);
-		if(array.GetType() == typeof(System.Single[])){ 
-			System.Single[] floats = array as float[];
-			for( int i = 0; i < floats.Length; i++ ){
-				
-				xmlElement.SetAttribute("array" + i.ToString(), floats[i].ToString());
-			}
-			
-			
-		}
-		else if(array.GetType() == typeof(System.String[])){ 
-			System.String[] strings = array as System.String[];
-			for( int i = 0; i < strings.Length; i++ ){
-				
-				xmlElement.SetAttribute("array" + i.ToString(), strings[i]);
-			}
-		}
-		return xmlElement;
-	}
-	
-	void OnSelectionChange(){
-		//TODO List
-		Repaint();
-	}
-	
-	public string GetRelativePath(Transform targetGO){
-		string str = "";
-		
-		Transform sParent = targetGO.transform;
-		while(true){
-			if(sParent.parent != null){
-				str = "/" + sParent.name + str;
-				sParent = sParent.parent;
-			}else{
-				str =  sParent.name + str;
-				break;
-			}
-		}
-		return str;
-	}
+        XmlElement CreateElementFromArray( System.Array array, string fieldname )
+        {
+            XmlElement xmlElement = xmlDoc.CreateElement( fieldname );
+            if( array.GetType() == typeof( System.Single[] ) )
+            {
+                System.Single[] floats = array as float[];
+                for( int i = 0; i < floats.Length; i++ )
+                {
 
-	
+                    xmlElement.SetAttribute( "array" + i.ToString(), floats[i].ToString() );
+                }
+
+
+            }
+            else if( array.GetType() == typeof( System.String[] ) )
+            {
+                System.String[] strings = array as System.String[];
+                for( int i = 0; i < strings.Length; i++ )
+                {
+
+                    xmlElement.SetAttribute( "array" + i.ToString(), strings[i] );
+                }
+            }
+            return xmlElement;
+        }
+
+        void OnSelectionChange()
+        {
+            //TODO List
+            Repaint();
+        }
+
+        public string GetRelativePath( Transform targetGO )
+        {
+            string str = "";
+
+            Transform sParent = targetGO.transform;
+            while( true )
+            {
+                if( sParent.parent != null )
+                {
+                    str = "/" + sParent.name + str;
+                    sParent = sParent.parent;
+                }
+                else
+                {
+                    str = sParent.name + str;
+                    break;
+                }
+            }
+            return str;
+        }
+
+
+    }
 }

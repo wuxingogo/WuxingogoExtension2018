@@ -1,15 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
-using UnityEngine;
-using wuxingogo.Runtime;
-using Object = UnityEngine.Object;
 
 namespace wuxingogoEditor
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using UnityEditor;
+    using UnityEngine;
+    using wuxingogo.Reflection;
+    using wuxingogo.Runtime;
+    using Object = UnityEngine.Object;
+
     [CustomEditor( typeof( XMonoBehaviour ), true )]
+    [CanEditMultipleObjects]
     public class XMonoBehaviourEditor : XBaseEditor
     {
         private Dictionary<string, object[]> methodParameters = new Dictionary<string, object[]>();

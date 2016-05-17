@@ -1,9 +1,10 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEditor;
+
 namespace GraphEditor
 {
+    using UnityEngine;
+    using System.Collections.Generic;
+    using System.Collections;
+    using UnityEditor;
     public class ModelNode<T> : BaseNode
     {
         T t;
