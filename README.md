@@ -5,9 +5,6 @@
 
 This repository includes the source code of the WuxingogoExtension libraries。
 
-This repository is needed：
-API Compatibilty Level : .Net
-
 
 ##Features
 ------
