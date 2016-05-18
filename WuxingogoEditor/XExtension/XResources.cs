@@ -5,7 +5,6 @@ using System.Collections;
 public static class XResources {
 
 	static XResources(){
-//		string resPath = EditorPrefs.GetString("XLogo", "Assets/WuxingogoExtension/wuxingogo.psd");
 		string resPath = "Assets/WuxingogoExtension/wuxingogo.psd";
 		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(resPath);
 

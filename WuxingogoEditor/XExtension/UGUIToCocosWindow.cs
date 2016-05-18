@@ -4,9 +4,7 @@ using System.Collections;
 using System.Xml;
 using System.IO;
 using UnityEngine.UI;
-#if TINYTIME
-using TMPro;
-#endif
+
 public class UGUIToCocosWindow : XBaseWindow 
 {
 	Transform[] transAll = null;
@@ -100,14 +98,6 @@ public class UGUIToCocosWindow : XBaseWindow
 			xmlTrans.SetAttribute("textColor", tex.color.ToString());	
 			xmlTrans.SetAttribute("textSize", tex.fontSize.ToString());	
 		}
-#if TINYTIME
-		TextMeshProUGUI tmpText = element.GetComponent<TextMeshProUGUI>();
-		if( null != tmpText ){
-			xmlTrans.SetAttribute("text", tmpText.text);	
-			xmlTrans.SetAttribute("textColor", tmpText.color.ToString());	
-			xmlTrans.SetAttribute("textSize", tmpText.fontSize.ToString());	
-		}
-#endif
 		if(element.childCount > 0){
 			for(int pos = 0; pos < element.childCount; pos++){
 			

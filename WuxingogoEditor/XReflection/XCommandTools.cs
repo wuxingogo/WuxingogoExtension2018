@@ -1,7 +1,5 @@
 namespace wuxingogo.Reflection
 {
-
-
     using UnityEngine;
     using UnityEditor;
     using System.Reflection;
