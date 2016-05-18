@@ -105,21 +105,22 @@ namespace wuxingogo.Reflection
 
                         object[] myParameters = parameters[method];
 
-                        BeginVertical();
+                        BeginHorizontal();
                         #region Show all method Parameter Info
                         for( int pos = 0; pos < paras.Length; pos++ )
                         {
                             myParameters[pos] = GetTypeGUI( myParameters[pos], paras[pos].ParameterType );
 
                         }
+                        #endregion
+                        EndHorizontal();
 
                         if( CreateSpaceButton( "Invoke" ) )
                         {
                             MethodInvokeDelegate( method, myParameters );
                         }
 
-                        #endregion
-                        EndVertical();
+                        
                     }
 
                 }
@@ -157,7 +158,7 @@ namespace wuxingogo.Reflection
         {
             string strType = type.ToString();
 
-            BeginHorizontal();
+            //BeginHorizontal();
             CreateLabel( strType );
 
             if( type == typeof( Int32 ) )
@@ -188,7 +189,7 @@ namespace wuxingogo.Reflection
             {
                 CreateLabel( " are not support" );
             }
-            EndHorizontal();
+            //EndHorizontal();
             return t;
 
         }

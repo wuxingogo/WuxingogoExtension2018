@@ -3,18 +3,22 @@
 ## Intro
 ------
 
-My Unity Editor extension.
+This repository includes the source code of the WuxingogoExtension libraries。
+
+This repository is needed：
+API Compatibilty Level : .Net
 
 
 ##Features
 ------
 
-* Export UGUI.
-* Visual variable edit.
+* Export UGUI to CocosUI(3.x).
+* ReflectionUtil Collection(Visual Window).
 * Create AssetBundle extension (Unity version 4.x).
+* Custom Attribute Collection(Inspector's reflection)
 * Quick set unity prefs.
-* Visual CSharpCode Generated(CodeDom).
-* Finite-State-Machine
+* Generated CSharpCode(CodeDom).
+* Finite-State-Machine and Editor.
 
 
 ##Usage
@@ -52,9 +56,7 @@ Etc.
 
 ##Copyright, License & Contributors
 -----
-WuxingogoExtension has been release under the MIT license. 
-
-The authors is Wuxingogo.
+MIT license
 
 Contcat:52111314ly@gmail.com
 
