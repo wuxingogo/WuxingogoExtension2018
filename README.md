@@ -3,7 +3,7 @@
 ## Intro
 ------
 
-WuxingogoExtension is a Unity 3D plugin for displaying dynamic text using the fonts available on the mobile device/computer.
+WuxingogoExtension is a Unity 3D plugin for build good game.
 This repository includes the source code of the WuxingogoExtension libraries。
 
 
@@ -17,7 +17,7 @@ This repository includes the source code of the WuxingogoExtension libraries。
 * Unity Editor support: Quick set unity prefs.
 * Unity Editor support: Generated CSharpCode(CodeDom).
 * Unity Editor support: Finite-State-Machine and Editor.
-
+* Including a GameManager to easily manage your game.(inherit ScriptableObject)
 
 ##Usage
 -----------
