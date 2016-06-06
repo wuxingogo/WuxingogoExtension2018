@@ -100,7 +100,7 @@ namespace wuxingogo.Fsm
 			if(CurrState != null){
 				CurrState.OnUpdate();
 			}else{
-				Debug.LogWarning("XFsm CurrentState is NULL================");
+				Logger.LogWarning("XFsm CurrentState is NULL================");
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace wuxingogo.Fsm
 		public virtual void OnLateUpdate()
 		{
 			if( null == CurrState ) {
-				Debug.LogWarning("XFsm CurrentState is NULL================");
+				Logger.LogWarning("XFsm CurrentState is NULL================");
 			} else {
 				CurrState.OnLateUpdate();
 			}

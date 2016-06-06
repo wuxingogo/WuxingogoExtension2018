@@ -93,7 +93,7 @@ public class XReplaceComponent : XBaseWindow
 
 		string filePath = EditorUtility.OpenFilePanel("Open XML", SavePath ?? Application.streamingAssetsPath, "" );
 		if( null == filePath ){
-			Debug.Log("error by wuxingogo");
+			Logger.Log("error by wuxingogo");
 			return;
 		}
 

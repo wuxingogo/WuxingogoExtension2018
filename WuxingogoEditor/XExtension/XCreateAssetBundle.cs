@@ -76,17 +76,17 @@ public class XCreateAssetBundle : XBaseWindow
 		}
 		
 		if( LoadingConfig ){
-			Debug.Log("start loading");
+			Logger.Log("start loading");
 			if( null == asset ) 
 				asset = new WWW(_bundlepath);
 			LoadingConfig = false;
 		}
-//		Debug.Log(string.Format("asset == null is {0}" , asset == null));
+//		Logger.Log(string.Format("asset == null is {0}" , asset == null));
 		if(asset != null ){
-//			Debug.Log("asset.isDone is " + asset.isDone);
+//			Logger.Log("asset.isDone is " + asset.isDone);
 //			if(asset.isDone){
    
-			Debug.Log("end loading");
+			Logger.Log("end loading");
 			currBundle = asset.assetBundle;
 			if(currBundle == null){
 				CreateNotification("Selected the asset bundle 's format is error.");

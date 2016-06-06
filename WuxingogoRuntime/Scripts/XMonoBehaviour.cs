@@ -44,7 +44,6 @@ namespace wuxingogo.Runtime {
             {
                 return Instantiate<T>( original );
             }
-            
             return original;
         }
     }

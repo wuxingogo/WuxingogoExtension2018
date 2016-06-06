@@ -31,7 +31,7 @@ public class QuickCreatePrefabs : XBaseWindow {
 		
 		if(CreateSpaceButton( "Create Prefabs" ) && null != myPrefab ){
 			myPrefablist.Clear();
-			Debug.Log( myPrefab.name );
+			Logger.Log( myPrefab.name );
 			
 			for( int i = 0; i < copyNum; i++ ){
 				GameObject obj = (Instantiate(myPrefab) as GameObject);

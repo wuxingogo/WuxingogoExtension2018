@@ -198,7 +198,7 @@ public class XAnimatorExtension : XBaseWindow
     {
         //TODO List
         //		if(Selection.objects.Length > 0)
-        //			Debug.Log("obj is " + Selection.objects[0].GetType());
+        //			Logger.Log("obj is " + Selection.objects[0].GetType());
     }
 
     public static Animation GetAnimation(Animator animator)

@@ -91,13 +91,13 @@ public class XTextureWindow : XBaseWindow
 //			if( i + 1 <= i)
 //			s.Compare( elements[i], elements[i + 1] );
 //			
-////	          Debug.Log( "pos is " + o.name );
+////	          Logger.Log( "pos is " + o.name );
 //		}
 //		foreach ( GameObject o in elements ){
 //			pos++;
 //			TransformSort s = new TransformSort();
 //			s.Compare(o, 
-//			Debug.Log( "pos is " + o.name );
+//			Logger.Log( "pos is " + o.name );
 //		}
 		
 	}
@@ -145,7 +145,7 @@ public class XTextureWindow : XBaseWindow
 //			if( o.GetType() == typeof(Texture2D))
 //			{
 //				Texture2D tex = (Texture2D)o;
-//				Debug.Log(tex.GetNativeTextureID());
+//				Logger.Log(tex.GetNativeTextureID());
 //			}
 //		}
 		

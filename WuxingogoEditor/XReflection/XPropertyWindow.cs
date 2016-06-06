@@ -96,7 +96,7 @@ public class XPropertyWindow : XBaseWindow
 							changeValue = CreateEnumSelectable( property.Name + ": string", (System.Enum)value );
 						}
 //						else if(field.FieldType.BaseType == ))
-////							Debug.Log(field.FieldType.ToString());
+////							Logger.Log(field.FieldType.ToString());
 ////							CreateObjectField(field.Name + ": object", (Object)value);
 //						}
 						else if( property.PropertyType.BaseType == typeof( UnityEngine.Object ) ) {
@@ -118,7 +118,7 @@ public class XPropertyWindow : XBaseWindow
 //							changeValue = CreateObjectField(property.Name + ": " + property.PropertyType, (Object)value);
 						}
 						if( GUI.changed && changeValue != value && uObject != null ) {
-//							Debug.Log("gui change");
+//							Logger.Log("gui change");
 							Undo.RecordObject( uObject, "Record ScrObject" );
 							try {
 								property.SetValue( Target, changeValue, null );

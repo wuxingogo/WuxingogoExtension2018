@@ -50,7 +50,7 @@ public class XEditorSetting : XBaseWindow
 		foreach (MouseCursor item in Enum.GetValues(typeof(MouseCursor)))
 		{
 //			GUILayout.Button(Enum.GetName(typeof(MouseCursor), item));
-			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> Debug.Log(item.ToString()));
+			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> Logger.Log(item.ToString()));
 			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
 			GUILayout.Space(10);
 		}
@@ -67,7 +67,7 @@ public class XEditorSetting : XBaseWindow
 //				if(index < XResources.GetInstance().IconNames.Length){
 //					string btnName = XResources.GetInstance().IconNames[index];
 //					GUIContent content = EditorGUIUtility.IconContent(btnName);
-//					AddButton(content, ()=> Debug.Log(btnName.ToString()), GUILayout.Width(50), GUILayout.Height(30));
+//					AddButton(content, ()=> Logger.Log(btnName.ToString()), GUILayout.Width(50), GUILayout.Height(30));
 //				}
 //					
 //			}

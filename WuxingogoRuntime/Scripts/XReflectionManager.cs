@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Collections;
 using wuxingogo.Reflection;
+
 namespace wuxingogo.Runtime {
     public class XReflectionManager {
 	
@@ -13,8 +14,7 @@ namespace wuxingogo.Runtime {
 		    string method_str = "";
 		    string parasCMD = "";
 		    object[] paras = null;
-		
-		
+
 		    method_str = methodCMD.Substring(0,methodCMD.IndexOf("("));
 		    parasCMD =  methodCMD.Substring(methodCMD.IndexOf("("), methodCMD.Length - methodCMD.IndexOf("("));
 		    parasCMD = parasCMD.Substring( 1, parasCMD.Length - 2);
@@ -52,7 +52,7 @@ namespace wuxingogo.Runtime {
     //		MethodInfo method = type.GetMethod(method_str,System.Reflection.BindingFlags.);
 		    MethodInfo method = type.GetMethod(method_str);
 		    if( null == method){
-			    Debug.Log(target + " not have a " + method_str + " method." );
+			    Logger.Log(target + " not have a " + method_str + " method." );
 			    return null;
 		    }
 		    object returnValue = method.Invoke(target,paras);
@@ -81,7 +81,7 @@ namespace wuxingogo.Runtime {
 		    FieldInfo field = type.GetField(fieldName);
 		
 		    if( null == property && null == field){
-			    Debug.Log(type.Name + "." + " not contain " + fieldName);
+			    Logger.Log(type.Name + "." + " not contain " + fieldName);
 			    return null;
 		    }
 		    object returnValue = null;
@@ -90,7 +90,7 @@ namespace wuxingogo.Runtime {
 		    else if( null != field)
 			    returnValue = field.GetValue(target);
 		    if( null == returnValue){
-			    Debug.Log(type.Name + "." + property.Name + " is null.");
+			    Logger.Log(type.Name + "." + property.Name + " is null.");
 			    return null;
 		    }
 		    return returnValue;

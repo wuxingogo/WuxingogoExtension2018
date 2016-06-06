@@ -53,9 +53,9 @@ namespace wuxingogo.tools{
 			}
 	//		Vector3 forward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
 	//		if(isInSector())
-	//			UnityEngine.Debug.Log("aaa");
+	//			UnityEngine.Logger.Log("aaa");
 	//		else
-	//			UnityEngine.Debug.Log("bbb");
+	//			UnityEngine.Logger.Log("bbb");
 
 			// 绘制最后一条线段
 			Gizmos.DrawLine( firstPoint, beginPoint );

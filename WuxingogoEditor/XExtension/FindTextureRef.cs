@@ -44,7 +44,7 @@ public class FindTextureRef : Editor {
 		
 		
 		//		Object[] depndencies = EditorUtility.CollectDependencies(objs);
-		//		Debug.Log(depndencies.Length);
+		//		Logger.Log(depndencies.Length);
 		
 	}
 	private static void GetChildsImg(List<GameObject> allObjs){
@@ -52,19 +52,19 @@ public class FindTextureRef : Editor {
 		for(int i = 0; i < allObjs.Count; i++){
 			Transform trans = allObjs[i].transform;
 			if(trans.GetComponent<Image>() != null){
-				//					Debug.Log(trans.GetComponent<Image>().sprite.ToString());
+				//					Logger.Log(trans.GetComponent<Image>().sprite.ToString());
 				Texture tex = null;
 				if(trans.GetComponent<Image>().sprite == null)
 					continue;
 				tex = trans.GetComponent<Image>().sprite.texture;
-				//					Debug.Log(trans.GetComponent<Image>().sprite.texture.ToString());
+				//					Logger.Log(trans.GetComponent<Image>().sprite.texture.ToString());
 				foreach( Texture assetTex in SelectedAsset ){
 					if(tex.GetHashCode().Equals(assetTex.GetHashCode())){
 						
 						selection.Add(trans.gameObject);
 						
 						if(usedAsset.IndexOf(assetTex) == -1){
-							Debug.Log("add used asset");
+							Logger.Log("add used asset");
 							usedAsset.Add(assetTex);
 						}
 					}
@@ -98,7 +98,7 @@ public class FindTextureRef : Editor {
 				GetAllChilds(trans.gameObject);
 			}	
 		}
-//		Debug.Log( "selection size is :" + selection.Count);
+//		Logger.Log( "selection size is :" + selection.Count);
 //		Object[] gos = new Object[selection.Count + SelectedAsset .Count] ; 
 //		selection.AddRange(assetObjs);
 //		if(selection.Count > 0)

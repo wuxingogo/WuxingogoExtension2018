@@ -20,6 +20,15 @@ This repository includes the source code of the WuxingogoExtension libraries。
 * Including a GameManager to easily manage your game.(inherit ScriptableObject)
 
 ##Usage
+
+Copy WuxingogoExtension folder to your $project/Assets.
+
+Command Line environment:
+
+Windows :　msbuild, python2.7(double click build.bat)
+
+OSX : xbuild, python2.7(run build.sh)
+
 -----------
 
 ####XAssetBundleWindow. (Unity Version 4.X)
@@ -79,7 +88,7 @@ Etc.
 -----
 MIT license
 
-Contcat:52111314ly@gmail.com
+Contcat:52111314ly@gmail.com, 52111314ly@sina.com
 
 To be continue!
 

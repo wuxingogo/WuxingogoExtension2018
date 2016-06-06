@@ -41,7 +41,7 @@ namespace wuxingogo.Runtime
 		}
 		
 		void Destory(){
-			Debug.Log("Destory");
+			Logger.Log("Destory");
 		}
 	}
 	

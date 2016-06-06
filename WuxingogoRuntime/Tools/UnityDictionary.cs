@@ -1,61 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-
-[Serializable]
-public class UnityDictionaryIntString : UnityDictionary<int,string> {}
-[Serializable]
-public class UnityDictionaryIntObject : UnityDictionary<int,UnityEngine.Object> {}
+using wuxingogo.Runtime;
+using System.Collections;
 
 [Serializable]
 public class UnityDictionary<TKey,TValue>
 {
+    public delegate void OnChange();
 	[SerializeField]
-	private	List<TKey> _keys = new List<TKey>();
+	private	List<TKey> totalKey = new List<TKey>();
 	
 	[SerializeField]
-	private	List<TValue> _values = new List<TValue>();
+	private	List<TValue> totalValue = new List<TValue>();
 
-	private Dictionary<TKey,TValue> _cache;
+    private Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
 
-	public void Add(TKey key, TValue value)
-	{
-		if (_cache == null)
-			BuildCache();
+    public event OnChange OnChangeEvent;
+    [X]
+    public UnityDictionary<TKey, TValue> Add( TKey key, TValue value )
+    {
+        totalKey.Add( key );
+        totalValue.Add( value );
+        totalDict.Add( key, value );
+        OnChangeEvent();
+        return this;
+    }
+    [X]
+    public UnityDictionary<TKey, TValue> Remove( TKey key, TValue value )
+    {
+        totalKey.Remove( key );
+        totalValue.Remove( value );
+        totalDict.Remove( key );
+        OnChangeEvent();
+        return this;
+    }
 
-		_cache.Add(key,value);
-		_keys.Add(key);
-		_values.Add(value);
-	}
+    public IEnumerator GetEnumerator()
+    {
+        return totalDict.GetEnumerator();
+    }
 
-	public TValue this[TKey key]
-	{
-		get {
-			if (_cache == null)
-				BuildCache();
-			
-			return _cache[key];
-		}
-	}
-	public void Remove(TKey key){
-		_cache.Remove(key);
-	}
-//	public bool ContainsKey(int key){
-//		return _cache.ContainsKey(key);
-//	}
-	public bool ContainsKey(TKey key){
-		if(_cache == null){
-			BuildCache();
-		}
-		return _cache.ContainsKey(key);
-	}
-
-	void BuildCache()
-	{
-		_cache = new Dictionary<TKey,TValue>();
-		for (int i=0; i!=_keys.Count; i++)
-		{
-			_cache.Add(_keys[i],_values[i]);
-		}
-	}
+    public int Count
+    {
+        get
+        {
+            return totalKey.Count;
+        }
+    }
 }

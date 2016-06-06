@@ -75,14 +75,14 @@ public class XAnimationExtension : XBaseWindow
 //				AnimationUtility.GetObjectReferenceCurveBindings (anims[i])
 				AnimationClipSettings setting = AnimationUtility.GetAnimationClipSettings(anims[i]);
 				 for( int pos = 0; pos < edicurves.Length; pos++){
-				 	Debug.Log("pos is : " + edicurves[i].propertyName);
+				 	Logger.Log("pos is : " + edicurves[i].propertyName);
 					
 				 }
 				// AnimationUtility.
 				foreach (var binding in AnimationUtility.GetObjectReferenceCurveBindings (anims[i]))
 				{
 					ObjectReferenceKeyframe[] keyframes = AnimationUtility.GetObjectReferenceCurve (anims[i], edicurves[i]);
-					Debug.Log(binding.path + "/" + binding.propertyName + ", Keys: " + keyframes.Length);
+					Logger.Log(binding.path + "/" + binding.propertyName + ", Keys: " + keyframes.Length);
 				}
 				
 			}		

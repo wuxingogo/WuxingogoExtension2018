@@ -9,7 +9,7 @@ namespace XBehaviorRunntime{
 		public override void OnStart()
 		{
 			base.OnStart();
-			Debug.Log(info);
+			Logger.Log(info);
 		}
 	}
 	

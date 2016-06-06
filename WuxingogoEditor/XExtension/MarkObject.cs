@@ -14,7 +14,7 @@ public class MarkObject : ScriptableObject
         if( _instance == null )
         {
             _instance = ScriptableObject.CreateInstance<MarkObject>();
-            Debug.Log( "Create MarkObj" );
+            Logger.Log( "Create MarkObj" );
             XAssetLoader.CreateAsset( _instance, path );
         }
         return _instance;

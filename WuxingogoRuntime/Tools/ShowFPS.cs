@@ -10,7 +10,7 @@ namespace wuxingogo.tools {
         private int mFrame;
 
         [NonSerialized]
-        private int mFPS;
+        public int mFPS;
 
         [NonSerialized]
         private float mNextFPS = 0.5f;
@@ -29,7 +29,7 @@ namespace wuxingogo.tools {
 
         private void OnGUI()
         {
-            GUILayout.Label(this.mFPS.ToString(), new GUILayoutOption[0]);
+            GUI.Label(new Rect(100,100, 100, 100), this.mFPS.ToString(), new GUIStyle());
         }
     }
 }

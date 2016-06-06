@@ -67,11 +67,11 @@ namespace wuxingogo.Reflection
                 {
                     if( null == propertyinstance )
                     {
-                        Debug.Log( mProperties[pos].GetValue( targetComponent, null ).ToString() );
+                        Logger.Log( mProperties[pos].GetValue( targetComponent, null ).ToString() );
                     }
                     else
                     {
-                        Debug.Log( mProperties[pos].GetValue( propertyinstance, null ).ToString() );
+                        Logger.Log( mProperties[pos].GetValue( propertyinstance, null ).ToString() );
                     }
                 }
                 EndHorizontal();
@@ -103,7 +103,7 @@ namespace wuxingogo.Reflection
             //        }
 
             //        foreach( var item in mComponents ){
-            //            Debug.Log( item.GetType().GetProperty(targetProperty.Name).GetValue(targetComponent, null) ); 
+            //            Logger.Log( item.GetType().GetProperty(targetProperty.Name).GetValue(targetComponent, null) ); 
             //        }
             //    }
 

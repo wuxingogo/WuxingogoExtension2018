@@ -145,7 +145,7 @@ namespace wuxingogo.Reflection
                         }
                         if( GUI.changed && changeValue != value && uObject != null )
                         {
-                            //							Debug.Log("gui change");
+                            //							Logger.Log("gui change");
                             Undo.RecordObject( uObject, "Record ScrObject" );
                             try
                             {

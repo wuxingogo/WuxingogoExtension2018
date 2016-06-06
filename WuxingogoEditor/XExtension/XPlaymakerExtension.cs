@@ -37,7 +37,7 @@ class XPlaymakerExtension : XBaseWindow
 
                 for( int pos = 0; pos < components.Length; pos++ )
                 {
-                    Debug.Log( "pos is " + components[pos].name );
+                    Logger.Log( "pos is " + components[pos].name );
                     goArray[pos] = components[pos].gameObject;
                 }
                 Selection.objects = goArray;
@@ -73,16 +73,16 @@ class XPlaymakerExtension : XBaseWindow
     void SeachPlaymakerByEventName()
     {
         PlayMakerFSM[] components = GameObject.FindObjectsOfType( typeof( PlayMakerFSM ) ) as PlayMakerFSM[];
-        //Debug.Log( "components length is " + components.Length );
-        //Debug.Log( "seachName is " + seachName );
+        //Logger.Log( "components length is " + components.Length );
+        //Logger.Log( "seachName is " + seachName );
         for( int pos = 0; pos < components.Length; pos++ )
         {
-            //Debug.Log( "components pos is " + components[pos].gameObject.name );
+            //Logger.Log( "components pos is " + components[pos].gameObject.name );
             FsmEvent[] events = components[pos].FsmEvents;
-            //Debug.Log( "events length is " + events.Length );
+            //Logger.Log( "events length is " + events.Length );
             for( int idx = 0; idx < events.Length; idx++ )
             {
-                //Debug.Log( "events length is " + events[idx].Name );
+                //Logger.Log( "events length is " + events[idx].Name );
                 if( seachEventByName.Equals( events[idx].Name ) && isPreciseSeach )
                 {
                     seachObjects.Add( components[pos].gameObject );
@@ -99,11 +99,11 @@ class XPlaymakerExtension : XBaseWindow
     void SeachPlaymakerByActionName()
     {
         PlayMakerFSM[] components = GameObject.FindObjectsOfType( typeof( PlayMakerFSM ) ) as PlayMakerFSM[];
-        //Debug.Log( "components length is " + components.Length );
-        //Debug.Log( "seachName is " + seachName );
+        //Logger.Log( "components length is " + components.Length );
+        //Logger.Log( "seachName is " + seachName );
         for( int pos = 0; pos < components.Length; pos++ )
         {
-            //Debug.Log( "components pos is " + components[pos].gameObject.name );
+            //Logger.Log( "components pos is " + components[pos].gameObject.name );
             FsmState[] states = components[pos].FsmStates;
             for( int idx = 0; idx < states.Length; idx++ )
             {

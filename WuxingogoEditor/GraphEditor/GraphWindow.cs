@@ -60,7 +60,7 @@ namespace GraphEditor
         //    [DidReloadScripts(1)]
         //    static void DidReloadScripts()
         //    {
-        //        Debug.Log( "Did Reload Scripts" );
+        //        Logger.Log( "Did Reload Scripts" );
         //        //if( _instance == null )
         //        //{
         //        //    GetInstance().nodes.Clear();

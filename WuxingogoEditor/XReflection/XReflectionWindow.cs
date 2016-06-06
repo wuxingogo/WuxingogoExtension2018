@@ -141,7 +141,7 @@ namespace wuxingogo.Reflection
         public void OnChangeTarget()
         {
             if( Target != null )
-                Debug.Log( "Target is Type is " + Target.GetType().ToString() );
+                Logger.Log( "Target is Type is " + Target.GetType().ToString() );
 
             content.Clear();
 
@@ -193,7 +193,7 @@ namespace wuxingogo.Reflection
                     break;
             }
 
-            Debug.Log( "Target is " + Target.ToString() );
+            Logger.Log( "Target is " + Target.ToString() );
         }
 
         void OnOpenEditor( string editorName )

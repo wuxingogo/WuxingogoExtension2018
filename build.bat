@@ -1,1 +1,1 @@
-start python BuildDLL.py
+start python build.py

@@ -75,7 +75,7 @@ using UnityEngine;
 //            if(EditorGUI.EndChangeCheck()) property.stringValue = newStringValue;
 //            break;
 //        default:
-//            Debug.LogWarning("ToolTipDrawer: found an un-handled type: " + property.propertyType);
+//            Logger.LogWarning("ToolTipDrawer: found an un-handled type: " + property.propertyType);
 //            break;
 //        }
 // 
@@ -95,7 +95,7 @@ using UnityEngine;
 //                _editorType = assembly.GetType("UnityEditor.EditorGUI");
 //                if(_editorType == null)
 //                {
-//                    Debug.LogWarning("ToolTipDrawer: Failed to open source file of EditorGUI");
+//                    Logger.LogWarning("ToolTipDrawer: Failed to open source file of EditorGUI");
 //                }
 //            }
 //            return _editorType;
@@ -113,7 +113,7 @@ using UnityEngine;
 //                                                             Type.DefaultBinder, typeDecleration, null);
 //                if(_layerMaskFieldMethod == null)
 //                {
-//                    Debug.LogError("ToolTipDrawer: Failed to locate the internal LayerMaskField method.");
+//                    Logger.LogError("ToolTipDrawer: Failed to locate the internal LayerMaskField method.");
 //                }
 //            }
 //            return _layerMaskFieldMethod;
@@ -144,7 +144,7 @@ using UnityEngine;
 // 
 //            if(fieldInfo == null)
 //            {
-//                Debug.LogError("ToolTipDrawer: Could not locate the object in the parent class");
+//                Logger.LogError("ToolTipDrawer: Could not locate the object in the parent class");
 //                return null;
 //            }
 //            _fieldType = fieldInfo.FieldType;

@@ -32,7 +32,7 @@ public class XBatchingReplaces : XBaseWindow
 					//  TODO loop in particles.Length
 					if(particles[pos].GetComponent<Renderer>().material != null){
 						go[pos] = particles[pos].GetComponent<Renderer>().material.mainTexture;
-						Debug.Log( AssetDatabase.GetAssetPath(particles[pos].GetComponent<Renderer>().sharedMaterial) );
+						Logger.Log( AssetDatabase.GetAssetPath(particles[pos].GetComponent<Renderer>().sharedMaterial) );
 					}
 				}
 				
@@ -59,7 +59,7 @@ public class XBatchingReplaces : XBaseWindow
 
 	bool isDDSTexture(Object asset){
 		string path = AssetDatabase.GetAssetPath(asset);
-		// Debug.Log(path);
+		// Logger.Log(path);
 		if( path.Contains(".dds")){
 			return true;
 		}
@@ -69,7 +69,7 @@ public class XBatchingReplaces : XBaseWindow
 
 	bool ContainerName(Object obj, string str){
 		string path = AssetDatabase.GetAssetPath(obj);
-		// Debug.Log(path);
+		// Logger.Log(path);
 		if( path.Contains(str) ){
 			return true;
 		}

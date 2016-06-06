@@ -280,7 +280,7 @@ namespace wuxingogo.Reflection
                     currValue = currValue.TryGetFieldValue( commandPara[pos + startIndex] );
                 }
             }
-            Debug.Log( "currValue is : " + currValue.ToString() );
+            Logger.Log( "currValue is : " + currValue.ToString() );
         }
 
         public bool Listen()

@@ -64,7 +64,7 @@ namespace wuxingogo.tools
                             }
                             catch(System.MissingMemberException e)
                             {
-                                Debug.LogError(e.Message);
+                                Logger.LogError(e.Message);
                             }
 #else
                             mInstance = (T)Activator.CreateInstance(typeof(T), true); //第二个参数防止异常：“没有为该对象定义无参数的构造函数。”

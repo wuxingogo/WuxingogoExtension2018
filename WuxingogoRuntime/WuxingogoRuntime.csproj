@@ -34,14 +34,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <DelaySign>true</DelaySign>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,6 +53,7 @@
     <Compile Include="BehaviorCore\XBehaviorFSM.cs" />
     <Compile Include="BehaviorCore\XBehaviorState.cs" />
     <Compile Include="TestBehavior\XDebugLog.cs" />
+    <Compile Include="Tools\Logger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
     <Compile Include="Attribute\XAttribute.cs" />
