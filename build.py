@@ -35,11 +35,11 @@ os.system("msbuild WuxingogoEditor.sln")
 print "Build WuxingogoEditor  Ended by wuxingogo================"
 
 
-#copyfile("WuxingogoExtension\Editor\WuxingogoEditor.dll", "E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Editor\WuxingogoEditor.dll")
-#copyfile("WuxingogoExtension\Runtime\WuxingogoRuntime.dll", "E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
+copyfile("WuxingogoExtension\Editor\WuxingogoEditor.dll", "E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+copyfile("WuxingogoExtension\Runtime\WuxingogoRuntime.dll", "E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
 
-#copyfile("WuxingogoExtension\Editor\WuxingogoEditor.dll", "E:\Work\CastingWorkBase\Downfall\Assets\WuxingogoExtension\Editor\WuxingogoEditor.dll")
-#copyfile("WuxingogoExtension\Runtime\WuxingogoRuntime.dll", "E:\Work\CastingWorkBase\Downfall\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
+copyfile("WuxingogoExtension\Editor\WuxingogoEditor.dll", "E:\Work\CastingWorkBase\Downfall\Assets\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+copyfile("WuxingogoExtension\Runtime\WuxingogoRuntime.dll", "E:\Work\CastingWorkBase\Downfall\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
 
 print("Copy Success!")
 

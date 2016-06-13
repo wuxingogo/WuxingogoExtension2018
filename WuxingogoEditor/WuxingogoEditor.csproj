@@ -59,6 +59,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CodeEditor\XCodeTemplateEditor.cs" />
     <Compile Include="XExtension\MarkObject.cs" />
+    <Compile Include="XExtension\QuickToggle.cs" />
     <Compile Include="XExtension\UGUIToCocosWindow.cs" />
     <Compile Include="XExtension\FindTextureRef.cs" />
     <Compile Include="XExtension\QuickCreatePrefabs.cs" />
