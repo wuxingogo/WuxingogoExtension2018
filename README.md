@@ -17,6 +17,7 @@ This repository includes the source code of the WuxingogoExtension libraries。
 * Unity Editor support: Quick set unity prefs.
 * Unity Editor support: Generated CSharpCode(CodeDom).
 * Unity Editor support: Finite-State-Machine and Editor.
+* Unity Editor support: Hierachy Extension.
 * Including a GameManager to easily manage your game.(inherit ScriptableObject)
 
 ##Usage
@@ -79,8 +80,22 @@ Note: This script must inherit from XMonoBehaviour.
     }
     [Disable]	// Disable change this SerializeField
     public int Count = 0;
+
+    [X]
+    public Dictionary<int, string> mapKeyDict = new Dictionary<int, string>(){
+        {1,    "1"},
+        {33,   "22"},
+        {222,  "32131"}
+    };
 ```
-![github](ScreenShot/AttributeExtension.png "github") 
+![github](ScreenShot/Inspector.png "github") 
+
+
+#### Hierachy Extension
+
+Quick toogle and lock.
+
+![github](ScreenShot/Hierachy.png "github") 
 
 Etc.
 
