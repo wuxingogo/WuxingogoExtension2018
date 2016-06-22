@@ -20,6 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -150,6 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -16,11 +16,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("WuxingogoRuntime")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription( "Unity Extension" )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany( "Zendroid" )]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("ly-user")]
+[assembly: AssemblyCopyright( "Wuxingogo" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,5 +1,5 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="e:\Work\Wuxingogo\WuxingogoRuntime\Tools\XReflectionUtils.cs">
     <Files>
       <File FileName="WuxingogoEditor\BehaviorEditor\XBehaviorMenu.cs" Line="1" Column="1" />

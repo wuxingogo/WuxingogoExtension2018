@@ -62,14 +62,14 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.Toggle( value );
 	}
 
-	public float CreateFloatField(float value)
+	public float CreateFloatField(float value, params GUILayoutOption[] option)
 	{
-		return EditorGUILayout.FloatField( value );
+		return EditorGUILayout.FloatField( value, option );
 	}
 
-	public float CreateFloatField(string fieldName, float value)
+	public float CreateFloatField(string fieldName, float value, params GUILayoutOption[] option )
 	{
-		return EditorGUILayout.FloatField( fieldName, value );
+		return EditorGUILayout.FloatField( fieldName, value, option );
 	}
 	public Vector2 CreateVector2Field(string fieldName, Vector2 value)
 	{
@@ -106,14 +106,14 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.IntField( fieldName, value );
 	}
 
-	public int CreateIntField(int value)
+	public int CreateIntField(int value, params GUILayoutOption[] option )
 	{
-		return EditorGUILayout.IntField( value );
+		return EditorGUILayout.IntField( value, option );
 	}
 
-	public long CreateLongField(long value)
+	public long CreateLongField(long value, params GUILayoutOption[] option )
 	{
-		return EditorGUILayout.LongField( value );
+		return EditorGUILayout.LongField( value, option );
 	}
 
 	public string CreateStringField(string fieldName, string value)

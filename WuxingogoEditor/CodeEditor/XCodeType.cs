@@ -10,7 +10,8 @@ using wuxingogo.Code;
 
 namespace wuxingogo.Code
 {
-	[System.Serializable]
+    [System.Reflection.Obfuscation]
+    [System.Serializable]
 	public class XCodeType
 	{
 		[SerializeField] string typeName = string.Empty;

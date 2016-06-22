@@ -13,6 +13,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using wuxingogo.Code;
 
+
 public class XCodeTypeTemplate : ScriptableObject
 {
     [SerializeField]

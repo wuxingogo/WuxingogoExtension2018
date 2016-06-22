@@ -91,6 +91,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Runtime\ /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy $(TargetPath) $(SolutionDir)WuxingogoExtension\Runtime\ /Y
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
