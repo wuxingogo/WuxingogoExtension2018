@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D2C63C42-C455-4F1B-944F-17CD39D2F2A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>WuxingogoEditor</RootNamespace>
@@ -31,6 +29,11 @@
     <ConsolePause>False</ConsolePause>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Wuxingogo.pfx</AssemblyOriginatorKeyFile>
@@ -39,7 +42,6 @@
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +57,7 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>..\OutPutDll\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -151,7 +154,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y
-</PostBuildEvent>
+    <!--- <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y
+</PostBuildEvent> -->
   </PropertyGroup>
 </Project>
