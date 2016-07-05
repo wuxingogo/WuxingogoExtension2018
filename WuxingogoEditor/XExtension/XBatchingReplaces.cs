@@ -25,7 +25,7 @@ public class XBatchingReplaces : XBaseWindow
 
 	public override void OnXGUI(){
 		if( isShowFindParticles ){
-			if( CreateSpaceButton("Find Material", 150) ){
+			if( CreateSpaceButton("Find Material") ){
 			
 				Object[] go = new Object[particles.Length];
 				for (int pos = 0; pos < particles.Length; pos++) {

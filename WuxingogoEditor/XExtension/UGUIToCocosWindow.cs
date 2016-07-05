@@ -40,7 +40,7 @@ public class UGUIToCocosWindow : XBaseWindow
 			}
 		}
 		if( null != _transAnimator ){
-			if(CreateSpaceButton("Export Animator", 130)){
+			if(CreateSpaceButton("Export Animator")){
 				// XAnimatorExtension.GetAnimation( _transAnimator );
 //				Animation anim = 
 			}

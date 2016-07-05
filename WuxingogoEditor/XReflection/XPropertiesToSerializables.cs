@@ -50,7 +50,7 @@ namespace wuxingogo.Reflection
             for( int pos = 0; pos < mProperties.Count; pos++ )
             {
                 BeginHorizontal();
-                if( CreateSpaceButton( mProperties[pos].PropertyType + " : " + mProperties[pos].Name, 150 ) )
+                if( CreateSpaceButton( mProperties[pos].PropertyType + " : " + mProperties[pos].Name ) )
                 {
                     //targetProperty = mProperties[pos];
                     //mProperties.Clear();

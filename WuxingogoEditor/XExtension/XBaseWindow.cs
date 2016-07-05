@@ -81,21 +81,21 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		GUILayout.Box( "", GUILayout.Width( this.position.width - Xoffset ), GUILayout.Height( 3 ) );
 	}
 
-	public static bool CreateSpaceButton(string btnName, float width = XButtonWidth)
+	public static bool CreateSpaceButton(string btnName, params GUILayoutOption[] option)
 	{
-		return GUILayout.Button( btnName, GUILayout.ExpandWidth( true ) );
+		return GUILayout.Button( btnName, option );
 	}
 
-	public static void DoButton(string btnName, Action callback)
+	public static void DoButton(string btnName, Action callback, params GUILayoutOption[] option )
 	{
-		if( GUILayout.Button( btnName, GUILayout.ExpandWidth( true ) ) ) {
+		if( CreateSpaceButton( btnName, option ) ) {
 			callback();
 		}
 	}
 
-	public static void DoButton(string btnName, Action callback, GUIStyle style)
+	public static void DoButton(string btnName, Action callback, GUIStyle style, params GUILayoutOption[] option )
 	{
-		if( GUILayout.Button( btnName, style, GUILayout.ExpandWidth( true ) ) ) {
+		if( GUILayout.Button( btnName, style, option ) ) {
 			callback();
 		}
 	}
@@ -128,11 +128,11 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.ObjectField( fieldName, obj, type, true, options ) as Object;
 	}
 
-	public static Object CreateObjectField(Object obj, System.Type type = null)
+	public static Object CreateObjectField(Object obj, System.Type type = null, params GUILayoutOption[] options )
 	{
 		if( null == type )
 			type = typeof( Object );
-		return EditorGUILayout.ObjectField( obj, type, true ) as Object;
+		return EditorGUILayout.ObjectField( obj, type, true, options ) as Object;
 	}
 
 	public static bool CreateCheckBox(string fieldName, bool value)
@@ -140,9 +140,9 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.Toggle( fieldName, value );
 	}
 
-	public static bool CreateCheckBox(bool value)
+	public static bool CreateCheckBox(bool value, params GUILayoutOption[] options )
 	{
-		return EditorGUILayout.Toggle( value );
+		return EditorGUILayout.Toggle( value, options );
 	}
 
 	public static float CreateFloatField(string fieldName, float value)
@@ -150,14 +150,14 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.FloatField( fieldName, value );
 	}
 
-	public static float CreateFloatField(float value)
+	public static float CreateFloatField(float value, params GUILayoutOption[] options )
 	{
-		return EditorGUILayout.FloatField( value );
+		return EditorGUILayout.FloatField( value, options );
 	}
 
-	public static int CreateIntField(int value)
+	public static int CreateIntField(int value, params GUILayoutOption[] options )
 	{
-		return EditorGUILayout.IntField( value );
+		return EditorGUILayout.IntField( value, options );
 	}
 
 	public static int CreateIntField(string fieldName, int value)
@@ -170,17 +170,17 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.TextField( fieldName, value );
 	}
 
-	public static string CreateStringField(string value)
+	public static string CreateStringField(string value, params GUILayoutOption[] options )
 	{
-		return EditorGUILayout.TextField( value );
+		return EditorGUILayout.TextField( value, options);
 	}
 
-	public static void CreateLabel(string fieldName, bool canSelect = false)
-	{
+	public static void CreateLabel(string fieldName, bool canSelect = false, params GUILayoutOption[] options )
+    {
 		if( canSelect )
-			EditorGUILayout.SelectableLabel( fieldName );
+			EditorGUILayout.SelectableLabel( fieldName, options );
 		else
-			EditorGUILayout.LabelField( fieldName );
+			EditorGUILayout.LabelField( fieldName, options );
 	}
 
 	public static void CreateLabel(string fieldName, string value, bool canSelect = false)
@@ -201,9 +201,9 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.EnumPopup( value );
 	}
 
-	public static System.Enum CreateEnumSelectable(string fieldName, System.Enum value)
+	public static System.Enum CreateEnumSelectable(string fieldName, System.Enum value, params GUILayoutOption[] options )
 	{
-		return EditorGUILayout.EnumPopup( fieldName, value );
+		return EditorGUILayout.EnumPopup( fieldName, value, options );
 	}
 
 	public static System.Enum CreateEnumPopup(string fieldName, System.Enum value)
@@ -246,24 +246,24 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		EditorGUILayout.EndVertical();
 	}
 
-    public Vector2 CreateVector2Field(string fieldName, Vector2 value)
+    public Vector2 CreateVector2Field(string fieldName, Vector2 value, params GUILayoutOption[] options )
     {
-        return EditorGUILayout.Vector2Field(fieldName, value);
+        return EditorGUILayout.Vector2Field(fieldName, value, options );
     }
 
-    public Vector3 CreateVector3Field(string fieldName, Vector3 value)
+    public Vector3 CreateVector3Field(string fieldName, Vector3 value, params GUILayoutOption[] options )
     {
-        return EditorGUILayout.Vector3Field(fieldName, value);
+        return EditorGUILayout.Vector3Field(fieldName, value, options );
     }
 
-    public Vector4 CreateVector4Field(string fieldName, Vector4 value)
+    public Vector4 CreateVector4Field(string fieldName, Vector4 value, params GUILayoutOption[] options )
     {
-        return EditorGUILayout.Vector4Field(fieldName, value);
+        return EditorGUILayout.Vector4Field(fieldName, value, options );
     }
 
-    public long CreateLongField(long value)
+    public long CreateLongField(long value, params GUILayoutOption[] options )
     {
-        return EditorGUILayout.LongField(value);
+        return EditorGUILayout.LongField(value, options);
     }
 
     public static void DisableFragment(bool isDisable, Action action)

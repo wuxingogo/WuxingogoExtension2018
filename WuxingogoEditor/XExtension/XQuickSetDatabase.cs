@@ -44,6 +44,8 @@ public class XQuickSetDatabase : XBaseWindow
     private SqliteDataReader dataReader;
 
     const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
+
+    private GUILayoutOption option = GUILayout.Width( 100 );
     public override void OnXGUI()
     {
         //TODO List
@@ -87,7 +89,7 @@ public class XQuickSetDatabase : XBaseWindow
     }
     public void ReadAllTable()
     {
-        if (CreateSpaceButton("DataBase"))
+        if (CreateSpaceButton("DataBase", option))
         {
             GetAllTableName();
         }
@@ -111,7 +113,7 @@ public class XQuickSetDatabase : XBaseWindow
 
     public void CreateTableButton( string tableName )
     {
-        if( CreateSpaceButton( tableName ) )
+        if( CreateSpaceButton( tableName, option) )
         {
             dataTable = 0;
             allTableField.Clear();
@@ -175,7 +177,7 @@ public class XQuickSetDatabase : XBaseWindow
            {
                selectField = pos;
                ReSelectField();
-           }, selectField == pos ? XStyles.GetInstance().window : XStyles.GetInstance().button );
+           }, selectField == pos ? XStyles.GetInstance().window : XStyles.GetInstance().button, option );
 
         }
         EndHorizontal();
@@ -212,65 +214,65 @@ public class XQuickSetDatabase : XBaseWindow
     {
         if (t is int || t is System.Int32 || type == typeof(int))
         {
-            t = CreateIntField(Convert.ToInt32(t));
+            t = CreateIntField(Convert.ToInt32(t), option);
         }
         else if (t is System.Int16)
         {
-            t = (short)CreateIntField(Convert.ToInt16(t));
+            t = (short)CreateIntField(Convert.ToInt16(t), option );
         }
         else if (t is System.Int64)
         {
-            t = CreateLongField(Convert.ToInt64(t));
+            t = CreateLongField(Convert.ToInt64(t), option );
         }
         else if (t is byte)
         {
             int value = Convert.ToInt32(t);
-            t = Convert.ToByte(CreateIntField(value));
+            t = Convert.ToByte(CreateIntField(value, option) );
         }
         else if (type == typeof(String))
         {
-            t = CreateStringField((string)t);
+            t = CreateStringField((string)t, option);
         }
         else if (type == typeof(Single) || type == typeof(Double))
         {
-            t = CreateFloatField(Convert.ToSingle(t));
+            t = CreateFloatField(Convert.ToSingle(t), option);
         }
         else if (type == typeof(Boolean))
         {
-            t = CreateCheckBox(Convert.ToBoolean(t));
+            t = CreateCheckBox(Convert.ToBoolean(t), option);
         }
         else if(type == typeof(DBNull))
         {
-            CreateLabel("DBNull");
+            CreateLabel("DBNull", false, option);
         }
         else if (type.BaseType == typeof(Enum))
         {
-            t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject(type, 0));
+            t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject(type, 0), option);
         }
         else if (type.IsSubclassOf(typeof(Object)))
         {
-            t = CreateObjectField((Object)t, type);
+            t = CreateObjectField((Object)t, type, option);
         }
         else if (t is Vector2)
         {
             Vector2 v = (Vector2)t;
-            t = CreateVector2Field(type.Name, v);
+            t = CreateVector2Field(type.Name, v, option );
         }
         else if (t is Vector3)
         {
             Vector3 v = (Vector3)t;
-            t = CreateVector3Field(type.Name, v);
+            t = CreateVector3Field(type.Name, v, option );
         }
         else if (t is Vector4)
         {
             Vector4 v = (Vector4)t;
-            t = CreateVector4Field(type.Name, v);
+            t = CreateVector4Field(type.Name, v, option );
         }
         else if (t is Quaternion)
         {
             Quaternion q = (Quaternion)t;
             Vector4 v = new Vector4(q.x, q.y, q.z, q.w);
-            v = CreateVector4Field(type.Name, v);
+            v = CreateVector4Field(type.Name, v, option );
             q.x = v.x;
             q.y = v.y;
             q.z = v.z;
@@ -293,7 +295,7 @@ public class XQuickSetDatabase : XBaseWindow
         }
         else
         {
-            CreateLabel(type.Name + " is not support");
+            CreateLabel(type.Name + " is not support", false, option );
         }
 
         return t;
