@@ -145,13 +145,19 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.Toggle( value, options );
 	}
 
-	public static float CreateFloatField(string fieldName, float value)
+    public static float CreateSlider( float value, float leftValue, float rightValue, params GUILayoutOption[] options )
+    {
+        return EditorGUILayout.Slider( value, leftValue, rightValue, options );
+    }
+
+    public static float CreateFloatField(string fieldName, float value)
 	{
 		return EditorGUILayout.FloatField( fieldName, value );
 	}
 
-	public static float CreateFloatField(float value, params GUILayoutOption[] options )
-	{
+
+    public static float CreateFloatField( float value, params GUILayoutOption[] options )
+    {
 		return EditorGUILayout.FloatField( value, options );
 	}
 
