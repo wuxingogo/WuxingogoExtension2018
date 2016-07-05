@@ -13,8 +13,8 @@ public class QuickCreatePrefabs : XBaseWindow {
 	List<GameObject> myPrefablist = new List<GameObject>();
 	[MenuItem ("Wuxingogo/Quick Create Prefabs Window")]
 	static void init () {
-		
-		QuickCreatePrefabs window = (QuickCreatePrefabs)QuickCreatePrefabs.GetWindow (typeof (QuickCreatePrefabs));
+
+		InitWindow<QuickCreatePrefabs>();
 	}
 	public override void OnXGUI(){
 		

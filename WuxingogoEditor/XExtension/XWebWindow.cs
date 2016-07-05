@@ -99,8 +99,4 @@ public class XWebWindow : XBaseWindow
 		EditorPrefs.SetString("xwebview_store", urlText);
 	}
 
-//	void OnDestroy() {
-////		Destroy web view
-//		webViewType.GetMethod("DestroyWebView", fullBinding).Invoke(webView, null);
-//	}
 }

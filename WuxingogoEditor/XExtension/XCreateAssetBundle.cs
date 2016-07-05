@@ -3,8 +3,9 @@ using UnityEditor;
 using System.Collections;
 using System.Xml;
 using System.IO;
-using UnityEngine;
 using System.Collections.Generic;
+
+[System.Obsolete]
 public class XCreateAssetBundle : XBaseWindow 
 {
 	AssetBundle currBundle;

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using System;
-
+using wuxingogo.tools;
 public class XEditorSetting : XBaseWindow
 {
     public static string author = "Wuxingogo";
@@ -21,10 +21,13 @@ public class XEditorSetting : XBaseWindow
         "//\tYou should have received a copy of the GNU Lesser General Public License" +
         "along with this program.\n" + 
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
-        
-    public static string ProjectPath = Application.dataPath + "/WuxingogoExtension";
-	public static string TemplatesPath = Application.dataPath + "/WuxingogoExtension/Templates";
+	
+    public const string PluginName = "WuxingogoExtension";
+	public static string ProjectPath = XFileUtils.CombinePath(Application.dataPath, PluginName);
+	public static string RelativeProjectPath = XFileUtils.CombinePath("Assets", PluginName);
+	public static string TemplatesPath = XFileUtils.CombinePath(ProjectPath,"Templates");
 	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
+
 	private bool isShowIcons = false;
 	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
