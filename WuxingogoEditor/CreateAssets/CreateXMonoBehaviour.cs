@@ -9,7 +9,7 @@ namespace CreateAssets
     {
 
         [MenuItem("Assets/Create/Wuxingogo/XMonoBehaviour", false, 100)]
-        public static void CreateFile()
+        public static void CreateBehaviour()
         {
             string path = EditorUtility.SaveFilePanel("Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs");
             if (path == "")
