@@ -21,7 +21,7 @@ public class XPropertyWindow : XBaseWindow
 			if( _target != value ) {
 				
 				_target = value;
-				OnChangeTarget();
+				//OnChangeTarget();
 			}
 		}
 	}
@@ -120,12 +120,12 @@ public class XPropertyWindow : XBaseWindow
 						if( GUI.changed && changeValue != value && uObject != null ) {
 //							Logger.Log("gui change");
 							Undo.RecordObject( uObject, "Record ScrObject" );
-							try {
-								property.SetValue( Target, changeValue, null );
-							} catch( System.ArgumentException e ) {
-								
-							} catch( System.FieldAccessException e ) {
-								
+							try
+							{
+								property.SetValue(Target, changeValue, null);
+							}
+							catch
+							{
 							}
 							
 							Repaint();
@@ -139,24 +139,4 @@ public class XPropertyWindow : XBaseWindow
 		
 	}
 
-	System.Type showType;
-
-	string targetType;
-
-	private Stack<object> storeTargets = new Stack<object>();
-
-	public void OnChangeTarget()
-	{
-		
-		if( Target != null ) {
-			storeTargets.Push( Target );
-			
-			targetType = Target.GetType().ToString();
-			
-			showType = Target.GetType();
-		}
-		
-		
-		this.Repaint();
-	}
 }

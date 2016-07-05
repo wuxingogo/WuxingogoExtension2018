@@ -20,18 +20,18 @@ namespace wuxingogo.tools{
 		{
 			if( !isDebug )
 				return;
-			// 设置矩阵
+			// set matrix
 			Matrix4x4 defaultMatrix = Gizmos.matrix;
 			Matrix4x4 newMatrix = Matrix4x4.identity;
 			newMatrix.SetTRS(this.transform.position,Quaternion.Euler(new Vector3(0f,this.transform.eulerAngles.y,0f)),Vector3.one);
 
 			Gizmos.matrix = newMatrix;
 
-			// 设置颜色
+			// set color 
 			Color defaultColor = Gizmos.color;
 			Gizmos.color = _color;
 
-			// 绘制圆环
+			// draw circle
 			Vector3 beginPoint = Vector3.zero;
 			Vector3 firstPoint = Vector3.zero;
 			for( float theta = 90 - angle / 2; theta <= 90; theta += m_Theta ) {
@@ -57,13 +57,13 @@ namespace wuxingogo.tools{
 	//		else
 	//			UnityEngine.Logger.Log("bbb");
 
-			// 绘制最后一条线段
+			// draw last line 
 			Gizmos.DrawLine( firstPoint, beginPoint );
 
-			// 恢复默认颜色
+			// restore default color
 			Gizmos.color = defaultColor;
 
-			// 恢复默认矩阵
+			// restore default matrix
 			Gizmos.matrix = defaultMatrix;
 
 
@@ -83,7 +83,7 @@ namespace wuxingogo.tools{
 		
 			GL.Begin( GL.LINES );
 			GL.Color(_color);
-			// 绘制圆环
+			// draw circle
 			Vector3 beginPoint = Vector3.zero;
 			Vector3 firstPoint = Vector3.zero;
 

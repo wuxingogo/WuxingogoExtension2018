@@ -1,20 +1,20 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XBaseWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XAnimatorExtension.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/MarkObject.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="153" Column="34" />
-      <File FileName="WuxingogoRuntime/Tools/GameManager.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XReflection/XAssemlyWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XAnimationExtension.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XAnimatorExtension.cs" Line="209" Column="5" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="117" Column="21" />
+      <File FileName="WuxingogoEditor/XExtension/XTomporaryWindow.cs" Line="7" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
   <StartupItems>
     <String>WuxingogoRuntime/WuxingogoRuntime.csproj</String>
     <String>WuxingogoEditor/WuxingogoEditor.csproj</String>
   </StartupItems>
+  <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
 </Properties>
