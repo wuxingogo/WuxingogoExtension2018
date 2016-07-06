@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class Logger
 {
-    static public bool EnableLog = false;
+	static public bool EnableLog = true;
     static public void Log( object message )
     {
         if( EnableLog )

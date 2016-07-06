@@ -33,9 +33,16 @@ namespace wuxingogo.Code
 		{
 			if( null != codeObject ) {
 
-				DoButton<ScriptableObject>( "SaveTemplate", SaveTemplete, codeObject );
+				DoButton<XCodeObject>( "SaveTemplate", SaveTemplete, codeObject );
 				DoButton( "Clean", () => codeObject = null );
 				DoButton("Compile", Compile);
+				DoButton("Help MemberAttributes", () =>
+				{
+					for (int i = 0; i <= 61440; i++)
+					{
+						Logger.Log(Enum.ToObject(typeof(MemberAttributes), i).ToString());
+					}
+				});
         		
 				codeObject.Draw( this );
 			} else {
@@ -46,17 +53,24 @@ namespace wuxingogo.Code
 			}
 		}
 
-		void SaveTemplete(ScriptableObject so)
+		void SaveTemplete(XCodeObject so)
 		{
-			string path = EditorUtility.SaveFilePanel( "Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset" );
-			if( path == "" )
-				return;
-		
-			path = FileUtil.GetProjectRelativePath( path ); 
-		
-			AssetDatabase.CreateAsset( so, path );
-			AssetDatabase.SaveAssets();
-			  
+			if (so.isFile)
+			{
+				EditorUtility.SetDirty(so);
+			}
+			else {
+
+				string path = EditorUtility.SaveFilePanel("Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset");
+				if (path == "")
+					return;
+
+				path = FileUtil.GetProjectRelativePath(path);
+				so.isFile = true;
+				AssetDatabase.CreateAsset(so, path);
+
+				AssetDatabase.SaveAssets();
+			}
 		}
 
 		void Compile(){

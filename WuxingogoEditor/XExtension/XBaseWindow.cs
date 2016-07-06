@@ -300,13 +300,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	}
 
-	static String FindFile(String filename, String path)
+	static string FindFile(string filename, string path)
 	{
 		if( Directory.Exists( path ) ) {
 			if( File.Exists( path + "/" + filename + ".cs" ) )
 				return path + "/" + filename + ".cs";
-			String[] directorys = Directory.GetDirectories( path );
-			foreach( String d in directorys ) {
+			string[] directorys = Directory.GetDirectories( path );
+			foreach( string d in directorys ) {
 				string str = d.Replace( '\\', '/' );
 				String p = FindFile( filename, str );
 				if( p != null )

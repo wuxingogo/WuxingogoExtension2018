@@ -43,7 +43,8 @@ namespace wuxingogo.Code
 				XCodeTypeTemplate.SelectType(x => type = x);
 			});
 
-			memberAttribute = (MemberAttributes)XBaseWindow.CreateEnumSelectable( memberAttribute );
+			memberAttribute = (MemberAttributes)XBaseWindow.CreateEnumPopup( memberAttribute );
+
 		
 		}
 //		public virtual void DrawMemberAttribute(XBaseWindow window)

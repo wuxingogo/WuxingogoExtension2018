@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using UnityEditor;
-
+using System.IO;
 
 namespace wuxingogo.Code
 {
@@ -31,6 +31,9 @@ namespace wuxingogo.Code
 		public string name = "";
 
 		public string defaultLanguage = "CSharp";
+
+		public string reviewContent = "";
+
 
 		public XCodeClass()
 		{
@@ -88,6 +91,13 @@ namespace wuxingogo.Code
 
 			}
 
+			XBaseWindow.DoButton("Review Content", () =>
+			{
+				reviewContent = ReviewContent();
+			});
+
+			reviewContent = EditorGUILayout.TextArea(reviewContent);
+
 		}
 
 		#endregion
@@ -134,19 +144,30 @@ namespace wuxingogo.Code
 
 		public void Compile(string outPut)
 		{
+			if (string.IsNullOrEmpty(reviewContent))
+			{
+				reviewContent = ReviewContent();
+			}
+			File.WriteAllText(outPut, reviewContent);
+			AssetDatabase.Refresh();
+		}
+
+		public string ReviewContent()
+		{
 			CodeCompileUnit unit = new CodeCompileUnit();
 
-			CodeNamespace codeNamespace = new CodeNamespace( useNamespace );
+			CodeNamespace codeNamespace = new CodeNamespace(useNamespace);
 
-			for( int i = 0; i < importNamespace.Count; i++ ) {
-				codeNamespace.Imports.Add( new CodeNamespaceImport( importNamespace[i] ) );
+			for (int i = 0; i < importNamespace.Count; i++)
+			{
+				codeNamespace.Imports.Add(new CodeNamespaceImport(importNamespace[i]));
 			}
 
-			unit.Namespaces.Add( codeNamespace );
+			unit.Namespaces.Add(codeNamespace);
 
 			codeNamespace.Types.Add((CodeTypeDeclaration)Compile());
 
-			CodeDomProvider provider = CodeDomProvider.CreateProvider( defaultLanguage );
+			CodeDomProvider provider = CodeDomProvider.CreateProvider(defaultLanguage);
 
 			CodeGeneratorOptions options = new CodeGeneratorOptions();
 
@@ -154,11 +175,13 @@ namespace wuxingogo.Code
 
 			options.BlankLinesBetweenMembers = true;
 
-			using( System.IO.StreamWriter sw = new System.IO.StreamWriter( outPut ) ) {
-				provider.GenerateCodeFromCompileUnit( unit, sw, options );
-			}
-        
-			AssetDatabase.Refresh();
+			StringWriter sw = new StringWriter();
+			provider.GenerateCodeFromCompileUnit(unit, sw, options);
+			var result = sw.GetStringBuilder().ToString();
+			sw.Close();
+
+			return result;
+
 		}
 
 		#endregion

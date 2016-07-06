@@ -17,7 +17,7 @@ namespace wuxingogo.Code
     public class XCodeObject : ScriptableObject
 	{
 		public XCodeClass classUnit = new XCodeClass();
-
+		public bool isFile = false;
 		public string className {
 			get{
 				return classUnit.name;
