@@ -8,10 +8,10 @@ namespace CreateAssets
     public class CreateXMonoBehaviour : CreateUnityScript
     {
 
-        [MenuItem("Assets/Create/Wuxingogo/XMonoBehaviour", false, 100)]
+       [MenuItem("Assets/Create/Wuxingogo/XMonoBehaviour", false, 100)]
         public static void CreateBehaviour()
         {
-            string path = EditorUtility.SaveFilePanel("Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs");
+            string path = GetPath("Create XMonoBehaviour Class", "NewXMonoBehaviour.cs");
             if (path == "")
                 return;
             string dictionary = path.Substring(0, path.LastIndexOf('/'));
@@ -28,29 +28,10 @@ namespace CreateAssets
             XCodeObject co = AssetDatabase.LoadAssetAtPath<XCodeObject>(assetPath);
             co.className = fileName;
             co.Compile(dictionary + "/" + suffix);
-
-
-            //        FileInfo file = new FileInfo(path);           
-            //        StreamWriter sw = file.AppendText(); 
-            //        
-            //        string fileName = file.Name;
-            //        string className = file.Name.Substring(0, file.Name.Length - 3);  
-            //        
-            //        string codeHeader = WriteHeader(file.Name);
-            //        string codeUs = WriteUseNameSpace("UnityEngine", "System.Collections");
-            //        string codeClass = WriteExtendClass(className, "XMonoBehaviour");
-            //        
-            //        sw.Write(codeHeader + codeUs + codeClass);           
-            //        sw.Dispose();  
-            //        
-            //        AssetDatabase.SaveAssets(); 
-            //        AssetDatabase.Refresh(); 
-
-
         }
 
+
+
     }
-	
-	
-	
+    
 }

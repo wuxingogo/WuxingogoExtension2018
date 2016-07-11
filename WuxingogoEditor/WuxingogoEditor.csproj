@@ -69,7 +69,6 @@
     <Compile Include="XExtension\QuickCreatePrefabs.cs" />
     <Compile Include="XExtension\XAnimationExtension.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
-    <Compile Include="XExtension\XAttributeDrawer.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
     <Compile Include="XExtension\XBaseWindow.cs" />
     <Compile Include="XExtension\XBatchingReplaces.cs" />

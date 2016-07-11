@@ -1,10 +1,19 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XAnimatorExtension.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/FindTextureRef.cs">
     <Files>
       <File FileName="WuxingogoEditor/XExtension/XAnimationExtension.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/XExtension/XAnimatorExtension.cs" Line="209" Column="5" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="117" Column="21" />
-      <File FileName="WuxingogoEditor/XExtension/XTomporaryWindow.cs" Line="7" Column="34" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XTomporaryWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/TestBehavior/XDebugLog.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Behaviour/IBehaviourFsm.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Behaviour/IFsmAction.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Behaviour/IFsmLifecycle.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Behaviour/XTemplateComponent.cs" Line="18" Column="2" />
+      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorAction.cs" Line="26" Column="40" />
+      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorEvent.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/AssetBundleModel.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/FindTextureRef.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
