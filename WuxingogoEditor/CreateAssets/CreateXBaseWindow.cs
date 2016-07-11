@@ -9,9 +9,9 @@ namespace CreateAssets
     public class CreateXBaseWindow : CreateUnityScript
     {
         [MenuItem("Assets/Create/Wuxingogo/XBaseWindow", false, 100)]
-        public static void CreateFile()
+        public static void CreateBaseWindow()
         {
-            string path = EditorUtility.SaveFilePanel("Create A Window", XEditorSetting.ProjectPath, "NewWindow.cs", "cs");
+            string path = GetPath("Create Window Class", "NewBaseWindow.cs");
             if (path == "")
                 return;
             string dictionary = path.Substring(0, path.LastIndexOf('/'));
