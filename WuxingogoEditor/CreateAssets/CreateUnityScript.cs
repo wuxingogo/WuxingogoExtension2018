@@ -20,9 +20,19 @@ namespace CreateAssets
     using System.Collections;
     public class CreateUnityScript : XBaseEditor
     {
+		public static string GetPath(string title, string defaultFileName)
+		{
+			var objs = Selection.objects;
+			if (objs == null || objs.Length == 0)
+			{
+				return EditorUtility.SaveFilePanel(title, Application.dataPath, defaultFileName, "cs");
+			}
+			var defaultPath = AssetDatabase.GetAssetPath(objs[0]);
+			return EditorUtility.SaveFilePanel(title, defaultPath, defaultFileName, "cs");
+		}
 
 
-        [MenuItem( "Assets/Create/Wuxingogo/No Exten Class", false, 100 )]
+		[MenuItem( "Assets/Create/Wuxingogo/No Exten Class", false, 100 )]
         public static void CreateFile()
         {
 

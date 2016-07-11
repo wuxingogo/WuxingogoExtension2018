@@ -9,9 +9,9 @@ namespace CreateAssets
     public class CreateXBaseEditor : CreateUnityScript
     {
         [MenuItem("Assets/Create/Wuxingogo/XBaseEditor", false, 100)]
-        public static void CreateFile()
+        public static void CreateEditor()
         {
-            string path = EditorUtility.SaveFilePanel("Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs");
+			string path = GetPath("Create Editor Class", "NewBaseEditor.cs");
             if (path == "")
                 return;
 
