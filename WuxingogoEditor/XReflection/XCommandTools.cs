@@ -10,7 +10,7 @@ namespace wuxingogo.Reflection
     /**
      * [XCommandTools 模仿LLDB 命令行]
      * @type {[┏(｀ー´)┛]}
-     * 其实就是字符串分割 + 反射啦
+     * 其实就是字符串分割 + 反射
      * 本来想可以设置变量也用这个的,可以到手机上来射ᕙ(⇀‸↼‵‵)ᕗ
      */
     using System.Collections.Generic;

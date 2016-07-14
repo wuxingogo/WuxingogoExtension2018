@@ -1,6 +1,6 @@
 
 
-namespace wuxingogoEditor
+namespace wuxingogo.Editor
 {
     using UnityEngine;
     using System.Collections;

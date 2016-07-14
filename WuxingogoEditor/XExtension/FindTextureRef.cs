@@ -15,7 +15,6 @@ public class FindTextureRef : Editor {
 	[MenuItem("Wuxingogo/Find Texture All GameObjects")]
 	static void Execute()
 	{
-	
 		SelectedAsset.Clear();
 		selection.Clear();
 		assetObjs.Clear();

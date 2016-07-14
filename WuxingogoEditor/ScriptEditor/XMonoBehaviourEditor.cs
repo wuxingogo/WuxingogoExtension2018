@@ -1,5 +1,5 @@
 
-namespace wuxingogoEditor
+namespace wuxingogo.Editor
 {
     using System;
     using System.Collections;
@@ -26,9 +26,6 @@ namespace wuxingogoEditor
             GetTargetMethod<XAttribute>( target );
             GetTargetField<XAttribute>( target );
             GetTargetProperty<XAttribute>( target );
-
-
-
         }
 
         void GetTargetMethod<T>( object target )
