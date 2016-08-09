@@ -60,7 +60,11 @@ namespace wuxingogo.Editor
                  ShowAnimatorControllerLayer(controller.GetLayer(0));
 #endif
 
-					ShowAnimatorControllerLayer(controller.layers[0]);
+					for (int i = 0; i < controller.layers.Length; i++)
+					{
+						ShowAnimatorControllerLayer(controller.layers[i]);
+					}
+
 
 
 				}
@@ -155,49 +159,66 @@ namespace wuxingogo.Editor
 			{
 				var animaState = states[pos].state;
 				Motion motion = states[pos].state.motion;
-				CreateObjectField(animaState);
-				CreateObjectField(motion);
-				if (null != animaState)
+
+				if (motion is UnityEditor.Animations.BlendTree)
 				{
-
-					EditorGUI.indentLevel = 0;
-					var transitions = animaState.transitions;
-					BeginHorizontal();
-					DoButton("SelectAll", () =>
+					var blendTree = (motion as UnityEditor.Animations.BlendTree);
+					var childMotion = blendTree.children;
+					for (int i = 0; i < childMotion.Length; i++)
 					{
-						Selection.objects = transitions;
-					});
-
-					DoButton<AnimatorStateTransition[], string>("ExitTime", BatchChangeProperty, transitions, "ExitTime");
-					DoButton("FixedDuration", () =>
-					{
-					});
-					DoButton("Trans Duration", () =>
-					{
-					});
-					DoButton("Trans Offset", () =>
-					{
-					});
-					EndHorizontal();
-					EditorGUI.indentLevel = 2;
-					for (int i = 0; i < transitions.Length; i++)
-					{
-						BeginHorizontal();
-						CreateObjectField(transitions[i]);
-						CreateLabel(transitions[i].GetDisplayName(stateMachine));
-						EndHorizontal();
+						
 					}
-					EditorGUI.indentLevel = 0;
+				}
+				else {
+				
+				}
+			}
+		}
 
-				}
-				if (null != motion)
+		void DrawClip(AnimatorState animaState, AnimationClip motion, AnimatorStateMachine stateMachine)
+		{
+			CreateObjectField(animaState);
+			CreateObjectField(motion);
+			if (null != animaState)
+			{
+
+				EditorGUI.indentLevel = 0;
+				var transitions = animaState.transitions;
+				BeginHorizontal();
+				DoButton("SelectAll", () =>
 				{
-					EditorGUILayout.BeginHorizontal();
-					CreateLabel(motion.name);
-					CreateLabel(motion.averageDuration.ToString());
-					CreateLabel(motion.isLooping.ToString());
-					EditorGUILayout.EndHorizontal();
+					Selection.objects = transitions;
+				});
+
+				DoButton<AnimatorStateTransition[], string>("ExitTime", BatchChangeProperty, transitions, "ExitTime");
+				DoButton("FixedDuration", () =>
+				{
+				});
+				DoButton("Trans Duration", () =>
+				{
+				});
+				DoButton("Trans Offset", () =>
+				{
+				});
+				EndHorizontal();
+				EditorGUI.indentLevel = 2;
+				for (int i = 0; i < transitions.Length; i++)
+				{
+					BeginHorizontal();
+					CreateObjectField(transitions[i]);
+					CreateLabel(transitions[i].GetDisplayName(stateMachine));
+					EndHorizontal();
 				}
+				EditorGUI.indentLevel = 0;
+
+			}
+			if (null != motion)
+			{
+				EditorGUILayout.BeginHorizontal();
+				CreateLabel(motion.name);
+				CreateLabel(motion.averageDuration.ToString());
+				CreateLabel(motion.isLooping.ToString());
+				EditorGUILayout.EndHorizontal();
 			}
 		}
 

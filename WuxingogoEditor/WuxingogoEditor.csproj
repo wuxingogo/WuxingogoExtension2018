@@ -140,6 +140,15 @@
     <Compile Include="BehaviorWindow\Style.cs" />
     <Compile Include="BehaviorWindow\XFsmStateWindow.cs" />
     <Compile Include="BehaviorWindow\XFsmWindow.cs" />
+    <Compile Include="BTEditor\BTEditorWindow.cs" />
+    <Compile Include="BTEditor\BTGenericMenu.cs" />
+    <Compile Include="BTEditor\BTNode.cs" />
+    <Compile Include="BTEditor\DTEditorWindow.cs" />
+    <Compile Include="BTEditor\DTGenericMenu.cs" />
+    <Compile Include="BTEditor\DragNode.cs" />
+    <Compile Include="BTEditor\GraphCamera.cs" />
+    <Compile Include="BTEditor\GraphSelectionBox.cs" />
+    <Compile Include="BTEditor\KeyBoardState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

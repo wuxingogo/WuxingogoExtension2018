@@ -1,28 +1,16 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/BehaviorCore/XBehaviorFSM.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/XAnimationExtension.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XAnimatorExtension.cs" Line="209" Column="5" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XTomporaryWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/TestBehavior/XDebugLog.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Behaviour/IBehaviourFsm.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Behaviour/IFsmAction.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Behaviour/IFsmLifecycle.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Behaviour/XTemplateComponent.cs" Line="18" Column="2" />
-      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorAction.cs" Line="26" Column="40" />
-      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorEvent.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/AssetBundleModel.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/FindTextureRef.cs" Line="17" Column="3" />
-      <File FileName="WuxingogoEditor/XExtension/XAssetLoader.cs" Line="17" Column="38" />
-      <File FileName="WuxingogoEditor/XReflection/XCommandTools.cs" Line="152" Column="33" />
-      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="21" Column="44" />
-      <File FileName="WuxingogoRuntime/Attribute/EnumFlagAttribute.cs" Line="15" Column="15" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XAttributeDrawer.cs" Line="13" Column="30" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="28" Column="53" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="3" Column="27" />
+      <File FileName="WuxingogoEditor/XReflection/XSerializableExtension.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="48" Column="29" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="124" Column="23" />
       <File FileName="WuxingogoEditor/ScriptEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="26" Column="38" />
+      <File FileName="WuxingogoEditor/XExtension/XAnimationExtension.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XAnimatorExtension.cs" Line="178" Column="11" />
+      <File FileName="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs" Line="31" Column="17" />
+      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorFSM.cs" Line="16" Column="61" />
+      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorEvent.cs" Line="42" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

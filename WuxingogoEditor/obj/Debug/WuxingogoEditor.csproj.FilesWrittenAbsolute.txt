@@ -1,0 +1,6 @@
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll.mdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoEditor.pdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll.mdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb

@@ -1,0 +1,6 @@
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll.mdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoRuntime.pdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
+/Users/ly-account/Projects/wuxingogo/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.pdb

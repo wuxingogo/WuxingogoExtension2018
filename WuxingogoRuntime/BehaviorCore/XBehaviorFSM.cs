@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-
-
+using UnityEngine.Events;
 
 namespace wuxingogo.Runtime
 {
@@ -31,7 +30,7 @@ namespace wuxingogo.Runtime
 //			startEvent = new XBehaviorEvent("Start");
 //			startEvent.IsGlobal = true;
 //			startEvent.CreateState("StartState");
-			startEvent.Finish += FinishEvent;
+			startEvent.Finish.AddListener(new UnityAction( FinishEvent));
 //			
 //			currentState = startEvent.nextState;
 //			
