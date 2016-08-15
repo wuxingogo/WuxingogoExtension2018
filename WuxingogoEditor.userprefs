@@ -1,18 +1,5 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/BehaviorCore/XBehaviorFSM.cs">
-    <Files>
-      <File FileName="WuxingogoEditor/XReflection/XSerializableExtension.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="48" Column="29" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="124" Column="23" />
-      <File FileName="WuxingogoEditor/ScriptEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="26" Column="38" />
-      <File FileName="WuxingogoEditor/XExtension/XAnimationExtension.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XAnimatorExtension.cs" Line="178" Column="11" />
-      <File FileName="WuxingogoEditor/BehaviorEditor/XBehaviorEditor.cs" Line="31" Column="17" />
-      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorFSM.cs" Line="16" Column="61" />
-      <File FileName="WuxingogoRuntime/BehaviorCore/XBehaviorEvent.cs" Line="42" Column="18" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -6,6 +6,7 @@ using wuxingogo.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using wuxingogo.btFsm;
+using wuxingogo.Runtime;
 
 namespace wuxingogo.BTNode
 {
@@ -41,7 +42,7 @@ namespace wuxingogo.BTNode
 			else{
 				var type = Type.GetType( className );
 
-				BTAction.CreateAction( type, btNode.BtState );
+				CreateAction( type, btNode.BtState );
 				Debug.Log( type.ToString() );
 			}
 
@@ -72,6 +73,7 @@ namespace wuxingogo.BTNode
 					newEvent.TargetState = newState;
 					newState.OwnerEvent = newEvent;
 					BTEditorWindow.instance.AddNewBTNode( newState );
+					AddStateToFsm(currFsm, newState);
 				}
 
 
@@ -81,7 +83,7 @@ namespace wuxingogo.BTNode
 					newState.Name = "NewState";
 					BTEditorWindow.instance.AddNewBTNode( newState );
 					EditorUtility.SetDirty( currFsm );
-
+					AddStateToFsm(currFsm, newState);
 				}
 
 				break;
@@ -90,6 +92,43 @@ namespace wuxingogo.BTNode
 			}
 
 
+		}
+		public void AddStateToFsm(BTFsm owner, BTState targetState)
+		{
+
+
+			if (BTFsm.HasPrefab)
+			{
+				UnityEditor.AssetDatabase.AddObjectToAsset(targetState, owner);
+				UnityEditor.EditorUtility.SetDirty(owner);
+			}
+			else if (owner.template != null)
+			{
+				UnityEditor.AssetDatabase.AddObjectToAsset(targetState, owner.template);
+				UnityEditor.EditorUtility.SetDirty(owner.template);
+			}
+		}
+
+		public static BTAction CreateAction(Type type, BTState parentState)
+		{
+			BTAction action = XScriptableObject.CreateInstance(type) as BTAction;
+			action.Owner = parentState;
+			parentState.totalActions.Add(action);
+			AddActionToState(parentState, action);
+			return action;
+		}
+
+
+		public static void AddActionToState(BTState Owner, BTAction action)
+		{
+		if(Owner.Owner.template == null){
+			UnityEditor.AssetDatabase.AddObjectToAsset( action, Owner );
+			UnityEditor.EditorUtility.SetDirty( Owner );
+		}
+		else{
+			UnityEditor.AssetDatabase.AddObjectToAsset( action, Owner.Owner.template );
+			UnityEditor.EditorUtility.SetDirty( Owner );
+		}
 		}
 		#endregion
 		

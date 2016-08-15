@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_IPHONE)
-#define Wuxingogo_Core
-#endif
+﻿
 using UnityEngine;
 using System.Collections.Generic;
 using wuxingogo.Runtime;
@@ -41,7 +39,6 @@ namespace wuxingogo.btFsm
 		{
 			Owner = parentFsm;
 			Owner.AddNewState(this);
-			AddObjectToObject();
 
 		}
 
@@ -62,24 +59,7 @@ namespace wuxingogo.btFsm
 
 		}
 
-		public void AddObjectToObject()
-		{
-#if Wuxingogo_Core
 
-			if (BTFsm.HasPrefab)
-			{
-				UnityEditor.AssetDatabase.AddObjectToAsset(this, Owner);
-				UnityEditor.EditorUtility.SetDirty(Owner);
-			}
-			else if (Owner.template != null)
-			{
-				UnityEditor.AssetDatabase.AddObjectToAsset(this, Owner.template);
-				UnityEditor.EditorUtility.SetDirty(Owner.template);
-			}
-
-
-#endif
-		}
 
 		public void OnEnter()
 		{
@@ -122,9 +102,8 @@ namespace wuxingogo.btFsm
 			return null;
 		}
 
-#if Wuxingogo_Core
+
 		[HideInInspector]
 		public Rect Bounds = new Rect(Screen.width / 2, Screen.height / 2, 100, 100);
-#endif
 	}
 }
