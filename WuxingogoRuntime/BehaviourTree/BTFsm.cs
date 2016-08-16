@@ -114,7 +114,6 @@ namespace wuxingogo.btFsm
 			return false;
 		}
 
-		public static bool HasPrefab = false;
 
 		public BTState FindState(string stateName)
 		{

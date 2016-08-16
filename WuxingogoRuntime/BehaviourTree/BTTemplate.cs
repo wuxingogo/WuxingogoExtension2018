@@ -24,6 +24,10 @@ namespace wuxingogo.btFsm
 		// targetFsm must be deactive.
 		public static BTFsm Create(BTFsm targetFsm, BTTemplate source)
 		{
+			for (int i = 0; i < source.totalEvent.Count; i++)
+			{
+				BTEvent.Create(targetFsm, source.totalEvent[i]);
+			}
 
 			for (int i = 0; i < source.totalState.Count; i++)
 			{
@@ -31,10 +35,7 @@ namespace wuxingogo.btFsm
 				new BTState(targetFsm, source.totalState[i]);
 			}
 			//		targetFsm.totalEvent = source.totalEvent;
-			for (int i = 0; i < source.totalEvent.Count; i++)
-			{
-				BTEvent.Create(targetFsm, source.totalEvent[i]);
-			}
+
 			//		targetFsm.totalState = source.totalState;
 			targetFsm.startEvent = targetFsm.FindEvent(source.startEvent.Name);
 

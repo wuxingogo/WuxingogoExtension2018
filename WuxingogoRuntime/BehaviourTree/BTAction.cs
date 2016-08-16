@@ -45,7 +45,7 @@ namespace wuxingogo.btFsm
 			BTAction action = XScriptableObject.CreateInstance(source.GetType()) as BTAction;
 			action.Owner = parentState;
 			parentState.totalActions.Add(action);
-			//action.AddObjectToObject();
+			action.name = source.GetType().Name;
 			return action;
 		}
 

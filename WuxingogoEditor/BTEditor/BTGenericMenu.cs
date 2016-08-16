@@ -96,16 +96,15 @@ namespace wuxingogo.BTNode
 		public void AddStateToFsm(BTFsm owner, BTState targetState)
 		{
 
-
-			if (BTFsm.HasPrefab)
+			if (BTEditorWindow.HasPrefab)
 			{
-				UnityEditor.AssetDatabase.AddObjectToAsset(targetState, owner);
-				UnityEditor.EditorUtility.SetDirty(owner);
+				AssetDatabase.AddObjectToAsset(targetState, owner);
+				EditorUtility.SetDirty(owner);
 			}
 			else if (owner.template != null)
 			{
-				UnityEditor.AssetDatabase.AddObjectToAsset(targetState, owner.template);
-				UnityEditor.EditorUtility.SetDirty(owner.template);
+				AssetDatabase.AddObjectToAsset(targetState, owner.template);
+				EditorUtility.SetDirty(owner.template);
 			}
 		}
 
@@ -122,12 +121,12 @@ namespace wuxingogo.BTNode
 		public static void AddActionToState(BTState Owner, BTAction action)
 		{
 		if(Owner.Owner.template == null){
-			UnityEditor.AssetDatabase.AddObjectToAsset( action, Owner );
-			UnityEditor.EditorUtility.SetDirty( Owner );
+			AssetDatabase.AddObjectToAsset( action, Owner );
+			EditorUtility.SetDirty( Owner );
 		}
 		else{
-			UnityEditor.AssetDatabase.AddObjectToAsset( action, Owner.Owner.template );
-			UnityEditor.EditorUtility.SetDirty( Owner );
+			AssetDatabase.AddObjectToAsset( action, Owner.Owner.template );
+			EditorUtility.SetDirty( Owner );
 		}
 		}
 		#endregion

@@ -56,7 +56,8 @@ namespace wuxingogo.btFsm
 				var newAction = BTAction.CreateAction(source.totalActions[i], this);
 			}
 			OwnerEvent = parentFsm.FindEvent(source.OwnerEvent.Name);
-
+			if(OwnerEvent != null)
+				OwnerEvent.TargetState = this;
 		}
 
 

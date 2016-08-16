@@ -262,6 +262,17 @@ namespace wuxingogo.BTNode
 		}
 
 
+		public static bool HasPrefab = false;
+
+		void OnSelectionChange()
+		{
+			GameObject[] gameObjs = Selection.gameObjects;
+			if(gameObjs.Length > 0)
+			{
+				HasPrefab = PrefabUtility.GetPrefabObject( gameObjs[0] ) != null;
+				//Debug.Log( BTFsm.HasPrefab );
+			}
+		}
 
 		#endregion
 

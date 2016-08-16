@@ -40,10 +40,10 @@ namespace wuxingogo.btFsm
 			btEvent.Owner = Owner;
 			btEvent.isGlobal = source.isGlobal;
 			btEvent.Name = source.Name;
-			if (source.TargetState != null)
-			{
-				btEvent.TargetState = Owner.FindState(source.TargetState.Name);
-			}
+//			if (source.TargetState != null)
+//			{
+//				btEvent.TargetState = Owner.FindState(source.TargetState.Name);
+//			}
 			Owner.totalEvent.Add(btEvent);
 			return btEvent;
 		}
@@ -57,7 +57,6 @@ namespace wuxingogo.btFsm
 		{
 
 		}
-
 
 		public void Finish()
 		{

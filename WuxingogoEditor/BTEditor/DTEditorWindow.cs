@@ -363,15 +363,7 @@ namespace wuxingogo.Node
 			return null;
 		}
 
-		void OnSelectionChange()
-		{
-			GameObject[] gameObjs = Selection.gameObjects;
-			if(gameObjs.Length > 0)
-			{
-				BTFsm.HasPrefab = PrefabUtility.GetPrefabObject( gameObjs[0] ) != null;
-				Debug.Log( BTFsm.HasPrefab );
-			}
-		}
+
 	}
 }
 
