@@ -300,6 +300,11 @@ namespace wuxingogo.Reflection
 			return type.Assembly.GetTypes().Where( sub => sub.IsSubclassOf( type ) );
 		}
 
+        public static IEnumerable<Type> FindUnitySubClass( Type type )
+        {
+            return GetUnitySolotion().GetTypes().Where( sub => sub.IsSubclassOf( type ) );
+        }
+
 		public static bool isSubClassOrEquals<T>(this Type type)
 		{
 			return type.IsSubclassOf( typeof( T ) ) || type == typeof( T );

@@ -18,7 +18,7 @@ namespace wuxingogo.BTNode
 		public override void OnClickNode( DragNode targetNode )
 		{
 			currNode = ( BTNode )targetNode;
-			var allActions = XReflectionUtils.FindSubClass( typeof( BTAction ) ).ToList();
+			var allActions = XReflectionUtils.FindUnitySubClass( typeof( BTAction ) ).ToList();
 
 			GenericMenu gm = new GenericMenu();
 			gm.AddItem( new GUIContent( "New Fsm Event" ), false, ClickNode, (object)"NewEvent");
