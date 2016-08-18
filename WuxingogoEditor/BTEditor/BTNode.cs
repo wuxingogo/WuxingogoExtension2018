@@ -60,8 +60,12 @@ namespace wuxingogo.BTNode
 			DrawChildNodes();
 
 			if( Selected ) {
-				EditorGUI.DrawRect( DrawBounds, new Color( 0, 0, 0.5f, 0.3f ) );
+				EditorGUI.DrawRect( DrawBounds, new Color( 0, 0.5f, 0.5f, 0.3f ) );
 			}
+            if( BtState == BtState.Owner.currState )
+            {
+                EditorGUI.DrawRect( new Rect(DrawBounds.position, DrawBounds.size * 1.2f), new Color( 0, 0.3f, 0.5f, 0.3f ) );
+            }
 
 			for( int i = 0; i < BtState.totalEvent.Count; i++ ) {
 				Rect button = new Rect( new Vector2( DrawBounds.xMin, DrawBounds.center.y + 50 + i * 20 ), new Vector2(100, 20) );

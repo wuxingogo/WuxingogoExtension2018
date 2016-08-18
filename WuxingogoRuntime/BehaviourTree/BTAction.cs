@@ -11,6 +11,12 @@ namespace wuxingogo.btFsm
 
 		public BTState Owner = null;
 
+        public virtual void OnCreate()
+        {
+
+        }
+
+
 		public virtual void OnEnter()
 		{
 
@@ -46,7 +52,8 @@ namespace wuxingogo.btFsm
 			action.Owner = parentState;
 			parentState.totalActions.Add(action);
 			action.name = source.GetType().Name;
-			return action;
+
+            return action;
 		}
 
 

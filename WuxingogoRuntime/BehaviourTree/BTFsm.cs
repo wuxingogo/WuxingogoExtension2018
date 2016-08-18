@@ -25,7 +25,7 @@ namespace wuxingogo.btFsm
 
 		public BTTemplate template = null;
 
-		void Awake()
+		void Start()
 		{
 			FireGlobalEvent("GlobalStart");
 		}
@@ -70,15 +70,15 @@ namespace wuxingogo.btFsm
 
 		void OnEnable()
 		{
-			//startEvent.OnEnter ();
-		}
+            currState.OnEnter ();
+        }
 
-		void OnDisable()
+        void OnDisable()
 		{
-			//startEvent.OnExit ();
-		}
+            currState.OnExit ();
+        }
 
-		void Update()
+        void Update()
 		{
 			currState.OnUpdate();
 		}
