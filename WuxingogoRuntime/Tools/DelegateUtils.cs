@@ -32,8 +32,13 @@ public delegate void Callback<T>(T arg1);
 public delegate void Callback<T, U>(T arg1, U arg2);
 public delegate void Callback<T, U, V>(T arg1, U arg2, V arg3);
 
-public static class DelegateUtils
+public class DelegateUtils
 {
+
+	public static void Clear()
+	{
+		eventTable.Clear();
+	}
 	static private Dictionary<string, Delegate> eventTable = new Dictionary<string, Delegate>();
 
 	public static void addListener(string eventType, Callback handler)
