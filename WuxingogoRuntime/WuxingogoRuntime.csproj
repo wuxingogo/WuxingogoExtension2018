@@ -99,6 +99,7 @@
     <Compile Include="BehaviourTree\BTFsm.cs" />
     <Compile Include="BehaviourTree\BTState.cs" />
     <Compile Include="BehaviourTree\BTTemplate.cs" />
+    <Compile Include="Tools\DelegateUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
