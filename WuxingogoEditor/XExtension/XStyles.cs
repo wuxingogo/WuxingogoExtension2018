@@ -28,5 +28,10 @@ public class XStyles : Editor
 			style = AssetDatabase.LoadAssetAtPath<GUISkin>( FileUtil.GetProjectRelativePath( XEditorSetting.ProjectPath + "/Templates/XGUIStyle.guiskin" ) );
 		return style;
 	}
+
+    public GUIStyle FindStyle(string Name)
+    {
+        return style.FindStyle( Name );
+    }
 }
 
