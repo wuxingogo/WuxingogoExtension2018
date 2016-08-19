@@ -70,12 +70,12 @@ namespace wuxingogo.btFsm
 
 		void OnEnable()
 		{
-            currState.OnEnter ();
+//            currState.OnEnter ();
         }
 
         void OnDisable()
 		{
-            currState.OnExit ();
+//            currState.OnExit ();
         }
 
         void Update()

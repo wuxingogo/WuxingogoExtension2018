@@ -48,10 +48,11 @@ namespace wuxingogo.btFsm
 
 		public static BTAction CreateAction(BTAction source, BTState parentState)
 		{
-			BTAction action = XScriptableObject.CreateInstance(source.GetType()) as BTAction;
+//			BTAction action = XScriptableObject.CreateInstance(source.GetType()) as BTAction;
+			BTAction action = Instantiate<BTAction>(source);
 			action.Owner = parentState;
 			parentState.totalActions.Add(action);
-			action.name = source.GetType().Name;
+//			action.name = source.GetType().Name;
 
             return action;
 		}
