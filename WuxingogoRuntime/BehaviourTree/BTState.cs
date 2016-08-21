@@ -41,11 +41,11 @@ namespace wuxingogo.btFsm
 			Owner.AddNewState(this);
 
 		}
-
+		// Create from source template
 		public BTState(BTFsm parentFsm, BTState source) : this(parentFsm)
 		{
 			Name = source.Name;
-
+			// local state event
 			for (int i = 0; i < source.totalEvent.Count; i++)
 			{
 				var newEvent = BTEvent.Create(parentFsm, source.totalEvent[i]);
@@ -59,8 +59,6 @@ namespace wuxingogo.btFsm
 			if(OwnerEvent != null)
 				OwnerEvent.TargetState = this;
 		}
-
-
 
 		public void OnEnter()
 		{

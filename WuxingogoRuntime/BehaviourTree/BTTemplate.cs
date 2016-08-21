@@ -21,8 +21,8 @@ namespace wuxingogo.btFsm
 			totalState = source.totalState;
 			startEvent = source.startEvent;
 		}
-		// targetFsm must be deactive.
-		public static BTFsm Create(BTFsm targetFsm, BTTemplate source)
+
+		public static BTFsm CreateFromOtherTemplate(BTFsm targetFsm, BTTemplate source)
 		{
 			for (int i = 0; i < source.totalEvent.Count; i++)
 			{
@@ -31,14 +31,26 @@ namespace wuxingogo.btFsm
 
 			for (int i = 0; i < source.totalState.Count; i++)
 			{
-				//			targetFsm.totalState[i].Owner = targetFsm;
 				new BTState(targetFsm, source.totalState[i]);
 			}
-			//		targetFsm.totalEvent = source.totalEvent;
 
-			//		targetFsm.totalState = source.totalState;
 			targetFsm.startEvent = targetFsm.FindEvent(source.startEvent.Name);
 
+			return targetFsm;
+		}
+
+		public static BTFsm CreateFromOwnerTemplate(BTFsm targetFsm, BTTemplate source)
+		{
+			for (int i = 0; i < source.totalEvent.Count; i++)
+			{
+				targetFsm.totalEvent[i].Owner = targetFsm;
+			}
+			for (int i = 0; i < source.totalState.Count; i++)
+			{
+				var state = Instantiate<BTState>( source.totalState[i] );
+				state.Owner = targetFsm;
+				targetFsm.totalState[i] = state;
+			}
 			return targetFsm;
 		}
 	}

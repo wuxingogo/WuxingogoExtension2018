@@ -31,8 +31,7 @@ namespace wuxingogo.BTNode
 				startEvent.TargetState = new BTState(fsm);
 				startEvent.TargetState.OwnerEvent = startEvent;
 				startEvent.TargetState.Name = "GlobalState";
-				AssetDatabase.AddObjectToAsset(startEvent.TargetState, fsm);
-				EditorUtility.SetDirty(fsm);
+				BTGenericMenu.AddStateToFsm( fsm, startEvent.TargetState );
 
 
 			}

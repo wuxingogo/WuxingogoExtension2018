@@ -93,16 +93,28 @@ namespace wuxingogo.BTNode
 
 
 		}
-		public void AddStateToFsm(BTFsm owner, BTState targetState)
+		public static void AddStateToFsm(BTFsm owner, BTState targetState)
 		{
 
 			if (BTEditorWindow.HasPrefab)
 			{
-				AssetDatabase.AddObjectToAsset(targetState, owner);
+				if(owner.template == null)
+				{
+					owner.template = XScriptableObject.CreateInstance<BTTemplate>();
+					AssetDatabase.AddObjectToAsset(owner.template, owner);
+					EditorUtility.SetDirty(owner);
+
+					if( owner.template.totalState == null )
+						owner.template.totalState = new List<BTState>();
+				}
+				AssetDatabase.AddObjectToAsset(targetState, owner.template);
+				owner.template.totalState.Add( targetState );
 				EditorUtility.SetDirty(owner);
+
 			}
 			else if (owner.template != null)
 			{
+				owner.template.totalState.Add( targetState );
 				AssetDatabase.AddObjectToAsset(targetState, owner.template);
 				EditorUtility.SetDirty(owner.template);
 			}

@@ -27,6 +27,10 @@ namespace wuxingogo.btFsm
 
 		void Start()
 		{
+			if(template != null)
+			{
+				BTTemplate.CreateFromOwnerTemplate( this, template );
+			}
 			FireGlobalEvent("GlobalStart");
 		}
 		[X]
