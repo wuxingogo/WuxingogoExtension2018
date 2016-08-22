@@ -23,7 +23,7 @@ namespace wuxingogo.btFsm
 
 		public List<BTAction> totalActions = new List<BTAction>();
 
-		public BTEvent OwnerEvent = null;
+		public BTEvent GlobalEvent = null;
 
 		public BTFsm Owner = null;
 
@@ -56,24 +56,21 @@ namespace wuxingogo.btFsm
 			{
 				var newAction = BTAction.CreateAction(source.totalActions[i], this);
 			}
-            FindEvent( source.OwnerEvent );
+            FindEvent( source.GlobalEvent );
 
+
+            Bounds = source.Bounds;
         }
 
         public void FindEvent(BTEvent targetEvent)
         {
             if( targetEvent.isGlobal )
             {
-                OwnerEvent = Owner.FindGlobalEvent( targetEvent.Name );
-                if( OwnerEvent != null )
-                    OwnerEvent.TargetState = this;
+                GlobalEvent = Owner.FindGlobalEvent( targetEvent.Name );
+                if( GlobalEvent != null )
+                    GlobalEvent.TargetState = this;
             }
-            else
-            {
-                OwnerEvent = Owner.FindEvent( targetEvent.Name );
-                if( OwnerEvent != null )
-                    OwnerEvent.TargetState = this;
-            }
+
             
         }
 

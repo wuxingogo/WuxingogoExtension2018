@@ -29,7 +29,7 @@ namespace wuxingogo.BTNode
 				var fsm = gos[0].AddComponent<BTFsm>();
 				var startEvent = fsm.CreateEvent("GlobalStart");
 				startEvent.TargetState = new BTState(fsm);
-				startEvent.TargetState.OwnerEvent = startEvent;
+				startEvent.TargetState.GlobalEvent = startEvent;
 				startEvent.TargetState.Name = "GlobalState";
 				BTGenericMenu.AddStateToFsm( fsm, startEvent.TargetState );
 
@@ -201,7 +201,7 @@ namespace wuxingogo.BTNode
 			{
 				var currentNode = node as BTNode;
 				currentEvent.TargetState = currentNode.BtState;
-				currentEvent = null;
+                currentEvent = null;
 				Dirty();
 			}
 			else {

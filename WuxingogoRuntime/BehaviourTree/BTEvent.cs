@@ -39,6 +39,7 @@ namespace wuxingogo.btFsm
             var btEvent = new BTEvent();
             btEvent.Owner = Owner.Owner;
             btEvent.Name = source.Name;
+            btEvent.isGlobal = source.isGlobal;
             Owner.totalEvent.Add( btEvent );
             return source;
 		}

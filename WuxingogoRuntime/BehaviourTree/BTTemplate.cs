@@ -43,13 +43,23 @@ namespace wuxingogo.btFsm
 		{
 			for (int i = 0; i < source.totalEvent.Count; i++)
 			{
-				targetFsm.totalEvent[i].Owner = targetFsm;
-			}
+                targetFsm.totalEvent[i].Owner = targetFsm;
+                //targetFsm.totalEvent[i].TargetState = targetFsm.FindState( targetFsm.totalEvent[i].Name );
+                //BTEvent.Create( targetFsm, source.totalEvent[i] );
+            }
             targetFsm.totalState.Clear();
 
             for (int i = 0; i < source.totalState.Count; i++)
 			{
                 new BTState( targetFsm, source.totalState[i] );
+            }
+            for( int i = 0; i < source.totalState.Count; i++ )
+            {
+                var state = source.totalState[i];
+                for( int j = 0; j < state.totalEvent.Count; j++ )
+                {
+                    targetFsm.totalState[i].totalEvent[j].TargetState = targetFsm.FindState( state.totalEvent[j].TargetState.Name );
+                }
             }
             targetFsm.startEvent = targetFsm.FindGlobalEvent( targetFsm.startEvent.Name );
             return targetFsm;

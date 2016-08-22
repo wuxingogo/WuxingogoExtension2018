@@ -93,8 +93,8 @@ namespace wuxingogo.btFsm
 		{
 			startEvent = BTEvent.Create(this);
 			startEvent.Name = name;
-
-			return startEvent;
+            startEvent.isGlobal = true;
+            return startEvent;
 		}
 
 		public void AddNewState(BTState state)
@@ -147,7 +147,7 @@ namespace wuxingogo.btFsm
         {
             for( int i = 0; i < totalState.Count; i++ )
             {
-                for( int j = 0; j < totalEvent.Count; j++ )
+                for( int j = 0; j < totalState[i].totalEvent.Count; j++ )
                 {
                     if( totalState[i].totalEvent[j].Name == eventName )
                     {

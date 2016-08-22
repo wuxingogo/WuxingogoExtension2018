@@ -15,6 +15,7 @@ namespace wuxingogo.BTNode
 		#region implemented abstract members of DTGenericMenu
 		private BTNode currNode = null;
 		private BTFsm currFsm = null;
+        private static BTState copyState = null;
 		public override void OnClickNode( DragNode targetNode )
 		{
 			currNode = ( BTNode )targetNode;
@@ -23,7 +24,8 @@ namespace wuxingogo.BTNode
 			GenericMenu gm = new GenericMenu();
 			gm.AddItem( new GUIContent( "New Fsm Event" ), false, ClickNode, (object)"NewEvent");
 			gm.AddItem( new GUIContent( "Delet State" ), false, ClickNode, (object)"DeleteState");
-			for( int i = 0; i < allActions.Count; i++ ) {
+            gm.AddItem( new GUIContent( "Copy State" ), false, ClickNode, "CopyState" );
+            for( int i = 0; i < allActions.Count; i++ ) {
 				gm.AddItem( new GUIContent( "Add " + allActions[i].FullName ), false, ClickNode, (object)allActions[i].AssemblyQualifiedName );
 			}
 			gm.ShowAsContext();
@@ -39,7 +41,12 @@ namespace wuxingogo.BTNode
 			else if(className == "DeleteState"){
 				DeleteCurrState();
 			}
-			else{
+            else if( className == "CopyState" )
+            {
+                copyState = btNode.BtState;
+            }
+            else
+            {
 				var type = Type.GetType( className );
 
 				CreateAction( type, btNode.BtState );
@@ -60,7 +67,9 @@ namespace wuxingogo.BTNode
 			GenericMenu gm = new GenericMenu();
 			gm.AddItem( new GUIContent( "New Fsm Event" ), false, ClickNone, "NewGlobalEvent" );
 			gm.AddItem( new GUIContent( "New Fsm State" ), false, ClickNone, "NewState" );
-			gm.ShowAsContext();
+            if( copyState != null )
+                gm.AddItem( new GUIContent( "Paste State" ), false, ClickNone, "PasteState" );
+            gm.ShowAsContext();
 		}
 
 		public void ClickNone(object obj)
@@ -71,7 +80,7 @@ namespace wuxingogo.BTNode
 					var newEvent = BTEvent.Create( currFsm );
 					var newState = new BTState( currFsm );
 					newEvent.TargetState = newState;
-					newState.OwnerEvent = newEvent;
+					newState.GlobalEvent = newEvent;
 					BTEditorWindow.instance.AddNewBTNode( newState );
 					AddStateToFsm(currFsm, newState);
 				}
@@ -85,9 +94,21 @@ namespace wuxingogo.BTNode
 					EditorUtility.SetDirty( currFsm );
 					AddStateToFsm(currFsm, newState);
 				}
-
 				break;
-			default:
+                case "PasteState":
+                    {
+                        var newState = new BTState( currFsm, copyState );
+                        newState.Name = "NewState";
+                        BTEditorWindow.instance.AddNewBTNode( newState );
+                        EditorUtility.SetDirty( currFsm );
+                        AddStateToFsm( currFsm, newState );
+                        for( int i = 0; i < newState.totalActions.Count; i++ )
+                        {
+                            AddActionToState( newState, newState.totalActions[i] );
+                        }
+                    }
+                    break;
+            default:
 				break;
 			}
 
@@ -103,8 +124,9 @@ namespace wuxingogo.BTNode
 					owner.template = XScriptableObject.CreateInstance<BTTemplate>();
 					AssetDatabase.AddObjectToAsset(owner.template, owner);
 					EditorUtility.SetDirty(owner);
-
-					if( owner.template.totalState == null )
+                    owner.template.startEvent = owner.startEvent;
+                    owner.template.totalEvent = owner.totalEvent;
+                    if( owner.template.totalState == null )
 						owner.template.totalState = new List<BTState>();
 				}
 				AssetDatabase.AddObjectToAsset(targetState, owner.template);
