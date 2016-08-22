@@ -35,6 +35,7 @@ namespace wuxingogo.btFsm
 		//        AddObjectToObject();
 		//
 		//    }
+
 		public BTState(BTFsm parentFsm)
 		{
 			Owner = parentFsm;
@@ -45,25 +46,35 @@ namespace wuxingogo.btFsm
 		public BTState(BTFsm parentFsm, BTState source) : this(parentFsm)
 		{
 			Name = source.Name;
-			// local state event
-			for (int i = 0; i < source.totalEvent.Count; i++)
-			{
-				var newEvent = BTEvent.Create(parentFsm, source.totalEvent[i]);
-			}
+            // local state event
+            for( int i = 0; i < source.totalEvent.Count; i++ )
+            {
+                var newEvent = BTEvent.Create( this, source.totalEvent[i] );
+            }
 
-			for (int i = 0; i < source.totalActions.Count; i++)
+            for (int i = 0; i < source.totalActions.Count; i++)
 			{
 				var newAction = BTAction.CreateAction(source.totalActions[i], this);
 			}
-            FindOwnerEvent( source.OwnerEvent.Name );
+            FindEvent( source.OwnerEvent );
 
         }
 
-        public void FindOwnerEvent(string eventName)
+        public void FindEvent(BTEvent targetEvent)
         {
-            OwnerEvent = Owner.FindEvent( eventName );
-            if( OwnerEvent != null )
-                OwnerEvent.TargetState = this;
+            if( targetEvent.isGlobal )
+            {
+                OwnerEvent = Owner.FindGlobalEvent( targetEvent.Name );
+                if( OwnerEvent != null )
+                    OwnerEvent.TargetState = this;
+            }
+            else
+            {
+                OwnerEvent = Owner.FindEvent( targetEvent.Name );
+                if( OwnerEvent != null )
+                    OwnerEvent.TargetState = this;
+            }
+            
         }
 
 		public void OnEnter()

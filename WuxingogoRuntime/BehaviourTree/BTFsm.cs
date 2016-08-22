@@ -131,7 +131,7 @@ namespace wuxingogo.btFsm
 			return null;
 		}
 
-		public BTEvent FindEvent(string eventName)
+		public BTEvent FindGlobalEvent(string eventName)
 		{
 			for (int i = 0; i < totalEvent.Count; i++)
 			{
@@ -142,6 +142,21 @@ namespace wuxingogo.btFsm
 			}
 			return null;
 		}
+
+        public BTEvent FindEvent( string eventName )
+        {
+            for( int i = 0; i < totalState.Count; i++ )
+            {
+                for( int j = 0; j < totalEvent.Count; j++ )
+                {
+                    if( totalState[i].totalEvent[j].Name == eventName )
+                    {
+                        return totalState[i].totalEvent[j];
+                    }
+                }
+            }
+            return null;
+        }
 	}
 
 }

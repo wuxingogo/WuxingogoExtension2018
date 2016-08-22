@@ -34,7 +34,7 @@ namespace wuxingogo.btFsm
 				new BTState(targetFsm, source.totalState[i]);
 			}
 
-			targetFsm.startEvent = targetFsm.FindEvent(source.startEvent.Name);
+			targetFsm.startEvent = targetFsm.FindGlobalEvent(source.startEvent.Name);
 
 			return targetFsm;
 		}
@@ -51,7 +51,7 @@ namespace wuxingogo.btFsm
 			{
                 new BTState( targetFsm, source.totalState[i] );
             }
-            targetFsm.startEvent = targetFsm.FindEvent( targetFsm.startEvent.Name );
+            targetFsm.startEvent = targetFsm.FindGlobalEvent( targetFsm.startEvent.Name );
             return targetFsm;
 		}
 	}

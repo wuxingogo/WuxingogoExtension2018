@@ -26,12 +26,21 @@ namespace wuxingogo.btFsm
 			return btEvent;
 		}
 
-		public static BTEvent Create(BTState Owner)
+        public static BTEvent Create( BTState Owner )
+        {
+            var btEvent = new BTEvent();
+            btEvent.Owner = Owner.Owner;
+            Owner.totalEvent.Add( btEvent );
+            return btEvent;
+        }
+
+        public static BTEvent Create(BTState Owner, BTEvent source)
 		{
-			var btEvent = new BTEvent();
-			btEvent.Owner = Owner.Owner;
-			Owner.totalEvent.Add(btEvent);
-			return btEvent;
+            var btEvent = new BTEvent();
+            btEvent.Owner = Owner.Owner;
+            btEvent.Name = source.Name;
+            Owner.totalEvent.Add( btEvent );
+            return source;
 		}
 
 		public static BTEvent Create(BTFsm Owner, BTEvent source)
