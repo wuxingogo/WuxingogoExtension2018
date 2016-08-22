@@ -52,8 +52,8 @@ UsePlatform()
 copyfile("OutPutDll/WuxingogoEditor.dll", "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile("OutPutDll/WuxingogoRuntime.dll", "WuxingogoExtension/Runtime/WuxingogoRuntime.dll")
 
-copyfile("WuxingogoExtension/Editor/WuxingogoEditor.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Editor\WuxingogoEditor.dll")
-copyfile("WuxingogoExtension/Runtime/WuxingogoRuntime.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
+#copyfile("WuxingogoExtension/Editor/WuxingogoEditor.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+#copyfile("WuxingogoExtension/Runtime/WuxingogoRuntime.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
 
 print("Copy Success!")
 

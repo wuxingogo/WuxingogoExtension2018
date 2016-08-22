@@ -12,7 +12,7 @@ public class XBaseEditor : Editor
 	public const float StartX = 10;
 	public const float FieldOffset = 5;
 
-	public sealed override void OnInspectorGUI()
+	public override void OnInspectorGUI()
 	{
 		GUILayout.Box( XResources.LogoTexture, GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 100 ) );
 
