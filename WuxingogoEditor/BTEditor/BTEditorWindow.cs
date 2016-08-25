@@ -187,7 +187,9 @@ namespace wuxingogo.BTNode
 		{
 			totalNode.Remove(currentState);
 			target.RemoveState(currentState.BtState);
+            DestroyImmediate( currentState.BtState, true );
 			EditorUtility.SetDirty(target);
+            
 		}
 
 		public override DTGenericMenu<BTFsm> GetGenericMenu()
