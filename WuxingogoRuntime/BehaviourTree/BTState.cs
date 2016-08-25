@@ -27,15 +27,14 @@ namespace wuxingogo.btFsm
 
 		public BTFsm Owner = null;
 
-		//	public BTState( BTEvent parentEvent )
-		//	{
-		//		OwnerEvent = parentEvent;
-		//		Owner = parentEvent.Owner;
-		//		Owner.AddNewState( this );
-		//        AddObjectToObject();
-		//
-		//    }
-
+        //	public BTState( BTEvent parentEvent )
+        //	{
+        //		OwnerEvent = parentEvent;
+        //		Owner = parentEvent.Owner;
+        //		Owner.AddNewState( this );
+        //        AddObjectToObject();
+        //
+        //    }
 		public BTState(BTFsm parentFsm)
 		{
 			Owner = parentFsm;

@@ -20,9 +20,15 @@ namespace wuxingogo.Editor
         BindingFlags bindFlags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
         public override void OnXGUI()
         {
+            base.OnXGUI();
+
             serializedObject.Update();
             serializedObject.UpdateIfDirtyOrScript();
 
+            ShowXAttributeMember( target );
+        }
+        public void ShowXAttributeMember(object target)
+        {
             GetTargetMethod<XAttribute>( target );
             GetTargetField<XAttribute>( target );
             GetTargetProperty<XAttribute>( target );
@@ -241,9 +247,7 @@ namespace wuxingogo.Editor
                 groupDict[t] = EditorGUILayout.Foldout( groupDict[t], type.Name );
                 if( groupDict[t] )
                 {
-                    GetTargetMethod<XAttribute>( t );
-                    GetTargetField<XAttribute>( t );
-                    GetTargetProperty<XAttribute>( t );
+                    ShowXAttributeMember( t );
                 }
             }
 

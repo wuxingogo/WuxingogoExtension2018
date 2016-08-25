@@ -8,7 +8,18 @@ namespace wuxingogo.btFsm
 {
 	public class BTAction : XScriptableObject
 	{
-
+        [X]
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
 		public BTState Owner = null;
 
         public virtual void OnCreate()
@@ -52,7 +63,7 @@ namespace wuxingogo.btFsm
 			BTAction action = Instantiate<BTAction>(source);
 			action.Owner = parentState;
 			parentState.totalActions.Add(action);
-//			action.name = source.GetType().Name;
+			
 
             return action;
 		}

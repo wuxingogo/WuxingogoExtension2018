@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BTEditor\BTStateEditor.cs" />
     <Compile Include="CodeEditor\XCodeTemplateEditor.cs" />
     <Compile Include="XExtension\MarkObject.cs" />
     <Compile Include="XExtension\QuickToggle.cs" />

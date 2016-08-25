@@ -10,7 +10,7 @@ namespace wuxingogo.btFsm
 	public sealed class BTEvent
 	{
 
-		public string Name = "BTEvent";
+        public string Name = "BTEvent";
 
 		public BTFsm Owner = null;
 

@@ -14,13 +14,14 @@ def removefile(filepath, suffix):
             if name.endswith(suffix):
                 os.remove(os.path.join(root, name))
                 print("Delete File: " + os.path.join(root, name))
+                
 
 def UsePlatform():
   sysstr = platform.system()
   if(sysstr =="Windows"):
     DoWindowsCommand();
   else:
-      DoUnixCommand();
+    DoUnixCommand();
   print ("Environment : " + sysstr)
 
 
@@ -34,11 +35,19 @@ def DoUnixCommand():
 
 
 def copyfile(filepath, despath):
-	print filepath
-	print despath
-	shutil.copyfile(filepath,despath)
+    try:
+        shutil.copyfile(filepath,despath)
+        print(filepath + " or " + despath + " was success !")
+    except Exception: 
+        print(filepath + " or " + despath + " was error !")
+    pass
+	
+
 def abspath(filepath):
     return os.path.abspath
+
+def currPath():
+    return os.path.abspath(os.curdir)
 
 
 print "remove all meta"
@@ -52,8 +61,9 @@ UsePlatform()
 copyfile("OutPutDll/WuxingogoEditor.dll", "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile("OutPutDll/WuxingogoRuntime.dll", "WuxingogoExtension/Runtime/WuxingogoRuntime.dll")
 
-#copyfile("WuxingogoExtension/Editor/WuxingogoEditor.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Editor\WuxingogoEditor.dll")
-#copyfile("WuxingogoExtension/Runtime/WuxingogoRuntime.dll", "/Users\ly-account\Documents\work\WuxingogoExtension\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
-
-print("Copy Success!")
+#print currPath()  + "OutPutDll\WuxingogoEditor.dll"
+copyfile(currPath()+"\OutPutDll\WuxingogoEditor.dll","E:/Work/Xingyu/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+copyfile(currPath()+"\OutPutDll\WuxingogoRuntime.dll","E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
+copyfile( currPath()  + "\OutPutDll\WuxingogoEditor.dll", "E:/Work/UnityProject/New Unity Project/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+copyfile( currPath()  + "\OutPutDll\WuxingogoRuntime.dll", "E:\Work\UnityProject\New Unity Project\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
 

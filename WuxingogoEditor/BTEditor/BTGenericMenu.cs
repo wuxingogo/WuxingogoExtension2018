@@ -145,7 +145,8 @@ namespace wuxingogo.BTNode
 		public static BTAction CreateAction(Type type, BTState parentState)
 		{
 			BTAction action = XScriptableObject.CreateInstance(type) as BTAction;
-			action.Owner = parentState;
+            action.Name = type.Name;
+            action.Owner = parentState;
 			parentState.totalActions.Add(action);
 			AddActionToState(parentState, action);
 			return action;

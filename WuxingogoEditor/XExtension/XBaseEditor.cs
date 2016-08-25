@@ -16,15 +16,13 @@ public class XBaseEditor : Editor
 	{
 		GUILayout.Box( XResources.LogoTexture, GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 100 ) );
 
-		base.OnInspectorGUI();
-
 		OnXGUI();
 	}
 
 	public virtual void OnXGUI()
 	{
-		
-	}
+        base.OnInspectorGUI();
+    }
 
 	public bool CreateSpaceButton(string btnName)
 	{
@@ -61,8 +59,12 @@ public class XBaseEditor : Editor
 	{
 		return EditorGUILayout.Toggle( value );
 	}
+    public bool CreateCheckBox( string title, bool value )
+    {
+        return EditorGUILayout.Toggle( title, value );
+    }
 
-	public float CreateFloatField(float value, params GUILayoutOption[] option)
+    public float CreateFloatField(float value, params GUILayoutOption[] option)
 	{
 		return EditorGUILayout.FloatField( value, option );
 	}
@@ -121,7 +123,7 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.TextField( fieldName, value );
 	}
 
-	public string CreateStringField(string value)
+	public string CreateStringField(string value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.TextField( value );
 	}
@@ -136,6 +138,11 @@ public class XBaseEditor : Editor
 		EditorGUILayout.HelpBox( value, type );
 		
 	}
+
+    public void CreatePropertyField( SerializedProperty property, params GUILayoutOption[] options )
+    {
+        EditorGUILayout.PropertyField( property, options );
+    }
 
 	public Enum CreateEnumSelectable(string fieldName, Enum value)
 	{
