@@ -8,6 +8,9 @@
     <RootNamespace>WuxingogoEditor</RootNamespace>
     <AssemblyName>WuxingogoEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -61,8 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="BTEditor\BTStateEditor.cs" />
     <Compile Include="CodeEditor\XCodeTemplateEditor.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="XExtension\MarkObject.cs" />
     <Compile Include="XExtension\QuickToggle.cs" />
     <Compile Include="XExtension\UGUIToCocosWindow.cs" />
@@ -141,29 +148,24 @@
     <Compile Include="BehaviorWindow\Style.cs" />
     <Compile Include="BehaviorWindow\XFsmStateWindow.cs" />
     <Compile Include="BehaviorWindow\XFsmWindow.cs" />
-    <Compile Include="BTEditor\BTEditorWindow.cs" />
-    <Compile Include="BTEditor\BTGenericMenu.cs" />
-    <Compile Include="BTEditor\BTNode.cs" />
-    <Compile Include="BTEditor\DTEditorWindow.cs" />
-    <Compile Include="BTEditor\DTGenericMenu.cs" />
-    <Compile Include="BTEditor\DragNode.cs" />
-    <Compile Include="BTEditor\GraphCamera.cs" />
-    <Compile Include="BTEditor\GraphSelectionBox.cs" />
-    <Compile Include="BTEditor\KeyBoardState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Wuxingogo.pfx" />
   </ItemGroup>
   <ItemGroup />
+  <PropertyGroup>
+    <!--- <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y
+</PostBuildEvent> -->
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">
       <Project>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</Project>
       <Name>WuxingogoRuntime</Name>
     </ProjectReference>
   </ItemGroup>
-  <PropertyGroup>
-    <!--- <PostBuildEvent>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)WuxingogoExtension\Editor\ /Y
-</PostBuildEvent> -->
-  </PropertyGroup>
 </Project>

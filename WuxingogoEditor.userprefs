@@ -1,15 +1,15 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/BehaviourTree/BTFsm.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime\BehaviourTree\BTFsm.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/BehaviourTree/BTCondition.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/BehaviourTree/BTEvent.cs" Line="13" Column="17" />
-      <File FileName="WuxingogoRuntime/BehaviourTree/BTFsm.cs" Line="73" Column="22" />
-      <File FileName="WuxingogoRuntime/BehaviourTree/BTState.cs" Line="56" Column="30" />
-      <File FileName="WuxingogoRuntime/Scripts/XMonoBehaviour.cs" Line="41" Column="26" />
-      <File FileName="WuxingogoEditor/BTEditor/BTEditorWindow.cs" Line="304" Column="1" />
-      <File FileName="WuxingogoRuntime/BehaviourTree/BTTemplate.cs" Line="31" Column="1" />
-      <File FileName="WuxingogoEditor/BTEditor/DTGenericMenu.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/DelegateUtils.cs" Line="38" Column="21" />
+      <File FileName="WuxingogoRuntime\BehaviourTree\BTCondition.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime\BehaviourTree\BTEvent.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime\BehaviourTree\BTFsm.cs" Line="73" Column="4" />
+      <File FileName="WuxingogoRuntime\BehaviourTree\BTState.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime\Scripts\XMonoBehaviour.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor\BTEditor\BTEditorWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime\BehaviourTree\BTTemplate.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor\BTEditor\DTGenericMenu.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime\Tools\DelegateUtils.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

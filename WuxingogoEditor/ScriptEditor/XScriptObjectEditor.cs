@@ -10,7 +10,7 @@ namespace wuxingogo.Editor
     using System.Collections.Generic;
     using System;
     using Object = UnityEngine.Object;
-    [CustomEditor(typeof(XScriptableObject), true)]
+    [CustomEditor(typeof(XScriptableObject), true )]
     public class XScriptObjectEditor : XMonoBehaviourEditor
     {
 

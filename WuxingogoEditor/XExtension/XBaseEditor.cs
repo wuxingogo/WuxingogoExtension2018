@@ -14,14 +14,21 @@ public class XBaseEditor : Editor
 
 	public override void OnInspectorGUI()
 	{
-		GUILayout.Box( XResources.LogoTexture, GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 100 ) );
+        DrawLogo();
 
-		OnXGUI();
+        base.OnInspectorGUI();
+
+        OnXGUI();
 	}
+
+    public void DrawLogo()
+    {
+        GUILayout.Box( XResources.LogoTexture, GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 100 ) );
+    }
 
 	public virtual void OnXGUI()
 	{
-        base.OnInspectorGUI();
+        
     }
 
 	public bool CreateSpaceButton(string btnName)
@@ -54,6 +61,11 @@ public class XBaseEditor : Editor
 	{
 		GUILayout.Box( "", GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 3 ) );
 	}
+
+    public void Space()
+    {
+        EditorGUILayout.Space();
+    }
 
 	public bool CreateCheckBox(bool value)
 	{
@@ -154,7 +166,12 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.Popup( array[rootID], rootID, array );
 	}
 
-	public void BeginHorizontal()
+    public Rect CreateRectField(string label, Rect rect, params GUILayoutOption[] options )
+    {
+        return EditorGUILayout.RectField( label, rect, options );
+    }
+
+    public void BeginHorizontal()
 	{
 		EditorGUILayout.BeginHorizontal();
 	}
@@ -173,4 +190,9 @@ public class XBaseEditor : Editor
 	{
 		EditorGUILayout.EndVertical();
 	}
+
+    public void BeginGroup()
+    {
+        
+    }
 }

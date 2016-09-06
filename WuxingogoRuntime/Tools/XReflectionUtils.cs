@@ -310,6 +310,18 @@ namespace wuxingogo.Reflection
 			return type.IsSubclassOf( typeof( T ) ) || type == typeof( T );
 		}
 
-
-	}
+        /// <summary>
+        /// create object from System.Type
+        /// </summary>
+        /// <param name="t" the object 's type></param>
+        /// <returns>object</returns>
+        public static object CreateInstance( Type t )
+        {
+            if( t.IsGenericType && t.GetGenericTypeDefinition() == typeof( Nullable<> ) )
+            {
+                t = Nullable.GetUnderlyingType( t );
+            }
+            return Activator.CreateInstance( t, true );
+        }
+    }
 }

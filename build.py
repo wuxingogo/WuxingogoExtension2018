@@ -60,10 +60,14 @@ UsePlatform()
 
 copyfile("OutPutDll/WuxingogoEditor.dll", "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile("OutPutDll/WuxingogoRuntime.dll", "WuxingogoExtension/Runtime/WuxingogoRuntime.dll")
+copyfile("OutPutDll/WuxingogoEditor.pdb", "WuxingogoExtension/Editor/WuxingogoEditor.pdb")
+copyfile("OutPutDll/WuxingogoRuntime.pdb", "WuxingogoExtension/Runtime/WuxingogoRuntime.pdb")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 copyfile(currPath()+"\OutPutDll\WuxingogoEditor.dll","E:/Work/Xingyu/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile(currPath()+"\OutPutDll\WuxingogoRuntime.dll","E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
+copyfile(currPath()+"\OutPutDll\WuxingogoEditor.pdb","E:/Work/Xingyu/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.pdb")
+copyfile(currPath()+"\OutPutDll\WuxingogoRuntime.pdb","E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.pdb")
 copyfile( currPath()  + "\OutPutDll\WuxingogoEditor.dll", "E:/Work/UnityProject/New Unity Project/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile( currPath()  + "\OutPutDll\WuxingogoRuntime.dll", "E:\Work\UnityProject\New Unity Project\Assets\WuxingogoExtension\Runtime\WuxingogoRuntime.dll")
 

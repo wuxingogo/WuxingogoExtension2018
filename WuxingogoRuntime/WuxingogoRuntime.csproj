@@ -8,6 +8,9 @@
     <RootNamespace>XRuntime</RootNamespace>
     <AssemblyName>WuxingogoRuntime</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -57,6 +60,7 @@
     <Compile Include="BehaviorCore\XBehaviorFSM.cs" />
     <Compile Include="BehaviorCore\XBehaviorState.cs" />
     <Compile Include="TestBehavior\XDebugLog.cs" />
+    <Compile Include="Tools\GameObjectUtilities.cs" />
     <Compile Include="Tools\Logger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
@@ -93,19 +97,10 @@
     <Compile Include="Tools\GameManager.cs" />
     <Compile Include="Tools\XFileUtils.cs" />
     <Compile Include="Tools\AsynchronousFunc.cs" />
-    <Compile Include="BehaviourTree\BTAction.cs" />
-    <Compile Include="BehaviourTree\BTCondition.cs" />
-    <Compile Include="BehaviourTree\BTEvent.cs" />
-    <Compile Include="BehaviourTree\BTFsm.cs" />
-    <Compile Include="BehaviourTree\BTState.cs" />
-    <Compile Include="BehaviourTree\BTTemplate.cs" />
     <Compile Include="Tools\DelegateUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <None Include="BehaviourTree\.DS_Store" />
-  </ItemGroup>
   <PropertyGroup>
     <!---<PostBuildEvent>xcopy $(TargetPath) $(SolutionDir)WuxingogoExtension\Runtime\ /Y
 </PostBuildEvent>-->
