@@ -45,9 +45,6 @@
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>..\OutPutDll\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -60,7 +57,6 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>..\OutPutDll\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />

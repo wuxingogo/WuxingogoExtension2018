@@ -77,6 +77,19 @@ namespace wuxingogo.tools
 			}
 			return original;
 		}
+
+		public static List<string> GetSubFolder(List<string> totalFolders, string rootFolder)
+		{
+			DirectoryInfo directory = new DirectoryInfo(rootFolder);
+			DirectoryInfo[] directories = directory.GetDirectories();
+
+			foreach (DirectoryInfo folder in directories)
+			{
+				totalFolders.Add(folder.Name);
+				GetSubFolder(totalFolders, folder.FullName);
+			}
+			return totalFolders;
+		}
 	}
 }
 

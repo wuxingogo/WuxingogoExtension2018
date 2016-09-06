@@ -45,8 +45,6 @@
     <Reference Include="UnityEngine">
       <HintPath>..\OutPutDll\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="UnityEditor">
       <HintPath>..\OutPutDll\UnityEditor.dll</HintPath>
     </Reference>
