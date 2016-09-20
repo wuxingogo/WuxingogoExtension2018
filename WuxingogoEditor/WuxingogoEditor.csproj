@@ -70,6 +70,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\MarkObject.cs" />
     <Compile Include="XExtension\QuickToggle.cs" />
     <Compile Include="XExtension\UGUIToCocosWindow.cs" />

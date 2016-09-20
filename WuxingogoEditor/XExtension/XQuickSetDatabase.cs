@@ -45,7 +45,7 @@ public class XQuickSetDatabase : XBaseWindow
 
     const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
 
-    private GUILayoutOption option = GUILayout.Width( 100 );
+    private GUILayoutOption option = GUILayout.Width( 150 );
     public override void OnXGUI()
     {
         //TODO List
@@ -177,7 +177,7 @@ public class XQuickSetDatabase : XBaseWindow
            {
                selectField = pos;
                ReSelectField();
-           }, selectField == pos ? XStyles.GetInstance().window : XStyles.GetInstance().button, option );
+           }, option );
 
         }
         EndHorizontal();
@@ -239,7 +239,11 @@ public class XQuickSetDatabase : XBaseWindow
         }
         else if (type == typeof(Boolean))
         {
-            t = CreateCheckBox(Convert.ToBoolean(t), option);
+            bool v = Convert.ToBoolean( t );
+            DoButton( v.ToString(), () =>
+            {
+                t = !v;
+            }, option );
         }
         else if(type == typeof(DBNull))
         {
