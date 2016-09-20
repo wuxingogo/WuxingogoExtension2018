@@ -286,17 +286,32 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public virtual void AddItemsToMenu(GenericMenu menu)
 	{
-		menu.AddItem( new GUIContent( "OpenEditorScript" ), false, OpenEditorScript, "FuckThisWindow" );
+		menu.AddItem( new GUIContent( "Open This Editor Script" ), false, OpenEditorScript, "FuckThisWindow" );
+		menu.AddItem( new GUIContent( "Select This Window" ), false, OpenEditorScript, "SelectThisWindow");
 		menu.ShowAsContext();
 	}
 
 	void OpenEditorScript(object handle)
 	{
-		string type = this.GetType().Name;
-		string absolutelyPath = FindFile( type, "Assets" );
+		string para = (string)handle;
+		switch (para)
+		{
+			case "FuckThisWindow":
+				{
+					string type = this.GetType().Name;
+					string absolutelyPath = FindFile(type, "Assets");
 
-		Object[] obj = AssetDatabase.LoadAllAssetsAtPath( absolutelyPath );
-		AssetDatabase.OpenAsset( obj );
+					Object[] obj = AssetDatabase.LoadAllAssetsAtPath(absolutelyPath);
+					AssetDatabase.OpenAsset(obj);
+				}
+				break;
+			case "SelectThisWindow":
+				{
+					Selection.objects = new Object[1] { this };
+				}
+				break;
+		}
+
 
 	}
 
