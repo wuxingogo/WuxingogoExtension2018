@@ -3,8 +3,8 @@
 ## Intro
 ------
 
-WuxingogoExtension is a Unity 3D plugin for build good game.
-This repository includes the source code of the WuxingogoExtension libraries。
+
+This repository includes full source code of the WuxingogoExtension libraries。
 
 
 ##Features
