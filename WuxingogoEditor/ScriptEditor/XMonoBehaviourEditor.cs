@@ -29,9 +29,17 @@ namespace wuxingogo.Editor
         }
         public void ShowXAttributeMember(object target)
         {
-            GetTargetMethod<XAttribute>( target );
-            GetTargetField<XAttribute>( target );
-            GetTargetProperty<XAttribute>( target );
+            try
+            {
+                GetTargetMethod<XAttribute>( target );
+                GetTargetField<XAttribute>( target );
+                GetTargetProperty<XAttribute>( target );
+            }
+            catch
+            {
+
+            }
+            
         }
 
         void GetTargetMethod<T>( object target )

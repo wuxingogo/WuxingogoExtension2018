@@ -13,7 +13,7 @@ namespace wuxingogo.Editor
     [CustomEditor(typeof(XScriptableObject), true )]
     public class XScriptObjectEditor : XMonoBehaviourEditor
     {
-
+       
     }
 
 }
