@@ -50,6 +50,11 @@ namespace wuxingogo.tools
 			yield return new WaitForSeconds(delay);
 			onFinish();
 		}
+
+        public static void StartCoroutine( System.Collections.IEnumerator iEnumerator)
+        {
+            behaviour.StartCoroutine( iEnumerator );
+        }
 	}
 }
 

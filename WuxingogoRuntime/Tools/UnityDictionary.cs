@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System;
 using wuxingogo.Runtime;
 using System.Collections;
+using System.Linq;
 
 [Serializable]
-public class UnityDictionary<TKey,TValue>
+public class UnityDictionary<TKey,TValue> : XScriptableObject 
+    where TKey : new()  where TValue : new()
 {
     public delegate void OnChange();
-	[SerializeField]
+
+    public event OnChange OnChangeEvent;
+
+    [SerializeField]
 	private	List<TKey> totalKey = new List<TKey>();
 	
 	[SerializeField]
@@ -16,7 +21,21 @@ public class UnityDictionary<TKey,TValue>
 
     private Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
 
-    public event OnChange OnChangeEvent;
+    public TValue this[TKey key]
+    {
+        get
+        {
+            for( int i = 0; i < totalKey.Count; i++ )
+            {
+                if( totalKey[i].Equals( key ))
+                {
+                    return totalValue[i];
+                }
+            }
+            return default( TValue );
+        }
+    }
+
     [X]
     public UnityDictionary<TKey, TValue> Add( TKey key, TValue value )
     {
@@ -34,6 +53,13 @@ public class UnityDictionary<TKey,TValue>
         totalDict.Remove( key );
         OnChangeEvent();
         return this;
+    }
+
+    public void Clear()
+    {
+        totalKey.Clear();
+        totalValue.Clear();
+        totalDict.Clear();
     }
 
     public IEnumerator GetEnumerator()

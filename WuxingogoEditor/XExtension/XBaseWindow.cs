@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
-
+using System;
+using Object = UnityEngine.Object;
+using System.IO;
+using System.Linq;
 
 /**
  * [XBaseWindow 基础类]
  * @type {[◑▂◑]}
  */
-using System;
-using Object = UnityEngine.Object;
-using System.IO;
 
 
 public class XBaseWindow : EditorWindow, IHasCustomMenu
@@ -180,8 +180,12 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 	{
 		return EditorGUILayout.TextField( value, options);
 	}
+    public static string CreateTextArea( string value, params GUILayoutOption[] options )
+    {
+        return EditorGUILayout.TextArea( value, options );
+    }
 
-	public static void CreateLabel(string fieldName, bool canSelect = false, params GUILayoutOption[] options )
+    public static void CreateLabel(string fieldName, bool canSelect = false, params GUILayoutOption[] options )
     {
 		if( canSelect )
 			EditorGUILayout.SelectableLabel( fieldName, options );
@@ -222,15 +226,42 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.EnumMaskField( value );
 	}
 
-	public static int CreateSelectableFromString(int rootID, string[] array)
+	public static int CreateSelectableFromString(int rootID, string[] array, params GUILayoutOption[] option )
 	{
-		return EditorGUILayout.Popup( array[rootID], rootID, array );
+		return EditorGUILayout.Popup( array[rootID], rootID, array, option );
 	}
 
-	public static int CreateSelectableString(int rootID, string[] array)
+	public static int CreateSelectableString(int rootID, string[] array, params GUILayoutOption[] option )
 	{
-		return EditorGUILayout.Popup( rootID, array );
+		return EditorGUILayout.Popup( rootID, array, option );
 	}
+
+    public static T SelectableString<T>( T defaultContent, T[] array, Action<T> onChange, params GUILayoutOption[] option )
+        where T : class
+    {
+        string[] content = new string[array.Length];
+        for( int i = 0; i < array.Length; i++ )
+        {
+            content[i] = array[i].ToString();
+        }
+        int selectedIndex = -1;
+        for( int i = 0; i < array.Length; i++ )
+        {
+            if( defaultContent == array[i] )
+            {
+                selectedIndex = i;
+            }
+        }
+        if( selectedIndex == -1 )
+        {
+            Logger.Log( defaultContent.ToString() );
+            return default( T );
+        }
+
+        var index = EditorGUILayout.Popup( selectedIndex, content, option );
+
+        return array[index];
+    }
 
 	public static void BeginHorizontal()
 	{
@@ -298,12 +329,9 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		{
 			case "FuckThisWindow":
 				{
-					string type = this.GetType().Name;
-					string absolutelyPath = FindFile(type, "Assets");
+                    OpenTypeScript( GetType() );
 
-					Object[] obj = AssetDatabase.LoadAllAssetsAtPath(absolutelyPath);
-					AssetDatabase.OpenAsset(obj);
-				}
+                }
 				break;
 			case "SelectThisWindow":
 				{
@@ -314,8 +342,15 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 
 	}
+    public static void OpenTypeScript(Type type)
+    {
+        string fileName = type.Name;
+        string absolutelyPath = OpenScript( fileName, "Assets" );
 
-	static string FindFile(string filename, string path)
+        Object[] obj = AssetDatabase.LoadAllAssetsAtPath( absolutelyPath );
+        AssetDatabase.OpenAsset( obj );
+    }
+	public static string OpenScript(string filename, string path)
 	{
 		if( Directory.Exists( path ) ) {
 			if( File.Exists( path + "/" + filename + ".cs" ) )
@@ -323,7 +358,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 			string[] directorys = Directory.GetDirectories( path );
 			foreach( string d in directorys ) {
 				string str = d.Replace( '\\', '/' );
-				String p = FindFile( filename, str );
+				String p = OpenScript( filename, str );
 				if( p != null )
 					return p;
 			}

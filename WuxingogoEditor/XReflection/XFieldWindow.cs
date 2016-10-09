@@ -6,7 +6,8 @@ namespace wuxingogo.Reflection
     using System.Collections;
     using System.Reflection;
     using System.Collections.Generic;
-
+    using System;
+    using Object = UnityEngine.Object;
 
     public class XFieldWindow : XBaseWindow
     {
@@ -189,8 +190,27 @@ namespace wuxingogo.Reflection
                 showType = Target.GetType();
             }
 
-
+            
             this.Repaint();
         }
+
+
+        Dictionary<Type, Func<string, object, object>> @switch = new Dictionary<Type, Func<string, object, object>> {
+            {
+                typeof(int), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(float), (name, value) => {
+                    return CreateFloatField( name + ": float", ( float )value );
+                }
+            },
+            {
+                typeof(Enum), (name, value) => {
+                    return CreateEnumSelectable( name + ": enum", ( System.Enum )value );
+                }
+            },
+        };
     }
 }

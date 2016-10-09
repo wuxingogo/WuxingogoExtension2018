@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.Sqlite;
@@ -43,6 +43,8 @@ public class XQuickSetDatabase : XBaseWindow
     private SqliteCommand dbCommand;
     private SqliteDataReader dataReader;
 
+    private string sqlSentence = "";
+    private string sqlSentenceResult = "";
     const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
 
     private GUILayoutOption option = GUILayout.Width( 150 );
@@ -137,9 +139,10 @@ public class XQuickSetDatabase : XBaseWindow
                 for( int root = 0; root < count; root++ )
                 {
                     string field = recordTableReader.GetName( root );
+                    Type type = recordTableReader.GetFieldType( root );
                     if( !allTableField.Contains( field ) )
                         allTableField.Add( field );
-                    Type type = recordTableReader.GetFieldType( root );
+                    
 
                     if( !tableTypeDict.ContainsKey( field ) )
                         tableTypeDict.Add( field, type );
@@ -166,9 +169,38 @@ public class XQuickSetDatabase : XBaseWindow
 
     }
 
-
+    public Type[] totalTypeContent = new Type[]
+    {
+        typeof(System.Boolean),
+        typeof(System.Byte),
+        typeof(System.SByte),
+        typeof(System.Char),
+        typeof(System.Char),
+        typeof(System.Char),
+        typeof(System.Decimal),
+        typeof(System.Double),
+        typeof(System.Single),
+        typeof(System.Int32),
+        typeof(System.UInt32),
+        typeof(System.Int64),
+        typeof(System.Int16),
+        typeof(System.UInt16),
+        typeof(System.String),
+        typeof(DBNull),
+    };
     public void ShowAllFields()
     {
+        BeginHorizontal();
+        for( int pos = 0; pos < allTableField.Count; pos++ )
+        {
+            tableTypeDict[allTableField[pos]] = 
+            SelectableString<Type>( tableTypeDict[allTableField[pos]], totalTypeContent, (t)=>
+            {
+
+            }, option );
+        }
+        EndHorizontal();
+
         BeginHorizontal();
 
         for (int pos = 0; pos < allTableField.Count; pos++)
@@ -207,6 +239,23 @@ public class XQuickSetDatabase : XBaseWindow
             }
             EndHorizontal();
         }
+
+        BeginHorizontal();
+        sqlSentence = CreateStringField( "Command Line:", sqlSentence );
+        DoButton( "excute", () =>
+         {
+             sqlSentenceResult = "";
+             var result = ExecuteQuery( sqlSentence );
+             int index = 0;
+             while( result.Read() )
+             {
+
+                 sqlSentenceResult += "\n" + result.GetValue( index ).ToString();
+                 index++;
+             }
+         } );
+        EndHorizontal();
+        CreateTextArea( sqlSentenceResult );
     }
 
 
@@ -303,6 +352,36 @@ public class XQuickSetDatabase : XBaseWindow
         }
 
         return t;
+
+    }
+
+    void OnDisable()
+    {
+        Disconnect();
+    }
+
+    protected void Disconnect()
+    {
+        //销毁Command
+        if( dbCommand != null )
+        {
+            dbCommand.Cancel();
+        }
+        dbCommand = null;
+
+        //销毁Reader
+        if( dataReader != null )
+        {
+            dataReader.Close();
+        }
+        dataReader = null;
+
+        //销毁Connection
+        if( dbConnection != null )
+        {
+            dbConnection.Close();
+        }
+        dbConnection = null;
 
     }
 
