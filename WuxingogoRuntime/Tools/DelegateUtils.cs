@@ -41,6 +41,29 @@ public class DelegateUtils
 	}
 	static private Dictionary<string, Delegate> eventTable = new Dictionary<string, Delegate>();
 
+    static public bool ContainDelegate( string eventKey )
+    {
+        return eventTable.ContainsKey( eventKey );
+    }
+
+    static public bool IsEventHandlerRegistered( string eventKey, Delegate prospectiveHandler )
+    {
+        if( !ContainDelegate( eventKey ) )
+        {
+            return false;
+        }
+        var InvocationList = eventTable[eventKey].GetInvocationList();
+        foreach( Delegate existingHandler in InvocationList )
+        {
+            if( existingHandler == prospectiveHandler )
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
 	public static void addListener(string eventType, Callback handler)
 	{
 		if (!eventTable.ContainsKey(eventType))

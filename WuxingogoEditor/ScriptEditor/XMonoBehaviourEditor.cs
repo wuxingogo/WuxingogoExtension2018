@@ -253,7 +253,10 @@ namespace wuxingogo.Editor
                 }
 
                 EditorGUILayout.Space();
+                
                 groupDict[t] = EditorGUILayout.Foldout( groupDict[t], type.Name );
+
+                
                 if( groupDict[t] )
                 {
                     ShowXAttributeMember( t );
