@@ -246,6 +246,7 @@ namespace wuxingogo.Editor
             }
             else if( t != null )
             {
+                BeginVertical();
                 if( !groupDict.ContainsKey( t ) )
                 {
                     groupDict.Add( t, true );
@@ -257,6 +258,7 @@ namespace wuxingogo.Editor
                 {
                     ShowXAttributeMember( t );
                 }
+                EndVertical();
             }
 
             return t;

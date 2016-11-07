@@ -63,7 +63,7 @@ public class FindTextureRef : Editor {
 						selection.Add(trans.gameObject);
 						
 						if(usedAsset.IndexOf(assetTex) == -1){
-							Logger.Log("add used asset");
+							XLogger.Log("add used asset");
 							usedAsset.Add(assetTex);
 						}
 					}

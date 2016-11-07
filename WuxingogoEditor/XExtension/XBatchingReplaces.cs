@@ -32,7 +32,7 @@ public class XBatchingReplaces : XBaseWindow
 					//  TODO loop in particles.Length
 					if(particles[pos].GetComponent<Renderer>().material != null){
 						go[pos] = particles[pos].GetComponent<Renderer>().material.mainTexture;
-						Logger.Log( AssetDatabase.GetAssetPath(particles[pos].GetComponent<Renderer>().sharedMaterial) );
+						XLogger.Log( AssetDatabase.GetAssetPath(particles[pos].GetComponent<Renderer>().sharedMaterial) );
 					}
 				}
 				

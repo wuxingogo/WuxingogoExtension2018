@@ -52,7 +52,7 @@ namespace wuxingogo.Runtime {
     //		MethodInfo method = type.GetMethod(method_str,System.Reflection.BindingFlags.);
 		    MethodInfo method = type.GetMethod(method_str);
 		    if( null == method){
-			    Logger.Log(target + " not have a " + method_str + " method." );
+			    XLogger.Log(target + " not have a " + method_str + " method." );
 			    return null;
 		    }
 		    object returnValue = method.Invoke(target,paras);
@@ -81,7 +81,7 @@ namespace wuxingogo.Runtime {
 		    FieldInfo field = type.GetField(fieldName);
 		
 		    if( null == property && null == field){
-			    Logger.Log(type.Name + "." + " not contain " + fieldName);
+			    XLogger.Log(type.Name + "." + " not contain " + fieldName);
 			    return null;
 		    }
 		    object returnValue = null;
@@ -90,7 +90,7 @@ namespace wuxingogo.Runtime {
 		    else if( null != field)
 			    returnValue = field.GetValue(target);
 		    if( null == returnValue){
-			    Logger.Log(type.Name + "." + property.Name + " is null.");
+			    XLogger.Log(type.Name + "." + property.Name + " is null.");
 			    return null;
 		    }
 		    return returnValue;

@@ -40,7 +40,7 @@ namespace wuxingogo.Runtime
 		}
 		
 		void Destory(){
-			Logger.Log("Destory");
+			XLogger.Log("Destory");
 		}
 	}
 	

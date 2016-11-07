@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-public class Logger
+public class XLogger
 {
-	static public bool EnableLog = true;
+    static public bool EnableLog = true;
     static public void Log( object message )
     {
         if( EnableLog )
@@ -16,6 +16,15 @@ public class Logger
             Debug.Log( message, context );
         }
     }
+
+    static public void LogFormat( Object context, string message, params object[] args )
+    {
+        if( EnableLog )
+        {
+            Debug.LogFormat( context, message, args );
+        }
+    }
+
     static public void LogFormat( string message, params object[] args )
     {
         if( EnableLog )
@@ -30,6 +39,15 @@ public class Logger
             Debug.LogError( message );
         }
     }
+
+    static public void LogErrorFormat( Object context, string message, params object[] args )
+    {
+        if( EnableLog )
+        {
+            Debug.LogErrorFormat( context, message, args );
+        }
+    }
+
     static public void LogError( object message, Object context )
     {
         if( EnableLog )
@@ -57,6 +75,14 @@ public class Logger
         if( EnableLog )
         {
             Debug.LogWarningFormat( message, args );
+        }
+    }
+
+    static public void LogWarningFormat( Object context, string message, params object[] args )
+    {
+        if( EnableLog )
+        {
+            Debug.LogWarningFormat( context, message, args );
         }
     }
 

@@ -33,7 +33,7 @@ namespace wuxingogo.Reflection
 						return assemblies[pos];
 				}
 			}
-			Logger.LogError( string.Format( "Try Get Assembly {0} Not Found!", assemblyName ) );
+			XLogger.LogError( string.Format( "Try Get Assembly {0} Not Found!", assemblyName ) );
 			return null;
 		}
 
@@ -61,7 +61,7 @@ namespace wuxingogo.Reflection
 					return types[idx];
 				}
 			}
-			Logger.LogError( "Try Get Class Not Found!" );
+			XLogger.LogError( "Try Get Class Not Found!" );
 			return null;
 		}
 
@@ -180,7 +180,7 @@ namespace wuxingogo.Reflection
 			EventInfo eventInfo = target.TryGetGlobalEventInfo( memberName );
 			if( null != eventInfo )
 				return eventInfo;
-			Logger.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
+			XLogger.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
 			return null;
 		}
 
@@ -198,7 +198,7 @@ namespace wuxingogo.Reflection
 			EventInfo eventInfo = target.TryGetEventInfo( memberName );
 			if( null != eventInfo )
 				return eventInfo.EventHandlerType;
-			Logger.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
+			XLogger.LogError( string.Format( "Search Member Not Found \"{0}\".", memberName ) );
 			return null;
 		}
 

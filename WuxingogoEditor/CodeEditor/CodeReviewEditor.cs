@@ -104,7 +104,7 @@ namespace wuxingogo.Code
 
 			ScriptFile = AssetDatabase.LoadAssetAtPath<MonoScript>( path );
 
-			Logger.Log( "script is : " + ScriptFile.ToString() );
+			XLogger.Log( "script is : " + ScriptFile.ToString() );
 		}
 	}
 }

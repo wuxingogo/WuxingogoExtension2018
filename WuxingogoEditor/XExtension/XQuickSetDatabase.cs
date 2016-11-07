@@ -66,7 +66,7 @@ public class XQuickSetDatabase : XBaseWindow
                 }
                 catch (Exception e)
                 {
-                    Logger.Log(e.Message);
+                    XLogger.Log(e.Message);
                 }
 
                 currTable = "";

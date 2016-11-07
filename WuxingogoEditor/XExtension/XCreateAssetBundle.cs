@@ -77,7 +77,7 @@ public class XCreateAssetBundle : XBaseWindow
 		}
 		
 		if( LoadingConfig ){
-			Logger.Log("start loading");
+			XLogger.Log("start loading");
 			if( null == asset ) 
 				asset = new WWW(_bundlepath);
 			LoadingConfig = false;
@@ -87,7 +87,7 @@ public class XCreateAssetBundle : XBaseWindow
 //			Logger.Log("asset.isDone is " + asset.isDone);
 //			if(asset.isDone){
    
-			Logger.Log("end loading");
+			XLogger.Log("end loading");
 			currBundle = asset.assetBundle;
 			if(currBundle == null){
 				CreateNotification("Selected the asset bundle 's format is error.");

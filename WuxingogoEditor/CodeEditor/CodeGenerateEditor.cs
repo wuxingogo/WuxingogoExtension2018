@@ -40,7 +40,7 @@ namespace wuxingogo.Code
 				{
 					for (int i = 0; i <= 61440; i++)
 					{
-						Logger.Log(Enum.ToObject(typeof(MemberAttributes), i).ToString());
+						XLogger.Log(Enum.ToObject(typeof(MemberAttributes), i).ToString());
 					}
 				});
         		

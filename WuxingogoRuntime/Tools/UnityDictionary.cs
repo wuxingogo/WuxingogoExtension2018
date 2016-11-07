@@ -13,11 +13,9 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
 
     public event OnChange OnChangeEvent;
 
-    [SerializeField]
-	private	List<TKey> totalKey = new List<TKey>();
+	public	List<TKey> Keys = new List<TKey>();
 	
-	[SerializeField]
-	private	List<TValue> totalValue = new List<TValue>();
+    public List<TValue> Values = new List<TValue>();
 
     private Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
 
@@ -25,11 +23,11 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     {
         get
         {
-            for( int i = 0; i < totalKey.Count; i++ )
+            for( int i = 0; i < Keys.Count; i++ )
             {
-                if( totalKey[i].Equals( key ))
+                if( Keys[i].Equals( key ))
                 {
-                    return totalValue[i];
+                    return Values[i];
                 }
             }
             return default( TValue );
@@ -39,8 +37,8 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     [X]
     public UnityDictionary<TKey, TValue> Add( TKey key, TValue value )
     {
-        totalKey.Add( key );
-        totalValue.Add( value );
+        Keys.Add( key );
+        Values.Add( value );
         totalDict.Add( key, value );
         OnChangeEvent();
         return this;
@@ -48,8 +46,8 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     [X]
     public UnityDictionary<TKey, TValue> Remove( TKey key, TValue value )
     {
-        totalKey.Remove( key );
-        totalValue.Remove( value );
+        Keys.Remove( key );
+        Values.Remove( value );
         totalDict.Remove( key );
         OnChangeEvent();
         return this;
@@ -57,8 +55,8 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
 
     public void Clear()
     {
-        totalKey.Clear();
-        totalValue.Clear();
+        Keys.Clear();
+        Values.Clear();
         totalDict.Clear();
     }
 
@@ -71,7 +69,7 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     {
         get
         {
-            return totalKey.Count;
+            return Keys.Count;
         }
     }
 }

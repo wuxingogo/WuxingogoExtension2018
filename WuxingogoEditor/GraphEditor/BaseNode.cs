@@ -13,7 +13,7 @@ namespace GraphEditor
         {
             GraphType = NodeType.Base;
             GraphRect = new Rect(0, 0, 200, 150);
-            Logger.Log("Initial BaseNode");
+            XLogger.Log("Initial BaseNode");
         }
         public Rect GraphRect;
 

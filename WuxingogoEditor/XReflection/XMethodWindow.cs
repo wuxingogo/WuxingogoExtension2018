@@ -131,7 +131,7 @@ namespace wuxingogo.Reflection
         {
 
             object result = methodInfo.Invoke( _target, paras );
-            Logger.Log( result ?? "Void Method" );
+            XLogger.Log( result ?? "Void Method" );
             if( isDebugBreak )
                 Debug.Break();
             return result;

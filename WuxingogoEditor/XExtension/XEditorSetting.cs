@@ -22,7 +22,7 @@ public class XEditorSetting : XBaseWindow
         "along with this program.\n" + 
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
 	
-    public const string PluginName = "WuxingogoExtension";
+    public const string PluginName = "Plugins/WuxingogoExtension";
 	public static string ProjectPath = XFileUtils.CombinePath(Application.dataPath, PluginName);
 	public static string RelativeProjectPath = XFileUtils.CombinePath("Assets", PluginName);
 	public static string TemplatesPath = XFileUtils.CombinePath(ProjectPath,"Templates");
@@ -53,7 +53,7 @@ public class XEditorSetting : XBaseWindow
 		foreach (MouseCursor item in Enum.GetValues(typeof(MouseCursor)))
 		{
 //			GUILayout.Button(Enum.GetName(typeof(MouseCursor), item));
-			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> Logger.Log(item.ToString()));
+			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> XLogger.Log(item.ToString()));
 			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
 			GUILayout.Space(10);
 		}

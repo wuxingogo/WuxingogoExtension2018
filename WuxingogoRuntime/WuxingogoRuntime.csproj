@@ -10,7 +10,6 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -60,7 +59,7 @@
     <Compile Include="BehaviorCore\XBehaviorState.cs" />
     <Compile Include="TestBehavior\XDebugLog.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
-    <Compile Include="Tools\Logger.cs" />
+    <Compile Include="Tools\XLogger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
     <Compile Include="Attribute\XAttribute.cs" />

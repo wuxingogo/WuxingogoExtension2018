@@ -67,11 +67,11 @@ namespace wuxingogo.Reflection
                 {
                     if( null == propertyinstance )
                     {
-                        Logger.Log( mProperties[pos].GetValue( targetComponent, null ).ToString() );
+                        XLogger.Log( mProperties[pos].GetValue( targetComponent, null ).ToString() );
                     }
                     else
                     {
-                        Logger.Log( mProperties[pos].GetValue( propertyinstance, null ).ToString() );
+                        XLogger.Log( mProperties[pos].GetValue( propertyinstance, null ).ToString() );
                     }
                 }
                 EndHorizontal();

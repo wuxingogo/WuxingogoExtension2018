@@ -258,7 +258,7 @@ namespace FsmEditor
 			for( int pos = 0; pos < fsmStates.Count; pos++ ) {
 				//  TODO loop in fsmStateS.Count
 				XFsmStateComponent state = fsmStates[pos] as XFsmStateComponent;
-				Logger.Log( "pos is : " + pos );
+				XLogger.Log( "pos is : " + pos );
 
 				state.name = state.GetType().ToString();
 				AssetDatabase.AddObjectToAsset( state, path );

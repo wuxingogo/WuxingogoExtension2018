@@ -197,13 +197,77 @@ namespace wuxingogo.Reflection
 
         Dictionary<Type, Func<string, object, object>> @switch = new Dictionary<Type, Func<string, object, object>> {
             {
-                typeof(int), (name, value) => {
+                typeof(Int16), (name, value) => {
                     return CreateIntField( name + ": int", ( int )value );
                 }
             },
             {
+                typeof(Int32), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(Int64), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(IntPtr), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(UInt16), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(UInt32), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(UInt64), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+            {
+                typeof(UIntPtr), (name, value) => {
+                    return CreateIntField( name + ": int", ( int )value );
+                }
+            },
+
+            {
                 typeof(float), (name, value) => {
                     return CreateFloatField( name + ": float", ( float )value );
+                }
+            },
+             {
+                typeof(double), (name, value) => {
+                    return CreateFloatField( name + ": float", ( float )value );
+                }
+            },
+             {
+                typeof(Byte), (name, value) => {
+                    return CreateFloatField( name + ": byte", ( int )value );
+                }
+            },
+             {
+                typeof(SByte), (name, value) => {
+                    return CreateFloatField( name + ": byte", ( int )value );
+                }
+            },
+             {
+                typeof(Array), (name, value) => {
+                    var array = value as Array;
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        var v = array.GetValue(i);
+                        var t = v.GetType();
+                        //v = @switch[t](i.ToString(), v);
+
+                    }
+                    return CreateFloatField( name + ": byte", ( int )value );
                 }
             },
             {
@@ -211,6 +275,7 @@ namespace wuxingogo.Reflection
                     return CreateEnumSelectable( name + ": enum", ( System.Enum )value );
                 }
             },
+            
         };
     }
 }

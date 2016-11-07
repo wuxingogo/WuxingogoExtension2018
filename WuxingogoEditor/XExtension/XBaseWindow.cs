@@ -254,7 +254,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
         }
         if( selectedIndex == -1 )
         {
-            Logger.Log( defaultContent.ToString() );
+            XLogger.Log( defaultContent.ToString() );
             return default( T );
         }
 
