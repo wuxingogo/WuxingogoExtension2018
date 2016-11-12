@@ -76,9 +76,6 @@ public class XPropertyWindow : XBaseWindow
 						} else if( property.PropertyType == typeof( System.Single ) ) {
 							changeValue = CreateFloatField( property.Name + ": float", (float)value );
 						} else if( property.PropertyType.BaseType == typeof( System.Array ) ) {
-//							for( int pos = 0; pos < System.Array.) {
-//								
-//							}
 							Object[] array = value as Object[];
 							if( null != array ) {
 								for( int i = 0; i < array.Length; i++ ) {
@@ -87,7 +84,6 @@ public class XPropertyWindow : XBaseWindow
 								changeValue = array;
 							} else
 								changeValue = value;
-//							changeValue = CreateStringField(field.Name + ": array" , value.ToString());
 						} else if( property.PropertyType == typeof( System.Boolean ) ) {
 							changeValue = CreateCheckBox( property.Name + ": bool", (bool)value );
 						} else if( property.PropertyType == typeof( System.String ) ) {
@@ -95,10 +91,6 @@ public class XPropertyWindow : XBaseWindow
 						} else if( property.PropertyType.BaseType == typeof( System.Enum ) ) {
 							changeValue = CreateEnumSelectable( property.Name + ": string", (System.Enum)value );
 						}
-//						else if(field.FieldType.BaseType == ))
-////							Logger.Log(field.FieldType.ToString());
-////							CreateObjectField(field.Name + ": object", (Object)value);
-//						}
 						else if( property.PropertyType.BaseType == typeof( UnityEngine.Object ) ) {
 							
 							changeValue = CreateObjectField( property.Name + ": " + property.PropertyType, (UnityEngine.Object)value );
@@ -111,14 +103,11 @@ public class XPropertyWindow : XBaseWindow
 						} else if( property.PropertyType.BaseType == typeof( System.Object ) ) {
 							
 							changeValue = value;
-//							CreateObjectField(field.Name + ": " + field.FieldType, (UnityEngine.Behaviour)value);
 						} else if( property.PropertyType.BaseType == typeof( System.ValueType ) ) {
 							changeValue = value;
 						} else {
-//							changeValue = CreateObjectField(property.Name + ": " + property.PropertyType, (Object)value);
 						}
 						if( GUI.changed && changeValue != value && uObject != null ) {
-//							Logger.Log("gui change");
 							Undo.RecordObject( uObject, "Record ScrObject" );
 							try
 							{

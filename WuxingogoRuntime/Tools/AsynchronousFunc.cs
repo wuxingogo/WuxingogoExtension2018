@@ -51,6 +51,11 @@ namespace wuxingogo.tools
 			onFinish();
 		}
 
+        public static void Delaytime( float delay, System.Action onFinish, MonoBehaviour monoBehaviour)
+        {
+            monoBehaviour.StartCoroutine( DelayTime( delay, onFinish ) );
+        }
+
         public static void StartCoroutine( System.Collections.IEnumerator iEnumerator)
         {
             behaviour.StartCoroutine( iEnumerator );

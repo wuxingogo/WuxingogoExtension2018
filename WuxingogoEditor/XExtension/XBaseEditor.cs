@@ -173,7 +173,7 @@ public class XBaseEditor : Editor
 
     public void BeginHorizontal()
 	{
-		EditorGUILayout.BeginHorizontal();
+		EditorGUILayout.BeginHorizontal( "AS TextArea" );
 	}
 
 	public void EndHorizontal()
@@ -183,7 +183,7 @@ public class XBaseEditor : Editor
 
 	public void BeginVertical()
 	{
-		EditorGUILayout.BeginVertical();
+		EditorGUILayout.BeginVertical( "AS TextArea");
 	}
 
 	public void EndVertical()

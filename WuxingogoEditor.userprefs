@@ -1,12 +1,14 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Xingyu\SunSongSunshine\Assets\Scripts\DataTableReader\MetaDataDBManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor\ScriptEditor\XMonoBehaviourEditor.cs">
     <Files>
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\Network\Messages\C2SPetRequestMsg.cs" Line="21" Column="41" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\Network\Messages\C2SPetRequestMsg.cs" Line="1" Column="1" />
       <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\Network\Messages\C2SAchievementInfoListRequestMsg.cs" Line="1" Column="1" />
       <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\DataTableReader\MetaDataDBManager.cs" Line="57" Column="39" />
+      <File FileName="WuxingogoRuntime\Scripts\XMonoBehaviour.cs" Line="29" Column="2" />
+      <File FileName="WuxingogoEditor\ScriptEditor\XMonoBehaviourEditor.cs" Line="45" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
