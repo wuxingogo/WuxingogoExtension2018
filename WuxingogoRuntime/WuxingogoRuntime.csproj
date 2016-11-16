@@ -51,15 +51,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Scripts\XMonoBehaviour.cs" />
-    <Compile Include="Scripts\XReflectionManager.cs" />
+    <Compile Include="Runtime\XMonoBehaviour.cs" />
+    <Compile Include="Runtime\XReflectionManager.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
     <Compile Include="Tools\XLogger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
     <Compile Include="Attribute\XAttribute.cs" />
     <Compile Include="Attribute\XSerializeAttribute.cs" />
-    <Compile Include="Scripts\XScriptableObject.cs" />
+    <Compile Include="Runtime\XScriptableObject.cs" />
     <Compile Include="Tools\SerializeUtils.cs" />
     <Compile Include="Tools\UnityDictionary.cs" />
     <Compile Include="Tools\StringUtils.cs" />
