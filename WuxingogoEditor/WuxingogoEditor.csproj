@@ -94,14 +94,6 @@
     <Compile Include="XExtension\XSelectionExtension.cs" />
     <Compile Include="XExtension\XStyles.cs" />
     <Compile Include="XExtension\XTextureWindow.cs" />
-    <Compile Include="GraphEditor\BaseNode.cs" />
-    <Compile Include="GraphEditor\BehaviourNode.cs" />
-    <Compile Include="GraphEditor\ConditionNode.cs" />
-    <Compile Include="GraphEditor\ElementNode.cs" />
-    <Compile Include="GraphEditor\GraphMenu.cs" />
-    <Compile Include="GraphEditor\GraphWindow.cs" />
-    <Compile Include="GraphEditor\LinkJoint.cs" />
-    <Compile Include="GraphEditor\ModelNode.cs" />
     <Compile Include="CreateAssets\CreateUnityScript.cs" />
     <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
     <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
@@ -114,9 +106,6 @@
     <Compile Include="XReflection\XPropertiesToSerializables.cs" />
     <Compile Include="XReflection\XReflectionWindow.cs" />
     <Compile Include="XReflection\XSerializableExtension.cs" />
-    <Compile Include="BehaviorEditor\XBehaviorEditor.cs" />
-    <Compile Include="BehaviorEditor\XBehaviorMenu.cs" />
-    <Compile Include="BehaviorEditor\XBehaviorStateNode.cs" />
     <Compile Include="CodeEditor\CodeGenerateEditor.cs" />
     <Compile Include="CodeEditor\CodeReviewEditor.cs" />
     <Compile Include="CodeEditor\ICodeMember.cs" />
@@ -146,10 +135,6 @@
     <Compile Include="ScriptEditor\XAttributeDrawer.cs" />
     <Compile Include="ScriptEditor\EnumFlagDrawer.cs" />
     <Compile Include="CodeEditor\XCodeEvent.cs" />
-    <Compile Include="BehaviorWindow\StateMachineMakerResources.cs" />
-    <Compile Include="BehaviorWindow\Style.cs" />
-    <Compile Include="BehaviorWindow\XFsmStateWindow.cs" />
-    <Compile Include="BehaviorWindow\XFsmWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

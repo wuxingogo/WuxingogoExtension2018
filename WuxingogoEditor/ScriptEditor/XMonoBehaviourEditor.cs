@@ -31,9 +31,9 @@ namespace wuxingogo.Editor
         {
             try
             {
-                GetTargetMethod<XAttribute>( target );
-                GetTargetField<XAttribute>( target );
-                GetTargetProperty<XAttribute>( target );
+                ShowXMethods<XAttribute>( target );
+                ShowXFields<XAttribute>( target );
+                ShowProperties<XAttribute>( target );
             }
             catch
             {
@@ -90,7 +90,7 @@ namespace wuxingogo.Editor
             return state;
         }
 
-        void GetTargetMethod<T>( object target )
+        void ShowXMethods<T>( object target )
         {
             if( target == null )
                 return;
@@ -150,7 +150,7 @@ namespace wuxingogo.Editor
             }
         }
 
-        void GetTargetField<T>( object target )
+        void ShowXFields<T>( object target )
         {
             if( target == null )
                 return;
@@ -210,7 +210,7 @@ namespace wuxingogo.Editor
 
         }
 
-        void GetTargetProperty<T>( object target )
+        void ShowProperties<T>( object target )
         {
             if( target == null )
                 return;
@@ -277,27 +277,27 @@ namespace wuxingogo.Editor
 
 
 
-        GUILayoutOption maxWidthOpt = GUILayout.MaxWidth( 150 );
+        GUILayoutOption widthOption = GUILayout.MaxWidth( 150 );
         protected object GetTypeGUI( object t, Type type, List<object> nextShow )
         {
             if( t == null )
                 t = GetDefaultValue( type );
             if( t is int || t is System.Int32 || type == typeof( int ) )
             {
-                t = CreateIntField( Convert.ToInt32( t ), maxWidthOpt );
+                t = CreateIntField( Convert.ToInt32( t ), widthOption );
             }
             else if( t is System.Int16 )
             {
-                t = ( short )CreateIntField( Convert.ToInt16( t ), maxWidthOpt );
+                t = ( short )CreateIntField( Convert.ToInt16( t ), widthOption );
             }
             else if( t is System.Int64 )
             {
-                t = CreateLongField( Convert.ToInt64( t ), maxWidthOpt );
+                t = CreateLongField( Convert.ToInt64( t ), widthOption );
             }
             else if( t is byte )
             {
                 int value = Convert.ToInt32( t );
-                t = Convert.ToByte( CreateIntField( value, maxWidthOpt ) );
+                t = Convert.ToByte( CreateIntField( value, widthOption ) );
             }
             else if( type == typeof( String ) )
             {
@@ -305,7 +305,7 @@ namespace wuxingogo.Editor
             }
             else if( type == typeof( Single ) )
             {
-                t = CreateFloatField( Convert.ToSingle( t ), maxWidthOpt );
+                t = CreateFloatField( Convert.ToSingle( t ), widthOption );
             }
             else if( type == typeof( Boolean ) )
             {
@@ -373,7 +373,7 @@ namespace wuxingogo.Editor
                 IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
                 ICollection collection = dictionary.Values;
 
-                
+
                 while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
                 {
                     var newList = new List<object>();
@@ -381,9 +381,9 @@ namespace wuxingogo.Editor
                     GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType(), newList );
                     var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType(), newList );
                     EndHorizontal();
-                    DrawListType( newList);
+                    DrawListType( newList );
                 }
-                
+
             }
 
             else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
@@ -400,30 +400,19 @@ namespace wuxingogo.Editor
                         GetTypeGUI( iteratorValue.Current, iteratorValue.Current.GetType(), newList );
                     index++;
                 }
-                //DrawListType( newList );
             }
             else if( t != null )
             {
-                //BeginVertical();
-                //if( !groupDict.ContainsKey( t ) )
-                //{
-                //    groupDict.Add( t, true );
-                //}
-                if( !nextShow.Contains(t))
+                if( !nextShow.Contains( t ) )
                     nextShow.Add( t );
 
                 EditorGUILayout.Space();
                 DrawHeader( type.Name, type.Name, false, false );
-                //groupDict[t] = EditorGUILayout.Foldout( groupDict[t], type.Name );
-                //groupDict[t] =
 
-                ////EndVertical();
-
-                //if( groupDict[t] )
-                //{
-                //    ShowXAttributeMember( t );
-                //}
-
+            }
+            else
+            {
+                CreateLabel( "NULL" );
             }
 
             return t;
