@@ -1,14 +1,14 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor\ScriptEditor\XMonoBehaviourEditor.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\Network\Messages\C2SPetRequestMsg.cs" Line="1" Column="1" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\Network\Messages\C2SAchievementInfoListRequestMsg.cs" Line="1" Column="1" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\Scripts\DataTableReader\MetaDataDBManager.cs" Line="57" Column="39" />
-      <File FileName="WuxingogoRuntime\Scripts\XMonoBehaviour.cs" Line="29" Column="2" />
-      <File FileName="WuxingogoEditor\ScriptEditor\XMonoBehaviourEditor.cs" Line="45" Column="9" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\UI\UIPanel.cs" Line="1" Column="1" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\UIPanelInspector.cs" Line="553" Column="22" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\NGUIEditorTools.cs" Line="1342" Column="30" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\NGUISettings.cs" Line="180" Column="2" />
+      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\UICameraEditor.cs" Line="123" Column="64" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

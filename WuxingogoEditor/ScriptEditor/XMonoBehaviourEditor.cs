@@ -95,6 +95,19 @@ namespace wuxingogo.Editor
             if( target == null )
                 return;
 
+            var methods = target.GetType().GetMethods( bindFlags );
+            bool noAttribute = true;
+            foreach( var info in methods )
+            {
+                foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+                {
+                    noAttribute = false;
+                    break;
+                }
+            }
+            if( noAttribute )
+                return;
+
             bool toggle = DrawHeader( "Method", "Method", false, false );
 
             if( !toggle )
@@ -102,7 +115,11 @@ namespace wuxingogo.Editor
                 return;
             }
 
-            foreach( var info in target.GetType().GetMethods( bindFlags ) )
+            List<object> nextShow = new List<object>();
+
+            
+
+            foreach( var info in methods )
             {
                 foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
                 {
@@ -120,7 +137,7 @@ namespace wuxingogo.Editor
                     {
                         BeginHorizontal();
                         CreateLabel( paras[pos].ParameterType.Name );
-                        objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType );
+                        objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, nextShow );
                         EndHorizontal();
                     }
                     if( CreateSpaceButton( info.Name ) )
@@ -137,6 +154,18 @@ namespace wuxingogo.Editor
         {
             if( target == null )
                 return;
+            var Fields = target.GetType().GetFields( bindFlags );
+            bool noAttribute = true;
+            foreach( var info in Fields )
+            {
+                foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+                {
+                    noAttribute = false;
+                    break;
+                }
+            }
+            if( noAttribute )
+                return;
 
             bool toggle = DrawHeader( "Field", "Field", false, false );
 
@@ -144,25 +173,40 @@ namespace wuxingogo.Editor
             {
                 return;
             }
+            
 
-            foreach( var field in target.GetType().GetFields( bindFlags ) )
+            foreach( var field in Fields )
             {
                 foreach( var att in field.GetCustomAttributes( typeof( T ), true ) )
                 {
+                    List<object> nextShow = new List<object>();
+
                     BeginVertical();
 
                     CreateLabel( field.FieldType.Name+ " : " + field.Name );
 
                     object result = field.GetValue( target );
 
-                    var newValue = GetTypeGUI( result, field.FieldType );
+                    var newValue = GetTypeGUI( result, field.FieldType, nextShow );
 
                     if( null != newValue && !newValue.Equals( result ) )
                         field.SetValue( target, newValue );
 
                     EndVertical();
+
+                    foreach( var entry in nextShow )
+                    {
+                        var type = entry.GetType();
+                        bool isShow = DrawHeader( type.Name, type.Name, false, false );
+                        if( isShow )
+                        {
+                            ShowXAttributeMember( entry );
+                        }
+                    }
                 }
             }
+
+            
 
         }
 
@@ -171,6 +215,18 @@ namespace wuxingogo.Editor
             if( target == null )
                 return;
 
+            var Properties = target.GetType().GetProperties( bindFlags );
+            bool noAttribute = true;
+            foreach( var info in Properties )
+            {
+                foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+                {
+                    noAttribute = false;
+                    break;
+                }
+            }
+            if( noAttribute )
+                return;
             bool toggle = DrawHeader( "Property", "Property", false, false );
 
             if( !toggle )
@@ -178,10 +234,14 @@ namespace wuxingogo.Editor
                 return;
             }
 
-            foreach( var property in target.GetType().GetProperties( bindFlags ) )
+            
+
+            foreach( var property in Properties )
             {
                 foreach( var att in property.GetCustomAttributes( typeof( XAttribute ), true ) )
                 {
+                    List<object> nextShow = new List<object>();
+
 
                     BeginVertical();
 
@@ -191,7 +251,7 @@ namespace wuxingogo.Editor
                     CreateLabel( property.PropertyType.Name + " : " + property );
 
                     EditorGUI.BeginDisabledGroup( !property.CanWrite );
-                    var newValue = GetTypeGUI( result, property.PropertyType );
+                    var newValue = GetTypeGUI( result, property.PropertyType, nextShow );
                     EditorGUI.EndDisabledGroup();
 
                     if( null != newValue && !newValue.Equals( result ) )
@@ -199,11 +259,26 @@ namespace wuxingogo.Editor
 
 
                     EndVertical();
+
+                    foreach( var entry in nextShow )
+                    {
+                        var type = entry.GetType();
+                        bool isShow = DrawHeader( type.Name, type.Name, false, false );
+                        if( isShow )
+                        {
+                            ShowXAttributeMember( entry );
+                        }
+                    }
                 }
             }
+
+            
         }
+
+
+
         GUILayoutOption maxWidthOpt = GUILayout.MaxWidth( 150 );
-        protected object GetTypeGUI( object t, Type type )
+        protected object GetTypeGUI( object t, Type type, List<object> nextShow )
         {
             if( t == null )
                 t = GetDefaultValue( type );
@@ -275,14 +350,21 @@ namespace wuxingogo.Editor
                 IList list = t as IList;
                 if( list == null )
                     return t;
+                var newList = new List<object>();
+
                 BeginVertical();
                 for( int pos = 0; pos < list.Count; pos++ )
                 {
                     //  TODO loop in list.Count
                     var o = list[pos];
-                    GetTypeGUI( o, o.GetType() );
+                    GetTypeGUI( o, o.GetType(), newList );
                 }
+                //bool isShow = DrawHeader( type.Name, type.Name, false, false );
                 EndVertical();
+
+                //DrawListType( newList, isShow );
+
+
             }
             else if( typeof( IDictionary ).IsAssignableFrom( type ) )
             {
@@ -291,16 +373,17 @@ namespace wuxingogo.Editor
                 IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
                 ICollection collection = dictionary.Values;
 
-
+                
                 while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
                 {
+                    var newList = new List<object>();
                     BeginHorizontal();
-                    GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType() );
-                    var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType() );
+                    GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType(), newList );
+                    var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType(), newList );
                     EndHorizontal();
-
+                    DrawListType( newList);
                 }
-
+                
             }
 
             else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
@@ -310,36 +393,55 @@ namespace wuxingogo.Editor
 
                 IEnumerator iteratorValue = collection.GetEnumerator();
                 int index = 0;
+                var newList = new List<object>();
                 while( iteratorValue.MoveNext() )
                 {
                     if( iteratorValue.Current != null )
-                        GetTypeGUI( iteratorValue.Current, iteratorValue.Current.GetType() );
+                        GetTypeGUI( iteratorValue.Current, iteratorValue.Current.GetType(), newList );
                     index++;
                 }
+                //DrawListType( newList );
             }
             else if( t != null )
             {
-                BeginVertical();
-                if( !groupDict.ContainsKey( t ) )
-                {
-                    groupDict.Add( t, true );
-                }
+                //BeginVertical();
+                //if( !groupDict.ContainsKey( t ) )
+                //{
+                //    groupDict.Add( t, true );
+                //}
+                if( !nextShow.Contains(t))
+                    nextShow.Add( t );
 
                 EditorGUILayout.Space();
+                DrawHeader( type.Name, type.Name, false, false );
+                //groupDict[t] = EditorGUILayout.Foldout( groupDict[t], type.Name );
+                //groupDict[t] =
 
-                groupDict[t] = EditorGUILayout.Foldout( groupDict[t], type.Name );
+                ////EndVertical();
 
-                EndVertical();
-
-                if( groupDict[t] )
-                {
-                    ShowXAttributeMember( t );
-                }
+                //if( groupDict[t] )
+                //{
+                //    ShowXAttributeMember( t );
+                //}
 
             }
 
             return t;
 
+        }
+
+        void DrawListType(List<object> totalObject)
+        {
+            foreach( var entry in totalObject )
+            {
+                
+                var t = entry.GetType();
+                bool isShow = DrawHeader( t.Name, t.Name, false, false );
+                if( isShow )
+                {
+                    ShowXAttributeMember( entry );
+                }
+            }
         }
 
         object GetDefaultValue( Type t )
