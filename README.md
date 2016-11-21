@@ -40,7 +40,9 @@ OSX : xbuild, python2.7(run build.sh)
 
 Finite-State-Machine Window.
 
-![github](ScreenShot/BehaviourFSM.png "github") 
+![github](ScreenShot/BehaviourFSM.jpg "github") 
+
+This repository move to https://github.com/wuxingogo/Unity-BTFsm
 
 ####XCodeGenerateEditor:
 
