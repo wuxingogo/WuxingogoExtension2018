@@ -42,6 +42,8 @@ OSX : xbuild, python2.7(run build.sh)
 
 Incremental update in one file
 
+![github](ScreenShot/AssetBundle.jpg "github") 
+
 This repository move to https://github.com/wuxingogo/GameUpdaterTest
 
 ####XBehaviour Window (Finite-State-Machine)
