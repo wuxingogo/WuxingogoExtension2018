@@ -86,4 +86,8 @@
     <!---<PostBuildEvent>xcopy $(TargetPath) $(SolutionDir)WuxingogoExtension\Runtime\ /Y
 </PostBuildEvent>-->
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

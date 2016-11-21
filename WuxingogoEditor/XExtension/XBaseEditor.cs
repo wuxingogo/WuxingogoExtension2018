@@ -7,11 +7,6 @@ using Object = UnityEngine.Object;
 public class XBaseEditor : Editor
 {
 
-	public float CurrHeight = 0;
-	public const float StartY = 45;
-	public const float StartX = 10;
-	public const float FieldOffset = 5;
-
 	public override void OnInspectorGUI()
 	{
         DrawLogo();
@@ -20,6 +15,8 @@ public class XBaseEditor : Editor
 
         OnXGUI();
 	}
+
+    GUILayoutOption widthOption = GUILayout.Width( Screen.width - 40 );
 
     public void DrawLogo()
     {
@@ -59,7 +56,7 @@ public class XBaseEditor : Editor
 
 	public void CreateSpaceBox()
 	{
-		GUILayout.Box( "", GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 3 ) );
+		GUILayout.Box( "", widthOption, GUILayout.Height( 3 ) );
 	}
 
     public void Space()
@@ -114,8 +111,16 @@ public class XBaseEditor : Editor
 			type = typeof( Object );
 		return EditorGUILayout.ObjectField( obj, type, true ) as Object;
 	}
+    public Color CreateColorField( Color value, params GUILayoutOption[] option )
+    {
+        return EditorGUILayout.ColorField( value, option );
+    }
+    public Color CreateColorField( string label, Color value, params GUILayoutOption[] option )
+    {
+        return EditorGUILayout.ColorField( label, value, option );
+    }
 
-	public int CreateIntField(string fieldName, int value)
+    public int CreateIntField(string fieldName, int value)
 	{
 		return EditorGUILayout.IntField( fieldName, value );
 	}

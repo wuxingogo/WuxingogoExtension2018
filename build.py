@@ -57,25 +57,38 @@ print "remove all meta success"
 
 UsePlatform()
 
-copyfile("OutPutDll/WuxingogoEditor.dll", "WuxingogoExtension/Editor/WuxingogoEditor.dll")
-copyfile("OutPutDll/WuxingogoRuntime.dll", "WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
-copyfile("OutPutDll/WuxingogoEditor.pdb", "WuxingogoExtension/Editor/WuxingogoEditor.pdb")
-copyfile("OutPutDll/WuxingogoRuntime.pdb", "WuxingogoExtension/Plugins/WuxingogoRuntime.pdb")
+isSecure = 0
+editorSourceFile = "OutPutDll\WuxingogoEditor.dll"
+runtimeSourceFile = "OutPutDll\WuxingogoRuntime.dll"
+
+copyfile(editorSourceFile, "WuxingogoExtension/Editor/WuxingogoEditor.dll")
+copyfile(runtimeSourceFile, "WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
+
+if(isSecure == 1):
+    os.system("Reactor.lnk -file " + currPath()+"\\" + editorSourceFile + " -mono 1 -unprintable_characters 1")
+    os.system("Reactor.lnk -file " + currPath()+"\\" + editorSourceFile + " -mono 1 -unprintable_characters 1")
+
+    editorSourceFile = "OutPutDll\WuxingogoEditor_Secure\WuxingogoEditor.dll"
+    runtimeSourceFile = "OutPutDll\WuxingogoRuntime_Secure\WuxingogoRuntime.dll"
+
+
+
+
 
 sysstr=platform.system()
 if(sysstr =="Windows"):
-    copyfile(currPath()+"\OutPutDll\WuxingogoEditor.dll","E:/Work/Xingyu/SunSongSunshine/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile(currPath()+"\OutPutDll\WuxingogoRuntime.dll","E:\Work\Xingyu\SunSongSunshine\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
-    copyfile(currPath()+"\OutPutDll\WuxingogoEditor.pdb","E:/Work/Xingyu/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.pdb")
-    copyfile(currPath()+"\OutPutDll\WuxingogoRuntime.pdb","E:\Work\Xingyu\SunSongSunshine\Assets\WuxingogoExtension\Plugins\WuxingogoRuntime.pdb")
-    copyfile( currPath()  + "\OutPutDll\WuxingogoEditor.dll", "E:/Work/UnityProject/New Unity Project/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile( currPath()  + "\OutPutDll\WuxingogoRuntime.dll", "E:\Work\UnityProject\New Unity Project\Assets\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+    copyfile(currPath()+"\\" + editorSourceFile,"E:/Work/Xingyu/SunSongSunshine/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    copyfile(currPath()+"\\" + runtimeSourceFile,"E:\Work\Xingyu\SunSongSunshine\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+    copyfile(currPath()+"\\" + editorSourceFile, "E:/Work/UnityProject/New Unity Project/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\New Unity Project\Assets\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 
-    copyfile( currPath()  + "\OutPutDll\WuxingogoEditor.dll", "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
-    copyfile( currPath()  + "\OutPutDll\WuxingogoRuntime.dll", "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+    copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+    copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+    copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\NewSunSongSunshine\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+    copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\NewSunSongSunshine\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 else:
-    copyfile(currPath()+"/OutPutDll/WuxingogoEditor.dll","/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile(currPath()+"/OutPutDll/WuxingogoRuntime.dll","/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
+    copyfile(currPath()+"\\" + editorSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    copyfile(currPath()+"\\" + runtimeSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
 
 
 

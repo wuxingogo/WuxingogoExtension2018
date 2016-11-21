@@ -125,7 +125,7 @@ namespace wuxingogo.Editor
                 {
                     BeginVertical();
 
-                    CreateLabel( info.ReturnType.Name+ " : " + info.Name );
+                    DrawFieldHeader( info.ReturnType,  info.Name );
                     ParameterInfo[] paras = info.GetParameters();
                     if( !methodParameters.ContainsKey( info ) )
                     {
@@ -136,7 +136,7 @@ namespace wuxingogo.Editor
                     for( int pos = 0; pos < paras.Length; pos++ )
                     {
                         BeginHorizontal();
-                        CreateLabel( paras[pos].ParameterType.Name );
+                        DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
                         objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, nextShow );
                         EndHorizontal();
                     }
@@ -183,7 +183,7 @@ namespace wuxingogo.Editor
 
                     BeginVertical();
 
-                    CreateLabel( field.FieldType.Name+ " : " + field.Name );
+                    DrawFieldHeader( field.FieldType,  field.Name );
 
                     object result = field.GetValue( target );
 
@@ -248,7 +248,7 @@ namespace wuxingogo.Editor
                     object result = property.GetValue( target, null );
 
 
-                    CreateLabel( property.PropertyType.Name + " : " + property );
+                    DrawFieldHeader( property.PropertyType, property.Name );
 
                     EditorGUI.BeginDisabledGroup( !property.CanWrite );
                     var newValue = GetTypeGUI( result, property.PropertyType, nextShow );
@@ -318,6 +318,10 @@ namespace wuxingogo.Editor
             else if( type.IsSubclassOf( typeof( Object ) ) )
             {
                 t = CreateObjectField( ( Object )t, type );
+            }
+            else if( t is Color || t is Color32 )
+            {
+                t = EditorGUILayout.ColorField( ( Color )t, widthOption );
             }
             else if( t is Vector2 )
             {
@@ -439,6 +443,33 @@ namespace wuxingogo.Editor
                 return Activator.CreateInstance( t );
 
             return null;
+        }
+
+        private void DrawFieldHeader(Type type, string fieldName)
+        {
+            if( type.IsGenericType )
+            {
+                var args = type.GetGenericArguments();
+                string result = "";
+                for( int i = 0; i < args.Length; i++ )
+                {
+                    if( i == 0 )
+                    {
+                        result = args[i].Name;
+                    }
+                    else
+                    {
+                        result += "," + args[i].Name;
+                    }
+                    
+                }
+                var s = tools.StringUtils.CutOnCharLeft( type.Name, "`" );
+                CreateLabel( string.Format( "{0}<{1}> : {2}", s, result, fieldName ) );
+            }
+            else
+            {
+                CreateLabel( type.Name + " : " + fieldName );
+            }
         }
 
         private void OpenInMethod( object target )

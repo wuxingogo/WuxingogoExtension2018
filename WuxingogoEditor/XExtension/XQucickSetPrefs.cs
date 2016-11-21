@@ -50,7 +50,8 @@ public class XQucickSetPrefs : XBaseWindow {
 		if(CreateSpaceButton("Apply String Value")){
 			PlayerPrefs.SetString(prefsCMD, StringValue);
 		}
-		if(CreateSpaceButton("Get String Value")){
+
+        if(CreateSpaceButton("Get String Value")){
 			StringValue = PlayerPrefs.GetString(prefsCMD, "");
 		}
 		EditorGUILayout.EndHorizontal();
@@ -63,9 +64,5 @@ public class XQucickSetPrefs : XBaseWindow {
 		
 		CreateSpaceBox();
 		
-		CreateMessageField("This is Plugin for Unity to quick set up playerPrefs.",MessageType.Info);
-		CreateMessageField("The \'prefs CDM\' is the key in the prefs file.", MessageType.Info);
-		CreateMessageField("Keep mind the Delete All prefs", MessageType.Info);
-		CreateMessageField("Author by wuxingogo.", MessageType.None);
 	}
 }
