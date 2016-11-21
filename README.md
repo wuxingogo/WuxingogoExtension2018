@@ -127,7 +127,7 @@ Note: This script must inherit from XMonoBehaviour.
     }
 
 ```
-![github](ScreenShot/Inspector.jpg "github") 
+![github](ScreenShot/Inspector.png "github") 
 
 
 #### Hierachy Extension
