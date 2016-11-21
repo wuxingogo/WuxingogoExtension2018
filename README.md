@@ -12,7 +12,7 @@ This repository includes full source code of the WuxingogoExtension libraries。
 
 * Export UGUI to CocosUI(3.x).
 * Unity Editor support: Reflection Method, Field and Property on the ReflectionWindow.
-* Unity Editor support: Create AssetBundle extension (Unity version 4.x).
+* Unity Editor support: Create AssetBundle extension (Unity 4.x && 5.x).
 * Unity Editor Extension: Custom Attribute Collection(Inspector Drawer).
 * Unity Editor support: Quick set unity prefs.
 * Unity Editor support: Generated CSharpCode(CodeDom).
