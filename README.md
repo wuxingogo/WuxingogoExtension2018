@@ -66,29 +66,58 @@ A visual window to generate csharp code.
 Note: This script must inherit from XMonoBehaviour.
 
 ```c#
-    [X]		// Create a button on the Inspector
-    public void ExportMap()
+    [X]     // Create button in the Inspector
+    public void MethodHandleGo(GameObject go)
     {
-        MapMangment.Export();
+        XLogger.Log("Test Method");
     }
-    [X]		// Reflection this property on the Inspector
+    [X]     // Reflection this property in the Inspector
     public int Amount
     {
         get{
-        	return 0;
-    	}
+            return 0;
+        }
     }
-    [Disable]	// Disable change this SerializeField
+    private int amountChange = 0;
+    [X]     
+    public int AmountChange
+    {
+        get{
+            return amountChange;
+        }
+        set{
+            amountChange = value;
+        }
+    }
+    [Disable]   // Disable change this SerializeField
     public int Count = 0;
-
+    
     [X]
     public Dictionary<int, string> mapKeyDict = new Dictionary<int, string>(){
         {1,    "1"},
         {33,   "22"},
         {222,  "32131"}
     };
+    [SerializeField]
+    private List<string> list = new List<string>()
+    {
+        "stack1",
+        "stack2",
+        "stack3"
+    };
+    [X]
+    public Queue<string> queue;
+    [X]
+    public Stack stack;
+
+    void Reset()
+    {
+        stack = new Stack (list);
+        queue = new Queue<string>(list);
+    }
+
 ```
-![github](ScreenShot/Inspector.png "github") 
+![github](ScreenShot/Inspector.jpg "github") 
 
 
 #### Hierachy Extension
