@@ -39,6 +39,7 @@ OSX : xbuild, python2.7(run build.sh)
 ####XAssetBundleWindow. (Unity Version 5.X)
 
 7Z Compress & Encrypt AssetsBundle
+
 Incremental update in one file
 
 This repository move to https://github.com/wuxingogo/GameUpdaterTest
