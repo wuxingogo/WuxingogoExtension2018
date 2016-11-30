@@ -17,7 +17,7 @@ This repository includes full source code of the WuxingogoExtension libraries。
 * Unity Editor support: Quick set unity prefs.
 * Unity Editor support: Generated CSharpCode(CodeDom).
 * Unity Editor support: Finite-State-Machine and Editor.
-* Unity Editor support: Hierachy Extension.
+* Unity Editor support: Hierarchy Extension.
 * Including a GameManager to easily manage your game.(inherit ScriptableObject)
 
 ##Usage
@@ -132,9 +132,9 @@ Note: This script must inherit from XMonoBehaviour.
 ![github](ScreenShot/Inspector.png "github") 
 
 
-#### Hierachy Extension
+#### Hierarchy Extension
 
-Quick toogle and lock.
+Quick toggle and lock.
 
 ![github](ScreenShot/Hierachy.png "github") 
 
