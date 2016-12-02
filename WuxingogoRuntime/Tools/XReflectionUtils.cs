@@ -65,6 +65,16 @@ namespace wuxingogo.Reflection
 			return null;
 		}
 
+        public static Assembly GetEditorAssembly()
+        {
+            return AppDomain.CurrentDomain.Load( "WuxingogoEditor" );
+        }
+
+        public static Type GetEditorType(string typeName)
+        {
+            return GetEditorAssembly().GetType( typeName );
+        }
+
 		/// <summary>
 		/// Tries the invoke method.
 		/// </summary>
