@@ -1,0 +1,194 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &183784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421002}
+  - 114: {fileID: 11447518}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &421002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.73569, y: 3.8228736, z: 28.303398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11404640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13cefe2dd405043a9038bf50c22549, type: 3}
+  m_Name: GlobalState
+  m_EditorClassIdentifier: 
+  Source: {fileID: 0}
+  totalEvent: []
+  totalActions: []
+  GlobalEvent:
+    Name: GlobalStart
+    Owner: {fileID: 11447518}
+    TargetState: {fileID: 11404640}
+    isGlobal: 1
+  Owner: {fileID: 11447518}
+  Priority: 10
+  Bounds:
+    serializedVersion: 2
+    x: 115
+    y: 160
+    width: 100
+    height: 100
+  Notes: 
+--- !u!114 &11408788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13cefe2dd405043a9038bf50c22549, type: 3}
+  m_Name: NewState
+  m_EditorClassIdentifier: 
+  Source: {fileID: 0}
+  totalEvent: []
+  totalActions: []
+  GlobalEvent:
+    Name: Finish
+    Owner: {fileID: 0}
+    TargetState: {fileID: 0}
+    isGlobal: 0
+  Owner: {fileID: 11447518}
+  Priority: 10
+  Bounds:
+    serializedVersion: 2
+    x: 545
+    y: 121.5
+    width: 100
+    height: 100
+  Notes: 
+--- !u!114 &11447518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877eaa132c69b3448b4e80f8a924076a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: BTFsm
+  startEvent:
+    Name: GlobalStart
+    Owner: {fileID: 11447518}
+    TargetState: {fileID: 11404640}
+    isGlobal: 1
+  currState: {fileID: 0}
+  totalEvent:
+  - Name: GlobalStart
+    Owner: {fileID: 11447518}
+    TargetState: {fileID: 11404640}
+    isGlobal: 1
+  totalState:
+  - {fileID: 11404640}
+  - {fileID: 11461752}
+  - {fileID: 11408788}
+  totalVariable: []
+  template: {fileID: 11467262}
+  nextState: {fileID: 0}
+--- !u!114 &11461752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13cefe2dd405043a9038bf50c22549, type: 3}
+  m_Name: NewState
+  m_EditorClassIdentifier: 
+  Source: {fileID: 0}
+  totalEvent: []
+  totalActions: []
+  GlobalEvent:
+    Name: Finish
+    Owner: {fileID: 0}
+    TargetState: {fileID: 0}
+    isGlobal: 0
+  Owner: {fileID: 11447518}
+  Priority: 10
+  Bounds:
+    serializedVersion: 2
+    x: 316
+    y: 139.5
+    width: 100
+    height: 100
+  Notes: 
+--- !u!114 &11467262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50861938195451f4c83306c56a9f9ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalEvent:
+  - Name: GlobalStart
+    Owner: {fileID: 11447518}
+    TargetState: {fileID: 11404640}
+    isGlobal: 1
+  totalState:
+  - {fileID: 11404640}
+  - {fileID: 11461752}
+  - {fileID: 11408788}
+  totalVariable: []
+  startEvent:
+    Name: GlobalStart
+    Owner: {fileID: 11447518}
+    TargetState: {fileID: 11404640}
+    isGlobal: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: totalState.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: totalState.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: totalState.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 183784}
+  m_IsPrefabParent: 1
