@@ -82,10 +82,16 @@ if(sysstr =="Windows"):
     copyfile(currPath()+"\\" + editorSourceFile, "E:/Work/UnityProject/New Unity Project/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\New Unity Project\Assets\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 
+    copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\CastingWorkBase\OneSideWar\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+    copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\CastingWorkBase\OneSideWar\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+
     copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
     copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PublishWuxingogo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
     copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\NewSunSongSunshine\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
     copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\NewSunSongSunshine\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
+
+    copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
+    copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 else:
     copyfile(currPath()+"\\" + editorSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     copyfile(currPath()+"\\" + runtimeSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")

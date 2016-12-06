@@ -206,10 +206,4 @@ public class XCreateAssetBundle : XBaseWindow
 		xmlDoc.AppendChild(root);
 		xmlDoc.Save (filepathxml);
 	}
-	
-	
-	
-	
-
-	
 }
