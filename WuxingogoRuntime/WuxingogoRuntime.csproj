@@ -79,6 +79,7 @@
     <Compile Include="Tools\XFileUtils.cs" />
     <Compile Include="Tools\AsynchronousFunc.cs" />
     <Compile Include="Tools\DelegateUtils.cs" />
+    <Compile Include="Tools\XUnityTimer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

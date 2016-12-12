@@ -100,7 +100,13 @@ public class DelegateUtils
 		eventTable[eventType] = (Callback<T, U, V>)eventTable[eventType] + handler;
 	}
 
-	public static void removeListener(string eventType, Callback handler)
+    public static void removeListener( string eventType )
+    {
+        if( eventTable.ContainsKey( eventType ) )
+            eventTable.Remove( eventType );
+    }
+
+    public static void removeListener(string eventType, Callback handler)
 	{
 		eventTable[eventType] = (Callback)eventTable[eventType] - handler;
 		if (eventTable[eventType] == null)
