@@ -5,6 +5,7 @@ using System;
 using Object = UnityEngine.Object;
 using System.IO;
 using System.Linq;
+using wuxingogo.Editor;
 
 /**
  * [XBaseWindow 基础类]
@@ -341,6 +342,16 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		}
 
 
+	}
+	[MenuItem("Wuxingogo/Select FocusedWindow")]
+	static void SelectWindow()
+	{
+		Selection.objects = new Object[]{ InspectorUtilites.GetInspectorWindow() };
+//		Selection.objects = ActiveEditorTracker.sharedTracker.activeEditors;
+//		for (int i = 0; i < ActiveEditorTracker.sharedTracker.activeEditors.Length; i++) {
+//			XLogger.Log (ActiveEditorTracker.sharedTracker.activeEditors [i].GetType ().Name);
+//		}
+		
 	}
     public static void OpenTypeScript(Type type)
     {

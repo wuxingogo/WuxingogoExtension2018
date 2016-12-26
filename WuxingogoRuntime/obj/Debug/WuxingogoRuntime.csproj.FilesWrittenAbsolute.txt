@@ -1,0 +1,6 @@
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.pdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.pdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll.mdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb

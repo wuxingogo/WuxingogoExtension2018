@@ -1,0 +1,6 @@
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll.mdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.pdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll.mdb
+/Users/dfsas/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb

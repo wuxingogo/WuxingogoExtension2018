@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 using Object = UnityEngine.Object;
+using wuxingogo.Editor;
 
 public class XBaseEditor : Editor
 {
@@ -17,10 +18,22 @@ public class XBaseEditor : Editor
 	}
 
     GUILayoutOption widthOption = GUILayout.Width( Screen.width - 40 );
-
+	EditorWindow ForcusWindow{
+		get{
+			if(forcusWindow == null)
+				forcusWindow = InspectorUtilites.GetInspectorWindow();
+			return forcusWindow;
+		}
+	}
+	private EditorWindow forcusWindow = null;
     public void DrawLogo()
     {
-        GUILayout.Box( XResources.LogoTexture, GUILayout.Width( Screen.width - 40 ), GUILayout.Height( 100 ) );
+//		InspectorUtilites.GetAllInspector ();
+
+		GUILayout.Box( XResources.LogoTexture, GUILayout.Width(ForcusWindow.position.width - 40) );
+//		BeginHorizontal();
+//		GUILayout.Box( XResources.LogoTexture);
+//		EndHorizontal ();
     }
 
 	public virtual void OnXGUI()

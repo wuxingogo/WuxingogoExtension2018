@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using wuxingogo.tools;
+using wuxingogo.Runtime;
 
 
 namespace wuxingogo.Reflection
@@ -333,5 +334,52 @@ namespace wuxingogo.Reflection
             }
             return Activator.CreateInstance( t, true );
         }
+
+		public static UnityEngine.Object GetPrefabObject(UnityEngine.Object asset)
+		{
+			
+			System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.AssetsUtilites" );
+			if (type != null) {
+				var method = type.GetMethod( "GetPrefabObject" );
+				var result = (UnityEngine.Object)method.Invoke( null, new object[]{asset});
+				return result;
+			}
+			return null;
+		}
+		public static string GetPrefabType(UnityEngine.Object asset)
+		{
+
+			System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.AssetsUtilites" );
+			if (type != null) {
+				var method = type.GetMethod( "GetPrefabType" );
+				var result = (string)method.Invoke( null, new object[]{asset});
+				return result;
+			}
+			return "";
+		}
+		// editor only
+		public static void AddObjectToObject(UnityEngine.Object asset, UnityEngine.Object parent)
+		{
+			if( Application.isEditor )
+			{
+				
+				System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.AssetsUtilites" );
+				var method = type.GetMethod( "AddObjectToAsset" );
+				method.Invoke( null, new object[] { asset, parent } );
+
+			}
+		}
+
+		public static void Save(XScriptableObject asset)
+		{
+			if( Application.isEditor )
+			{
+
+				System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.XScriptObjectEditor" );
+				var method = type.GetMethod( "Save" );
+				method.Invoke( null, new object[] { asset } );
+
+			}
+		}
     }
 }

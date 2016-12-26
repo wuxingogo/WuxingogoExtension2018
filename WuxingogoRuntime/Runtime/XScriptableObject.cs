@@ -12,36 +12,34 @@ namespace wuxingogo.Runtime
 
         }
 
-        public static T Create<T>(Object parent = null) where T : XScriptableObject
+		public bool hasFile = false;
+
+        public static T Create<T>(Object parent) where T : XScriptableObject
         {
             T asset = XScriptableObject.CreateInstance<T>();
             asset.OnCtor();
-            if( Application.isEditor )
-            {
-                if( parent != null )
-                {
-                    System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.XScriptObjectEditor" );
-                    var method = type.GetMethod( "Create" );
-                    method.Invoke( null, new object[] { asset, parent } );
-                }
-            }
+			if (parent != null) {
+				asset.hasFile = true;
+				wuxingogo.Reflection.XReflectionUtils.AddObjectToObject (asset, parent);
+			}
+
             return asset;
         }
 
-        public static ScriptableObject Create( System.Type objectType, Object parent = null )
+		public static XScriptableObject Create( System.Type objectType, Object parent)
         {
             XScriptableObject asset = XScriptableObject.CreateInstance( objectType ) as XScriptableObject;
             asset.OnCtor();
-            if( Application.isEditor )
-            {
-                if( parent != null )
-                {
-                    System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.XScriptObjectEditor" );
-                    var method = type.GetMethod( "Create" );
-                    method.Invoke( null, new object[] { asset, parent } );
-                }
-            }
+			if (parent != null) {
+				asset.hasFile = true;
+				wuxingogo.Reflection.XReflectionUtils.AddObjectToObject (asset, parent);
+			}
             return asset;
         }
+		public void SaveInEditor()
+		{
+			wuxingogo.Reflection.XReflectionUtils.Save (this);
+		}
+
     }
 }

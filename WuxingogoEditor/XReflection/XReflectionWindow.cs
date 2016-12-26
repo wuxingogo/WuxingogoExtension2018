@@ -66,11 +66,11 @@ namespace wuxingogo.Reflection
 
         private Object uObject = null;
         private readonly string[] reflecteType = {
-        "Field",
-        "Property",
-        "Method",
-        "Member"
-    };
+	        "Field",
+	        "Property",
+	        "Method",
+	        "Member"
+    	};
         private string strType = string.Empty;
 
         public Dictionary<string, List<string>> content = new Dictionary<string, List<string>>();

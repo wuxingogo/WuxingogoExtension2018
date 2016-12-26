@@ -52,14 +52,19 @@ def currPath():
 
 print "remove all meta"
 path = os.getcwd()
-removefile(path,".meta")
+removefile("WuxingogoEditor", ".meta")
+removefile("WuxingogoRuntime", ".meta")
 print "remove all meta success"
 
 UsePlatform()
 
+os.chdir(currPath())
+
 isSecure = 0
-editorSourceFile = "OutPutDll\WuxingogoEditor.dll"
-runtimeSourceFile = "OutPutDll\WuxingogoRuntime.dll"
+editorSourceFile = "OutPutDll/WuxingogoEditor.dll"
+runtimeSourceFile = "OutPutDll/WuxingogoRuntime.dll"
+
+
 
 copyfile(editorSourceFile, "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile(runtimeSourceFile, "WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
@@ -93,8 +98,8 @@ if(sysstr =="Windows"):
     copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
     copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 else:
-    copyfile(currPath()+"\\" + editorSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile(currPath()+"\\" + runtimeSourceFile,"/Users/ly-account/Documents/work/SunSongSunshine/Assets/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
+    copyfile(currPath()+"/" + editorSourceFile,"/Users/dfsas/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    copyfile(currPath()+"/" + runtimeSourceFile,"/Users/dfsas/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
 
 
 

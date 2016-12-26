@@ -1,14 +1,14 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs">
     <Files>
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\UI\UIPanel.cs" Line="1" Column="1" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\UIPanelInspector.cs" Line="553" Column="22" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\NGUIEditorTools.cs" Line="1342" Column="30" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\NGUISettings.cs" Line="180" Column="2" />
-      <File FileName="..\Xingyu\SunSongSunshine\Assets\NGUI\Scripts\Editor\UICameraEditor.cs" Line="123" Column="64" />
+      <File FileName="WuxingogoRuntime/Runtime/XScriptableObject.cs" Line="8" Column="2" />
+      <File FileName="../../UnityProject/Casting/OneSideWar/Assets/Plugins/UniWebViewPluginWP.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/XReflectionUtils.cs" Line="373" Column="3" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="28" Column="34" />
+      <File FileName="WuxingogoEditor/XExtension/AssetsUtilites.cs" Line="10" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

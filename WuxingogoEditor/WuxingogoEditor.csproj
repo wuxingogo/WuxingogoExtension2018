@@ -8,8 +8,6 @@
     <RootNamespace>WuxingogoEditor</RootNamespace>
     <AssemblyName>WuxingogoEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -126,6 +124,7 @@
     <Compile Include="ScriptEditor\XAttributeDrawer.cs" />
     <Compile Include="ScriptEditor\EnumFlagDrawer.cs" />
     <Compile Include="CodeEditor\XCodeEvent.cs" />
+    <Compile Include="XExtension\InspectorUtilites.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -142,7 +141,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">
