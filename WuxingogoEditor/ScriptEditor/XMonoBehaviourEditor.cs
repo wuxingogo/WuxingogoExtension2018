@@ -127,17 +127,23 @@ namespace wuxingogo.Editor
 
                     DrawFieldHeader( info.ReturnType,  info.Name );
                     ParameterInfo[] paras = info.GetParameters();
+
                     if( !methodParameters.ContainsKey( info ) )
                     {
                         object[] o = new object[paras.Length];
                         methodParameters.Add( info, o );
                     }
-                    object[] objects = methodParameters[info];
+					object[] objects = methodParameters[info];
+
+
                     for( int pos = 0; pos < paras.Length; pos++ )
                     {
+						if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
+							objects [pos] = paras [pos].DefaultValue;
+						}
                         BeginHorizontal();
                         DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
-                        objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, nextShow );
+						objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
                         EndHorizontal();
                     }
                     if( CreateSpaceButton( info.Name ) )
@@ -187,7 +193,7 @@ namespace wuxingogo.Editor
 
                     object result = field.GetValue( target );
 
-                    var newValue = GetTypeGUI( result, field.FieldType, nextShow );
+					var newValue = GetTypeGUI( result, field.FieldType,field.FieldType.Name, nextShow );
 
                     if( null != newValue && !newValue.Equals( result ) )
                         field.SetValue( target, newValue );
@@ -251,7 +257,7 @@ namespace wuxingogo.Editor
                     DrawFieldHeader( property.PropertyType, property.Name );
 
                     EditorGUI.BeginDisabledGroup( !property.CanWrite );
-                    var newValue = GetTypeGUI( result, property.PropertyType, nextShow );
+					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
                     EditorGUI.EndDisabledGroup();
 
                     if( null != newValue && !newValue.Equals( result ) )
@@ -278,71 +284,71 @@ namespace wuxingogo.Editor
 
 
         GUILayoutOption widthOption = GUILayout.MaxWidth( 150 );
-        protected object GetTypeGUI( object t, Type type, List<object> nextShow )
+		protected object GetTypeGUI( object t, Type type, string valueName, List<object> nextShow )
         {
             if( t == null )
                 t = GetDefaultValue( type );
             if( t is int || t is System.Int32 || type == typeof( int ) )
             {
-                t = CreateIntField( Convert.ToInt32( t ), widthOption );
+				t = CreateIntField(valueName, Convert.ToInt32( t ) );
             }
             else if( t is System.Int16 )
             {
-                t = ( short )CreateIntField( Convert.ToInt16( t ), widthOption );
+				t = ( short )CreateIntField(valueName, Convert.ToInt16( t ));
             }
             else if( t is System.Int64 )
             {
-                t = CreateLongField( Convert.ToInt64( t ), widthOption );
+				t = CreateLongField(valueName, Convert.ToInt64( t ));
             }
             else if( t is byte )
             {
                 int value = Convert.ToInt32( t );
-                t = Convert.ToByte( CreateIntField( value, widthOption ) );
+				t = Convert.ToByte( CreateIntField(valueName, value) );
             }
             else if( type == typeof( String ) )
             {
-                t = CreateStringField( ( string )t );
+				t = CreateStringField(valueName, ( string )t );
             }
             else if( type == typeof( Single ) )
             {
-                t = CreateFloatField( Convert.ToSingle( t ), widthOption );
+				t = CreateFloatField(valueName, Convert.ToSingle( t ) );
             }
             else if( type == typeof( Boolean ) )
             {
-                t = CreateCheckBox( Convert.ToBoolean( t ) );
+				t = CreateCheckBox(valueName, Convert.ToBoolean( t ) );
             }
             else if( type.BaseType == typeof( Enum ) )
             {
-                t = CreateEnumSelectable( "", ( Enum )t ?? ( Enum )Enum.ToObject( type, 0 ) );
+				t = CreateEnumSelectable( valueName, ( Enum )t ?? ( Enum )Enum.ToObject( type, 0 ) );
             }
             else if( type.IsSubclassOf( typeof( Object ) ) )
             {
-                t = CreateObjectField( ( Object )t, type );
+				t = CreateObjectField(valueName, ( Object )t, type );
             }
             else if( t is Color || t is Color32 )
             {
-                t = EditorGUILayout.ColorField( ( Color )t, widthOption );
+				t = EditorGUILayout.ColorField(valueName, ( Color )t );
             }
             else if( t is Vector2 )
             {
                 Vector2 v = ( Vector2 )t;
-                t = CreateVector2Field( "", v );
+				t = CreateVector2Field( valueName, v );
             }
             else if( t is Vector3 )
             {
                 Vector3 v = ( Vector3 )t;
-                t = CreateVector3Field( "", v );
+				t = CreateVector3Field( valueName, v );
             }
             else if( t is Vector4 )
             {
                 Vector4 v = ( Vector4 )t;
-                t = CreateVector4Field( "", v );
+				t = CreateVector4Field( valueName, v );
             }
             else if( t is Quaternion )
             {
                 Quaternion q = ( Quaternion )t;
                 Vector4 v = new Vector4( q.x, q.y, q.z, q.w );
-                v = CreateVector4Field( type.Name, v );
+				v = CreateVector4Field( valueName, v );
                 q.x = v.x;
                 q.y = v.y;
                 q.z = v.z;
@@ -361,7 +367,7 @@ namespace wuxingogo.Editor
                 {
                     //  TODO loop in list.Count
                     var o = list[pos];
-                    GetTypeGUI( o, o.GetType(), newList );
+					GetTypeGUI( o, o.GetType(), valueName + "_" + pos, newList );
                 }
                 //bool isShow = DrawHeader( type.Name, type.Name, false, false );
                 EndVertical();
@@ -382,8 +388,10 @@ namespace wuxingogo.Editor
                 {
                     var newList = new List<object>();
                     BeginHorizontal();
-                    GetTypeGUI( iteratorKey.Current, iteratorKey.Current.GetType(), newList );
-                    var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], dictionary[iteratorKey.Current].GetType(), newList );
+					var keyType = iteratorKey.Current.GetType ();
+					var valueType = dictionary [iteratorKey.Current].GetType ();
+					GetTypeGUI( iteratorKey.Current,keyType , keyType.Name, newList );
+					var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
                     EndHorizontal();
                     DrawListType( newList );
                 }
@@ -400,8 +408,9 @@ namespace wuxingogo.Editor
                 var newList = new List<object>();
                 while( iteratorValue.MoveNext() )
                 {
+					var valueType = iteratorValue.Current.GetType();
                     if( iteratorValue.Current != null )
-                        GetTypeGUI( iteratorValue.Current, iteratorValue.Current.GetType(), newList );
+						GetTypeGUI( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
                     index++;
                 }
             }
@@ -464,11 +473,11 @@ namespace wuxingogo.Editor
                     
                 }
                 var s = tools.StringUtils.CutOnCharLeft( type.Name, "`" );
-                CreateLabel( string.Format( "{0}<{1}> : {2}", s, result, fieldName ) );
+                //CreateLabel( string.Format( "{0}<{1}> : {2}", s, result, fieldName ) );
             }
             else
             {
-                CreateLabel( type.Name + " : " + fieldName );
+                //CreateLabel( type.Name + " : " + fieldName );
             }
         }
 

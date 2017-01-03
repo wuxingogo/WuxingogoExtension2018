@@ -133,14 +133,19 @@ public class XBaseEditor : Editor
         return EditorGUILayout.ColorField( label, value, option );
     }
 
-    public int CreateIntField(string fieldName, int value)
+	public int CreateIntField(string fieldName, int value,params GUILayoutOption[] option)
 	{
-		return EditorGUILayout.IntField( fieldName, value );
+		return EditorGUILayout.IntField( fieldName, value, option );
 	}
 
 	public int CreateIntField(int value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.IntField( value, option );
+	}
+
+	public long CreateLongField(string fieldName,long value, params GUILayoutOption[] option )
+	{
+		return EditorGUILayout.LongField(fieldName, value, option );
 	}
 
 	public long CreateLongField(long value, params GUILayoutOption[] option )
