@@ -1,17 +1,7 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/AssetsUtilites.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Runtime/XScriptableObject.cs" Line="1" Column="1" />
-      <File FileName="../../UnityProject/Casting/OneSideWar/Assets/Plugins/UniWebViewPluginWP.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/XReflectionUtils.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/XExtension/AssetsUtilites.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseEditor.cs" Line="136" Column="62" />
-      <File FileName="WuxingogoEditor/XExtension/QuickCreatePrefabs.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XQucickSetPrefs.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="186" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

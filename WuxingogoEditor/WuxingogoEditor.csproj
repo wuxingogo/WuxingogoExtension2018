@@ -71,7 +71,6 @@
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\ScopeUtilites.cs" />
     <Compile Include="XExtension\QuickToggle.cs" />
-    <Compile Include="XExtension\QuickCreatePrefabs.cs" />
     <Compile Include="XExtension\XAnimationExtension.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
