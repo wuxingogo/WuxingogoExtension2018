@@ -68,7 +68,7 @@ namespace wuxingogo.tools
 
 		public static List<T> GetSpecifyFolderAssets<T>(ref string path, string title = "Default Folder") where T : Object
 		{
-			path = EditorUtility.OpenFolderPanel(title, XEditorSetting.ProjectPath, "");
+			path = EditorUtility.OpenFolderPanel(title, XEditorSetting.PluginPath, "");
 			List<T> result = new List<T>();
 			if (string.IsNullOrEmpty(path))
 			{

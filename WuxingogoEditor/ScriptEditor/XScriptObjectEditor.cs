@@ -25,7 +25,7 @@ namespace wuxingogo.Editor
 				EditorUtility.SetDirty (@object);
 			} else {
 				var type = @object.GetType ();
-				string path = AssetsUtilites.SaveFilePanel( type.Name, XEditorSetting.ProjectPath, @object.name + ".asset", "asset", true );
+				string path = AssetsUtilites.SaveFilePanel( type.Name, XEditorSetting.PluginPath, @object.name + ".asset", "asset", true );
 				if( path == "" )
 					return;
 

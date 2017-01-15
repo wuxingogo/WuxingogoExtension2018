@@ -124,6 +124,7 @@
     <Compile Include="ScriptEditor\EnumFlagDrawer.cs" />
     <Compile Include="CodeEditor\XCodeEvent.cs" />
     <Compile Include="XExtension\InspectorUtilites.cs" />
+    <Compile Include="XExtension\XProcessUtlis.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

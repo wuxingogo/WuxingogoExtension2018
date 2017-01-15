@@ -96,7 +96,7 @@ namespace wuxingogo.Code
 
 		private void OpenMonoScript()
 		{
-			string path = EditorUtility.OpenFilePanel( "Open A Template", XEditorSetting.ProjectPath, "" );
+			string path = EditorUtility.OpenFilePanel( "Open A Template", XEditorSetting.PluginPath, "" );
 			if( path == "" )
 				return;
 			

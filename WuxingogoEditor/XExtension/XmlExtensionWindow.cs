@@ -36,7 +36,7 @@ namespace wuxingogo.Xml{
 			
 			BeginHorizontal();
 			if(CreateSpaceButton("Open")){
-				fileName = EditorUtility.OpenFilePanel("Open XmlFile", XEditorSetting.ProjectPath, "");
+				fileName = EditorUtility.OpenFilePanel("Open XmlFile", XEditorSetting.PluginPath, "");
 				
 				if(!fileName.Equals(string.Empty)){
 					rootElement = XElement.Load(fileName);
@@ -101,7 +101,7 @@ namespace wuxingogo.Xml{
 			settings.OmitXmlDeclaration = false;
 			
 			settings.NewLineOnAttributes = true;
-			XmlWriter xw = XmlWriter.Create(XEditorSetting.ProjectPath + "/" + rootElement.Name + ".xml", settings);
+			XmlWriter xw = XmlWriter.Create(XEditorSetting.PluginPath + "/" + rootElement.Name + ".xml", settings);
 			
 			rootElement.Save(xw);
 			xw.Flush();

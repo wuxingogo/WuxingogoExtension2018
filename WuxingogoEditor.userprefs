@@ -1,7 +1,13 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/AssetsUtilites.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XStyles.cs">
     <Files>
       <File FileName="WuxingogoEditor/XExtension/AssetsUtilites.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/XFileUtils.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XEditorSetting.cs" Line="30" Column="63" />
+      <File FileName="WuxingogoEditor/XExtension/XProcessUtlis.cs" Line="27" Column="26" />
+      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/QuickToggle.cs" Line="10" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XStyles.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

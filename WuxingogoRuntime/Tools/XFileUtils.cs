@@ -68,6 +68,14 @@ namespace wuxingogo.tools
 			}
 			return result;
 		}
+		public static string GetAbsolutePath(string original, params string[] path)
+		{
+			for (int i = 0; i < path.Length; i++)
+			{
+				original = Path.GetFullPath(Path.Combine(original, path[i]));
+			}
+			return original;
+		}
 
 		public static string CombinePath(string original, params string[] path)
 		{

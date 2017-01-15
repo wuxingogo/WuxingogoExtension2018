@@ -5,7 +5,8 @@ import os
 import glob
 import shutil
 import platform
-
+import subprocess
+returncode = subprocess.call(["/usr/bin/sudo", "/usr/bin/id"])
 # remove all .meta file
 def removefile(filepath, suffix):
     print ("Root Path : " + filepath)

@@ -25,7 +25,7 @@ public class XStyles : Editor
 	public static GUISkin GetInstance()
 	{
 		if( style == null )
-			style = AssetDatabase.LoadAssetAtPath<GUISkin>( FileUtil.GetProjectRelativePath( XEditorSetting.ProjectPath + "/Templates/XGUIStyle.guiskin" ) );
+			style = AssetDatabase.LoadAssetAtPath<GUISkin>( FileUtil.GetProjectRelativePath( XEditorSetting.PluginPath + "/Templates/XGUIStyle.guiskin" ) );
 		return style;
 	}
 

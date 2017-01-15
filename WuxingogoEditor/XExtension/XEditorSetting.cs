@@ -23,11 +23,11 @@ public class XEditorSetting : XBaseWindow
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
 	
     public const string PluginName = "Plugins/WuxingogoExtension";
-	public static string ProjectPath = XFileUtils.CombinePath(Application.dataPath, PluginName);
+	public static string PluginPath = XFileUtils.CombinePath(Application.dataPath, PluginName);
 	public static string RelativeProjectPath = XFileUtils.CombinePath("Assets", PluginName);
-	public static string TemplatesPath = XFileUtils.CombinePath(ProjectPath,"Templates");
-	public static string relativePath = FileUtil.GetProjectRelativePath(ProjectPath);
-
+	public static string TemplatesPath = XFileUtils.CombinePath(PluginPath,"Templates");
+	public static string relativePath = FileUtil.GetProjectRelativePath(PluginPath);
+	public static string ProjectPath = XFileUtils.GetAbsolutePath(Application.dataPath, "..");
 	private bool isShowIcons = false;
 	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]

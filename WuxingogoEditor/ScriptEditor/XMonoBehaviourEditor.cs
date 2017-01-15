@@ -90,6 +90,22 @@ namespace wuxingogo.Editor
             return state;
         }
 
+		void ShowMulitXMethods<T> (object[] targets)
+		{
+			Dictionary<MethodInfo,int> methodTimes = new Dictionary<MethodInfo, int> ();
+			for (int i = 0; i < targets.Length; i++) {
+				var methods = targets [i].GetType ().GetMethods (bindFlags);
+				for (int j = 0; j < methods.Length; j++) {
+					var method = methods [j];
+					if (methodTimes.ContainsKey (method)) {
+						methodTimes [method] = methodTimes [method]++;
+					} else {
+						methodTimes.Add (method, 1);
+					}
+				}
+			}
+		}
+
         void ShowXMethods<T>( object target )
         {
             if( target == null )
@@ -155,6 +171,7 @@ namespace wuxingogo.Editor
                 }
             }
         }
+
 
         void ShowXFields<T>( object target )
         {

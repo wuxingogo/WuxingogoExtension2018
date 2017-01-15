@@ -61,7 +61,7 @@ namespace wuxingogo.Code
 			}
 			else {
 
-				string path = EditorUtility.SaveFilePanel("Create A Templete", XEditorSetting.ProjectPath, codeObject.className + ".asset", "asset");
+				string path = EditorUtility.SaveFilePanel("Create A Templete", XEditorSetting.PluginPath, codeObject.className + ".asset", "asset");
 				if (path == "")
 					return;
 
@@ -74,14 +74,14 @@ namespace wuxingogo.Code
 		}
 
 		void Compile(){
-			string path = EditorUtility.SaveFilePanel("OutPut Path", XEditorSetting.ProjectPath, codeObject.className + ".cs", "cs");
+			string path = EditorUtility.SaveFilePanel("OutPut Path", XEditorSetting.PluginPath, codeObject.className + ".cs", "cs");
 
 			codeObject.Compile(path);
 		}
 
 		XCodeObject OpenTemplate()
 		{
-			string path = EditorUtility.OpenFilePanel( "Open A Template", XEditorSetting.ProjectPath, "" );
+			string path = EditorUtility.OpenFilePanel( "Open A Template", XEditorSetting.PluginPath, "" );
 			if( path == "" )
 				return null;
 		

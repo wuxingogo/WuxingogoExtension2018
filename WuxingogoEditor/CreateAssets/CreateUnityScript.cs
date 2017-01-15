@@ -36,7 +36,7 @@ namespace CreateAssets
         public static void CreateFile()
         {
 
-            string path = EditorUtility.SaveFilePanel( "Create A Object", XEditorSetting.ProjectPath, "NewEditor.cs", "cs" );
+            string path = EditorUtility.SaveFilePanel( "Create A Object", XEditorSetting.PluginPath, "NewEditor.cs", "cs" );
             if( path == "" )
                 return;
 
