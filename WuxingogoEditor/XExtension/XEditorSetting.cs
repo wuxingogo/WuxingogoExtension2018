@@ -55,23 +55,5 @@ public class XEditorSetting : XBaseWindow
 			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
 			GUILayout.Space(10);
 		}
-
-
-        //for( int i = 0; i < XResources.GetInstance().IconNames.Length; i += 8 )
-        //{
-        //    GUILayout.BeginHorizontal();
-        //    for( int j = 0; j < 8; j++ )
-        //    {
-        //        int index = i + j;
-        //        if( index < XResources.GetInstance().IconNames.Length )
-        //        {
-        //            string btnName = XResources.GetInstance().IconNames[index];
-        //            GUIContent content = EditorGUIUtility.IconContent( btnName );
-        //            AddButton( content, () => Logger.Log( btnName.ToString() ), GUILayout.Width( 50 ), GUILayout.Height( 30 ) );
-        //        }
-
-        //    }
-        //    GUILayout.EndHorizontal();
-        //}
     }
 }

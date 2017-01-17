@@ -7,13 +7,12 @@ using System.Linq;
 
 [Serializable]
 public class UnityDictionary<TKey,TValue> : XScriptableObject 
-    where TKey : new()  where TValue : new()
 {
     public delegate void OnChange();
 
     public event OnChange OnChangeEvent;
 
-	public	List<TKey> Keys = new List<TKey>();
+	public List<TKey> Keys = new List<TKey>();
 	
     public List<TValue> Values = new List<TValue>();
 
@@ -72,4 +71,13 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
             return Keys.Count;
         }
     }
+
+	public bool ContainKey(TKey key)
+	{
+		return Keys.Contains (key);
+	}
+	public bool ContainerValue(TValue value)
+	{
+		return Values.Contains (value);
+	}
 }

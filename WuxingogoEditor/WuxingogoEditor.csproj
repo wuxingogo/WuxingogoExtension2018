@@ -62,23 +62,14 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CodeEditor\XCodeTemplateEditor.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\ScopeUtilites.cs" />
     <Compile Include="XExtension\QuickToggle.cs" />
-    <Compile Include="XExtension\XAnimationExtension.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
     <Compile Include="XExtension\XBaseWindow.cs" />
-    <Compile Include="XExtension\XCreateAssetBundle.cs" />
-    <Compile Include="XExtension\AssetBundleModel.cs" />
     <Compile Include="XExtension\XEditorSetting.cs" />
-    <Compile Include="XExtension\XFileExtension.cs" />
     <Compile Include="XExtension\XQucickSetPrefs.cs" />
     <Compile Include="XExtension\XQuickSetDatabase.cs" />
     <Compile Include="XExtension\XResources.cs" />
@@ -87,7 +78,6 @@
     <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
     <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
-    <Compile Include="XExtension\XAnimatorExtension.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
     <Compile Include="XExtension\XTomporaryWindow.cs" />
     <Compile Include="XReflection\XAssemlyWindow.cs" />
@@ -125,13 +115,11 @@
     <Compile Include="CodeEditor\XCodeEvent.cs" />
     <Compile Include="XExtension\InspectorUtilites.cs" />
     <Compile Include="XExtension\XProcessUtlis.cs" />
+    <Compile Include="AnimationUtilies\XAnimationExtension.cs" />
+    <Compile Include="AnimationUtilies\XAnimatorExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Wuxingogo.pfx" />
   </ItemGroup>
   <ItemGroup />
@@ -143,6 +131,9 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="AnimationUtilies\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">
       <Project>{B02B3AE4-0D8E-4A97-817D-3566203C38B3}</Project>

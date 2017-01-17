@@ -15,7 +15,7 @@ namespace wuxingogo.Editor
 		AnimationCurve curve = null;
 
 		Animator _animator = null;
-		[MenuItem("Wuxingogo/Wuxingogo XAnimatorExtension ")]
+//		[MenuItem("Wuxingogo/Animation/XAnimatorExtension ")]
 		static void init()
 		{
 			InitWindow<XAnimatorExtension>();
@@ -71,8 +71,8 @@ namespace wuxingogo.Editor
 				else if (_controller is AnimatorOverrideController)
 				{
 					AnimatorOverrideController overrideController = _controller as AnimatorOverrideController;
-					//				AnimationClipPair[] clips = (AnimationClipPair[])_controller.GetType().BaseType.GetProperty("clips").GetValue(_controller, null);
-					//ShowAnimatorOverrideControllerClips(overrideController.clips);
+//					AnimationClipPair[] clips = (AnimationClipPair[])_controller.GetType().BaseType.GetProperty("clips").GetValue(_controller, null);
+//					ShowAnimatorOverrideControllerClips(overrideController.clips);
 				}
 
 			}

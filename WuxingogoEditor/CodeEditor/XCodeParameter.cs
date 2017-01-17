@@ -22,28 +22,6 @@ namespace wuxingogo.Code
 		public XCodeParameter()
 		{
 		}
-
-		public object GetValue(){
-//			switch(type.Target.Name){
-//				case typeof(Object).Name:
-//				break;
-//				case typeof(int).Name:
-//				return int.Parse(value);
-//				break;
-//				case typeof(float).Name:
-//				return float.Parse(value);
-//				break;
-//				case typeof(string).Name:
-//				return value;
-//				break;
-//				case typeof(UnityEngine.GameObject).Name:
-//				break;
-//				case "enum":
-//				break;
-//			}
-			return null;
-		}
-
 		public void Draw(XBaseWindow window){
 			XBaseWindow.DoButton("Type", ()=> {
 				XCodeTypeTemplate.SelectType(x => type = x);
@@ -59,11 +37,6 @@ namespace wuxingogo.Code
 		}
 
 		
-	}
-
-	internal class GenericaType<T> 
-	{
-		public T Value;
 	}
 }
 

@@ -16,7 +16,7 @@ using System.Xml.Linq;
 using System.Xml;
 
 
-namespace wuxingogo.Xml{
+namespace wuxingogo.DataPaser{
 	public class XmlExtensionWindow : XBaseWindow {
 		
 		
