@@ -40,6 +40,11 @@ namespace wuxingogo.Runtime
 		{
 			wuxingogo.Reflection.XReflectionUtils.Save (this);
 		}
+		[X]
+		public void DestroyObject()
+		{
+			DestroyImmediate (this, true);
+		}
 
     }
 }

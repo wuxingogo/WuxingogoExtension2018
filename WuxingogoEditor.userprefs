@@ -1,5 +1,5 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/UnityDictionary.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XReflection/XCommandTools.cs">
     <Files>
       <File FileName="WuxingogoEditor/XReflection/XCommandTools.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/XExtension/RecoverEditor.cs" Line="1" Column="1" />
@@ -31,13 +31,16 @@
       <File FileName="WuxingogoEditor/CodeEditor/CodeReviewEditor.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/CodeEditor/CodeGenerateEditor.cs" Line="1" Column="1" />
       <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Runtime/XMonoBehaviour.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/UnityDictionary.cs" Line="74" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="WuxingogoEditor" expanded="True" selected="True">
+          <Node name="WuxingogoEditor" expanded="True">
+            <Node name="WuxingogoEditor" expanded="True">
+              <Node name="XReflection" expanded="True">
+                <Node name="XCommandTools.cs" selected="True" />
+              </Node>
+            </Node>
             <Node name="WuxingogoRuntime" expanded="True">
               <Node name="Attribute" expanded="True" />
               <Node name="Runtime" expanded="True" />
