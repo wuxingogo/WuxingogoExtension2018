@@ -1,55 +1,8 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XReflection/XCommandTools.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XProcessUtlis.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XReflection/XCommandTools.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/RecoverEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XmlExtensionWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XTomporaryWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XEditorSetting.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XAssetLoader.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XQucickSetPrefs.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/AnimationUtilies/XAnimatorExtension.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/AnimationUtilies/XAnimationExtension.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeType.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XReflection/XMethodWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeMember.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeTypeTemplate.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XParameterEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/InspectorUtilites.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/QuickToggle.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/ScopeUtilites.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CreateAssets/CreateUnityScript.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CreateAssets/CreateXBaseEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeEvent.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeField.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/AsynchronousFunc.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeMethod.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/XCodeParameter.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/CodeReviewEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/CodeEditor/CodeGenerateEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XProcessUtlis.cs" Line="6" Column="44" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="WuxingogoEditor" expanded="True">
-            <Node name="WuxingogoEditor" expanded="True">
-              <Node name="XReflection" expanded="True">
-                <Node name="XCommandTools.cs" selected="True" />
-              </Node>
-            </Node>
-            <Node name="WuxingogoRuntime" expanded="True">
-              <Node name="Attribute" expanded="True" />
-              <Node name="Runtime" expanded="True" />
-              <Node name="Tools" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

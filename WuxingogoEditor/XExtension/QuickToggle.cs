@@ -66,8 +66,7 @@ namespace wuxingogo.Editor
             {
                 xMin = selectionRect.xMax - selectionRect.height
             };
-
-            // Draw the visibility toggle
+           // Draw the visibility toggle
             bool isActive = target.activeSelf;
             if (isActive != GUI.Toggle(visRect, isActive, GUIContent.none, styleVisible))
             {
@@ -85,6 +84,22 @@ namespace wuxingogo.Editor
                 SetLockObject(target, !isLocked);
                 EditorApplication.RepaintHierarchyWindow();
             }
+			var monos = target.GetComponents<Behaviour> ();
+
+			for (int i = 0; i < monos.Length; i++) {
+				var e = monos [i].enabled;
+				Rect monoRect = new Rect(selectionRect)
+				{
+					xMin = selectionRect.xMax - (i +3)* selectionRect.height
+				};
+				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
+				if (e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
+					SetVisible (monos [i], !e);
+					EditorApplication.RepaintHierarchyWindow();
+					var window = InspectorUtilites.GetInspectorWindow ();
+					window.Repaint ();
+				}
+			}
         }
 
         private static Object[] GatherObjects(GameObject root)
@@ -144,6 +159,17 @@ namespace wuxingogo.Editor
                 EditorUtility.SetDirty(obj);
             }
         }
+
+		private static void SetVisible(Behaviour target, bool isActive)
+		{
+			string undoString = string.Format("{0} {1}",
+				isActive ? "Show" : "Hide",
+				target.name);
+			Undo.RecordObject(target, undoString);
+
+			target.enabled = isActive;
+			EditorUtility.SetDirty(target);
+		}
 
         private static void SetVisible(GameObject target, bool isActive)
         {
@@ -224,7 +250,6 @@ namespace wuxingogo.Editor
                 hover = tempStyle.hover,
                 focused = tempStyle.focused
             };
-
             styleVisible = new GUIStyle(GUI.skin.FindStyle("VisibilityToggle"));
         }
     }

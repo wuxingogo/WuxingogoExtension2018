@@ -11,12 +11,12 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     public delegate void OnChange();
 
     public event OnChange OnChangeEvent;
-
+	[HideInInspector]
 	public List<TKey> Keys = new List<TKey>();
-	
+	[HideInInspector]
     public List<TValue> Values = new List<TValue>();
-
-    private Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
+	[X]
+	protected Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
 
     public TValue this[TKey key]
     {
@@ -39,7 +39,8 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
         Keys.Add( key );
         Values.Add( value );
         totalDict.Add( key, value );
-        OnChangeEvent();
+		if(OnChangeEvent != null)
+        	OnChangeEvent();
         return this;
     }
     [X]
@@ -48,7 +49,8 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
         Keys.Remove( key );
         Values.Remove( value );
         totalDict.Remove( key );
-        OnChangeEvent();
+		if(OnChangeEvent != null)
+        	OnChangeEvent();
         return this;
     }
 

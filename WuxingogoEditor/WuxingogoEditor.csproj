@@ -73,7 +73,6 @@
     <Compile Include="XExtension\XQucickSetPrefs.cs" />
     <Compile Include="XExtension\XQuickSetDatabase.cs" />
     <Compile Include="XExtension\XResources.cs" />
-    <Compile Include="XExtension\XStyles.cs" />
     <Compile Include="CreateAssets\CreateUnityScript.cs" />
     <Compile Include="CreateAssets\CreateXBaseEditor.cs" />
     <Compile Include="CreateAssets\CreateXBaseWindow.cs" />
@@ -117,6 +116,9 @@
     <Compile Include="XExtension\XProcessUtlis.cs" />
     <Compile Include="AnimationUtilies\XAnimationExtension.cs" />
     <Compile Include="AnimationUtilies\XAnimatorExtension.cs" />
+    <Compile Include="XExtension\XStyles.cs" />
+    <Compile Include="XExtension\XEditorScriptableObject.cs" />
+    <Compile Include="XExtension\EditorScriptableObjectWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
