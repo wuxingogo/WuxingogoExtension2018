@@ -8,6 +8,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Runtime.Serialization;
 
 namespace wuxingogo.Code
 {
@@ -30,11 +31,21 @@ namespace wuxingogo.Code
 		public List<string> comments = new List<string>();
 		public List<XCodeCustomAttribute> attributes = new List<XCodeCustomAttribute>();
 
-		public XCodeType type = XCodeTypeTemplate.GetInstance().GetTemplate(typeof(void));
+		public XCodeType type;
 		public MemberAttributes memberAttribute = MemberAttributes.Public;
+		public bool isSerialize = false;
 
 		public XCodeMember()
 		{
+		}
+		[OnSerializing]
+		void OnSerialize()
+		{
+			if (!isSerialize) {
+				isSerialize = true;
+				type = XCodeTypeTemplate.GetInstance().GetTemplate(typeof(void));
+
+			}
 		}
 
 		public virtual void DrawType(XBaseWindow window)
