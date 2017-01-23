@@ -5,6 +5,7 @@ using System;
 using Object = UnityEngine.Object;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using wuxingogo.Editor;
 
 /**
@@ -200,6 +201,21 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 			EditorGUILayout.SelectableLabel( fieldName, value );
 		else
 			EditorGUILayout.LabelField( fieldName, value );
+	}
+
+	public static void PropertyFiled(SerializedProperty property, params GUILayoutOption[] options)
+	{
+		EditorGUILayout.PropertyField (property, options);
+	}
+
+	public static List<SerializedProperty> GetAllProperty(SerializedObject @object)
+	{
+		List<SerializedProperty> properties = new List<SerializedProperty> ();
+		var prop = @object.GetIterator();
+		while (prop.Next(true)) {
+			properties.Add(prop);
+		}
+		return properties;
 	}
 
 	public static void CreateMessageField(string value, MessageType type)

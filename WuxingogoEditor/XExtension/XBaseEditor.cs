@@ -18,15 +18,15 @@ public class XBaseEditor : Editor
 	}
 
     GUILayoutOption widthOption = GUILayout.Width( Screen.width - 40 );
-	EditorWindow ForcusWindow{
+	public static EditorWindow ForcusWindow{
 		get{
 			if(forcusWindow == null)
 				forcusWindow = InspectorUtilites.GetInspectorWindow();
 			return forcusWindow;
 		}
 	}
-	private EditorWindow forcusWindow = null;
-    public void DrawLogo()
+	private static EditorWindow forcusWindow = null;
+    public static void DrawLogo()
     {
 //		InspectorUtilites.GetAllInspector ();
 
