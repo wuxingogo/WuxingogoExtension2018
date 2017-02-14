@@ -17,7 +17,7 @@ namespace wuxingogo.Editor
     {
         private Dictionary<MethodInfo, object[]> methodParameters = new Dictionary<MethodInfo, object[]>();
         private Dictionary<object, bool> groupDict = new Dictionary<object, bool>();
-        BindingFlags bindFlags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
+		BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
         public override void OnXGUI()
         {
             base.OnXGUI();
@@ -208,10 +208,16 @@ namespace wuxingogo.Editor
 
                     DrawFieldHeader( field.FieldType,  field.Name );
 
-                    object result = field.GetValue( target );
+					object result;
+					if (field.IsStatic) {
+						result = field.GetValue( null );
+					} else {
+						result = field.GetValue( target );
+					}
+                   
 
-					var newValue = GetTypeGUI( result, field.FieldType,field.FieldType.Name, nextShow );
-
+					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
+					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
                     if( null != newValue && !newValue.Equals( result ) )
                         field.SetValue( target, newValue );
 
@@ -221,6 +227,7 @@ namespace wuxingogo.Editor
                     {
                         var type = entry.GetType();
                         bool isShow = DrawHeader( type.Name, type.Name, false, false );
+
                         if( isShow )
                         {
                             ShowXAttributeMember( entry );
@@ -375,8 +382,11 @@ namespace wuxingogo.Editor
             else if( typeof( IList ).IsAssignableFrom( type ) )
             {
                 IList list = t as IList;
-                if( list == null )
+				var name = valueName + " : " + list.Count;
+				bool toggle = DrawHeader(name , name, false, false );
+				if( list == null || !toggle)
                     return t;
+				DoButton ("Clear", () => list.Clear ());
                 var newList = new List<object>();
 
                 BeginVertical();
@@ -389,7 +399,7 @@ namespace wuxingogo.Editor
                 //bool isShow = DrawHeader( type.Name, type.Name, false, false );
                 EndVertical();
 
-                //DrawListType( newList, isShow );
+                DrawListType( newList );
 
 
             }
@@ -399,8 +409,11 @@ namespace wuxingogo.Editor
                 IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
                 IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
                 ICollection collection = dictionary.Values;
-
-
+				var name = valueName + " : " + dictionary.Count;
+				bool toggle = DrawHeader( name, name, false, false );
+				if(!toggle)
+					return t;
+				DoButton ("Clear", () => dictionary.Clear());
                 while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
                 {
                     var newList = new List<object>();
@@ -408,7 +421,7 @@ namespace wuxingogo.Editor
 					var keyType = iteratorKey.Current.GetType ();
 					var valueType = dictionary [iteratorKey.Current].GetType ();
 					GetTypeGUI( iteratorKey.Current,keyType , keyType.Name, newList );
-					var oldValue = GetTypeGUI( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
+					GetTypeGUI( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
                     EndHorizontal();
                     DrawListType( newList );
                 }
@@ -417,10 +430,12 @@ namespace wuxingogo.Editor
 
             else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
             {
-
+				bool toggle = DrawHeader( valueName, valueName, false, false );
+				if(!toggle)
+					return t;
+				
                 IEnumerable collection = ( IEnumerable )t;
-
-                IEnumerator iteratorValue = collection.GetEnumerator();
+				IEnumerator iteratorValue = collection.GetEnumerator();
                 int index = 0;
                 var newList = new List<object>();
                 while( iteratorValue.MoveNext() )
@@ -436,8 +451,8 @@ namespace wuxingogo.Editor
                 if( !nextShow.Contains( t ) )
                     nextShow.Add( t );
 
-                EditorGUILayout.Space();
-                DrawHeader( type.Name, type.Name, false, false );
+//                EditorGUILayout.Space();
+//                DrawHeader( type.Name, type.Name, false, false );
 
             }
             else
