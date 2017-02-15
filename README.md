@@ -43,7 +43,7 @@ Incremental update in one file
 
 ![github](ScreenShot/AssetBundle.jpg "github") 
 
-The project had moved to https://github.com/wuxingogo/GameUpdaterTest
+The project had been moved to https://github.com/wuxingogo/GameUpdaterTest
 
 ####XBehaviour Window (Finite-State-Machine)
 
@@ -51,7 +51,7 @@ Finite-State-Machine Window.
 
 ![github](ScreenShot/BehaviourFSM.jpg "github") 
 
-The project had moved to https://github.com/wuxingogo/Unity-BTFsm
+The project had been moved to https://github.com/wuxingogo/Unity-BTFsm
 
 ####XCodeGenerateEditor:
 
