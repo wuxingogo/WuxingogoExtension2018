@@ -10,19 +10,18 @@ This repository includes full source code of the WuxingogoExtension libraries。
 ##Features
 ------
 
-* Export UGUI to CocosUI(3.x).
-* Unity Editor support: Reflection Method, Field and Property on the ReflectionWindow.
-* Unity Editor support: Create AssetBundle extension (Unity 4.x && 5.x).
-* Unity Editor Extension: Custom Attribute Collection(Inspector Drawer).
-* Unity Editor support: Quick set unity prefs.
-* Unity Editor support: Generated CSharpCode(CodeDom).
-* Unity Editor support: Finite-State-Machine and Editor.
-* Unity Editor support: Hierarchy Extension.
-* Including a GameManager to easily manage your game.(inherit ScriptableObject)
+* Dynamic call method, change field and property object more easliy.
+* Create AssetBundle extension (Unity 4.x && 5.x).
+* Custom Attribute Collection(Inspector Drawer).
+* Quick set unity prefs.
+* Generated CSharpCode(CodeDom).
+* Finite-State-Machine and Behaviour Tree Editor.
+* Hierarchy Extension.
+* Static and Stored GameManager: Control your game more easliy.(ScriptableObject)
 
 ##Usage
 
-Copy WuxingogoExtension folder to your $project/Assets.
+Copy WuxingogoExtension folder to Assets/Plugins.
 
 Command Line environment:
 
@@ -44,7 +43,7 @@ Incremental update in one file
 
 ![github](ScreenShot/AssetBundle.jpg "github") 
 
-This repository move to https://github.com/wuxingogo/GameUpdaterTest
+The project had moved to https://github.com/wuxingogo/GameUpdaterTest
 
 ####XBehaviour Window (Finite-State-Machine)
 
@@ -52,19 +51,17 @@ Finite-State-Machine Window.
 
 ![github](ScreenShot/BehaviourFSM.jpg "github") 
 
-This repository move to https://github.com/wuxingogo/Unity-BTFsm
+The project had moved to https://github.com/wuxingogo/Unity-BTFsm
 
 ####XCodeGenerateEditor:
 
-`Save Template`
+`Save Code Template`
 
 Generate `Namespace`,`Field`, `Method`, `Class`, `Comment`, `Attribute`, `Property`
 
 TODO LIST: 
 
 Compile Code From XReflectionWindow.
-
-A visual window to generate csharp code.
 
 ![github](ScreenShot/CodeGenerate.png "github") 
 
@@ -73,9 +70,9 @@ A visual window to generate csharp code.
 ![github](ScreenShot/Reflection.png "github") 
 
 
-#### 3RD-Attribute
+#### X-Attribute
 
-Note: This script must inherit from XMonoBehaviour.
+Note: The target script must inherit from XMonoBehaviour.
 
 ```c#
     [X]     // Create button in the Inspector
