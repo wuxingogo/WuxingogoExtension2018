@@ -93,7 +93,7 @@ namespace wuxingogo.Editor
 					xMin = selectionRect.xMax - (i +3)* selectionRect.height
 				};
 				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
-				if (e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
+				if (guiContent != null && e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
 					SetVisible (monos [i], !e);
 					EditorApplication.RepaintHierarchyWindow();
 					var window = InspectorUtilites.GetInspectorWindow ();

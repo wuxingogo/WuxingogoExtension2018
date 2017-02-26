@@ -23,11 +23,27 @@ public class XEditorSetting : XBaseWindow
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
 	
     public const string PluginName = "Plugins/WuxingogoExtension";
-	public static string PluginPath = XFileUtils.CombinePath(Application.dataPath, PluginName);
+	public static string PluginPath{
+		get{
+			return XFileUtils.CombinePath(Application.dataPath, PluginName);
+		}
+	}
 	public static string RelativeProjectPath = XFileUtils.CombinePath("Assets", PluginName);
-	public static string TemplatesPath = XFileUtils.CombinePath(PluginPath,"Templates");
-	public static string relativePath = FileUtil.GetProjectRelativePath(PluginPath);
-	public static string ProjectPath = XFileUtils.GetAbsolutePath(Application.dataPath, "..");
+	public static string TemplatesPath{
+		get{
+			return XFileUtils.CombinePath(PluginPath,"Templates");
+		}
+	}
+	public static string relativePath{
+		get{
+			return FileUtil.GetProjectRelativePath(PluginPath);
+		}
+	}
+	public static string ProjectPath{
+		get{
+			return XFileUtils.GetAbsolutePath(Application.dataPath, "..");
+		}
+	}
 	private bool isShowIcons = false;
 	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
@@ -46,6 +62,19 @@ public class XEditorSetting : XBaseWindow
 		DoButton("ShowAllIcon", ()=> isShowIcons = !isShowIcons);
 		
 		if(isShowIcons) ShowAllIcon();
+
+		DoButton("persistentDataPath", ()=> {
+			EditorUtility.RevealInFinder(Application.persistentDataPath);
+		});
+		DoButton("temporaryCachePath", ()=> {
+			EditorUtility.RevealInFinder(Application.temporaryCachePath);
+		});
+		DoButton("dataPath", ()=> {
+			EditorUtility.RevealInFinder(Application.dataPath);
+		});
+		DoButton("streamingAssetsPath", ()=> {
+			EditorUtility.RevealInFinder(Application.streamingAssetsPath);
+		});
     }
     
     public void ShowAllIcon(){

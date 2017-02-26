@@ -1,5 +1,20 @@
 ﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/CodeEditor/CodeReviewEditor.cs">
+    <Files>
+      <File FileName="WuxingogoEditor/XExtension/XEditorSetting.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XStyles.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/QuickToggle.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseEditor.cs" Line="182" Column="53" />
+      <File FileName="WuxingogoRuntime/Tools/XLogger.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XBaseWindow.cs" Line="228" Column="30" />
+      <File FileName="WuxingogoEditor/XExtension/EditorScriptableObjectWindow.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/UnityDictionary.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/CodeEditor/CodeReviewEditor.cs" Line="41" Column="4" />
+      <File FileName="WuxingogoEditor/ScriptEditor/EnumFlagDrawer.cs" Line="27" Column="50" />
+      <File FileName="WuxingogoEditor/CodeEditor/XParameterEditor.cs" Line="77" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -86,5 +86,14 @@ public class XLogger
         }
     }
 
+	static public void Break()
+	{
+		if( EnableLog )
+		{
+			Debug.Log( "XLogger Break ");
+			Debug.Break();
+		}
+	}
+
 }
 

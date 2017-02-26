@@ -319,6 +319,10 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
     {
         return EditorGUILayout.LongField(value, options);
     }
+	public static Color CreateColorField(string fieldName, Color value, params GUILayoutOption[] options)
+	{
+		return EditorGUILayout.ColorField (fieldName, value, options);
+	}
 
     public static void DisableFragment(bool isDisable, Action action)
 	{
