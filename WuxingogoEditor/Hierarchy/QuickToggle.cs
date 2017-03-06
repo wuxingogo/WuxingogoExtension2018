@@ -13,8 +13,11 @@ namespace wuxingogo.Editor
     public class QuickToggle
     {
         private const string PrefKeyShowToggle = "UnityToolbag.QuickToggle.Visible";
+		private const string PrefKeyShowHideComponent = "UnityToolbag.QuickToggle.HideComponent";
 
         private static GUIStyle styleLock, styleLockUnselected, styleVisible;
+
+		private static bool showHideComponents = false;
 
         static QuickToggle()
         {
@@ -22,15 +25,29 @@ namespace wuxingogo.Editor
                 EditorPrefs.SetBool(PrefKeyShowToggle, false);
             }
 
+			showHideComponents = EditorPrefs.GetBool(PrefKeyShowHideComponent, false);
             ShowQuickToggle(EditorPrefs.GetBool(PrefKeyShowToggle));
+
         }
 
-        [MenuItem("Wuxingogo/Hierarchy Quick Toggle")]
-        static void QuickToggleMenu()
-        {
-            bool toggle = EditorPrefs.GetBool(PrefKeyShowToggle);
-            ShowQuickToggle(!toggle);
-        }
+
+		internal static void Toggle()
+		{
+			bool toggle = EditorPrefs.GetBool(PrefKeyShowToggle);
+			ShowQuickToggle(!toggle);
+			XLogger.Log ("Toggle was " + (toggle ? "Close" : "Open"));
+			EditorApplication.RepaintHierarchyWindow ();
+		}
+
+		internal static void ToggleComponent()
+		{
+			showHideComponents = EditorPrefs.GetBool(PrefKeyShowHideComponent);
+			showHideComponents = !showHideComponents;
+			EditorPrefs.SetBool(PrefKeyShowHideComponent, showHideComponents);
+			XLogger.Log ("ToggleComponent was " + (showHideComponents ? "Close" : "Open"));
+			EditorApplication.RepaintHierarchyWindow ();
+		}
+		
 
         private static void ShowQuickToggle(bool show)
         {
@@ -85,13 +102,18 @@ namespace wuxingogo.Editor
                 EditorApplication.RepaintHierarchyWindow();
             }
 			var monos = target.GetComponents<Behaviour> ();
-
+			int startIndex = 0;
 			for (int i = 0; i < monos.Length; i++) {
 				var e = monos [i].enabled;
 				Rect monoRect = new Rect(selectionRect)
 				{
-					xMin = selectionRect.xMax - (i +3)* selectionRect.height
+					xMin = selectionRect.xMax - (startIndex+3)* selectionRect.height
 				};
+				if ((monos [i].hideFlags & HideFlags.HideInInspector) != 0 || showHideComponents) {
+					continue;
+				} else {
+					startIndex++;
+				}
 				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
 				if (guiContent != null && e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
 					SetVisible (monos [i], !e);

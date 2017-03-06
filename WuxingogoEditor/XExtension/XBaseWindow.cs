@@ -17,7 +17,7 @@ using wuxingogo.Editor;
 public class XBaseWindow : EditorWindow, IHasCustomMenu
 {
 
-	internal Vector2 _scrollPos = Vector2.zero;
+	protected Vector2 _scrollPos = Vector2.zero;
 	const int Xoffset = 5;
 	const int XButtonWidth = 100;
 	const int XButtonHeight = 20;

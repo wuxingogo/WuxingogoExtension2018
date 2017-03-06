@@ -45,6 +45,11 @@ namespace wuxingogo.Reflection
 
 		static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
 
+		public static Type GetType(string assemblyName, string className)
+		{
+			return Assembly.Load(assemblyName).GetType(className);
+		}
+
 		/// <summary>
 		/// Tries the get class.
 		/// </summary>

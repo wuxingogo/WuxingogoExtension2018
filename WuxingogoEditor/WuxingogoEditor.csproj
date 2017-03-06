@@ -65,7 +65,6 @@
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\ScopeUtilites.cs" />
-    <Compile Include="XExtension\QuickToggle.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
     <Compile Include="XExtension\XBaseWindow.cs" />
@@ -119,6 +118,10 @@
     <Compile Include="XExtension\XStyles.cs" />
     <Compile Include="XExtension\XEditorScriptableObject.cs" />
     <Compile Include="XExtension\EditorScriptableObjectWindow.cs" />
+    <Compile Include="XExtension\UnityMatrixEditorGUI.cs" />
+    <Compile Include="XExtension\XMaterialEditor.cs" />
+    <Compile Include="Hierarchy\QuickToggle.cs" />
+    <Compile Include="Hierarchy\XHierarchySettingWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -135,6 +138,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="AnimationUtilies\" />
+    <Folder Include="Hierarchy\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WuxingogoRuntime\WuxingogoRuntime.csproj">

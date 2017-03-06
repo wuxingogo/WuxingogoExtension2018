@@ -1,6 +1,6 @@
 //XCodeObject.cs
 //
-//Author:
+//	Author:
 //		Wuxingogo 52111314ly@gmail.com
 //
 //
