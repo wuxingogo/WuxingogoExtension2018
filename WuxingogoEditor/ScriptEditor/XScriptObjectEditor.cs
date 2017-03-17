@@ -1,5 +1,3 @@
-
-
 namespace wuxingogo.Editor
 {
     using UnityEngine;

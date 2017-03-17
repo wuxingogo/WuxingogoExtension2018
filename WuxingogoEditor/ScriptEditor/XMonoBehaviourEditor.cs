@@ -15,9 +15,10 @@ namespace wuxingogo.Editor
     [CanEditMultipleObjects]
     public class XMonoBehaviourEditor : XBaseEditor
     {
-        private Dictionary<MethodInfo, object[]> methodParameters = new Dictionary<MethodInfo, object[]>();
+		private static Dictionary<MethodInfo, object[]> methodParameters = new Dictionary<MethodInfo, object[]>();
         private Dictionary<object, bool> groupDict = new Dictionary<object, bool>();
-		BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
+		public static BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
+		public static BindingFlags staticFlag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
         public override void OnXGUI()
         {
             base.OnXGUI();
@@ -27,7 +28,7 @@ namespace wuxingogo.Editor
 
             ShowXAttributeMember( target );
         }
-        public void ShowXAttributeMember( object target )
+		public static void ShowXAttributeMember( object target )
         {
             try
             {
@@ -41,6 +42,21 @@ namespace wuxingogo.Editor
             }
 
         }
+
+		public static void ShowXAttributeType( Type type )
+		{
+			try
+			{
+				ShowStaticMethod<XAttribute>(type);
+				ShowStaticXField<XAttribute>(type);
+				ShowStaticProperties<XAttribute>(type);
+			}
+			catch
+			{
+
+			}
+
+		}
 
         static public bool DrawHeader( string text, string key, bool forceOn, bool minimalistic )
         {
@@ -90,7 +106,7 @@ namespace wuxingogo.Editor
             return state;
         }
 
-		void ShowMulitXMethods<T> (object[] targets)
+		static void ShowMulitXMethods<T> (object[] targets)
 		{
 			Dictionary<MethodInfo,int> methodTimes = new Dictionary<MethodInfo, int> ();
 			for (int i = 0; i < targets.Length; i++) {
@@ -105,8 +121,72 @@ namespace wuxingogo.Editor
 				}
 			}
 		}
+		static void ShowStaticMethod<T>(Type type)
+		{
+			if( type == null )
+				return;
 
-        void ShowXMethods<T>( object target )
+			var methods = type.GetMethods( staticFlag );
+			bool noAttribute = true;
+			foreach( var info in methods )
+			{
+				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+				{
+					noAttribute = false;
+					break;
+				}
+			}
+			if( noAttribute )
+				return;
+
+			bool toggle = DrawHeader( "Method", "Method", false, false );
+
+			if( !toggle )
+			{
+				return;
+			}
+
+			List<object> nextShow = new List<object>();
+
+
+
+			foreach( var info in methods )
+			{
+				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+				{
+					BeginVertical();
+
+					DrawFieldHeader( info.ReturnType,  info.Name );
+					ParameterInfo[] paras = info.GetParameters();
+
+					if( !methodParameters.ContainsKey( info ) )
+					{
+						object[] o = new object[paras.Length];
+						methodParameters.Add( info, o );
+					}
+					object[] objects = methodParameters[info];
+
+
+					for( int pos = 0; pos < paras.Length; pos++ )
+					{
+						if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
+							objects [pos] = paras [pos].DefaultValue;
+						}
+						BeginHorizontal();
+						DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
+						objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
+						EndHorizontal();
+					}
+					if( CreateSpaceButton( info.Name ) )
+					{
+						info.Invoke( null, objects );
+					}
+
+					EndVertical();
+				}
+			}
+		}
+		static void ShowXMethods<T>( object target )
         {
             if( target == null )
                 return;
@@ -173,7 +253,7 @@ namespace wuxingogo.Editor
         }
 
 
-        void ShowXFields<T>( object target )
+		static void ShowXFields<T>( object target )
         {
             if( target == null )
                 return;
@@ -240,7 +320,69 @@ namespace wuxingogo.Editor
 
         }
 
-        void ShowProperties<T>( object target )
+		static void ShowStaticXField<T>(Type type)
+		{
+			if( type == null )
+				return;
+			var Fields = type.GetFields( staticFlag );
+			bool noAttribute = true;
+			foreach( var info in Fields )
+			{
+				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+				{
+					noAttribute = false;
+					break;
+				}
+			}
+			if( noAttribute )
+				return;
+
+			bool toggle = DrawHeader( "Field", "Field", false, false );
+
+			if( !toggle )
+			{
+				return;
+			}
+
+
+			foreach( var field in Fields )
+			{
+				foreach( var att in field.GetCustomAttributes( typeof( T ), true ) )
+				{
+					List<object> nextShow = new List<object>();
+
+					BeginVertical();
+
+					DrawFieldHeader( field.FieldType,  field.Name );
+
+					object result = field.GetValue( null );
+
+
+
+					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
+					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
+					if( null != newValue && !newValue.Equals( result ) )
+						field.SetValue( null, newValue );
+
+					EndVertical();
+
+					foreach( var entry in nextShow )
+					{
+						var t = entry.GetType();
+						bool isShow = DrawHeader( t.Name, type.Name, false, false );
+
+						if( isShow )
+						{
+							ShowXAttributeMember( entry );
+						}
+					}
+				}
+			}
+
+
+		}
+
+		static void ShowProperties<T>( object target )
         {
             if( target == null )
                 return;
@@ -305,10 +447,75 @@ namespace wuxingogo.Editor
             
         }
 
+		static void ShowStaticProperties<T>( Type type )
+		{
+			if( type == null )
+				return;
+
+			var Properties = type.GetProperties( staticFlag );
+			bool noAttribute = true;
+			foreach( var info in Properties )
+			{
+				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
+				{
+					noAttribute = false;
+					break;
+				}
+			}
+			if( noAttribute )
+				return;
+			bool toggle = DrawHeader( "Property", "Property", false, false );
+
+			if( !toggle )
+			{
+				return;
+			}
+
+
+
+			foreach( var property in Properties )
+			{
+				foreach( var att in property.GetCustomAttributes( typeof( XAttribute ), true ) )
+				{
+					List<object> nextShow = new List<object>();
+
+
+					BeginVertical();
+
+					object result = property.GetValue( null, null );
+
+
+					DrawFieldHeader( property.PropertyType, property.Name );
+
+					EditorGUI.BeginDisabledGroup( !property.CanWrite );
+					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
+					EditorGUI.EndDisabledGroup();
+
+					if( null != newValue && !newValue.Equals( result ) )
+						property.SetValue( null, newValue, null );
+
+
+					EndVertical();
+
+					foreach( var entry in nextShow )
+					{
+						var t = entry.GetType();
+						bool isShow = DrawHeader( t.Name, t.Name, false, false );
+						if( isShow )
+						{
+							ShowXAttributeMember( entry );
+						}
+					}
+				}
+			}
+
+
+		}
+
 
 
         GUILayoutOption widthOption = GUILayout.MaxWidth( 150 );
-		protected object GetTypeGUI( object t, Type type, string valueName, List<object> nextShow )
+		protected static object GetTypeGUI( object t, Type type, string valueName, List<object> nextShow )
         {
             if( t == null )
                 t = GetDefaultValue( type );
@@ -464,7 +671,7 @@ namespace wuxingogo.Editor
 
         }
 
-        void DrawListType(List<object> totalObject)
+		static void DrawListType(List<object> totalObject)
         {
             foreach( var entry in totalObject )
             {
@@ -478,7 +685,7 @@ namespace wuxingogo.Editor
             }
         }
 
-        object GetDefaultValue( Type t )
+		static object GetDefaultValue( Type t )
         {
             if( t.IsValueType )
                 return Activator.CreateInstance( t );
@@ -486,7 +693,7 @@ namespace wuxingogo.Editor
             return null;
         }
 
-        private void DrawFieldHeader(Type type, string fieldName)
+		private static void DrawFieldHeader(Type type, string fieldName)
         {
             if( type.IsGenericType )
             {

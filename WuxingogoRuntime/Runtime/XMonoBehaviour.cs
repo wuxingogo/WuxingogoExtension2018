@@ -38,12 +38,12 @@ namespace wuxingogo.Runtime {
 		}
         #endif
 
-        public T Instanie<T>(T original ) where T : UnityEngine.Object
+        public static T XInstantiate<T>(T original ) where T : UnityEngine.Object
         {
             if( Application.isPlaying )
             {
                 return Instantiate<T>( original );
-            }
+			}
             return original;
         }
     }

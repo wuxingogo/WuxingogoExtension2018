@@ -1,19 +1,25 @@
-﻿<Properties GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/InspectorUtilites.cs">
+﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/GameManager.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/XStyles.cs" Line="95" Column="3" />
-      <File FileName="WuxingogoEditor/XReflection/XCommandTools.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/XExtension/InspectorUtilites.cs" Line="11" Column="39" />
+      <File FileName="WuxingogoRuntime/Tools/GameObjectUtilities.cs" Line="26" Column="17" />
+      <File FileName="WuxingogoRuntime/Runtime/XMonoBehaviour.cs" Line="39" Column="15" />
+      <File FileName="WuxingogoRuntime/Tools/GameManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <StartupItems>
-    <String>WuxingogoRuntime/WuxingogoRuntime.csproj</String>
-    <String>WuxingogoEditor/WuxingogoEditor.csproj</String>
-  </StartupItems>
   <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multi-Startup" Name="Multi-Startup">
+      <Items>
+        <StartupItem ItemId="{B02B3AE4-0D8E-4A97-817D-3566203C38B3}" ItemName="WuxingogoRuntime" />
+        <StartupItem ItemId="{D2C63C42-C455-4F1B-944F-17CD39D2F2A7}" ItemName="WuxingogoEditor" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

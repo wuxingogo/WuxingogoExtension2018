@@ -1,5 +1,10 @@
-E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.dll
-E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.pdb
-E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache
-E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
-E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+E:/Work/Wuxingogo/OutPutDll/WuxingogoRuntime.dll
+E:/Work/Wuxingogo/OutPutDll/WuxingogoRuntime.pdb
+E:/Work/Wuxingogo/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.csprojResolveAssemblyReference.cache
+E:/Work/Wuxingogo/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+E:/Work/Wuxingogo/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.pdb
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll.mdb
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.csprojResolveAssemblyReference.cache
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb

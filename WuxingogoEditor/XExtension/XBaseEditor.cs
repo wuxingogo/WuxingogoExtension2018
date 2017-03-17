@@ -17,7 +17,7 @@ public class XBaseEditor : Editor
         OnXGUI();
 	}
 
-    GUILayoutOption widthOption = GUILayout.Width( Screen.width - 40 );
+	static GUILayoutOption widthOption = GUILayout.Width( Screen.width - 40 );
 	public static EditorWindow ForcusWindow{
 		get{
 			if(forcusWindow == null)
@@ -41,119 +41,119 @@ public class XBaseEditor : Editor
         
     }
 
-	public bool CreateSpaceButton(string btnName)
+	public static bool CreateSpaceButton(string btnName)
 	{
 		return GUILayout.Button( btnName );
 	}
 
-	public void DoButton(string btnName, Action callback)
+	public static void DoButton(string btnName, Action callback)
 	{
 		if( GUILayout.Button( btnName ) ) {
 			callback();
 		}
 	}
 
-	public void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
+	public static void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
 		if( GUILayout.Button( content, options ) ) {
 			callback();
 		}
 	}
 
-	public void DoButton<T>(string btnName, Action<T> callback, T arg)
+	public static void DoButton<T>(string btnName, Action<T> callback, T arg)
 	{
 		if( GUILayout.Button( btnName ) ) {
 			callback( arg );
 		}
 	}
 
-	public void CreateSpaceBox()
+	public static void CreateSpaceBox()
 	{
 		GUILayout.Box( "", widthOption, GUILayout.Height( 3 ) );
 	}
 
-    public void Space()
+	public static void Space()
     {
         EditorGUILayout.Space();
     }
 
-	public bool CreateCheckBox(bool value)
+	public static bool CreateCheckBox(bool value)
 	{
 		return EditorGUILayout.Toggle( value );
 	}
-    public bool CreateCheckBox( string title, bool value )
+	public static bool CreateCheckBox( string title, bool value )
     {
         return EditorGUILayout.Toggle( title, value );
     }
 
-    public float CreateFloatField(float value, params GUILayoutOption[] option)
+	public static float CreateFloatField(float value, params GUILayoutOption[] option)
 	{
 		return EditorGUILayout.FloatField( value, option );
 	}
 
-	public float CreateFloatField(string fieldName, float value, params GUILayoutOption[] option )
+	public static float CreateFloatField(string fieldName, float value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.FloatField( fieldName, value, option );
 	}
-	public Vector2 CreateVector2Field(string fieldName, Vector2 value)
+	public static Vector2 CreateVector2Field(string fieldName, Vector2 value)
 	{
 		return EditorGUILayout.Vector2Field (fieldName, value);
 	}
 
 
-	public Vector3 CreateVector3Field(string fieldName, Vector3 value)
+	public static Vector3 CreateVector3Field(string fieldName, Vector3 value)
 	{
 		return EditorGUILayout.Vector3Field (fieldName, value);
 	}
 
-	public Vector4 CreateVector4Field(string fieldName, Vector4 value)
+	public static Vector4 CreateVector4Field(string fieldName, Vector4 value)
 	{
 		return EditorGUILayout.Vector4Field (fieldName, value);
 	}
 
-	public Object CreateObjectField(string fieldName, Object obj, System.Type type = null)
+	public static Object CreateObjectField(string fieldName, Object obj, System.Type type = null)
 	{
 		if( null == type )
 			type = typeof( Object );
 		return EditorGUILayout.ObjectField( fieldName, obj, type, true ) as Object;
 	}
 
-	public Object CreateObjectField(Object obj, System.Type type = null)
+	public static Object CreateObjectField(Object obj, System.Type type = null)
 	{
 		if( null == type )
 			type = typeof( Object );
 		return EditorGUILayout.ObjectField( obj, type, true ) as Object;
 	}
-    public Color CreateColorField( Color value, params GUILayoutOption[] option )
+	public static Color CreateColorField( Color value, params GUILayoutOption[] option )
     {
         return EditorGUILayout.ColorField( value, option );
     }
-    public Color CreateColorField( string label, Color value, params GUILayoutOption[] option )
+	public static Color CreateColorField( string label, Color value, params GUILayoutOption[] option )
     {
         return EditorGUILayout.ColorField( label, value, option );
     }
 
-	public int CreateIntField(string fieldName, int value,params GUILayoutOption[] option)
+	public static int CreateIntField(string fieldName, int value,params GUILayoutOption[] option)
 	{
 		return EditorGUILayout.IntField( fieldName, value, option );
 	}
 
-	public int CreateIntField(int value, params GUILayoutOption[] option )
+	public static int CreateIntField(int value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.IntField( value, option );
 	}
 
-	public long CreateLongField(string fieldName,long value, params GUILayoutOption[] option )
+	public static long CreateLongField(string fieldName,long value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.LongField(fieldName, value, option );
 	}
 
-	public long CreateLongField(long value, params GUILayoutOption[] option )
+	public static long CreateLongField(long value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.LongField( value, option );
 	}
 
-	public string CreateStringField(string fieldName, string value)
+	public static string CreateStringField(string fieldName, string value)
 	{
 		return EditorGUILayout.TextField( fieldName, value );
 	}
@@ -163,12 +163,12 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.TextField( value );
 	}
 
-	public void CreateLabel(string fieldName)
+	public static void CreateLabel(string fieldName)
 	{
 		EditorGUILayout.LabelField( fieldName );
 	}
 
-	public void CreateMessageField(string value, MessageType type)
+	public static void CreateMessageField(string value, MessageType type)
 	{
 		EditorGUILayout.HelpBox( value, type );
 		
@@ -179,37 +179,37 @@ public class XBaseEditor : Editor
         EditorGUILayout.PropertyField( property, options );
     }
 
-	public Enum CreateEnumSelectable(string fieldName, Enum value)
+	public static Enum CreateEnumSelectable(string fieldName, Enum value)
 	{
 		return EditorGUILayout.EnumPopup( fieldName, value );
 	}
 
-	public int CreateSelectableFromString(int rootID, string[] array)
+	public static int CreateSelectableFromString(int rootID, string[] array)
 	{
 		return EditorGUILayout.Popup( array[rootID], rootID, array );
 	}
 
-    public Rect CreateRectField(string label, Rect rect, params GUILayoutOption[] options )
+	public static Rect CreateRectField(string label, Rect rect, params GUILayoutOption[] options )
     {
         return EditorGUILayout.RectField( label, rect, options );
     }
 
-    public void BeginHorizontal()
+	public static void BeginHorizontal()
 	{
 		EditorGUILayout.BeginHorizontal( "AS TextArea" );
 	}
 
-	public void EndHorizontal()
+	public static void EndHorizontal()
 	{
 		EditorGUILayout.EndHorizontal();
 	}
 
-	public void BeginVertical()
+	public static void BeginVertical()
 	{
 		EditorGUILayout.BeginVertical( "AS TextArea");
 	}
 
-	public void EndVertical()
+	public static void EndVertical()
 	{
 		EditorGUILayout.EndVertical();
 	}
