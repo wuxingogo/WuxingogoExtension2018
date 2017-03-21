@@ -30,8 +30,5 @@ namespace wuxingogo.tools
 			boxCollider.isTrigger = isTrigger;
 			return boxCollider;
 		}
-        public void Find()
-        {
-        }
     }
 }

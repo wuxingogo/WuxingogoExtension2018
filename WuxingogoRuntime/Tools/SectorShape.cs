@@ -51,11 +51,6 @@ namespace wuxingogo.tools{
 				Gizmos.DrawLine( firstPoint, endPoint );
 				beginPoint = endPoint;
 			}
-	//		Vector3 forward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
-	//		if(isInSector())
-	//			UnityEngine.Logger.Log("aaa");
-	//		else
-	//			UnityEngine.Logger.Log("bbb");
 
 			// draw last line 
 			Gizmos.DrawLine( firstPoint, beginPoint );
@@ -120,7 +115,7 @@ namespace wuxingogo.tools{
 			Vector3 forward = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.forward;
 			if( Target != null ) {
 				
-				if( MathOp.IsPointInCircularSector( transform.position.x, transform.position.z, forward.x, forward.z,
+				if( MathUtlis.IsPointInCircularSector( transform.position.x, transform.position.z, forward.x, forward.z,
 					    m_Radius, Mathf.Deg2Rad * angle / 2, Target.position.x, Target.position.z ) ) {
 					return true;
 				}

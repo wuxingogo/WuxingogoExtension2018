@@ -16,7 +16,7 @@ namespace wuxingogo.Runtime
 
         public static T Create<T>(Object parent) where T : XScriptableObject
         {
-            T asset = XScriptableObject.CreateInstance<T>();
+            T asset = CreateInstance<T>();
             asset.OnCtor();
 			if (parent != null) {
 				asset.hasFile = true;
@@ -28,7 +28,7 @@ namespace wuxingogo.Runtime
 
 		public static XScriptableObject Create( System.Type objectType, Object parent)
         {
-            XScriptableObject asset = XScriptableObject.CreateInstance( objectType ) as XScriptableObject;
+            XScriptableObject asset = CreateInstance( objectType ) as XScriptableObject;
             asset.OnCtor();
 			if (parent != null) {
 				asset.hasFile = true;

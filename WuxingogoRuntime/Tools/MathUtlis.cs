@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace wuxingogo.tools{
-	public class MathOp {
+	public class MathUtlis {
 
 		public static bool IsPointInCircularSector(
 	    float cx, float cy, float ux, float uy, float r, float theta,
@@ -26,5 +26,19 @@ namespace wuxingogo.tools{
 	        // acos(D dot U) < theta
 	        return Mathf.Acos(dx * ux + dy * uy) < theta;
 	    }
+
+		public static Vector3 NearlyPoint(Vector3 from, Vector3 to, float distance)
+		{
+			var v = from - to;
+			if (v.magnitude > distance)
+			{
+				Vector3 p = (v.normalized) * distance + to;
+				return p;
+			}
+			else
+			{
+				return from;
+			}
+		}
 	}
 }

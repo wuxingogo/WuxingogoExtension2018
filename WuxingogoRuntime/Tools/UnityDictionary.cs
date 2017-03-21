@@ -11,26 +11,48 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     public delegate void OnChange();
 
     public event OnChange OnChangeEvent;
-	[HideInInspector]
+	//[HideInInspector]
 	public List<TKey> Keys = new List<TKey>();
-	[HideInInspector]
+	//[HideInInspector]
     public List<TValue> Values = new List<TValue>();
+
+	protected Dictionary<TKey, TValue> totalDict = null;
 	[X]
-	protected Dictionary<TKey, TValue> totalDict = new Dictionary<TKey, TValue>();
+	public Dictionary<TKey, TValue> TotalDict
+	{
+		get
+		{
+			if (totalDict == null)
+			{
+				totalDict = new Dictionary<TKey, TValue>();
+				for (int i = 0; i < Keys.Count; i++)
+				{
+					var key = Keys[i];
+					var v = Values[i];
+					totalDict.Add(key, v);
+				}
+			}
+			return totalDict;
+		}
+	}
 
     public TValue this[TKey key]
     {
         get
         {
-            for( int i = 0; i < Keys.Count; i++ )
-            {
-                if( Keys[i].Equals( key ))
-                {
-                    return Values[i];
-                }
-            }
-            return default( TValue );
-        }
+			return TotalDict[key];
+		}set
+		{
+			if (Keys.Contains(key)){
+				var index = Keys.IndexOf(key);
+				Values[index] = value;
+				TotalDict[key] = value;
+			}
+			else
+			{
+				Add(key, value);
+			}
+		}
     }
 
     [X]
@@ -38,9 +60,10 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     {
         Keys.Add( key );
         Values.Add( value );
-        totalDict.Add( key, value );
+		TotalDict.Add( key, value );
 		if(OnChangeEvent != null)
         	OnChangeEvent();
+		SaveInEditor();
         return this;
     }
     [X]
@@ -48,9 +71,10 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     {
         Keys.Remove( key );
         Values.Remove( value );
-        totalDict.Remove( key );
+		TotalDict.Remove( key );
 		if(OnChangeEvent != null)
         	OnChangeEvent();
+		SaveInEditor();
         return this;
     }
 
@@ -58,12 +82,13 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
     {
         Keys.Clear();
         Values.Clear();
-        totalDict.Clear();
+		TotalDict.Clear();
+		SaveInEditor();
     }
 
     public IEnumerator GetEnumerator()
     {
-        return totalDict.GetEnumerator();
+		return TotalDict.GetEnumerator();
     }
 
     public int Count

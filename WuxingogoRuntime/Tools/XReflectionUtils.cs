@@ -365,7 +365,7 @@ namespace wuxingogo.Reflection
 		// editor only
 		public static void AddObjectToObject(UnityEngine.Object asset, UnityEngine.Object parent)
 		{
-			if( Application.isEditor )
+			if (!Application.isPlaying )
 			{
 				
 				System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.AssetsUtilites" );
@@ -377,7 +377,7 @@ namespace wuxingogo.Reflection
 
 		public static void Save(XScriptableObject asset)
 		{
-			if( Application.isEditor )
+			if( !Application.isPlaying )
 			{
 
 				System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.XScriptObjectEditor" );

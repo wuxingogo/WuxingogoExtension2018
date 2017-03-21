@@ -31,7 +31,9 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" />
+        <Command>
+          <type>AfterBuild</type>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -70,7 +72,7 @@
     <Compile Include="Attribute\XPropertyAttribute.cs" />
     <Compile Include="Tools\SectorShape.cs" />
     <Compile Include="Tools\ShowFPS.cs" />
-    <Compile Include="Tools\MathOp.cs" />
+    <Compile Include="Tools\MathUtlis.cs" />
     <Compile Include="Attribute\DisableExpresionAttribute.cs" />
     <Compile Include="Attribute\XObjectAttribute.cs" />
     <Compile Include="Tools\GameManager.cs" />

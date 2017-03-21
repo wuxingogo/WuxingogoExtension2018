@@ -17,7 +17,7 @@ namespace wuxingogo.tools
         public void DestoryT()
         {
             MonoBehaviour _this = this as MonoBehaviour;
-            GameObject.Destroy(_this.gameObject);
+            Destroy(_this.gameObject);
         }
         protected virtual void Awake()
         {
