@@ -31,9 +31,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <CustomCommands>
       <CustomCommands>
-        <Command>
-          <type>AfterBuild</type>
-        </Command>
+        <Command type="AfterBuild" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -80,6 +78,7 @@
     <Compile Include="Tools\AsynchronousFunc.cs" />
     <Compile Include="Tools\DelegateUtils.cs" />
     <Compile Include="Tools\XUnityTimer.cs" />
+    <Compile Include="Attribute\PersistentAmongPlayModeAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

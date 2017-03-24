@@ -21,13 +21,13 @@ using Object = UnityEngine.Object;
 public class XAssemlyWindow : XBaseWindow
 {
 
-	bool isInit = true;
+	private bool isInit = true;
 
-	Assembly[] assemblies = null;
+	private Assembly[] assemblies = null;
 
-	Type[] types = null;
+	private Type[] types = null;
 
-	Type currentType = null;
+	private Type currentType = null;
 
 	[MenuItem( "Wuxingogo/Reflection/Wuxingogo XAssemlyWindow " )]
 	static void Init()
@@ -82,15 +82,9 @@ public class XAssemlyWindow : XBaseWindow
 		types = null;
 	}
 
-	void FindObjectByType()
+	void FindObjectByType ()
 	{
-		Selection.objects = Object.FindObjectsOfType( currentType );
-	}
-
-	void FindGameObjectByType()
-	{
-//		Selection.gameObjects = Object.FindObjectsOfType( currentType ) ;
-
+		Selection.objects = Object.FindObjectsOfType (currentType);
 	}
 
 

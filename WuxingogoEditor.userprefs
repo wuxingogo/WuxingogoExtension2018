@@ -1,31 +1,14 @@
-﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/AssemblyInfo.cs">
+﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/SaveComponentInfomation.cs">
     <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="24" Column="12" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/UnityDictionaryDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/MonoScriptImporterInspector.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/UnityDictionary.cs" Line="86" Column="18" />
-      <File FileName="WuxingogoRuntime/Runtime/XScriptableObject.cs" Line="31" Column="46" />
-      <File FileName="WuxingogoRuntime/Tools/XReflectionUtils.cs" Line="380" Column="32" />
-      <File FileName="WuxingogoRuntime/Tools/MathUtlis.cs" Line="43" Column="3" />
-      <File FileName="WuxingogoRuntime/Tools/SectorShape.cs" Line="35" Column="37" />
-      <File FileName="WuxingogoRuntime/Tools/ShowFPS.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/SingletonClass.cs" Line="12" Column="36" />
-      <File FileName="WuxingogoRuntime/Runtime/XReflectionManager.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Runtime/XMonoBehaviour.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/AsynchronousFunc.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/StringUtils.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/SerializeUtils.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/XUnityTimer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/GameObjectUtilities.cs" Line="32" Column="4" />
-      <File FileName="WuxingogoRuntime/Tools/GameManager.cs" Line="11" Column="27" />
-      <File FileName="WuxingogoRuntime/Tools/DelegateUtils.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Attribute/DisableAttribute.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Attribute/XSerializeAttribute.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Attribute/PersistentAmongPlayModeAttribute.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/SaveComponentInfomation.cs" Line="25" Column="5" />
+      <File FileName="WuxingogoRuntime/Attribute/EnumFlagAttribute.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Attribute/DisableExpresionAttribute.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -31,9 +31,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <CustomCommands>
       <CustomCommands>
-        <Command>
-          <type>AfterBuild</type>
-        </Command>
+        <Command type="AfterBuild" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -132,6 +130,7 @@
     <Compile Include="ScriptEditor\AssetImporterInspector.cs" />
     <Compile Include="ScriptEditor\MonoScriptImporterInspector.cs" />
     <Compile Include="ScriptEditor\XNetworkBehaviourEditor.cs" />
+    <Compile Include="ScriptEditor\SaveComponentInfomation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

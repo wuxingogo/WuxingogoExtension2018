@@ -14,20 +14,20 @@ namespace wuxingogo.Reflection
     public class XCommandTools : XBaseWindow
     {
         //	bool isEditorAssembly = false;
-        string command = "~";
+        private string command = "~";
 
-        bool isDirty = false;
-        List<string> searchCollection = new List<string>();
+        private bool isDirty = false;
+        private List<string> searchCollection = new List<string>();
 
-        bool isClassIntent = false;
-        bool isMethodIntent = false;
-        bool isFieldIntent = false;
+        private bool isClassIntent = false;
+        private bool isMethodIntent = false;
+        private bool isFieldIntent = false;
 
-        Type type;
-        object currValue = null;
+        private Type type;
+        private object currValue = null;
 
-        Object draggedObject = null;
-        int intentIndex = 0;
+        private Object draggedObject = null;
+        private int intentIndex = 0;
 
         [MenuItem( "Wuxingogo/Reflection/Wuxingogo XCommandTools" )]
         static void init()
@@ -199,7 +199,7 @@ namespace wuxingogo.Reflection
 
         void OnSelectionButton()
         {
-            int last = command.LastIndexOf( "." );
+            int last = command.LastIndexOf (".", StringComparison.Ordinal);
             command = command.CutString( 0, last == -1 ? 0 : last + 1 );
             command += searchCollection[intentIndex];
             EditorGUI.FocusTextInControl( "CommandControl" );
