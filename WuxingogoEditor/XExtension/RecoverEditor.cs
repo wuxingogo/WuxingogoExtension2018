@@ -147,7 +147,13 @@ internal class RecoveryEditor : Editor
 
     Dictionary<string, Type> GetPropertyPaths( Type type )
     {
-        return type.GetFields( BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance ).ToDictionary( field => field.Name, field => field.FieldType );
+		Dictionary<string, Type> result = new Dictionary<string, Type> ();
+		var field = type.GetFields (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+		foreach (var item in field) {
+			if(!result.ContainsKey(item.Name))
+				result.Add (item.Name, item.FieldType);
+		}
+		return result;
     }
 
     Type GetType( SerializedProperty prop )

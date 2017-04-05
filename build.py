@@ -48,6 +48,16 @@ def abspath(filepath):
 def currPath():
     return os.path.abspath(os.curdir)
 
+def CopyToProject(despath):
+    copyfile( currPath()+"/" + editorSourceFile,despath + "Editor/WuxingogoEditor.dll")
+    copyfile( currPath()+"/" + runtimeSourceFile,despath + "Plugins/WuxingogoRuntime.dll");
+    copyfile( currPath()+"/" + editorDllPdb,despath + "Editor/WuxingogoEditor.pdb")
+    copyfile( currPath()+"/" + editorDllMdb,despath + "Editor/WuxingogoEditor.dll.mdb")
+    copyfile( currPath()+"/" + runtimeDllPdb,despath + "Plugins/WuxingogoRuntime.pdb")
+    copyfile( currPath()+"/" + runtimeDllMdb,despath + "Plugins/WuxingogoRuntime.dll.mdb")
+    
+    
+
 
 print "remove all meta"
 path = os.getcwd()
@@ -62,8 +72,10 @@ os.chdir(currPath())
 isSecure = 0
 editorSourceFile = "OutPutDll/WuxingogoEditor.dll"
 runtimeSourceFile = "OutPutDll/WuxingogoRuntime.dll"
-
-
+editorDllPdb = "OutPutDll/WuxingogoEditor.pdb"
+editorDllMdb = "OutPutDll/WuxingogoEditor.dll.mdb"
+runtimeDllPdb = "OutPutDll/WuxingogoRuntime.pdb"
+runtimeDllMdb = "OutPutDll/WuxingogoRuntime.dll.mdb"
 
 copyfile(editorSourceFile, "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile(runtimeSourceFile, "WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
@@ -97,12 +109,12 @@ if(sysstr =="Windows"):
     copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
     copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
 else:
-    copyfile(currPath()+"/" + editorSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile(currPath()+"/" + runtimeSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
+    # copyfile(currPath()+"/" + editorSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    # copyfile(currPath()+"/" + runtimeSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
 
     copyfile(currPath()+"/" + editorSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     copyfile(currPath()+"/" + runtimeSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
-
+    CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
 
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"

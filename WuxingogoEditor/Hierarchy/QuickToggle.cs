@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using System;
+using System.Diagnostics;
 
 namespace wuxingogo.Editor
 {
@@ -67,6 +69,7 @@ namespace wuxingogo.Editor
 
         private static void DrawHierarchyItem(int instanceId, Rect selectionRect)
         {
+			try{
             BuildStyles();
 
             GameObject target = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
@@ -104,6 +107,10 @@ namespace wuxingogo.Editor
 			var monos = target.GetComponents<Behaviour> ();
 			int startIndex = 0;
 			for (int i = 0; i < monos.Length; i++) {
+				if(monos [i] == null)
+				{	
+					continue;
+				}
 				var e = monos [i].enabled;
 				Rect monoRect = new Rect(selectionRect)
 				{
@@ -115,12 +122,26 @@ namespace wuxingogo.Editor
 					startIndex++;
 				}
 				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
-				if (guiContent != null && e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
+				if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
 					SetVisible (monos [i], !e);
 					EditorApplication.RepaintHierarchyWindow();
 					var window = InspectorUtilites.GetInspectorWindow ();
 					window.Repaint ();
 				}
+			}
+			}catch(Exception e) {
+				XLogger.Log (e.ToString ());
+				var lineNumber = 0;
+				const string lineSearch = ":line ";
+				var index = e.StackTrace.LastIndexOf(lineSearch);
+				if (index != -1)
+				{
+					var lineNumberText = e.StackTrace.Substring(index + lineSearch.Length);
+					if (int.TryParse(lineNumberText, out lineNumber))
+					{
+					}
+				}
+				XLogger.Log( lineNumber);
 			}
         }
 
