@@ -1,12 +1,22 @@
 ﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XQuickSetDatabase.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs">
     <Files>
-      <File FileName="WuxingogoEditor/XExtension/XQuickSetDatabase.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/GizmosScope.cs" Line="54" Column="12" />
+      <File FileName="WuxingogoRuntime/Runtime/XReflectionManager.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Runtime/XScriptableObject.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Attribute/XPropertyAttribute.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/UnityMatrixEditorGUI.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XEditorScriptableObject.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/Hierarchy/QuickToggle.cs" line="136" column="1" />
+      <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/Hierarchy/QuickToggle.cs" line="137" column="1" />
+      <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/XExtension/RecoverEditor.cs" line="151" column="186" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

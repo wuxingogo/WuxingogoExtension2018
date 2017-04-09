@@ -79,6 +79,7 @@
     <Compile Include="Tools\DelegateUtils.cs" />
     <Compile Include="Tools\XUnityTimer.cs" />
     <Compile Include="Attribute\PersistentAmongPlayModeAttribute.cs" />
+    <Compile Include="Tools\GizmosScope.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

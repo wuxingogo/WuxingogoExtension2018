@@ -115,6 +115,7 @@ else:
     copyfile(currPath()+"/" + editorSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     copyfile(currPath()+"/" + runtimeSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
     CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
+    CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
 
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"

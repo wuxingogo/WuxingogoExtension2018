@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
-public class HandleColor : GUI.Scope
+public class HandleColorScope : GUI.Scope
 {
     Color lastColor = Color.white;
-    public HandleColor( Color c )
+    public HandleColorScope( Color c )
     {
         lastColor = Handles.color;
         Handles.color = c;
