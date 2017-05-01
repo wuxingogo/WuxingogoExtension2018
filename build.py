@@ -6,6 +6,7 @@ import glob
 import shutil
 import platform
 
+
 def removefile(filepath, suffix):
     print ("Root Path : " + filepath)
     for root, dirs, files in os.walk(filepath):
@@ -40,6 +41,14 @@ def copyfile(filepath, despath):
     except Exception: 
         print(filepath + " or " + despath + " was error !")
     pass
+def copyDirectory(dirpath, despath):
+    try:
+        from distutils.dir_util import copy_tree
+        copy_tree(dirpath, despath)
+    except Exception as e:
+        #print(dirpath + " OR " despath + " Was error !")
+        print(e)
+    pass
 	
 
 def abspath(filepath):
@@ -56,7 +65,9 @@ def CopyToProject(despath):
     copyfile( currPath()+"/" + runtimeDllPdb,despath + "Plugins/WuxingogoRuntime.pdb")
     copyfile( currPath()+"/" + runtimeDllMdb,despath + "Plugins/WuxingogoRuntime.dll.mdb")
     
-    
+def CopyPluginDirectory(despath):
+    copyDirectory( currPath()+ "/" + OutPutDirectory, despath)
+
 
 
 print "remove all meta"
@@ -76,6 +87,7 @@ editorDllPdb = "OutPutDll/WuxingogoEditor.pdb"
 editorDllMdb = "OutPutDll/WuxingogoEditor.dll.mdb"
 runtimeDllPdb = "OutPutDll/WuxingogoRuntime.pdb"
 runtimeDllMdb = "OutPutDll/WuxingogoRuntime.dll.mdb"
+OutPutDirectory = "WuxingogoExtension"
 
 copyfile(editorSourceFile, "WuxingogoExtension/Editor/WuxingogoEditor.dll")
 copyfile(runtimeSourceFile, "WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
@@ -116,7 +128,8 @@ else:
     copyfile(currPath()+"/" + runtimeSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
     CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
     CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
-
+    CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
+    CopyPluginDirectory("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 

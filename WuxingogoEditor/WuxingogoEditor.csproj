@@ -19,6 +19,7 @@
     <ConsolePause>False</ConsolePause>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <PlatformTarget>x64</PlatformTarget>
+    <DefineConstants>UNITY_EDITOR</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -131,6 +132,7 @@
     <Compile Include="ScriptEditor\XNetworkBehaviourEditor.cs" />
     <Compile Include="ScriptEditor\SaveComponentInfomation.cs" />
     <Compile Include="XExtension\HandleColorScope.cs" />
+    <Compile Include="XExtension\XEditorUtilies.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

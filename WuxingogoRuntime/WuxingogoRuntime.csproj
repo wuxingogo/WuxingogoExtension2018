@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>..\OutPutDll\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;UNITY_EDITOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -42,9 +42,6 @@
     <Reference Include="System" />
     <Reference Include="UnityEngine">
       <HintPath>..\OutPutDll\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>..\OutPutDll\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +77,7 @@
     <Compile Include="Tools\XUnityTimer.cs" />
     <Compile Include="Attribute\PersistentAmongPlayModeAttribute.cs" />
     <Compile Include="Tools\GizmosScope.cs" />
+    <Compile Include="Tools\EditorCoroutineRunner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

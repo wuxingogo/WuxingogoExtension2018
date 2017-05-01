@@ -21,7 +21,7 @@ public class XWebWindow : XBaseWindow
 	[MenuItem( "Wuxingogo/Wuxingogo XWebWindow #]" )]
     static void init()
     {
-		XWebWindow window = InitWindow<XWebWindow>();
+		InitWindow<XWebWindow>();
     }
 
 	public override void OnInitialization(params object[] args){
@@ -44,16 +44,8 @@ public class XWebWindow : XBaseWindow
 
 		this.wantsMouseMove = true;
     }
-
-	static BindingFlags fullBinding = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-	static StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
-	
 	object webView; 
 	Type webViewType;
-
-	
-	Vector2 resizeStartPos;
-	Rect resizeStartWindowSize;
 	
 	string urlText = EditorPrefs.GetString("xwebview_store", "unity3d.com/cn/");
 

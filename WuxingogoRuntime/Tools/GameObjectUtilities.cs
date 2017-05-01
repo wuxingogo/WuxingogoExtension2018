@@ -24,7 +24,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnityEditorInternal;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
@@ -215,26 +214,5 @@ namespace wuxingogo.tools
 			lhs.rotation = rhs.localRotation;
 			Object.Destroy (rhs.gameObject);
 		}
-		#if UNITY_EDITOR
-		[UnityEditor.MenuItem ("GameObjectUtil/Add Empty GameObject")]
-		public static void AddGameObject()
-		{
-		if(UnityEditor.Selection.activeGameObject == null )
-		{
-		GameObject obj = new GameObject("GameObject");
-		obj.transform.position = Vector3.zero;
-		obj.transform.rotation = Quaternion.identity;
-		obj.transform.localScale = Vector3.one;
-		}
-		else
-		{
-		GameObject obj = new GameObject("GameObject");
-		obj.transform.parent = UnityEditor.Selection.activeGameObject.transform;
-		obj.transform.localPosition = Vector3.zero;
-		obj.transform.localRotation = Quaternion.identity;
-		obj.transform.localScale = Vector3.one;
-		}
-		}
-		#endif
     }
 }

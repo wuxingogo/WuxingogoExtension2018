@@ -543,73 +543,54 @@ namespace wuxingogo.Editor
         {
             if( t == null )
                 t = GetDefaultValue( type );
-            if( t is int || t is System.Int32 || type == typeof( int ) )
-            {
-				t = CreateIntField(valueName, Convert.ToInt32( t ) );
-            }
-            else if( t is System.Int16 )
-            {
-				t = ( short )CreateIntField(valueName, Convert.ToInt16( t ));
-            }
-            else if( t is System.Int64 )
-            {
-				t = CreateLongField(valueName, Convert.ToInt64( t ));
-            }
-            else if( t is byte )
-            {
-                int value = Convert.ToInt32( t );
-				t = Convert.ToByte( CreateIntField(valueName, value) );
-            }
-            else if( type == typeof( String ) )
-            {
-				t = CreateStringField(valueName, ( string )t );
-            }
-            else if( type == typeof( Single ) )
-            {
-				t = CreateFloatField(valueName, Convert.ToSingle( t ) );
-            }
-            else if( type == typeof( Boolean ) )
-            {
-				t = CreateCheckBox(valueName, Convert.ToBoolean( t ) );
-            }
-            else if( type.BaseType == typeof( Enum ) )
-            {
-				t = CreateEnumSelectable( valueName, ( Enum )t ?? ( Enum )Enum.ToObject( type, 0 ) );
-            }
-            else if( type.IsSubclassOf( typeof( Object ) ) )
-            {
-				t = CreateObjectField(valueName, ( Object )t, type );
-            }
-            else if( t is Color || t is Color32 )
-            {
-				t = EditorGUILayout.ColorField(valueName, ( Color )t );
-            }
-            else if( t is Vector2 )
-            {
-                Vector2 v = ( Vector2 )t;
-				t = CreateVector2Field( valueName, v );
-            }
-            else if( t is Vector3 )
-            {
-                Vector3 v = ( Vector3 )t;
-				t = CreateVector3Field( valueName, v );
-            }
-            else if( t is Vector4 )
-            {
-                Vector4 v = ( Vector4 )t;
-				t = CreateVector4Field( valueName, v );
-            }
-            else if( t is Quaternion )
-            {
-                Quaternion q = ( Quaternion )t;
-                Vector4 v = new Vector4( q.x, q.y, q.z, q.w );
-				v = CreateVector4Field( valueName, v );
-                q.x = v.x;
-                q.y = v.y;
-                q.z = v.z;
-                q.w = v.w;
-                t = q;
-            }
+			if (t is int || t is System.Int32 || type == typeof(int)) {
+				t = CreateIntField (valueName, Convert.ToInt32 (t));
+			} else if (t is System.Int16) {
+				t = (short)CreateIntField (valueName, Convert.ToInt16 (t));
+			} else if (t is System.Int64) {
+				t = CreateLongField (valueName, Convert.ToInt64 (t));
+			} else if (t is byte) {
+				int value = Convert.ToInt32 (t);
+				t = Convert.ToByte (CreateIntField (valueName, value));
+			} else if (type == typeof(String)) {
+				t = CreateStringField (valueName, (string)t);
+			} else if (type == typeof(Single)) {
+				t = CreateFloatField (valueName, Convert.ToSingle (t));
+			} else if (type == typeof(Boolean)) {
+				t = CreateCheckBox (valueName, Convert.ToBoolean (t));
+			} else if (type.BaseType == typeof(Enum)) {
+				t = CreateEnumSelectable (valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
+			} else if (type.IsSubclassOf (typeof(Object))) {
+				t = CreateObjectField (valueName, (Object)t, type);
+			} else if (t is Color || t is Color32) {
+				t = EditorGUILayout.ColorField (valueName, (Color)t);
+			} else if (t is Vector2) {
+				Vector2 v = (Vector2)t;
+				t = CreateVector2Field (valueName, v);
+			} else if (t is Vector3) {
+				Vector3 v = (Vector3)t;
+				t = CreateVector3Field (valueName, v);
+			} else if (t is Vector4) {
+				Vector4 v = (Vector4)t;
+				t = CreateVector4Field (valueName, v);
+			} else if (t is Quaternion) {
+				Quaternion q = (Quaternion)t;
+				Vector4 v = new Vector4 (q.x, q.y, q.z, q.w);
+				v = CreateVector4Field (valueName, v);
+				q.x = v.x;
+				q.y = v.y;
+				q.z = v.z;
+				q.w = v.w;
+				t = q;
+			} else if (t is Matrix4x4) {
+				Matrix4x4 m = (Matrix4x4)t;
+				CreateLabel (valueName);
+				for (int i = 0; i < 4; i++) {
+					//BeginVertical ();
+					CreateVector4Field ("", m.GetRow(i));
+					//EndVertical ();
+				}
+			}
             else if( typeof( IList ).IsAssignableFrom( type ) )
             {
                 IList list = t as IList;

@@ -130,6 +130,11 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		return EditorGUILayout.ObjectField( fieldName, obj, type, true, options ) as Object;
 	}
 
+	public static T CreateObjectField<T>(string fieldName, Object obj, params GUILayoutOption[] options) where T : Object
+	{
+		return EditorGUILayout.ObjectField( fieldName, obj, typeof(T), true, options ) as T;
+	}
+
 	public static Object CreateObjectField(Object obj, System.Type type = null, params GUILayoutOption[] options )
 	{
 		if( null == type )

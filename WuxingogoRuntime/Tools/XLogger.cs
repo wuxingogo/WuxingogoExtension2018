@@ -25,9 +25,13 @@
 // THE SOFTWARE.
 
 using UnityEngine;
+using Conditional = System.Diagnostics.ConditionalAttribute;
+
 public class XLogger
 {
+	public const string PLATFORM = "UNITY_EDITOR";
     static public bool EnableLog = true;
+	[Conditional(PLATFORM)]
     static public void Log( object message )
     {
         if( EnableLog )
@@ -35,6 +39,7 @@ public class XLogger
             Debug.Log( message );
         }
     }
+	[Conditional(PLATFORM)]
     static public void Log( object message, Object context )
     {
         if( EnableLog )
@@ -42,7 +47,7 @@ public class XLogger
             Debug.Log( message, context );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -50,7 +55,7 @@ public class XLogger
             Debug.LogFormat( context, message, args );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogFormat( string message, params object[] args )
     {
         if( EnableLog )
@@ -58,6 +63,7 @@ public class XLogger
             Debug.LogFormat( message, args );
         }
     }
+	[Conditional(PLATFORM)]
     static public void LogError( object message )
     {
         if( EnableLog )
@@ -65,7 +71,7 @@ public class XLogger
             Debug.LogError( message );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogErrorFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -73,7 +79,7 @@ public class XLogger
             Debug.LogErrorFormat( context, message, args );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogError( object message, Object context )
     {
         if( EnableLog )
@@ -81,6 +87,7 @@ public class XLogger
             Debug.LogError( message, context );
         }
     }
+	[Conditional(PLATFORM)]
     static public void LogWarning( object message )
     {
         if( EnableLog )
@@ -88,6 +95,7 @@ public class XLogger
             Debug.LogWarning( message );
         }
     }
+	[Conditional(PLATFORM)]
     static public void LogWarning( object message, Object context )
     {
         if( EnableLog )
@@ -95,7 +103,7 @@ public class XLogger
             Debug.LogWarning( message, context );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogWarningFormat( string message, params object[] args )
     {
         if( EnableLog )
@@ -103,7 +111,7 @@ public class XLogger
             Debug.LogWarningFormat( message, args );
         }
     }
-
+	[Conditional(PLATFORM)]
     static public void LogWarningFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -111,7 +119,7 @@ public class XLogger
             Debug.LogWarningFormat( context, message, args );
         }
     }
-
+	[Conditional(PLATFORM)]
 	static public void Break()
 	{
 		if( EnableLog )
