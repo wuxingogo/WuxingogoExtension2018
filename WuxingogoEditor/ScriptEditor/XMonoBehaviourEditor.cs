@@ -593,7 +593,9 @@ namespace wuxingogo.Editor
 			}
             else if( typeof( IList ).IsAssignableFrom( type ) )
             {
-                IList list = t as IList;
+				IList list = t as IList;
+				if (list == null)
+					XLogger.Log (t.GetType ().ToString ());
 				var name = valueName + " : " + list.Count;
 				bool toggle = DrawHeader(name , name, false, false );
 				if( list == null || !toggle)

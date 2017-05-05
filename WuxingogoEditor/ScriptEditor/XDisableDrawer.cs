@@ -35,11 +35,12 @@ namespace wuxingogo.Attribute
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var disableAttr = base.attribute as DisableAttribute;
-
-            if (disableAttr.IsEditInEditor && !EditorApplication.isPlaying)
-            {
-                EditorGUI.PropertyField(position, property, label);
-            }
+//			if (property.isArray) {
+//				ArrayGUI (property);
+//			}
+			if (disableAttr.IsEditInEditor && !EditorApplication.isPlaying) {
+				EditorGUI.PropertyField (position, property, label);
+			} 
             else
             {
                 EditorGUI.BeginDisabledGroup(true);
@@ -47,6 +48,23 @@ namespace wuxingogo.Attribute
                 EditorGUI.EndDisabledGroup();
             }
         }
+
+		void ArrayGUI (SerializedProperty property) {
+			SerializedProperty arraySizeProp = property.FindPropertyRelative("Array.size");
+			EditorGUI.BeginDisabledGroup(true);
+
+			EditorGUILayout.PropertyField(arraySizeProp);
+
+			EditorGUI.EndDisabledGroup();
+
+			EditorGUI.indentLevel ++;
+
+			for (int i = 0; i < arraySizeProp.intValue; i++) {
+				EditorGUILayout.PropertyField(property.GetArrayElementAtIndex(i));
+			}
+
+			EditorGUI.indentLevel --;
+		}
 
     }
 }
