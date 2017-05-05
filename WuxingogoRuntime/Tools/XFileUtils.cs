@@ -31,9 +31,6 @@ namespace wuxingogo.tools
 {
 	public class XFileUtils
 	{
-		public XFileUtils()
-		{
-		}
 
 		public static List<WWW> LoadStreamingFolderAssets(string path, string title = "Default Folder")
 		{

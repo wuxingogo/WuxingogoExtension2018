@@ -83,10 +83,7 @@
     <Compile Include="CreateAssets\CreateXMonoBehaviour.cs" />
     <Compile Include="XExtension\XmlExtensionWindow.cs" />
     <Compile Include="XExtension\XTomporaryWindow.cs" />
-    <Compile Include="XReflection\XAssemlyWindow.cs" />
-    <Compile Include="XReflection\XPropertiesToSerializables.cs" />
     <Compile Include="XReflection\XReflectionWindow.cs" />
-    <Compile Include="XReflection\XSerializableExtension.cs" />
     <Compile Include="CodeEditor\CodeGenerateEditor.cs" />
     <Compile Include="CodeEditor\CodeReviewEditor.cs" />
     <Compile Include="CodeEditor\ICodeMember.cs" />
