@@ -29,7 +29,7 @@ using Conditional = System.Diagnostics.ConditionalAttribute;
 
 public class XLogger
 {
-	public const string PLATFORM = "UNITY_EDITOR";
+	public const string PLATFORM = "XLOG_ENABLE";
     static public bool EnableLog = true;
 	[Conditional(PLATFORM)]
     static public void Log( object message )

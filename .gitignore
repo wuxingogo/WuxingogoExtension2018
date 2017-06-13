@@ -34,6 +34,7 @@ $RECYCLE.BIN/
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+.DS_Store
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -41,6 +42,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
 WuxingogoEditor/XExtension/ExprotUIToCocos.cs.meta
 WuxingogoEditor/XExtension/FindTextureRef.cs.meta
 WuxingogoEditor/XExtension/PackPipeLine.cs.meta
