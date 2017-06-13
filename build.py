@@ -124,12 +124,10 @@ else:
     # copyfile(currPath()+"/" + editorSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     # copyfile(currPath()+"/" + runtimeSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
 
-    copyfile(currPath()+"/" + editorSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
-    copyfile(currPath()+"/" + runtimeSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
-    CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
-    CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
-    CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
-    CopyPluginDirectory("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins")
+    #CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
+    #CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
+    #CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
+    CopyPluginDirectory("/Users/apple/Documents/WordBakery/Word/Assets/plugins/")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 

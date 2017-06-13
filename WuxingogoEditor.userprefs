@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/XLogger.cs">
     <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="598" Column="45" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="41" Column="4" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/XLogger.cs" Line="32" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
@@ -11,7 +12,7 @@
       <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/XExtension/RecoverEditor.cs" line="151" column="186" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
   <MultiItemStartupConfigurations>
@@ -22,5 +23,5 @@
       </Items>
     </MultiItemSolutionRunConfiguration>
   </MultiItemStartupConfigurations>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

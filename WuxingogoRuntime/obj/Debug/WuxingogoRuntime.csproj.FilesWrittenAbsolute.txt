@@ -10,3 +10,9 @@
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.pdb
+/Users/apple/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll.mdb
+/Users/apple/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.pdb
+/Users/apple/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoRuntime.dll
+/Users/apple/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll
+/Users/apple/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.dll.mdb
+/Users/apple/Documents/Github/WuxingogoExtension/WuxingogoRuntime/obj/Debug/WuxingogoRuntime.pdb
