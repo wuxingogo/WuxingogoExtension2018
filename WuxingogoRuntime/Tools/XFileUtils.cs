@@ -83,6 +83,11 @@ namespace wuxingogo.tools
 			return original;
 		}
 
+		public static void CopyFile(string sourcePath, string destPath){
+			var content = File.ReadAllBytes(sourcePath);
+			File.WriteAllBytes (destPath, content);
+		}
+
 		public static List<string> GetSubFolder(List<string> totalFolders, string rootFolder)
 		{
 			DirectoryInfo directory = new DirectoryInfo(rootFolder);

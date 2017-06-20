@@ -36,7 +36,7 @@ public class XLogger
     {
         if( EnableLog )
         {
-            Debug.Log( message );
+			Debug.Log( message );
         }
     }
 	[Conditional(PLATFORM)]
