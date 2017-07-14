@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Runtime\XMonoBehaviour.cs" />
-    <Compile Include="Runtime\XReflectionManager.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
     <Compile Include="Tools\XLogger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
