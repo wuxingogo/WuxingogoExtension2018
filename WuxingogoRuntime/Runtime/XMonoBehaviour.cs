@@ -25,6 +25,7 @@ using wuxingogo.Reflection;
 using UnityEngine;
 using System.Collections;
 
+
 namespace wuxingogo.Runtime {
 	public class XMonoBehaviour : MonoBehaviour {
         #if Wuxingogo_Core

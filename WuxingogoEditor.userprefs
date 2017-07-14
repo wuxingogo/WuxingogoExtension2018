@@ -1,11 +1,38 @@
 ﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/XFileUtils.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/AsynchronousFunc.cs">
     <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoEditor/ScriptEditor/XDisableDrawer.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/XLogger.cs" Line="37" Column="24" />
-      <File FileName="WuxingogoRuntime/Tools/XFileUtils.cs" Line="54" Column="35" />
+      <File FileName="WuxingogoRuntime/Tools/AsynchronousFunc.cs" Line="66" Column="19" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WuxingogoEditor" expanded="True">
+            <Node name="WuxingogoEditor" expanded="True">
+              <Node name="ScriptEditor" expanded="True" />
+              <Node name="XExtension" expanded="True" />
+            </Node>
+            <Node name="WuxingogoRuntime" expanded="True">
+              <Node name="Attribute" expanded="True" />
+              <Node name="Runtime" expanded="True" />
+              <Node name="Tools" expanded="True">
+                <Node name="AsynchronousFunc.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="WuxingogoEditor" expanded="True">
+            <Node name="WuxingogoEditor" expanded="True">
+              <Node name="wuxingogo" expanded="True" />
+              <Node name="wuxingogoEditor" expanded="True" />
+            </Node>
+            <Node name="WuxingogoRuntime" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -13,7 +40,7 @@
       <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/XExtension/RecoverEditor.cs" line="151" column="186" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
   <MultiItemStartupConfigurations>
@@ -24,5 +51,5 @@
       </Items>
     </MultiItemSolutionRunConfiguration>
   </MultiItemStartupConfigurations>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

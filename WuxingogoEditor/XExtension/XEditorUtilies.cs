@@ -29,22 +29,24 @@ using UnityEngine;
 
 namespace wuxingogo.tools
 {
-	public class XEditorUtilies
-	{
-		public static void AddEditorUpdate(Action action)
-		{
-			EditorApplication.update += ()=> action();
-		}
+    public class XEditorUtilies
+    {
+        public static void AddEditorUpdate(Action action)
+        {
+            XLogger.Log("Add Editor update");
+            EditorApplication.update += () => action();
+        }
 
-		public static void RemoveEditorUpdate(Action action)
-		{
-			EditorApplication.update -= ()=> action();
-		}
-		public static Shader CreataShader(string shader)
-		{
-			return ShaderUtil.CreateShaderAsset (shader);
-		}
+        public static void RemoveEditorUpdate(Action action)
+        {
+            XLogger.Log("Remove Editor update");
+            EditorApplication.update -= () => action();
+        }
+        public static Shader CreataShader(string shader)
+        {
+            return ShaderUtil.CreateShaderAsset(shader);
+        }
 
-	}
+    }
 }
 

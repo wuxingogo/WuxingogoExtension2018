@@ -29,37 +29,47 @@ using wuxingogo.Runtime;
 
 namespace wuxingogo.tools
 {
-	public class AsynchronousFunc
-	{
-		static XMonoBehaviour behaviour = null;
-		[RuntimeInitializeOnLoadMethod]
-		static void OnSecondRuntimeMethodLoad()
-		{
-			GameObject gameObject = new GameObject("Wuxingogo Kernal");
-			behaviour = gameObject.AddComponent<XMonoBehaviour>();
-			Object.DontDestroyOnLoad(gameObject);
-		}
-
-		public static void Delaytime(float delay, System.Action onFinish)
-		{
-			behaviour.StartCoroutine(DelayTime(delay, onFinish));
-		}
-
-		static IEnumerator DelayTime(float delay, System.Action onFinish)
-		{
-			yield return new WaitForSeconds(delay);
-			onFinish();
-		}
-
-        public static void Delaytime( float delay, System.Action onFinish, MonoBehaviour monoBehaviour)
+    public class AsynchronousFunc
+    {
+        static XMonoBehaviour behaviour = null;
+        [RuntimeInitializeOnLoadMethod]
+        static void OnSecondRuntimeMethodLoad()
         {
-            monoBehaviour.StartCoroutine( DelayTime( delay, onFinish ) );
+            GameObject gameObject = new GameObject("Wuxingogo Kernal");
+            behaviour = gameObject.AddComponent<XMonoBehaviour>();
+            Object.DontDestroyOnLoad(gameObject);
         }
 
-        public static void StartCoroutine( System.Collections.IEnumerator iEnumerator)
+        public static void Delaytime(float delay, System.Action onFinish)
         {
-            behaviour.StartCoroutine( iEnumerator );
+            behaviour.StartCoroutine(DelayTime(delay, onFinish));
         }
-	}
+
+        static IEnumerator DelayTime(float delay, System.Action onFinish)
+        {
+            yield return new WaitForSeconds(delay);
+            onFinish();
+        }
+
+        public static void Delaytime(float delay, System.Action onFinish, MonoBehaviour monoBehaviour)
+        {
+            monoBehaviour.StartCoroutine(DelayTime(delay, onFinish));
+        }
+
+        public static void StartCoroutine(System.Collections.IEnumerator iEnumerator)
+        {
+            behaviour.StartCoroutine(iEnumerator);
+        }
+
+        public static void StopCoroutine(System.Collections.IEnumerator iEnumerator)
+        {
+            behaviour.StopCoroutine(iEnumerator);
+        }
+
+        public static void StopAllCoroutine()
+        {
+            behaviour.StopAllCoroutines();
+        }
+    }
 }
 

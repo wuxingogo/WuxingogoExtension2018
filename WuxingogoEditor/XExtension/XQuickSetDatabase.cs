@@ -32,7 +32,6 @@ public class XQuickSetDatabase : XBaseWindow
 
     Dictionary<string, List<object>> tableDataDict = new Dictionary<string, List<object>>();
     Dictionary<string, Type> tableTypeDict = new Dictionary<string, Type>();
-    string currTable = "";
     string filterStr = "";
 
     int dataTable = 0;
@@ -68,8 +67,6 @@ public class XQuickSetDatabase : XBaseWindow
                 {
                     XLogger.Log(e.Message);
                 }
-
-                currTable = "";
                 GetAllTableName();
             }
             else
@@ -121,13 +118,12 @@ public class XQuickSetDatabase : XBaseWindow
             allTableField.Clear();
             string sql = "SELECT * FROM " + tableName;
             SqliteDataReader recordTableReader = ExecuteQuery( sql );
-            currTable = tableName;
             allTable.Clear();
             int count = recordTableReader.VisibleFieldCount;
             for( int idx = 0; idx < count; idx++ )
             {
                 //  TODO loop in count
-                string fieldTypeName = recordTableReader.GetName( idx );
+//                string fieldTypeName = recordTableReader.GetName( idx );
             }
 
             selectField = -1;

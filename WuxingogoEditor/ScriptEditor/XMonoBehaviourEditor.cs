@@ -33,6 +33,7 @@ namespace wuxingogo.Editor
     using UnityEngine;
     using wuxingogo.Reflection;
     using wuxingogo.Runtime;
+	using wuxingogo.tools;
     using Object = UnityEngine.Object;
 
     [CustomEditor( typeof( XMonoBehaviour ), true )]
@@ -145,19 +146,18 @@ namespace wuxingogo.Editor
 				}
 			}
 		}
-		static void ShowStaticMethod<T>(Type type)
+		static void ShowStaticMethod<T>(Type type) where T : Attribute
 		{
 			if( type == null )
 				return;
 
 			var methods = type.GetMethods( staticFlag );
 			bool noAttribute = true;
+
 			foreach( var info in methods )
 			{
-				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
-				{
+				if (info.GetAttribute<T> () != null) {
 					noAttribute = false;
-					break;
 				}
 			}
 			if( noAttribute )

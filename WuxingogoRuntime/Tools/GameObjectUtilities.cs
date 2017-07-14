@@ -30,189 +30,204 @@ using System.Collections.Generic;
 
 namespace wuxingogo.tools
 {
-    public class GameObjectUtilities
+    public static class GameObjectUtilities
     {
-		public static string DefaultNewGameObjectName = "BoxCollider";
-        private static string FullPath( GameObject go )
+        public static string DefaultNewGameObjectName = "BoxCollider";
+        private static string FullPath(GameObject go)
         {
             return go.transform.parent == null
                     ? go.name
-                    : FullPath( go.transform.parent.gameObject ) + "/" + go.name;
+                    : FullPath(go.transform.parent.gameObject) + "/" + go.name;
         }
 
-		public static BoxCollider NewBoxCollider(Vector3 size, bool isTrigger)
-		{
-			GameObject newGo = new GameObject(DefaultNewGameObjectName);
-			var boxCollider = newGo.AddComponent<BoxCollider>();
-			boxCollider.size = size;
-			boxCollider.isTrigger = isTrigger;
-			return boxCollider;
-		}
+        public static BoxCollider NewBoxCollider(Vector3 size, bool isTrigger)
+        {
+            GameObject newGo = new GameObject(DefaultNewGameObjectName);
+            var boxCollider = newGo.AddComponent<BoxCollider>();
+            boxCollider.size = size;
+            boxCollider.isTrigger = isTrigger;
+            return boxCollider;
+        }
 
-		public static BoxCollider AddBoxCollider(GameObject newGo, Vector3 size, bool isTrigger)
-		{
-			var boxCollider = newGo.AddComponent<BoxCollider>();
-			boxCollider.size = size;
-			boxCollider.isTrigger = isTrigger;
-			return boxCollider;
-		}
+        public static BoxCollider AddBoxCollider(GameObject newGo, Vector3 size, bool isTrigger)
+        {
+            var boxCollider = newGo.AddComponent<BoxCollider>();
+            boxCollider.size = size;
+            boxCollider.isTrigger = isTrigger;
+            return boxCollider;
+        }
 
-		public static Transform FindByName(Transform root,string name)
-		{
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				if( t.gameObject.name == name)
-					return t;
-			}
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				Transform result = FindByName(t,name);
-				if( result != null )
-					return result;
-			}
-			return null;
-		}
+        public static Transform FindByName(Transform root, string name)
+        {
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                if (t.gameObject.name == name)
+                    return t;
+            }
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                Transform result = FindByName(t, name);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
 
-		public static void FindByNameAll(Transform root,string name,ref List<Transform> list)
-		{
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				if( t.gameObject.name == name)
-					list.Add(t);
-			}
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				FindByNameAll(t,name,ref list);
-			}
-		}
-			
-		public static GameObject CreatePrefab(Transform parent,GameObject prefab, bool layerAndTag = true)
-		{
-			if( prefab == null )
-				return null;
-			GameObject go = (GameObject)GameObject.Instantiate(prefab);
-			go.transform.parent = parent;
-			go.transform.localPosition = Vector3.zero;
-			go.transform.localRotation = Quaternion.identity;
-			go.transform.localScale = Vector3.one;
-			if (parent != null && layerAndTag) {
-				go.layer = parent.gameObject.layer;
-				go.tag = parent.tag;
-			}
-			return go;
-		}
-		public static GameObject CreatePrefab(Vector3 pos,Vector3 eulrAngles,string prefabName)
-		{
-			GameObject result = CreatePrefab(null,prefabName);
-			if( result == null )
-				return result;
-			result.transform.position = pos;
-			result.transform.eulerAngles = eulrAngles;
-			result.transform.localScale = Vector3.one;
-			return result;
-		}
+        public static void FindByNameAll(Transform root, string name, ref List<Transform> list)
+        {
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                if (t.gameObject.name == name)
+                    list.Add(t);
+            }
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                FindByNameAll(t, name, ref list);
+            }
+        }
 
-		public static T CreatePrefab<T>(Transform parent,string prefabName) where T : Component
-		{
-			var go = CreatePrefab (parent, prefabName);
+        public static GameObject CreatePrefab(Transform parent, GameObject prefab, bool layerAndTag = true)
+        {
+            if (prefab == null)
+                return null;
+            GameObject go = (GameObject)GameObject.Instantiate(prefab);
+            go.transform.parent = parent;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localScale = Vector3.one;
+            if (parent != null && layerAndTag)
+            {
+                go.layer = parent.gameObject.layer;
+                go.tag = parent.tag;
+            }
+            return go;
+        }
+        public static GameObject CreatePrefab(Vector3 pos, Vector3 eulrAngles, string prefabName)
+        {
+            GameObject result = CreatePrefab(null, prefabName);
+            if (result == null)
+                return result;
+            result.transform.position = pos;
+            result.transform.eulerAngles = eulrAngles;
+            result.transform.localScale = Vector3.one;
+            return result;
+        }
 
-			return go.GetComponent<T>();
-		}
+        public static T CreatePrefab<T>(Transform parent, string prefabName) where T : Component
+        {
+            var go = CreatePrefab(parent, prefabName);
 
-		public static GameObject CreatePrefab(Transform parent,string prefabName)
-		{
-			Object o = Resources.Load<GameObject>(prefabName);
-			if( o == null )
-				return null;
-			GameObject go = (GameObject)GameObject.Instantiate(o);
-			go.transform.parent = parent;
-			go.transform.localPosition = Vector3.zero;
-			go.transform.localRotation = Quaternion.identity;
-			go.transform.localScale = Vector3.one;
-			if( parent !=null)
-				go.layer = parent.gameObject.layer;
-			return go;
-		}
+            return go.GetComponent<T>();
+        }
 
-		public static void AlignTransform(Transform lhs, Transform rhs)
-		{
-			lhs.position = rhs.position;
-			lhs.rotation = rhs.rotation;
-		}
-		public static void DestoryAllChildren(Transform root)
-		{
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				GameObject.Destroy(t.gameObject);
-			}
-		}
-		public static void DestoryChild(Transform root,string childName)
-		{
-			Transform childGo = GameObjectUtilities.FindByName(root,childName);
-			if( childGo != null)
-				GameObject.Destroy(childGo.gameObject);
-		}
-		public static void ChildrenAction(Transform root,System.Action<GameObject> action,bool isRecursion = true)
-		{
-			for( int i = 0; i < root.childCount; ++i )
-			{
-				Transform t = root.GetChild(i);
-				if( isRecursion ) ChildrenAction(t,action);
-				action(t.gameObject);
-			}
-		}
+        public static GameObject CreatePrefab(Transform parent, string prefabName)
+        {
+            Object o = Resources.Load<GameObject>(prefabName);
+            if (o == null)
+                return null;
+            GameObject go = (GameObject)GameObject.Instantiate(o);
+            go.transform.parent = parent;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localScale = Vector3.one;
+            if (parent != null)
+                go.layer = parent.gameObject.layer;
+            return go;
+        }
 
-		public static Transform GetRootParent(Transform obj)
-		{
-			while (obj.parent != null) {
-				obj = obj.parent;
-			}
-			return obj;
-		}
+        public static void AlignTransform(Transform lhs, Transform rhs)
+        {
+            lhs.position = rhs.position;
+            lhs.rotation = rhs.rotation;
+        }
+        public static void DestoryAllChildren(Transform root)
+        {
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                GameObject.Destroy(t.gameObject);
+            }
+        }
+        public static void DestoryChild(Transform root, string childName)
+        {
+            Transform childGo = GameObjectUtilities.FindByName(root, childName);
+            if (childGo != null)
+                GameObject.Destroy(childGo.gameObject);
+        }
+        public static void ChildrenAction(Transform root, System.Action<GameObject> action, bool isRecursion = true)
+        {
+            for (int i = 0; i < root.childCount; ++i)
+            {
+                Transform t = root.GetChild(i);
+                if (isRecursion) ChildrenAction(t, action);
+                action(t.gameObject);
+            }
+        }
 
-		public static string GetFullPathName(GameObject obj,string oldStr)
-		{
-			GameObject o = obj;
+        public static Transform GetRootParent(Transform obj)
+        {
+            while (obj.parent != null)
+            {
+                obj = obj.parent;
+            }
+            return obj;
+        }
 
-			while(o.transform.parent != null )
-			{
-				oldStr = "/" + o.name + oldStr;
-				o = o.transform.parent.gameObject;
-			}
-			oldStr = "/" + o.name + oldStr;
-			return oldStr;
-		}
+        public static string GetFullPathName(GameObject obj, string oldStr)
+        {
+            GameObject o = obj;
 
-		public static string GetRelativePath( GameObject obj, GameObject child)
-		{
-			Transform o = child.transform;
-			string relitivePath = child.name;
-			while( o.parent != null )
-			{
-				if( o.parent == obj.transform )
-				{
-					return relitivePath;
-				}
-				else
-				{
-					relitivePath =  o.parent.name + "/" + relitivePath;
-					o = o.transform.parent;
+            while (o.transform.parent != null)
+            {
+                oldStr = "/" + o.name + oldStr;
+                o = o.transform.parent.gameObject;
+            }
+            oldStr = "/" + o.name + oldStr;
+            return oldStr;
+        }
 
-				}
-			}
-			return "";
-		}
-		public static void ReplaceTransform(Transform lhs, Transform rhs)
-		{
-			lhs.SetParent (rhs.parent);
-			lhs.localPosition = rhs.localPosition;
-			lhs.rotation = rhs.localRotation;
-			Object.Destroy (rhs.gameObject);
-		}
+        public static string GetRelativePath(GameObject obj, GameObject child)
+        {
+            Transform o = child.transform;
+            string relitivePath = child.name;
+            while (o.parent != null)
+            {
+                if (o.parent == obj.transform)
+                {
+                    return relitivePath;
+                }
+                else
+                {
+                    relitivePath = o.parent.name + "/" + relitivePath;
+                    o = o.transform.parent;
+
+                }
+            }
+            return "";
+        }
+        public static void ReplaceTransform(Transform lhs, Transform rhs)
+        {
+            lhs.SetParent(rhs.parent);
+            lhs.localPosition = rhs.localPosition;
+            lhs.rotation = rhs.localRotation;
+            Object.Destroy(rhs.gameObject);
+        }
+
+        public static Transform FindSibling(this Transform transform, string name)
+        {
+            var parent = transform.parent;
+            if (parent != null)
+            {
+                return parent.Find(name);
+            }
+            GameObject go = GameObject.Find(name);
+            if (go != null)
+                return go.transform;
+            return null;
+        }
     }
 }

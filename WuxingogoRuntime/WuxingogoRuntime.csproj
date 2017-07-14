@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>..\OutPutDll\</OutputPath>
-    <DefineConstants>DEBUG;UNITY_EDITOR</DefineConstants>
+    <DefineConstants>DEBUG;XLOG_ENABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -77,7 +77,7 @@
     <Compile Include="Tools\XUnityTimer.cs" />
     <Compile Include="Attribute\PersistentAmongPlayModeAttribute.cs" />
     <Compile Include="Tools\GizmosScope.cs" />
-    <Compile Include="Tools\EditorCoroutineRunner.cs" />
+    <Compile Include="Tools\ExtensionMethod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
