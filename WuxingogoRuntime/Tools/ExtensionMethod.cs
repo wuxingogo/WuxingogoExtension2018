@@ -50,10 +50,67 @@ namespace wuxingogo.tools
 			return t.position.y;  
 		}  
 
+
 		public static float GetPositionZ(this Transform t)  
 		{  
 			return t.position.z;  
 		} 
+
+		public static Color SetR(this Color c, float r)
+		{
+			c.r = r;
+			return c;
+		}
+
+		public static Color SetG(this Color c, float g)
+		{
+			c.g = g;
+			return c;
+		}
+
+		public static Color SetB(this Color c, float b)
+		{
+			c.b = b;
+			return c;
+		}
+
+		public static Color SetAlpha(this Color c, float newAlpha)
+		{
+			c.a = newAlpha;
+			return c;
+		}
+
+		public static GameObject SetParent(this GameObject g, GameObject p){
+			g.transform.SetParent (p.transform);
+			return g;
+		}
+
+		public static GameObject SetParent(this GameObject g, Transform p){
+			g.transform.SetParent (p);
+			return g;
+		}
+
+		public static GameObject SetParent(this GameObject g, Component c){
+			g.transform.SetParent (c.transform);
+			return g;
+		}
+
+		public static Transform SetParent(this Transform g, GameObject p){
+			g.SetParent (p.transform);
+			return g;
+		}
+
+		public static Transform SetParent(this Transform g, Component c){
+			g.SetParent (c.transform);
+			return g;
+		}
+
+
+		public static Transform GetParent(this GameObject g)
+		{
+			return g.transform.parent;
+		}
+
 
 		public static T As<T>(this Component c)where T : Component{
 			var component = c.GetComponent<T> ();
