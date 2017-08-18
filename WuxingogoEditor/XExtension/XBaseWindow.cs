@@ -85,40 +85,39 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public static bool CreateSpaceButton(string btnName, params GUILayoutOption[] option)
 	{
-		return GUILayout.Button( btnName, option );
+		return GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, option);
 	}
 
-	public static void DoButton(string btnName, Action callback, params GUILayoutOption[] option )
+	public static void DoButton(string btnName, Action callback, params GUILayoutOption[] options )
 	{
-		if( CreateSpaceButton( btnName, option ) ) {
-			callback();
-		}
+		if (GUILayout.Button (btnName, XStyles.GetInstance ().skin.button, options))
+			callback ();
 	}
 
-	public static void DoButton(string btnName, Action callback, GUIStyle style, params GUILayoutOption[] option )
+	public static void DoButton(string btnName, Action callback, GUIStyle style, params GUILayoutOption[] options )
 	{
-		if( GUILayout.Button( btnName, style, option ) ) {
+		if( GUILayout.Button( btnName, style, options ) ) {
 			callback();
 		}
 	}
 
 	public static void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
-		if( GUILayout.Button( content, options ) ) {
+		if( GUILayout.Button( content,XStyles.GetInstance ().skin.button, options ) ) {
 			callback();
 		}
 	}
 
 	public static void DoButton<T>(string btnName, Action<T> callback, T arg)
 	{
-		if( GUILayout.Button( btnName, GUILayout.ExpandWidth( true ) ) ) {
+		if( GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, GUILayout.ExpandWidth( true ) ) ) {
 			callback( arg );
 		}
 	}
 
 	public static void DoButton<T, T1>(string btnName, Action<T, T1> callback, T arg, T1 arg1)
 	{
-		if( GUILayout.Button( btnName, GUILayout.ExpandWidth( true ) ) ) {
+		if( GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, GUILayout.ExpandWidth( true ) ) ) {
 			callback( arg, arg1 );
 		}
 	}

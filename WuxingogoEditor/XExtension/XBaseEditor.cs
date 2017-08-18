@@ -32,9 +32,6 @@ public class XBaseEditor : Editor
 //		InspectorUtilites.GetAllInspector ();
 
 		GUILayout.Box( XResources.LogoTexture, GUILayout.Width(ForcusWindow.position.width - 40) );
-		BeginHorizontal();
-		GUILayout.Box( XResources.LogoTexture);
-		EndHorizontal ();
     }
 
 	public virtual void OnXGUI()

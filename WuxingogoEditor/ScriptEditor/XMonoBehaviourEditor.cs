@@ -248,32 +248,31 @@ namespace wuxingogo.Editor
 					DrawFieldHeader( info.ReturnType,  info.Name );
 					ParameterInfo[] paras = info.GetParameters();
 
-					if( !methodParameters.ContainsKey( info ) )
-					{
+					if (!methodParameters.ContainsKey (info)) {
 						object[] o = new object[paras.Length];
-						methodParameters.Add( info, o );
+						methodParameters.Add (info, o);
 					}
-					object[] objects = methodParameters[info];
+					object[] objects = methodParameters [info];
 
-					using(new GUILayout.HorizontalScope(XStyles.GetInstance().skin.textArea)){
+					if (paras.Length != 0) {
+						
 
-	                    for( int pos = 0; pos < paras.Length; pos++ )
-	                    {
-							if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
-								objects [pos] = paras [pos].DefaultValue;
+						using (new GUILayout.HorizontalScope (XStyles.GetInstance ().skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
+							for (int pos = 0; pos < paras.Length; pos++) {
+								if ((paras [pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null) {
+									objects [pos] = paras [pos].DefaultValue;
+								}
+	                       
+								DrawFieldHeader (paras [pos].ParameterType, paras [pos].Name);
+								objects [pos] = GetTypeGUI (objects [pos], paras [pos].ParameterType, paras [pos].Name, nextShow);
+	                       
 							}
-	                       
-	                        DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
-							objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
-	                       
-	                    }
-
+						}
 
 					}
 
-					if( CreateSpaceButton( info.Name) )
-					{
-						info.Invoke( target, objects );
+					if (CreateSpaceButton (info.Name)) {
+						info.Invoke (target, objects);
 					}
 
                 }
