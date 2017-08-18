@@ -12,9 +12,10 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using wuxingogo.Code;
+using wuxingogo.Editor;
 
 
-public class XCodeTypeTemplate : ScriptableObject
+public class XCodeTypeTemplate : XEditorScriptableObject
 {
     [SerializeField]
     internal List<XCodeType> templates = new List<XCodeType>();

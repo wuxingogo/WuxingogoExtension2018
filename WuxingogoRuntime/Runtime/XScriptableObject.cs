@@ -46,5 +46,6 @@ namespace wuxingogo.Runtime
 			DestroyImmediate (this, true);
 		}
 
+
     }
 }

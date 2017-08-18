@@ -57,6 +57,8 @@ namespace wuxingogo.Editor
         {
             try
             {
+
+	 
                 ShowXMethods<XAttribute>( target );
                 ShowXFields<XAttribute>( target );
                 ShowProperties<XAttribute>( target );
@@ -243,35 +245,37 @@ namespace wuxingogo.Editor
             {
                 foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
                 {
-                    BeginVertical();
+					DrawFieldHeader( info.ReturnType,  info.Name );
+					ParameterInfo[] paras = info.GetParameters();
 
-                    DrawFieldHeader( info.ReturnType,  info.Name );
-                    ParameterInfo[] paras = info.GetParameters();
-
-                    if( !methodParameters.ContainsKey( info ) )
-                    {
-                        object[] o = new object[paras.Length];
-                        methodParameters.Add( info, o );
-                    }
+					if( !methodParameters.ContainsKey( info ) )
+					{
+						object[] o = new object[paras.Length];
+						methodParameters.Add( info, o );
+					}
 					object[] objects = methodParameters[info];
 
+					using(new GUILayout.HorizontalScope(XStyles.GetInstance().skin.textArea)){
 
-                    for( int pos = 0; pos < paras.Length; pos++ )
-                    {
-						if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
-							objects [pos] = paras [pos].DefaultValue;
-						}
-                        BeginHorizontal();
-                        DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
-						objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
-                        EndHorizontal();
-                    }
-                    if( CreateSpaceButton( info.Name ) )
-                    {
-                        info.Invoke( target, objects );
-                    }
+	                    for( int pos = 0; pos < paras.Length; pos++ )
+	                    {
+							if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
+								objects [pos] = paras [pos].DefaultValue;
+							}
+	                       
+	                        DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
+							objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
+	                       
+	                    }
 
-                    EndVertical();
+
+					}
+
+					if( CreateSpaceButton( info.Name) )
+					{
+						info.Invoke( target, objects );
+					}
+
                 }
             }
         }

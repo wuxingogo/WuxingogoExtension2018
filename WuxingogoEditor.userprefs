@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
   <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/ExtensionMethod.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Tools/AsynchronousFunc.cs" Line="59" Column="31" />
-      <File FileName="WuxingogoRuntime/Tools/ExtensionMethod.cs" Line="113" Column="3" />
+      <File FileName="WuxingogoRuntime/Tools/ExtensionMethod.cs" Line="27" Column="4" />
+      <File FileName="WuxingogoRuntime/Attribute/IBehaviour.cs" Line="5" Column="29" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />

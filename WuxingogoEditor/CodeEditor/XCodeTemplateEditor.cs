@@ -2,9 +2,10 @@
 using System;
 using UnityEditor;
 using wuxingogo.Code;
+using wuxingogo.Editor;
 
 [CustomEditor( typeof( XCodeTypeTemplate ) )]
-public class XCodeTemplateEditor : XBaseEditor
+public class XCodeTemplateEditor : XMonoBehaviourEditor
 {
     public override void OnXGUI()
     {

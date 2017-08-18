@@ -27,7 +27,7 @@ using System.Collections;
 
 
 namespace wuxingogo.Runtime {
-	public class XMonoBehaviour : MonoBehaviour {
+	public class XMonoBehaviour : MonoBehaviour, IBehaviour {
         #if Wuxingogo_Core
 		[ContextMenu("OpenInMethod")]
 		public void OpenInMethodExten(){

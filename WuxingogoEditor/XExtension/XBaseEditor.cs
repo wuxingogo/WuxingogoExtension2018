@@ -4,6 +4,7 @@ using UnityEditor;
 using System;
 using Object = UnityEngine.Object;
 using wuxingogo.Editor;
+using wuxingogo.Reflection;
 
 public class XBaseEditor : Editor
 {
@@ -31,9 +32,9 @@ public class XBaseEditor : Editor
 //		InspectorUtilites.GetAllInspector ();
 
 		GUILayout.Box( XResources.LogoTexture, GUILayout.Width(ForcusWindow.position.width - 40) );
-//		BeginHorizontal();
-//		GUILayout.Box( XResources.LogoTexture);
-//		EndHorizontal ();
+		BeginHorizontal();
+		GUILayout.Box( XResources.LogoTexture);
+		EndHorizontal ();
     }
 
 	public virtual void OnXGUI()
@@ -41,28 +42,49 @@ public class XBaseEditor : Editor
         
     }
 
+	public static bool HorizontalButton(string name)
+	{
+		EditorGUILayout.BeginHorizontal();
+		GUIContent addComponentLabel = (GUIContent)typeof(EditorGUIUtility).TryInvokeGlobalMethod("TextContent", name);
+		var ss = XStyles.GetInstance().skin.button;
+		Rect rect = GUILayoutUtility.GetRect(addComponentLabel, ss, null);
+		rect.y += 10f;
+		rect.x += (rect.width - 230f) / 2f;
+		rect.width = 230f;
+		var result = GUI.Button(rect, name, ss);
+		EditorGUILayout.EndHorizontal();
+
+		return result;
+
+	}
+
 	public static bool CreateSpaceButton(string btnName)
 	{
-		return GUILayout.Button( btnName );
+		return GUILayout.Button( btnName, XStyles.GetInstance().skin.button );
+	}
+
+	public static bool CreateSpaceButton(string btnName, GUIStyle style)
+	{
+		return GUILayout.Button( btnName, style );
 	}
 
 	public static void DoButton(string btnName, Action callback)
 	{
-		if( GUILayout.Button( btnName ) ) {
+		if( GUILayout.Button( btnName , XStyles.GetInstance().skin.button)) {
 			callback();
 		}
 	}
 
 	public static void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
-		if( GUILayout.Button( content, options ) ) {
+		if( GUILayout.Button( content, XStyles.GetInstance().skin.button, options ) ) {
 			callback();
 		}
 	}
 
 	public static void DoButton<T>(string btnName, Action<T> callback, T arg)
 	{
-		if( GUILayout.Button( btnName ) ) {
+		if( GUILayout.Button( btnName, XStyles.GetInstance().skin.button ) ) {
 			callback( arg );
 		}
 	}
@@ -196,7 +218,7 @@ public class XBaseEditor : Editor
 
 	public static void BeginHorizontal()
 	{
-		EditorGUILayout.BeginHorizontal( "AS TextArea" );
+		EditorGUILayout.BeginHorizontal(XStyles.GetInstance().skin.textArea );
 	}
 
 	public static void EndHorizontal()
@@ -206,7 +228,7 @@ public class XBaseEditor : Editor
 
 	public static void BeginVertical()
 	{
-		EditorGUILayout.BeginVertical( "AS TextArea");
+		EditorGUILayout.BeginVertical(XStyles.GetInstance().skin.textArea);
 	}
 
 	public static void EndVertical()

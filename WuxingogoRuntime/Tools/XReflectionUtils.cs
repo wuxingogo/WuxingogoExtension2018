@@ -40,8 +40,9 @@ namespace wuxingogo.Reflection
 	public static class XReflectionUtils
 	{
 
+
 		private const BindingFlags INSTANCE_FLAGS = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
-		private const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+		private const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy;
 		private const BindingFlags NOVIRTUAL_FLAGS = BindingFlags.DeclaredOnly;
 
 		public static Assembly TryGetAssembly(string assemblyName, bool isPrecise = true)
@@ -107,6 +108,10 @@ namespace wuxingogo.Reflection
             return GetEditorAssembly().GetType( typeName );
         }
 
+		public static Type GetUnityEditor(string typeName){
+			return AppDomain.CurrentDomain.Load( "UnityEditor" ).GetType(typeName);
+		}
+
 		/// <summary>
 		/// Tries the invoke method.
 		/// </summary>
@@ -118,6 +123,7 @@ namespace wuxingogo.Reflection
 		{
 			return type.TryGetMethodInfo( methodName ).Invoke( target, methodParams );
 		}
+
 
 		public static object TryInvokeGlobalMethod(this Type target, string methodName, params object[] methodParams)
 		{
@@ -180,7 +186,10 @@ namespace wuxingogo.Reflection
 
 		private static MethodInfo TryGetGlobalMethodInfo(this Type target, string methodName)
 		{
-			return target.GetMethod( methodName, STATIC_FLAGS );
+			XLogger.Log (string.Format("target is null{0}", target == null));
+			var methodInfo = target.GetMethod( methodName, STATIC_FLAGS );
+			XLogger.Log (string.Format("method is null, {0}", methodInfo == null));
+			return methodInfo;
 		}
 
 
