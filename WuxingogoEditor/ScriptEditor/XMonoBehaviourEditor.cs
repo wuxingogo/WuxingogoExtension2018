@@ -74,9 +74,12 @@ namespace wuxingogo.Editor
 		{
 			try
 			{
+				var c = GUI.contentColor;
+				GUI.contentColor = EditorGUIUtility.isProSkin ? new Color( 1f, 1f, 1f, 0.7f ) : new Color( 0f, 0f, 0f, 0.7f );
 				ShowStaticMethod<XAttribute>(type);
 				ShowStaticXField<XAttribute>(type);
 				ShowStaticProperties<XAttribute>(type);
+				GUI.contentColor = c;
 			}
 			catch
 			{
@@ -91,8 +94,8 @@ namespace wuxingogo.Editor
 
             if( !minimalistic )
                 GUILayout.Space( 3f );
-            if( !forceOn && !state )
-                GUI.backgroundColor = new Color( 0.8f, 0.8f, 0.8f );
+//            if( !forceOn && !state )
+//                GUI.backgroundColor = new Color( 0.8f, 0.8f, 0.8f );
             GUILayout.BeginHorizontal();
             GUI.changed = false;
 
@@ -104,10 +107,10 @@ namespace wuxingogo.Editor
                     text = "\u25BA" + ( char )0x200a + text;
 
                 GUILayout.BeginHorizontal();
-                GUI.contentColor = EditorGUIUtility.isProSkin ? new Color( 1f, 1f, 1f, 0.7f ) : new Color( 0f, 0f, 0f, 0.7f );
+               
                 if( !GUILayout.Toggle( true, text, "PreToolbar2", GUILayout.MinWidth( 20f ) ) )
                     state = !state;
-                GUI.contentColor = Color.white;
+//                GUI.contentColor = Color.white;
                 GUILayout.EndHorizontal();
             }
             else
@@ -257,7 +260,7 @@ namespace wuxingogo.Editor
 					if (paras.Length != 0) {
 						
 
-						using (new GUILayout.HorizontalScope (XStyles.GetInstance ().skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
+						using (new GUILayout.HorizontalScope ( Skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
 							for (int pos = 0; pos < paras.Length; pos++) {
 								if ((paras [pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null) {
 									objects [pos] = paras [pos].DefaultValue;
@@ -325,7 +328,7 @@ namespace wuxingogo.Editor
 
 					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
 					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-                    if( null != newValue && !newValue.Equals( result ) )
+                    if( !newValue.Equals( result ) )
                         field.SetValue( target, newValue );
 
                     EndVertical();
@@ -388,7 +391,7 @@ namespace wuxingogo.Editor
 
 					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
 					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-					if( null != newValue && !newValue.Equals( result ) )
+					if( !newValue.Equals( result ) )
 						field.SetValue( null, newValue );
 
 					EndVertical();
@@ -453,7 +456,7 @@ namespace wuxingogo.Editor
 					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
                     EditorGUI.EndDisabledGroup();
 
-                    if( null != newValue && !newValue.Equals( result ) )
+                    if( !newValue.Equals( result ) )
                         property.SetValue( target, newValue, null );
 
 
@@ -518,7 +521,7 @@ namespace wuxingogo.Editor
 					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
 					EditorGUI.EndDisabledGroup();
 
-					if( null != newValue && !newValue.Equals( result ) )
+					if( !newValue.Equals( result ) )
 						property.SetValue( null, newValue, null );
 
 

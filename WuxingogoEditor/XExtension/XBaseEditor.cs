@@ -39,11 +39,17 @@ public class XBaseEditor : Editor
         
     }
 
+	public static GUISkin Skin{
+		get{
+			return EditorGUIUtility.isProSkin ? XStyles.GetInstance().scene : XStyles.GetInstance ().inspector;
+		}
+	}
+
 	public static bool HorizontalButton(string name)
 	{
 		EditorGUILayout.BeginHorizontal();
 		GUIContent addComponentLabel = (GUIContent)typeof(EditorGUIUtility).TryInvokeGlobalMethod("TextContent", name);
-		var ss = XStyles.GetInstance().skin.button;
+		var ss = Skin.button;
 		Rect rect = GUILayoutUtility.GetRect(addComponentLabel, ss, null);
 		rect.y += 10f;
 		rect.x += (rect.width - 230f) / 2f;
@@ -57,7 +63,7 @@ public class XBaseEditor : Editor
 
 	public static bool CreateSpaceButton(string btnName)
 	{
-		return GUILayout.Button( btnName, XStyles.GetInstance().skin.button );
+		return GUILayout.Button( btnName, Skin.button );
 	}
 
 	public static bool CreateSpaceButton(string btnName, GUIStyle style)
@@ -67,21 +73,21 @@ public class XBaseEditor : Editor
 
 	public static void DoButton(string btnName, Action callback)
 	{
-		if( GUILayout.Button( btnName , XStyles.GetInstance().skin.button)) {
+		if( GUILayout.Button( btnName , Skin.button)) {
 			callback();
 		}
 	}
 
 	public static void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
-		if( GUILayout.Button( content, XStyles.GetInstance().skin.button, options ) ) {
+		if( GUILayout.Button( content, Skin.button, options ) ) {
 			callback();
 		}
 	}
 
 	public static void DoButton<T>(string btnName, Action<T> callback, T arg)
 	{
-		if( GUILayout.Button( btnName, XStyles.GetInstance().skin.button ) ) {
+		if( GUILayout.Button( btnName, Skin.button ) ) {
 			callback( arg );
 		}
 	}
@@ -215,7 +221,7 @@ public class XBaseEditor : Editor
 
 	public static void BeginHorizontal()
 	{
-		EditorGUILayout.BeginHorizontal(XStyles.GetInstance().skin.textArea );
+		EditorGUILayout.BeginHorizontal(Skin.textArea );
 	}
 
 	public static void EndHorizontal()
@@ -225,7 +231,7 @@ public class XBaseEditor : Editor
 
 	public static void BeginVertical()
 	{
-		EditorGUILayout.BeginVertical(XStyles.GetInstance().skin.textArea);
+		EditorGUILayout.BeginVertical(Skin.textArea);
 	}
 
 	public static void EndVertical()

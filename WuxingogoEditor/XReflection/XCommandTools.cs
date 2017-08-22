@@ -56,7 +56,7 @@ namespace wuxingogo.Reflection
             {
                 GUI.SetNextControlName( searchCollection[pos] );
 
-				GUIStyle style = XStyles.GetInstance().skin.button;
+				GUIStyle style = Skin.button;
 
                 DoButton( searchCollection[pos], () =>
                 {

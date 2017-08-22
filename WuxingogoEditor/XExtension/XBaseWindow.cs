@@ -35,6 +35,12 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 	{
 	}
 
+	public static GUISkin Skin{
+		get{
+			return EditorGUIUtility.isProSkin ? XStyles.GetInstance().scene : XStyles.GetInstance ().inspector;
+		}
+	}
+
 	public static void DrawLogo(GUILayoutOption widthLayout)
 	{
 		GUILayout.Box( XResources.LogoTexture, widthLayout, GUILayout.Height( 100 ) );
@@ -85,12 +91,12 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public static bool CreateSpaceButton(string btnName, params GUILayoutOption[] option)
 	{
-		return GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, option);
+		return GUILayout.Button( btnName, Skin.button, option);
 	}
 
 	public static void DoButton(string btnName, Action callback, params GUILayoutOption[] options )
 	{
-		if (GUILayout.Button (btnName, XStyles.GetInstance ().skin.button, options))
+		if (GUILayout.Button (btnName, Skin.button, options))
 			callback ();
 	}
 
@@ -103,21 +109,21 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public static void DoButton(GUIContent content, Action callback, params GUILayoutOption[] options)
 	{
-		if( GUILayout.Button( content,XStyles.GetInstance ().skin.button, options ) ) {
+		if( GUILayout.Button( content, Skin.button, options ) ) {
 			callback();
 		}
 	}
 
 	public static void DoButton<T>(string btnName, Action<T> callback, T arg)
 	{
-		if( GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, GUILayout.ExpandWidth( true ) ) ) {
+		if( GUILayout.Button( btnName, Skin.button, GUILayout.ExpandWidth( true ) ) ) {
 			callback( arg );
 		}
 	}
 
 	public static void DoButton<T, T1>(string btnName, Action<T, T1> callback, T arg, T1 arg1)
 	{
-		if( GUILayout.Button( btnName, XStyles.GetInstance ().skin.button, GUILayout.ExpandWidth( true ) ) ) {
+		if( GUILayout.Button( btnName, Skin.button, GUILayout.ExpandWidth( true ) ) ) {
 			callback( arg, arg1 );
 		}
 	}
