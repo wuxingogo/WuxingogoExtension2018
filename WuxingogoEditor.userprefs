@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="Multi-Startup" GitUserInfo="UsingMD" StartupItem="WuxingogoEditor/WuxingogoEditor.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/XExtension/XBaseEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs">
     <Files>
-      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="15" Column="3" />
-      <File FileName="WuxingogoEditor/XExtension/XBaseEditor.cs" Line="135" Column="21" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XScriptObjectEditor.cs" Line="19" Column="21" />
+      <File FileName="WuxingogoEditor/ScriptEditor/XMonoBehaviourEditor.cs" Line="800" Column="38" />
+      <File FileName="WuxingogoEditor/XReflection/XCommandTools.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoEditor/XExtension/XStyles.cs" Line="45" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
@@ -11,7 +13,7 @@
       <Breakpoint file="/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/XExtension/RecoverEditor.cs" line="151" column="186" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="ly-user" Email="52111314ly@gmail.com" Copyright="ly-user" Company="" Trademark="" />
   <MultiItemStartupConfigurations>
@@ -22,5 +24,5 @@
       </Items>
     </MultiItemSolutionRunConfiguration>
   </MultiItemStartupConfigurations>
-  <MonoDevelop.Ide.ItemProperties.WuxingogoEditor PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.WuxingogoRuntime PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

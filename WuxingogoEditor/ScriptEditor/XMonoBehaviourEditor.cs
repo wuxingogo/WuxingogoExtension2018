@@ -326,7 +326,7 @@ namespace wuxingogo.Editor
 					}
                    
 
-					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
+					var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
 					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
                     if( !newValue.Equals( result ) )
                         field.SetValue( target, newValue );
@@ -389,7 +389,7 @@ namespace wuxingogo.Editor
 
 
 
-					var newValue = GetTypeGUI( result, field.FieldType,field.Name, nextShow );
+					var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
 					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
 					if( !newValue.Equals( result ) )
 						field.SetValue( null, newValue );
@@ -683,6 +683,145 @@ namespace wuxingogo.Editor
             return t;
 
         }
+
+		protected static object GetTypeGUIOpt( object t, Type type, string valueName, List<object> nextShow )
+		{
+			if( t == null )
+				t = GetDefaultValue( type );
+			if (t is int || t is System.Int32 || type == typeof(int)) {
+				t = EditorGUI.IntField (EditorGUILayout.GetControlRect(),valueName, Convert.ToInt32 (t));
+			} else if (t is System.Int16) {
+				t = (short)EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, Convert.ToInt16 (t));
+			} else if (t is System.Int64) {
+				t = EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, (int)Convert.ToInt64 (t));
+			} else if (t is byte) {
+				int value = Convert.ToInt32 (t);
+				t = Convert.ToByte (EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, value));
+			} else if (type == typeof(String)) {
+				t = EditorGUI.TextField (EditorGUILayout.GetControlRect(), valueName, (string)t);
+			} else if (type == typeof(Single)) {
+				t = EditorGUI.FloatField (EditorGUILayout.GetControlRect(), valueName, Convert.ToSingle (t));
+			} else if (type == typeof(Boolean)) {
+				t = EditorGUI.Toggle (EditorGUILayout.GetControlRect(), valueName, Convert.ToBoolean (t));
+			} else if (type.BaseType == typeof(Enum)) {
+				t = EditorGUI.EnumPopup (EditorGUILayout.GetControlRect(), valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
+			} else if (type.IsSubclassOf (typeof(Object))) {
+				t = EditorGUI.ObjectField (EditorGUILayout.GetControlRect(), valueName, (Object)t, type);
+			} else if (t is Color || t is Color32) {
+				t = EditorGUI.ColorField(EditorGUILayout.GetControlRect(), valueName, (Color)t);
+			} else if (t is Vector2) {
+				Vector2 v = (Vector2)t;
+				t = EditorGUI.Vector2Field (EditorGUILayout.GetControlRect(), valueName, v);
+			} else if (t is Vector3) {
+				Vector3 v = (Vector3)t;
+				t = EditorGUI.Vector3Field (EditorGUILayout.GetControlRect(), valueName, v);
+			} else if (t is Vector4) {
+				Vector4 v = (Vector4)t;
+				t = EditorGUI.Vector4Field (EditorGUILayout.GetControlRect(), valueName, v);
+			} else if (t is Quaternion) {
+				Quaternion q = (Quaternion)t;
+				Vector4 v = new Vector4 (q.x, q.y, q.z, q.w);
+				v = EditorGUI.Vector4Field (EditorGUILayout.GetControlRect(), valueName, v);
+				q.x = v.x;
+				q.y = v.y;
+				q.z = v.z;
+				q.w = v.w;
+				t = q;
+			} else if (t is Matrix4x4) {
+				Matrix4x4 m = (Matrix4x4)t;
+				CreateLabel (valueName);
+				for (int i = 0; i < 4; i++) {
+					//BeginVertical ();
+					EditorGUI.Vector2Field (EditorGUILayout.GetControlRect(), "", m.GetRow(i));
+					//EndVertical ();
+				}
+			}
+			else if( typeof( IList ).IsAssignableFrom( type ) )
+			{
+				IList list = t as IList;
+				if (list == null)
+					XLogger.Log (t.GetType ().ToString ());
+				var name = valueName + " : " + list.Count;
+				bool toggle = DrawHeader(name , name, false, false );
+				if( list == null || !toggle)
+					return t;
+				DoButton ("Clear", () => list.Clear ());
+				var newList = new List<object>();
+
+				BeginVertical();
+				for( int pos = 0; pos < list.Count; pos++ )
+				{
+					//  TODO loop in list.Count
+					var o = list[pos];
+					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+				}
+				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+				EndVertical();
+
+				DrawListType( newList );
+
+
+			}
+			else if( typeof( IDictionary ).IsAssignableFrom( type ) )
+			{
+				IDictionary dictionary = ( IDictionary )t;
+				IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
+				IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
+				ICollection collection = dictionary.Values;
+				var name = valueName + " : " + dictionary.Count;
+				bool toggle = DrawHeader( name, name, false, false );
+				if(!toggle)
+					return t;
+				DoButton ("Clear", () => dictionary.Clear());
+				while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
+				{
+					var newList = new List<object>();
+//					BeginHorizontal();
+					var keyType = iteratorKey.Current.GetType ();
+					var valueType = dictionary [iteratorKey.Current].GetType ();
+					GetTypeGUIOpt( iteratorKey.Current,keyType , keyType.Name, newList );
+					GetTypeGUIOpt( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
+//					EndHorizontal();
+					DrawListType( newList );
+				}
+
+			}
+
+			else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
+			{
+				bool toggle = DrawHeader( valueName, valueName, false, false );
+				if(!toggle)
+					return t;
+
+				IEnumerable collection = ( IEnumerable )t;
+				IEnumerator iteratorValue = collection.GetEnumerator();
+				int index = 0;
+				var newList = new List<object>();
+				while( iteratorValue.MoveNext() )
+				{
+					var valueType = iteratorValue.Current.GetType();
+					if( iteratorValue.Current != null )
+						GetTypeGUIOpt( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
+					index++;
+				}
+			}
+			else if( t != null )
+			{
+				if( !nextShow.Contains( t ) )
+					nextShow.Add( t );
+
+				//                EditorGUILayout.Space();
+				//                DrawHeader( type.Name, type.Name, false, false );
+
+			}
+			else
+			{
+				CreateLabel( "NULL" );
+			}
+
+			return t;
+
+		}
 
 		static void DrawListType(List<object> totalObject)
         {
