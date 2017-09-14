@@ -30,8 +30,8 @@ def DoWindowsCommand():
     os.system("msbuild WuxingogoEditor.sln")
 
 def DoUnixCommand():
-    os.system("xbuild WuxingogoRuntime.sln")
-    os.system("xbuild WuxingogoEditor.sln")
+    os.system("msbuild WuxingogoRuntime.sln")
+    os.system("msbuild WuxingogoEditor.sln")
 
 
 def copyfile(filepath, despath):
@@ -130,6 +130,7 @@ else:
     CopyPluginDirectory("/Users/apple/Documents/WordBakery/Word/Assets/plugins/WuxingogoExtension")
     CopyPluginDirectory("/Users/apple/Documents/WordCross/Assets/plugins/WuxingogoExtension")
     CopyPluginDirectory("/Users/apple/Documents/Github/Unity2017Test/SDKManager/Assets/Plugins/WuxingogoExtension")
+    CopyPluginDirectory("/Users/apple/Documents/Github/Unity2017Test/NewGame/Assets/Plugins/WuxingogoExtension")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 

@@ -146,17 +146,28 @@ namespace wuxingogo.tools
         }
         public static void DestoryAllChildren(Transform root)
         {
+			bool isPlaying = Application.isPlaying;
             for (int i = 0; i < root.childCount; ++i)
             {
                 Transform t = root.GetChild(i);
-                GameObject.Destroy(t.gameObject);
+				if (!isPlaying)
+					GameObject.DestroyImmediate (t.gameObject);
+				else
+                	GameObject.Destroy(t.gameObject);
             }
         }
         public static void DestoryChild(Transform root, string childName)
         {
-            Transform childGo = GameObjectUtilities.FindByName(root, childName);
-            if (childGo != null)
-                GameObject.Destroy(childGo.gameObject);
+			bool isPlaying = Application.isPlaying;
+			Transform target = GameObjectUtilities.FindByName(root, childName);
+			if (target != null) {
+				
+				if(!isPlaying)
+					GameObject.DestroyImmediate (target.gameObject);
+				else
+					GameObject.Destroy (target.gameObject);
+
+			}
         }
         public static void ChildrenAction(Transform root, System.Action<GameObject> action, bool isRecursion = true)
         {
