@@ -30,8 +30,8 @@ def DoWindowsCommand():
     os.system("msbuild WuxingogoEditor.sln")
 
 def DoUnixCommand():
-    os.system("msbuild WuxingogoRuntime.sln")
-    os.system("msbuild WuxingogoEditor.sln")
+    os.system("xbuild WuxingogoRuntime.sln")
+    os.system("xbuild WuxingogoEditor.sln")
 
 
 def copyfile(filepath, despath):
@@ -124,13 +124,12 @@ else:
     # copyfile(currPath()+"/" + editorSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     # copyfile(currPath()+"/" + runtimeSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
 
-    #CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
-    #CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
-    #CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
-    CopyPluginDirectory("/Users/apple/Documents/WordBakery/Word/Assets/plugins/WuxingogoExtension")
-    CopyPluginDirectory("/Users/apple/Documents/WordCross/Assets/plugins/WuxingogoExtension")
-    CopyPluginDirectory("/Users/apple/Documents/Github/Unity2017Test/SDKManager/Assets/Plugins/WuxingogoExtension")
-    CopyPluginDirectory("/Users/apple/Documents/Github/Unity2017Test/NewGame/Assets/Plugins/WuxingogoExtension")
+    copyfile(currPath()+"/" + editorSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
+    copyfile(currPath()+"/" + runtimeSourceFile,"/Users/wuxingogo/Documents/UnityProject/MyProject/Wuliao/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")
+    # CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
+    # CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
+    # CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
+    CopyToProject("/Users/wuxingogo/Documents/UnityProject/Music/Assets/Plugins/WuxingogoExtension/")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 

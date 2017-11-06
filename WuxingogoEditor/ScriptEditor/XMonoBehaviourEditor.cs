@@ -850,19 +850,19 @@ namespace wuxingogo.Editor
             if( type.IsGenericType )
             {
                 var args = type.GetGenericArguments();
-                string result = "";
-                for( int i = 0; i < args.Length; i++ )
-                {
-                    if( i == 0 )
-                    {
-                        result = args[i].Name;
-                    }
-                    else
-                    {
-                        result += "," + args[i].Name;
-                    }
+                // string result = "";
+                // for( int i = 0; i < args.Length; i++ )
+                // {
+                //     if( i == 0 )
+                //     {
+                //         result = args[i].Name;
+                //     }
+                //     else
+                //     {
+                //         result += "," + args[i].Name;
+                //     }
                     
-                }
+                // }
                 var s = tools.StringUtils.CutOnCharLeft( type.Name, "`" );
                 //CreateLabel( string.Format( "{0}<{1}> : {2}", s, result, fieldName ) );
             }
