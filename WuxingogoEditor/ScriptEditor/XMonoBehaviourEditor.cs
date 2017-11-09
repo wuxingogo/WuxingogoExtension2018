@@ -275,7 +275,11 @@ namespace wuxingogo.Editor
 					}
 
 					if (CreateSpaceButton (info.Name)) {
-						info.Invoke (target, objects);
+						var invokeValue = info.Invoke (target, objects);
+						if(invokeValue != null)
+						{
+							XLogger.Log(info.Name + " return : " + invokeValue.ToString());
+						}
 					}
 
                 }

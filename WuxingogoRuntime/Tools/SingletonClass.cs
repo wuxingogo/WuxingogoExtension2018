@@ -28,19 +28,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using wuxingogo.Runtime;
 
 namespace wuxingogo.tools
 {
-
-	public class ComponentSingleton<T> : Component where T : Component
+	/// <summary>
+	/// Singleton Component.
+	/// </summary>
+	public class SingletonC<T> : XMonoBehaviour where T : Component
     {
         static T mInstance = null;
 
         public static T Inst { 
 			get {
 				if (mInstance == null) {
-					GameObject g = new GameObject (typeof(T).Name);
-					mInstance = g.AddComponent<T> ();
+					mInstance = FindObjectOfType<T> ();
+					if (mInstance == null) {
+						GameObject obj = new GameObject (typeof(T).Name);
+						mInstance = obj.AddComponent<T>();
+					}
 				}
 				return mInstance;
 			}

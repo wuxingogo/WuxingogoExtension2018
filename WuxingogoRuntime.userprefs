@@ -1,15 +1,10 @@
 ﻿<Properties StartupItem="WuxingogoRuntime/WuxingogoRuntime.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Attribute/DisableAttribute.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WuxingogoRuntime/Tools/SingletonClass.cs">
     <Files>
-      <File FileName="WuxingogoRuntime/Attribute/DisableAttribute.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Attribute/EnumFlagAttribute.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Attribute/XAttribute.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Attribute/XClassAttribute.cs" Line="1" Column="1" />
       <File FileName="WuxingogoRuntime/Attribute/XFieldAttribute.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/SectorShape.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Tools/MathOp.cs" Line="1" Column="1" />
-      <File FileName="WuxingogoRuntime/Attribute/DisableExpresionAttribute.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/ExtensionMethod.cs" Line="1" Column="1" />
+      <File FileName="WuxingogoRuntime/Tools/SingletonClass.cs" Line="34" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
