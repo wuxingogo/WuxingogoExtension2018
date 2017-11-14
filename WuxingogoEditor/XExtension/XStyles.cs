@@ -32,17 +32,22 @@ public class XStyles : XEditorScriptableObject
 	public List<GUISkin> customSkin = new List<GUISkin>();
 	public static XStyles GetInstance()
 	{
-		if( styles == null )
-			styles = AssetDatabase.LoadAssetAtPath<XStyles>( FileUtil.GetProjectRelativePath( XEditorSetting.PluginPath + "/Templates/XGUIStyle.asset" ) );
+		if (styles == null) {
+			var path = FileUtil.GetProjectRelativePath (XEditorSetting.PluginPath + "/Templates/XGUIStyle.asset");
+			XLogger.Log (path);
+			
+			styles = AssetDatabase.LoadAssetAtPath<XStyles> (path);
+			XLogger.Log (styles == null);
+		}
 		return styles;
 	}
-
+	[MenuItem("Wuxingogo/Reimport Style")]
 	[X]
-	public void InitBuildinStyle()
+	public static void InitBuildinStyle()
 	{
-		game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
-		inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
-		scene = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Scene);
+		GetInstance().game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
+		GetInstance().inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
+		GetInstance().scene = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Scene);
 	}
 	[X]
 	public void RemoveCustomSkin(string name)

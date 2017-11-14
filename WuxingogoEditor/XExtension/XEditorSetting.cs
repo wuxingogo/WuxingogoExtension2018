@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEditor;
 using System;
 using wuxingogo.tools;
+using wuxingogo.Editor;
+
+
 public class XEditorSetting : XBaseWindow
 {
     public static string author = "Wuxingogo";
@@ -59,9 +62,10 @@ public class XEditorSetting : XBaseWindow
             XResources.SaveAll();
         }
         
-		DoButton("ShowAllIcon", ()=> isShowIcons = !isShowIcons);
-		
-		if(isShowIcons) ShowAllIcon();
+//		DoButton("Get Cursor EditorIcon", ()=> isShowIcons = !isShowIcons);
+//		
+//		if(isShowIcons) ShowAllIcon();
+		BeginHorizontal();
 
 		DoButton("persistentDataPath", ()=> {
 			EditorUtility.RevealInFinder(Application.persistentDataPath);
@@ -75,14 +79,22 @@ public class XEditorSetting : XBaseWindow
 		DoButton("streamingAssetsPath", ()=> {
 			EditorUtility.RevealInFinder(Application.streamingAssetsPath);
 		});
+
+		EndHorizontal ();
+
+		Time.timeScale = CreateFloatField ("TimeScale", Time.timeScale);
+
+		Application.targetFrameRate = CreateIntField ("FrameRate", Application.targetFrameRate);
+
+
     }
     
     public void ShowAllIcon(){
+		
 		foreach (MouseCursor item in Enum.GetValues(typeof(MouseCursor)))
 		{
 			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> XLogger.Log(item.ToString()));
 			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
-			GUILayout.Space(10);
 		}
     }
 }

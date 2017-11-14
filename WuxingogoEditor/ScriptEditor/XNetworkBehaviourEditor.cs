@@ -58,5 +58,14 @@ namespace wuxingogo.Editor
 
 		}
 	}
-
+	[CustomEditor(typeof(NetworkManager), true )]
+	public class XNetworkManagerEditor : NetworkManagerEditor
+	{
+		public override void OnInspectorGUI()
+		{
+			XBaseEditor.DrawLogo();
+			base.OnInspectorGUI();
+			XMonoBehaviourEditor.ShowXAttributeMember(target);
+		}
+	}
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using wuxingogo.Runtime;
 
 public static class XResources {
 
@@ -10,7 +11,7 @@ public static class XResources {
 
 	}
 	public static Texture LogoTexture = null;
-
+	[X]
     public static void SaveAll()
     {
         EditorPrefs.SetString("XLogo", AssetDatabase.GetAssetPath(LogoTexture));
