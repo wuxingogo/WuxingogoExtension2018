@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CodeEditor\XCodeTemplateEditor.cs" />
+    <Compile Include="ScriptEditor\XSliderAttributeDrawer.cs" />
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="ScriptEditor\AssetImporterInspector.cs" />
     <Compile Include="ScriptEditor\MonoScriptImporterInspector.cs" />
     <Compile Include="ScriptEditor\XNetworkBehaviourEditor.cs" />
-    <Compile Include="ScriptEditor\SaveComponentInfomation.cs" />
     <Compile Include="XExtension\HandleColorScope.cs" />
     <Compile Include="XExtension\XEditorUtilies.cs" />
     <Compile Include="XExtension\EditorCoroutineRunner.cs" />

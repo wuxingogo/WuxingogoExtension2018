@@ -320,20 +320,25 @@ namespace wuxingogo.Editor
 
                     BeginVertical();
 
-                    DrawFieldHeader( field.FieldType,  field.Name );
+					try{
+						DrawFieldHeader( field.FieldType,  field.Name );
 
-					object result;
-					if (field.IsStatic) {
-						result = field.GetValue( null );
-					} else {
-						result = field.GetValue( target );
+						object result;
+						if (field.IsStatic) {
+							result = field.GetValue( null );
+						} else {
+							result = field.GetValue( target );
+						}
+					
+
+						var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
+						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
+						if( !newValue.Equals( result ) )
+							field.SetValue( target, newValue );
+					}catch(Exception e)
+					{
+						// XLogger.Log(e.Message);
 					}
-                   
-
-					var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
-					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-                    if( !newValue.Equals( result ) )
-                        field.SetValue( target, newValue );
 
                     EndVertical();
 
@@ -386,17 +391,22 @@ namespace wuxingogo.Editor
 					List<object> nextShow = new List<object>();
 
 					BeginVertical();
+					try {
 
-					DrawFieldHeader( field.FieldType,  field.Name );
+						DrawFieldHeader( field.FieldType,  field.Name );
 
-					object result = field.GetValue( null );
+						object result = field.GetValue( null );
 
 
 
-					var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
-					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-					if( !newValue.Equals( result ) )
-						field.SetValue( null, newValue );
+						var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
+						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
+						if( !newValue.Equals( result ) )
+							field.SetValue( null, newValue );
+					}catch(Exception e)
+					{
+						// XLogger.Log(e.Message);
+					}
 
 					EndVertical();
 
@@ -451,18 +461,21 @@ namespace wuxingogo.Editor
 
                     BeginVertical();
 
-                    object result = property.GetValue( target, null );
+					try {
+						object result = property.GetValue( target, null );
 
 
-                    DrawFieldHeader( property.PropertyType, property.Name );
+						DrawFieldHeader( property.PropertyType, property.Name );
 
-                    EditorGUI.BeginDisabledGroup( !property.CanWrite );
-					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
-                    EditorGUI.EndDisabledGroup();
+						EditorGUI.BeginDisabledGroup( !property.CanWrite );
+						var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
+						EditorGUI.EndDisabledGroup();
 
-                    if( !newValue.Equals( result ) )
-                        property.SetValue( target, newValue, null );
-
+						if( !newValue.Equals( result ) )
+							property.SetValue( target, newValue, null );
+					}catch(Exception e){
+						// XLogger.LogError(e.Message);
+					}
 
                     EndVertical();
 
@@ -606,8 +619,8 @@ namespace wuxingogo.Editor
 				IList list = t as IList;
 				if (list == null)
 					XLogger.Log (t.GetType ().ToString ());
-				var name = valueName + " : " + list.Count;
-				bool toggle = DrawHeader(name , name, false, false );
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + list.Count , name, false, false );
 				if( list == null || !toggle)
                     return t;
 				DoButton ("Clear", () => list.Clear ());
@@ -627,14 +640,78 @@ namespace wuxingogo.Editor
 
 
             }
+			else if( type.GetGenericTypeDefinition() == typeof(Queue<>))
+			{
+				Queue queue = ( Queue )t;
+				
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + queue.Count , name, false, false );
+				if( queue == null || !toggle)
+					return t;
+				
+				using( new EditorGUILayout.HorizontalScope() )
+				{
+					DoButton ("Clear", () => queue.Clear());
+					DoButton( "Dequeue",()=>queue.Dequeue() );
+				}
+				
+				var newList = new List<object>();
+
+				BeginVertical();
+
+				var array = queue.ToArray();
+				for( int pos = 0; pos < array.Length; pos++ )
+				{
+					//  TODO loop in list.Count
+					var o = array[pos];
+					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+				}
+				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+				EndVertical();
+
+				DrawListType( newList );
+				
+			}
+			else if( type.GetGenericTypeDefinition() == typeof(Stack<>) )
+			{
+				Stack stack = ( Stack )t;
+				
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + stack.Count , name, false, false );
+				if( stack == null || !toggle)
+					return t;
+				
+				using( new EditorGUILayout.HorizontalScope() )
+				{
+					DoButton ("Clear", () => stack.Clear());
+					DoButton( "Pop",()=>stack.Pop() );
+				}
+				
+				var newList = new List<object>();
+
+				BeginVertical();
+
+				var array = stack.ToArray();
+				for( int pos = 0; pos < array.Length; pos++ )
+				{
+					//  TODO loop in list.Count
+					var o = array[pos];
+					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+				}
+				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+				EndVertical();
+
+				DrawListType( newList );
+				
+			}
             else if( typeof( IDictionary ).IsAssignableFrom( type ) )
             {
                 IDictionary dictionary = ( IDictionary )t;
                 IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
                 IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
                 ICollection collection = dictionary.Values;
-				var name = valueName + " : " + dictionary.Count;
-				bool toggle = DrawHeader( name, name, false, false );
+				var name = valueName;
+				bool toggle = DrawHeader( name+ " : " + dictionary.Count, name, false, false );
 				if(!toggle)
 					return t;
 				DoButton ("Clear", () => dictionary.Clear());
@@ -652,24 +729,25 @@ namespace wuxingogo.Editor
 
             }
 
-            else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
-            {
-				bool toggle = DrawHeader( valueName, valueName, false, false );
-				if(!toggle)
-					return t;
-				
-                IEnumerable collection = ( IEnumerable )t;
-				IEnumerator iteratorValue = collection.GetEnumerator();
-                int index = 0;
-                var newList = new List<object>();
-                while( iteratorValue.MoveNext() )
-                {
-					var valueType = iteratorValue.Current.GetType();
-                    if( iteratorValue.Current != null )
-						GetTypeGUI( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
-                    index++;
-                }
-            }
+//            else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
+//            {
+//				bool toggle = DrawHeader( valueName, valueName, false, false );
+//				if(!toggle)
+//					return t;
+//				
+//                IEnumerable collection = ( IEnumerable )t;
+//				IEnumerator iteratorValue = collection.GetEnumerator();
+//	            
+//                int index = 0;
+//                var newList = new List<object>();
+//                while( iteratorValue.MoveNext() )
+//                {
+//					var valueType = iteratorValue.Current.GetType();
+//                    if( iteratorValue.Current != null )
+//						GetTypeGUI( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
+//                    index++;
+//                }
+//            }
             else if( t != null )
             {
                 if( !nextShow.Contains( t ) )
@@ -690,42 +768,43 @@ namespace wuxingogo.Editor
 
 		protected static object GetTypeGUIOpt( object t, Type type, string valueName, List<object> nextShow )
 		{
+			var controlRect = EditorGUILayout.GetControlRect();
 			if( t == null )
 				t = GetDefaultValue( type );
 			if (t is int || t is System.Int32 || type == typeof(int)) {
-				t = EditorGUI.IntField (EditorGUILayout.GetControlRect(),valueName, Convert.ToInt32 (t));
+				t = EditorGUI.IntField (controlRect,valueName, Convert.ToInt32 (t));
 			} else if (t is System.Int16) {
-				t = (short)EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, Convert.ToInt16 (t));
+				t = (short)EditorGUI.IntField (controlRect, valueName, Convert.ToInt16 (t));
 			} else if (t is System.Int64) {
-				t = EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, (int)Convert.ToInt64 (t));
+				t = EditorGUI.IntField (controlRect, valueName, (int)Convert.ToInt64 (t));
 			} else if (t is byte) {
 				int value = Convert.ToInt32 (t);
-				t = Convert.ToByte (EditorGUI.IntField (EditorGUILayout.GetControlRect(), valueName, value));
+				t = Convert.ToByte (EditorGUI.IntField (controlRect, valueName, value));
 			} else if (type == typeof(String)) {
-				t = EditorGUI.TextField (EditorGUILayout.GetControlRect(), valueName, (string)t);
+				t = EditorGUI.TextField (controlRect, valueName, (string)t);
 			} else if (type == typeof(Single)) {
-				t = EditorGUI.FloatField (EditorGUILayout.GetControlRect(), valueName, Convert.ToSingle (t));
+				t = EditorGUI.FloatField (controlRect, valueName, Convert.ToSingle (t));
 			} else if (type == typeof(Boolean)) {
-				t = EditorGUI.Toggle (EditorGUILayout.GetControlRect(), valueName, Convert.ToBoolean (t));
+				t = EditorGUI.Toggle (controlRect, valueName, Convert.ToBoolean (t));
 			} else if (type.BaseType == typeof(Enum)) {
-				t = EditorGUI.EnumPopup (EditorGUILayout.GetControlRect(), valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
+				t = EditorGUI.EnumPopup (controlRect, valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
 			} else if (type.IsSubclassOf (typeof(Object))) {
-				t = EditorGUI.ObjectField (EditorGUILayout.GetControlRect(), valueName, (Object)t, type);
+				t = EditorGUI.ObjectField (controlRect, valueName, (Object)t, type);
 			} else if (t is Color || t is Color32) {
-				t = EditorGUI.ColorField(EditorGUILayout.GetControlRect(), valueName, (Color)t);
+				t = EditorGUI.ColorField(controlRect, valueName, (Color)t);
 			} else if (t is Vector2) {
 				Vector2 v = (Vector2)t;
-				t = EditorGUI.Vector2Field (EditorGUILayout.GetControlRect(), valueName, v);
+				t = EditorGUI.Vector2Field (controlRect, valueName, v);
 			} else if (t is Vector3) {
 				Vector3 v = (Vector3)t;
-				t = EditorGUI.Vector3Field (EditorGUILayout.GetControlRect(), valueName, v);
+				t = EditorGUI.Vector3Field (controlRect, valueName, v);
 			} else if (t is Vector4) {
 				Vector4 v = (Vector4)t;
-				t = EditorGUI.Vector4Field (EditorGUILayout.GetControlRect(), valueName, v);
+				t = EditorGUI.Vector4Field (controlRect, valueName, v);
 			} else if (t is Quaternion) {
 				Quaternion q = (Quaternion)t;
 				Vector4 v = new Vector4 (q.x, q.y, q.z, q.w);
-				v = EditorGUI.Vector4Field (EditorGUILayout.GetControlRect(), valueName, v);
+				v = EditorGUI.Vector4Field (controlRect, valueName, v);
 				q.x = v.x;
 				q.y = v.y;
 				q.z = v.z;
@@ -736,7 +815,7 @@ namespace wuxingogo.Editor
 				CreateLabel (valueName);
 				for (int i = 0; i < 4; i++) {
 					//BeginVertical ();
-					EditorGUI.Vector2Field (EditorGUILayout.GetControlRect(), "", m.GetRow(i));
+					EditorGUI.Vector2Field (controlRect, "", m.GetRow(i));
 					//EndVertical ();
 				}
 			}
@@ -745,11 +824,12 @@ namespace wuxingogo.Editor
 				IList list = t as IList;
 				if (list == null)
 					XLogger.Log (t.GetType ().ToString ());
-				var name = valueName + " : " + list.Count;
-				bool toggle = DrawHeader(name , name, false, false );
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + list.Count , name, false, false );
 				if( list == null || !toggle)
 					return t;
 				DoButton ("Clear", () => list.Clear ());
+				
 				var newList = new List<object>();
 
 				BeginVertical();
@@ -757,7 +837,14 @@ namespace wuxingogo.Editor
 				{
 					//  TODO loop in list.Count
 					var o = list[pos];
-					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+					using( new EditorGUILayout.HorizontalScope() )
+					{
+						GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+						DoButton( "Delete", () =>
+						{
+							list.Remove( o );
+						} );
+					}
 				}
 				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
 				EndVertical();
@@ -766,14 +853,78 @@ namespace wuxingogo.Editor
 
 
 			}
+			else if( type.GetGenericTypeDefinition() == typeof(Queue<>))
+			{
+				Queue queue = ( Queue )t;
+				
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + queue.Count , name, false, false );
+				if( queue == null || !toggle)
+					return t;
+				
+				using( new EditorGUILayout.HorizontalScope() )
+				{
+					DoButton ("Clear", () => queue.Clear());
+					DoButton( "Dequeue",()=>queue.Dequeue() );
+				}
+				
+				var newList = new List<object>();
+
+				BeginVertical();
+
+				var array = queue.ToArray();
+				for( int pos = 0; pos < array.Length; pos++ )
+				{
+					//  TODO loop in list.Count
+					var o = array[pos];
+					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+				}
+				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+				EndVertical();
+
+				DrawListType( newList );
+				
+			}
+			else if( type.GetGenericTypeDefinition() == typeof(Stack<>) )
+			{
+				Stack stack = ( Stack )t;
+				
+				var name = valueName;
+				bool toggle = DrawHeader(name + " : " + stack.Count , name, false, false );
+				if( stack == null || !toggle)
+					return t;
+				
+				using( new EditorGUILayout.HorizontalScope() )
+				{
+					DoButton ("Clear", () => stack.Clear());
+					DoButton( "Pop",()=>stack.Pop() );
+				}
+				
+				var newList = new List<object>();
+
+				BeginVertical();
+
+				var array = stack.ToArray();
+				for( int pos = 0; pos < array.Length; pos++ )
+				{
+					//  TODO loop in list.Count
+					var o = array[pos];
+					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+				}
+				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+				EndVertical();
+
+				DrawListType( newList );
+				
+			}
 			else if( typeof( IDictionary ).IsAssignableFrom( type ) )
 			{
 				IDictionary dictionary = ( IDictionary )t;
 				IEnumerator iteratorKey = dictionary.Keys.GetEnumerator();
 				IEnumerator iteratorValue = dictionary.Values.GetEnumerator();
 				ICollection collection = dictionary.Values;
-				var name = valueName + " : " + dictionary.Count;
-				bool toggle = DrawHeader( name, name, false, false );
+				var name = valueName;
+				bool toggle = DrawHeader( name + " : " + dictionary.Count, name, false, false );
 				if(!toggle)
 					return t;
 				DoButton ("Clear", () => dictionary.Clear());
@@ -801,11 +952,10 @@ namespace wuxingogo.Editor
 				IEnumerator iteratorValue = collection.GetEnumerator();
 				int index = 0;
 				var newList = new List<object>();
-				while( iteratorValue.MoveNext() )
+				while( iteratorValue.MoveNext() && iteratorValue.Current != null)
 				{
 					var valueType = iteratorValue.Current.GetType();
-					if( iteratorValue.Current != null )
-						GetTypeGUIOpt( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
+					GetTypeGUIOpt( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
 					index++;
 				}
 			}
@@ -813,9 +963,6 @@ namespace wuxingogo.Editor
 			{
 				if( !nextShow.Contains( t ) )
 					nextShow.Add( t );
-
-				//                EditorGUILayout.Space();
-				//                DrawHeader( type.Name, type.Name, false, false );
 
 			}
 			else

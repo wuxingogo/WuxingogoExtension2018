@@ -5,12 +5,13 @@ E:/Work/Wuxingogo/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
 E:/Work/Wuxingogo/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.csprojResolveAssemblyReference.cache
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
-/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll.mdb
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll
-/Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll.mdb
 /Users/apple/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.dll
 /Users/apple/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.pdb
 /Users/apple/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.csprojResolveAssemblyReference.cache
 /Users/apple/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.csproj.CoreCompileInputs.cache
 /Users/apple/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
 /Users/apple/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.pdb
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.csproj.CoreCompileInputs.cache
+/Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb

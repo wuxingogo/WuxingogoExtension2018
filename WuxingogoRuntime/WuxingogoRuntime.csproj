@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Attribute\XSliderAttribute.cs" />
     <Compile Include="Runtime\XMonoBehaviour.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
     <Compile Include="Tools\XLogger.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Tools\AsynchronousFunc.cs" />
     <Compile Include="Tools\DelegateUtils.cs" />
     <Compile Include="Tools\XUnityTimer.cs" />
-    <Compile Include="Attribute\PersistentAmongPlayModeAttribute.cs" />
     <Compile Include="Tools\GizmosScope.cs" />
     <Compile Include="Tools\ExtensionMethod.cs" />
     <Compile Include="Attribute\IBehaviour.cs" />
