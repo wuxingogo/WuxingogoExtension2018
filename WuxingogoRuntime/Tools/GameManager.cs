@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using UnityEngine;
+using wuxingogo.Reflection;
 using wuxingogo.Runtime;
 
 namespace wuxingogo.Runtime
@@ -34,6 +35,11 @@ namespace wuxingogo.Runtime
 	{
 		private static T m_instance;
 
+		public virtual void OnLoad()
+		{
+			
+		}
+
 		public static T Instance
 		{
 			get
@@ -41,6 +47,7 @@ namespace wuxingogo.Runtime
 				if (m_instance == null)
 				{
 					m_instance = Resources.Load<T>(string.Format("GameManager/{0}", typeof(T).Name));
+					m_instance.GetType().TryInvokeMethod( m_instance, "OnLoad" );
 				}
 
 				return m_instance;

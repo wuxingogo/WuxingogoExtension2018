@@ -853,7 +853,7 @@ namespace wuxingogo.Editor
 
 
 			}
-			else if( type.GetGenericTypeDefinition() == typeof(Queue<>))
+			else if( type.GetGenericTypeDefinition() == typeof(Queue<>) )
 			{
 				Queue queue = ( Queue )t;
 				
