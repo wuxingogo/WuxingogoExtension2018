@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -21,6 +22,33 @@ namespace wuxingogo.tools
 			}
 			return component;
 		}
+
+		public static T[] GetComponentsAsArray<T>( this GameObject[] gameObjects, bool includeChildren = false ) where T : Component
+		{
+			return GetComponentsAsList<T>( gameObjects, includeChildren ).ToArray();
+		}
+		
+		public static List<T> GetComponentsAsList<T>( this GameObject[] gameObjects, bool includeChildren = false ) where T : Component
+		{
+			var list = new List<T>();
+			if( includeChildren )
+			{
+				for( int i = 0; i < gameObjects.Length; i++ )
+				{
+					list.AddRange(gameObjects[ i ].GetComponentsInChildren<T>( true ));
+				}
+			}
+			else
+			{
+				for( int i = 0; i < gameObjects.Length; i++ )
+				{
+					list.AddRange(gameObjects[ i ].GetComponents<T>());
+				}
+			}
+			
+			return list;
+		}
+		
 		#region ==== Reflection
 		public static T GetAttribute<T>(this MemberInfo type) where T : Attribute{
 			var attributes = type.GetCustomAttributes (typeof(T), true);
@@ -126,7 +154,7 @@ namespace wuxingogo.tools
 			return g.transform.parent;
 		}
 
-
+		
 
 
 		#endregion
