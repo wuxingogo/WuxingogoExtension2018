@@ -95,7 +95,7 @@ namespace wuxingogo.tools
             if (prefab == null)
                 return null;
             GameObject go = (GameObject)GameObject.Instantiate(prefab);
-            go.transform.parent = parent;
+            go.transform.SetParent(parent);
             go.transform.localPosition = Vector3.zero;
             go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;
@@ -116,6 +116,12 @@ namespace wuxingogo.tools
             result.transform.localScale = Vector3.one;
             return result;
         }
+        public static T CreatePrefab<T>(Transform parent, GameObject prefab) where T : Component
+        {
+            var go = CreatePrefab(parent, prefab);
+
+            return go.GetComponent<T>();
+        }
 
         public static T CreatePrefab<T>(Transform parent, string prefabName) where T : Component
         {
@@ -130,7 +136,7 @@ namespace wuxingogo.tools
             if (o == null)
                 return null;
             GameObject go = (GameObject)GameObject.Instantiate(o);
-            go.transform.parent = parent;
+            go.transform.SetParent(  parent);
             go.transform.localPosition = Vector3.zero;
             go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;

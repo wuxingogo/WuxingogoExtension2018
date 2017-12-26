@@ -57,11 +57,11 @@ namespace wuxingogo.Editor
         {
             try
             {
-
-	 
+	            EditorGUI.indentLevel++;
                 ShowXMethods<XAttribute>( target );
                 ShowXFields<XAttribute>( target );
                 ShowProperties<XAttribute>( target );
+	            EditorGUI.indentLevel--;
             }
             catch
             {
@@ -87,7 +87,12 @@ namespace wuxingogo.Editor
 			}
 
 		}
-
+	    /// <summary>
+	    /// https://forum.unity.com/threads/indenting-guilayout-objects.113494/
+	    /// </summary>
+	    private static int TAB_SIZE = 10;    // pixel size of 4 spaces?
+		
+		    
         static public bool DrawHeader( string text, string key, bool forceOn, bool minimalistic )
         {
             bool state = EditorPrefs.GetBool( key, true );
@@ -96,9 +101,9 @@ namespace wuxingogo.Editor
                 GUILayout.Space( 3f );
 //            if( !forceOn && !state )
 //                GUI.backgroundColor = new Color( 0.8f, 0.8f, 0.8f );
-            GUILayout.BeginHorizontal();
+            BeginHorizontal();
             GUI.changed = false;
-
+	        
             if( minimalistic )
             {
                 if( state )
@@ -106,12 +111,12 @@ namespace wuxingogo.Editor
                 else
                     text = "\u25BA" + ( char )0x200a + text;
 
-                GUILayout.BeginHorizontal();
-               
+                BeginHorizontal();
+//	            GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
                 if( !GUILayout.Toggle( true, text, "PreToolbar2", GUILayout.MinWidth( 20f ) ) )
                     state = !state;
 //                GUI.contentColor = Color.white;
-                GUILayout.EndHorizontal();
+                EndHorizontal();
             }
             else
             {
@@ -120,8 +125,11 @@ namespace wuxingogo.Editor
                     text = "\u25BC " + text;
                 else
                     text = "\u25BA " + text;
+	            BeginHorizontal();
+//	            GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
                 if( !GUILayout.Toggle( true, text, "dragtab", GUILayout.MinWidth( 20f ) ) )
                     state = !state;
+	            EndHorizontal();
             }
 
             if( GUI.changed )
@@ -129,7 +137,7 @@ namespace wuxingogo.Editor
 
             if( !minimalistic )
                 GUILayout.Space( 2f );
-            GUILayout.EndHorizontal();
+            EndHorizontal();
             GUI.backgroundColor = Color.white;
             if( !forceOn && !state )
                 GUILayout.Space( 3f );
@@ -413,7 +421,7 @@ namespace wuxingogo.Editor
 					foreach( var entry in nextShow )
 					{
 						var t = entry.GetType();
-						bool isShow = DrawHeader( t.Name, type.Name, false, false );
+						bool isShow = DrawHeader( t.Name, t.Name, false, false );
 
 						if( isShow )
 						{
@@ -547,7 +555,7 @@ namespace wuxingogo.Editor
 					foreach( var entry in nextShow )
 					{
 						var t = entry.GetType();
-						bool isShow = DrawHeader( t.Name, t.Name, false, false );
+						bool isShow = DrawHeader( entry.ToString(), t.Name, false, false );
 						if( isShow )
 						{
 							ShowXAttributeMember( entry );
@@ -613,6 +621,14 @@ namespace wuxingogo.Editor
 					CreateVector4Field ("", m.GetRow(i));
 					//EndVertical ();
 				}
+			}
+			else if( t is DateTime )
+			{
+				DateTime dateTime = ( DateTime )t;
+				
+				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
+				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
+				
 			}
             else if( typeof( IList ).IsAssignableFrom( type ) )
             {
@@ -818,6 +834,13 @@ namespace wuxingogo.Editor
 					EditorGUI.Vector2Field (controlRect, "", m.GetRow(i));
 					//EndVertical ();
 				}
+			}else if( t is DateTime )
+			{
+				DateTime dateTime = ( DateTime )t;
+				
+				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
+				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
+				
 			}
 			else if( typeof( IList ).IsAssignableFrom( type ) )
 			{

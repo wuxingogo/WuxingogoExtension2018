@@ -154,11 +154,26 @@ namespace wuxingogo.tools
 			return g.transform.parent;
 		}
 
+		public static object SendMessageBetter(this MonoBehaviour obj, string name, params object[] parameters) {
+			Type[] types = new Type[parameters.Length];
+			for (int i = 0; i < parameters.Length; i++) {
+				types[i] = parameters[i].GetType();
+			}
+              
+			MethodInfo mInfo = obj.GetType().GetMethod(name, types);
+             
+			if (mInfo != null) {
+				return mInfo.Invoke(obj, parameters);
+			}
+			return null;
+		}
 		
-
-
 		#endregion
-
 	}
+
+
+	
+
+	
 }
 

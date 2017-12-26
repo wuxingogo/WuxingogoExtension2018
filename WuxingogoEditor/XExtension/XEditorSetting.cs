@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using System;
+using System.Globalization;
 using wuxingogo.tools;
 using wuxingogo.Editor;
 
@@ -47,7 +48,8 @@ public class XEditorSetting : XBaseWindow
 			return XFileUtils.GetAbsolutePath(Application.dataPath, "..");
 		}
 	}
-	private bool isShowIcons = false;
+	
+	public static CultureInfo CultureInfo = new CultureInfo("en-US");
 	
     [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
     static void init()

@@ -183,7 +183,7 @@ public class XBaseEditor : Editor
 		return EditorGUILayout.TextField( fieldName, value );
 	}
 
-	public string CreateStringField(string value, params GUILayoutOption[] option )
+	public static string CreateStringField(string value, params GUILayoutOption[] option )
 	{
 		return EditorGUILayout.TextField( value );
 	}
@@ -221,22 +221,26 @@ public class XBaseEditor : Editor
 
 	public static void BeginHorizontal()
 	{
+		EditorGUI.indentLevel++;
 		EditorGUILayout.BeginHorizontal(Skin.textArea );
 	}
 
 	public static void EndHorizontal()
 	{
 		EditorGUILayout.EndHorizontal();
+		EditorGUI.indentLevel--;
 	}
 
 	public static void BeginVertical()
 	{
+		EditorGUI.indentLevel++;
 		EditorGUILayout.BeginVertical(Skin.textArea);
 	}
 
 	public static void EndVertical()
 	{
 		EditorGUILayout.EndVertical();
+		EditorGUI.indentLevel--;
 	}
 
     public void BeginGroup()

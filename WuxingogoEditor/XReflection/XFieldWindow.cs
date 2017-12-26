@@ -152,15 +152,10 @@ namespace wuxingogo.Reflection
                             {
                                 field.SetValue( Target, changeValue );
                             }
-                            catch( System.ArgumentException e )
+                            catch
                             {
-
+                                
                             }
-                            catch( System.FieldAccessException e )
-                            {
-
-                            }
-
                             Repaint();
                         }
 
