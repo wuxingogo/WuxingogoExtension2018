@@ -167,6 +167,16 @@ namespace wuxingogo.tools
 			}
 			return null;
 		}
+
+        public static void SetUIActive(this GameObject g, bool active)
+        {
+            var components = g.GetComponentsInChildren<UnityEngine.UI.Graphic>();
+            for (int i = 0; i < components.Length; i++)
+            {
+                components[i].enabled = active;
+            }
+        
+        }
 		
 		#endregion
 	}
