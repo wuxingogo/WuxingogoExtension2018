@@ -339,7 +339,8 @@ namespace wuxingogo.Editor
 						}
 					
 
-						var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
+						var newValue = GetTypeGUIOpt
+							( result, field.FieldType,field.Name, nextShow );
 						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
 						if( !newValue.Equals( result ) )
 							field.SetValue( target, newValue );
@@ -593,7 +594,9 @@ namespace wuxingogo.Editor
 				t = CreateEnumSelectable (valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
 			} else if (type.IsSubclassOf (typeof(Object))) {
 				t = CreateObjectField (valueName, (Object)t, type);
-			} else if (t is Color || t is Color32) {
+			}else if (t is Rect) {
+				t = EditorGUILayout.RectField(valueName, (Rect)t);
+			}else if (t is Color || t is Color32) {
 				t = EditorGUILayout.ColorField (valueName, (Color)t);
 			} else if (t is Vector2) {
 				Vector2 v = (Vector2)t;
@@ -604,7 +607,8 @@ namespace wuxingogo.Editor
 			} else if (t is Vector4) {
 				Vector4 v = (Vector4)t;
 				t = CreateVector4Field (valueName, v);
-			} else if (t is Quaternion) {
+			}
+			else if (t is Quaternion) {
 				Quaternion q = (Quaternion)t;
 				Vector4 v = new Vector4 (q.x, q.y, q.z, q.w);
 				v = CreateVector4Field (valueName, v);
@@ -808,6 +812,8 @@ namespace wuxingogo.Editor
 				t = EditorGUI.ObjectField (controlRect, valueName, (Object)t, type);
 			} else if (t is Color || t is Color32) {
 				t = EditorGUI.ColorField(controlRect, valueName, (Color)t);
+			}else if (t is Rect) {
+				t = EditorGUI.RectField(controlRect, valueName, (Rect)t);
 			} else if (t is Vector2) {
 				Vector2 v = (Vector2)t;
 				t = EditorGUI.Vector2Field (controlRect, valueName, v);

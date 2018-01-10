@@ -45,6 +45,11 @@ public class XBaseEditor : Editor
 		}
 	}
 
+	public override bool RequiresConstantRepaint()
+	{
+		return true;
+	}
+
 	public static bool HorizontalButton(string name)
 	{
 		EditorGUILayout.BeginHorizontal();

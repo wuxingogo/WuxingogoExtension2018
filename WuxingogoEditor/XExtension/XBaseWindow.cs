@@ -46,6 +46,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		GUILayout.Box( XResources.LogoTexture, widthLayout, GUILayout.Height( 100 ) );
 	}
 
+
 	public void OnGUI()
 	{
 		DrawLogo( GUILayout.ExpandWidth( true ) );

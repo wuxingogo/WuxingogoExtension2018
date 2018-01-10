@@ -8,11 +8,12 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using System;
 using System.Diagnostics;
+using wuxingogo.Runtime;
 
 namespace wuxingogo.Editor
 {
     [InitializeOnLoad]
-    public class QuickToggle
+    public class QuickToggle : XBaseWindow
     {
         private const string PrefKeyShowToggle = "UnityToolbag.QuickToggle.Visible";
 		private const string PrefKeyShowHideComponent = "UnityToolbag.QuickToggle.HideComponent";
@@ -20,6 +21,7 @@ namespace wuxingogo.Editor
         private static GUIStyle styleLock, styleLockUnselected, styleVisible;
 
 		private static bool showHideComponents = false;
+ 
 
         static QuickToggle()
         {

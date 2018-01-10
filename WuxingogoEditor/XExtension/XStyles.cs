@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using wuxingogo.Runtime;
 using UnityEditor;
 using wuxingogo.Editor;
@@ -30,6 +31,7 @@ public class XStyles : XEditorScriptableObject
 	public GUISkin inspector;
 	public GUISkin scene;
 	public List<GUISkin> customSkin = new List<GUISkin>();
+
 	public static XStyles GetInstance()
 	{
 		if (styles == null) {
@@ -101,6 +103,16 @@ public class XStyles : XEditorScriptableObject
 
 	public GUIStyle FindStyle(string Name)
 	{
-		return skin.FindStyle( Name );
+		var style = scene.FindStyle( Name );
+		if( style == null )
+		{
+			style = new GUIStyle();
+			style.name = Name;
+			var styles = skin.customStyles.ToList();
+			styles.Add( style );
+			scene.customStyles = styles.ToArray();
+			EditorUtility.SetDirty( scene );
+		}
+		return style;
 	}
 }
