@@ -29,9 +29,12 @@ using Conditional = System.Diagnostics.ConditionalAttribute;
 
 public class XLogger
 {
-	public const string PLATFORM = "XLOG_ENABLE";
+    /// <summary>
+    /// enable in "Player Setting" Scripting Define Symbols
+    /// </summary>
+	public const string PREDEFINE = "XLOG_ENABLE";
     static public bool EnableLog = true;
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void Log( object message )
     {
         if( EnableLog )
@@ -39,7 +42,7 @@ public class XLogger
 			Debug.Log( message );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void Log( object message, Object context )
     {
         if( EnableLog )
@@ -47,7 +50,7 @@ public class XLogger
             Debug.Log( message, context );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -55,7 +58,7 @@ public class XLogger
             Debug.LogFormat( context, message, args );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogFormat( string message, params object[] args )
     {
         if( EnableLog )
@@ -63,7 +66,7 @@ public class XLogger
             Debug.LogFormat( message, args );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogError( object message )
     {
         if( EnableLog )
@@ -71,7 +74,7 @@ public class XLogger
             Debug.LogError( message );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogErrorFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -79,7 +82,7 @@ public class XLogger
             Debug.LogErrorFormat( context, message, args );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogError( object message, Object context )
     {
         if( EnableLog )
@@ -87,7 +90,7 @@ public class XLogger
             Debug.LogError( message, context );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogWarning( object message )
     {
         if( EnableLog )
@@ -95,7 +98,7 @@ public class XLogger
             Debug.LogWarning( message );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogWarning( object message, Object context )
     {
         if( EnableLog )
@@ -103,7 +106,7 @@ public class XLogger
             Debug.LogWarning( message, context );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogWarningFormat( string message, params object[] args )
     {
         if( EnableLog )
@@ -111,7 +114,7 @@ public class XLogger
             Debug.LogWarningFormat( message, args );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
     static public void LogWarningFormat( Object context, string message, params object[] args )
     {
         if( EnableLog )
@@ -119,13 +122,13 @@ public class XLogger
             Debug.LogWarningFormat( context, message, args );
         }
     }
-	[Conditional(PLATFORM)]
+	[Conditional(PREDEFINE)]
 	static public void Break()
 	{
 		if( EnableLog )
 		{
 			Debug.Log( "XLogger Break ");
-			Debug.Break();
+		    Debug.Break();
 		}
 	}
 

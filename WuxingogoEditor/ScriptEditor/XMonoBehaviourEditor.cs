@@ -408,7 +408,7 @@ namespace wuxingogo.Editor
 
 
 
-						var newValue = GetTypeGUIOpt( result, field.FieldType,field.Name, nextShow );
+						var newValue = GetTypeGUIOpt( result, field.FieldType, field.Name, nextShow );
 						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
 						if( !newValue.Equals( result ) )
 							field.SetValue( null, newValue );
@@ -882,70 +882,70 @@ namespace wuxingogo.Editor
 
 
 			}
-			else if( type.GetGenericTypeDefinition() == typeof(Queue<>) )
-			{
-				Queue queue = ( Queue )t;
-				
-				var name = valueName;
-				bool toggle = DrawHeader(name + " : " + queue.Count , name, false, false );
-				if( queue == null || !toggle)
-					return t;
-				
-				using( new EditorGUILayout.HorizontalScope() )
-				{
-					DoButton ("Clear", () => queue.Clear());
-					DoButton( "Dequeue",()=>queue.Dequeue() );
-				}
-				
-				var newList = new List<object>();
-
-				BeginVertical();
-
-				var array = queue.ToArray();
-				for( int pos = 0; pos < array.Length; pos++ )
-				{
-					//  TODO loop in list.Count
-					var o = array[pos];
-					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
-				}
-				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
-				EndVertical();
-
-				DrawListType( newList );
-				
-			}
-			else if( type.GetGenericTypeDefinition() == typeof(Stack<>) )
-			{
-				Stack stack = ( Stack )t;
-				
-				var name = valueName;
-				bool toggle = DrawHeader(name + " : " + stack.Count , name, false, false );
-				if( stack == null || !toggle)
-					return t;
-				
-				using( new EditorGUILayout.HorizontalScope() )
-				{
-					DoButton ("Clear", () => stack.Clear());
-					DoButton( "Pop",()=>stack.Pop() );
-				}
-				
-				var newList = new List<object>();
-
-				BeginVertical();
-
-				var array = stack.ToArray();
-				for( int pos = 0; pos < array.Length; pos++ )
-				{
-					//  TODO loop in list.Count
-					var o = array[pos];
-					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
-				}
-				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
-				EndVertical();
-
-				DrawListType( newList );
-				
-			}
+//			else if( typeof(Queue<>).IsAssignableFrom( type ) )
+//			{
+//				Queue<> queue = ( Queue<> )t;
+//				
+//				var name = valueName;
+//				bool toggle = DrawHeader(name + " : " + queue.Count , name, false, false );
+//				if( queue == null || !toggle)
+//					return t;
+//				
+//				using( new EditorGUILayout.HorizontalScope() )
+//				{
+//					DoButton ("Clear", () => queue.Clear());
+//					DoButton( "Dequeue",()=>queue.Dequeue() );
+//				}
+//				
+//				var newList = new List<object>();
+//
+//				BeginVertical();
+//
+//				var array = queue.ToArray();
+//				for( int pos = 0; pos < array.Length; pos++ )
+//				{
+//					//  TODO loop in list.Count
+//					var o = array[pos];
+//					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+//				}
+//				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+//				EndVertical();
+//
+//				DrawListType( newList );
+//				
+//			}
+//			else if( typeof(Stack<>).IsAssignableFrom( type )  )
+//			{
+//				var stack = ( Stack<> )t;
+//				
+//				var name = valueName;
+//				bool toggle = DrawHeader(name + " : " + stack.Count , name, false, false );
+//				if( stack == null || !toggle)
+//					return t;
+//				
+//				using( new EditorGUILayout.HorizontalScope() )
+//				{
+//					DoButton ("Clear", () => stack.Clear());
+//					DoButton( "Pop",()=>stack.Pop() );
+//				}
+//				
+//				var newList = new List<object>();
+//
+//				BeginVertical();
+//
+//				var array = stack.ToArray();
+//				for( int pos = 0; pos < array.Length; pos++ )
+//				{
+//					//  TODO loop in list.Count
+//					var o = array[pos];
+//					GetTypeGUIOpt( o, o.GetType(), valueName + "_" + pos, newList );
+//				}
+//				//bool isShow = DrawHeader( type.Name, type.Name, false, false );
+//				EndVertical();
+//
+//				DrawListType( newList );
+//				
+//			}
 			else if( typeof( IDictionary ).IsAssignableFrom( type ) )
 			{
 				IDictionary dictionary = ( IDictionary )t;
@@ -963,7 +963,7 @@ namespace wuxingogo.Editor
 //					BeginHorizontal();
 					var keyType = iteratorKey.Current.GetType ();
 					var valueType = dictionary [iteratorKey.Current].GetType ();
-					GetTypeGUIOpt( iteratorKey.Current,keyType , keyType.Name, newList );
+					GetTypeGUIOpt( iteratorKey.Current, keyType , keyType.Name, newList );
 					GetTypeGUIOpt( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
 //					EndHorizontal();
 					DrawListType( newList );
@@ -971,21 +971,20 @@ namespace wuxingogo.Editor
 
 			}
 
-			else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
+			else if( t is IEnumerable && t is ICollection )
 			{
-				bool toggle = DrawHeader( valueName, valueName, false, false );
+				int count = ( ( ICollection )t ).Count;
+				IEnumerable b = ( IEnumerable )t;
+				var name = valueName;
+				bool toggle = DrawHeader( name + " : " + count, name, false, false );
 				if(!toggle)
 					return t;
-
-				IEnumerable collection = ( IEnumerable )t;
-				IEnumerator iteratorValue = collection.GetEnumerator();
-				int index = 0;
-				var newList = new List<object>();
-				while( iteratorValue.MoveNext() && iteratorValue.Current != null)
+				foreach( var item in b )
 				{
-					var valueType = iteratorValue.Current.GetType();
-					GetTypeGUIOpt( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
-					index++;
+					var newList = new List<object>();
+					var itemType = item.GetType();	
+					GetTypeGUIOpt( item, itemType , itemType.Name, newList );
+					DrawListType( newList );
 				}
 			}
 			else if( t != null )

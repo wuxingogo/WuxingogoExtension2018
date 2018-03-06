@@ -11,6 +11,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace wuxingogo.tools
@@ -80,6 +81,13 @@ namespace wuxingogo.tools
 				value = value.Substring(0, value.IndexOf(single));
 			}
 			return value;
+		}
+
+		public static string ToUTF8( this string src )
+		{
+			byte[] bytes = Encoding.Default.GetBytes(src);
+			src = Encoding.UTF8.GetString(bytes);
+			return src;
 		}
 	}
 }

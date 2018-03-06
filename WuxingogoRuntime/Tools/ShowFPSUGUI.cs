@@ -1,5 +1,5 @@
-//
-// GameManager.cs
+﻿//
+// ShowFPS.cs
 //
 // Author:
 //       ly-user <52111314ly@gmail.com>
@@ -25,40 +25,35 @@
 // THE SOFTWARE.
 
 using UnityEngine;
-using wuxingogo.Reflection;
-using wuxingogo.Runtime;
+using System;
+using UnityEngine.UI;
 
-namespace wuxingogo.Runtime
-{
-	
-	public class GameManager<T> : XScriptableObject where T : XScriptableObject
-	{
-		private static T m_instance;
 
-		public virtual void OnLoad()
-		{
-			
-		}
+namespace wuxingogo.tools {
+    [ExecuteInEditMode]
+    public class ShowFPSUGUI : MonoBehaviour
+    {
+        [NonSerialized]
+        private int mFrame;
 
-		public static T Instance
-		{
-			get
-			{
-				if (m_instance == null)
-				{
-					var name = typeof( T ).Name;
-					m_instance = Resources.Load<T>(string.Format("GameManager/{0}", name));
-					m_instance.GetType().TryInvokeMethod( m_instance, "OnLoad" );
-					
-					GameObject go = new GameObject(name);
-					go.hideFlags = HideFlags.DontSave;
-					
-					var runtime = go.AddComponent<GameManagerRuntime>();
-					runtime.gameManger = m_instance;
-				}
+        [NonSerialized]
+        public int mFPS;
 
-				return m_instance;
-			}
-		}
-	}
+        [NonSerialized]
+        private float mNextFPS = 0.5f;
+        [SerializeField]
+        private Text mLabel = null;
+        private void Update()
+        {
+            this.mFrame++;
+            this.mNextFPS += Time.unscaledDeltaTime;
+            while (this.mNextFPS > 0.5f)
+            {
+                this.mNextFPS -= 0.5f;
+                this.mFPS = Mathf.RoundToInt((float)this.mFrame * 2f);
+                this.mLabel.text = this.mFPS.ToString();
+                this.mFrame = 0;
+            }
+        }
+    }
 }

@@ -82,6 +82,8 @@ public class XEditorSetting : XBaseWindow
 			EditorUtility.RevealInFinder(Application.streamingAssetsPath);
 		});
 
+	    string time = System.DateTime.Now.ToString();
+
 		EndHorizontal ();
 
 		Time.timeScale = CreateFloatField ("TimeScale", Time.timeScale);
