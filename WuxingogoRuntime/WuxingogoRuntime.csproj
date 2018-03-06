@@ -52,7 +52,9 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Attribute\XSliderAttribute.cs" />
     <Compile Include="Runtime\XMonoBehaviour.cs" />
+    <Compile Include="Tools\GameManagerRuntime.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
+    <Compile Include="Tools\ShowFPSUGUI.cs" />
     <Compile Include="Tools\XLogger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
