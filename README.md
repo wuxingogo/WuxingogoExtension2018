@@ -51,7 +51,7 @@ Finite-State-Machine Window.
 
 ![github](ScreenShot/BehaviourFSM.jpg "github") 
 
-The project had been moved to https://github.com/wuxingogo/Unity-BTFsm
+This module had been moved to https://github.com/wuxingogo/Unity-BTFsm
 
 ####XCodeGenerateEditor:
 
@@ -64,6 +64,8 @@ TODO LIST:
 Compile Code From XReflectionWindow.
 
 ![github](ScreenShot/CodeGenerate.png "github") 
+
+This module had been move to https://github.com/wuxingogo/CodeDomEditor
 
 ####XReflectionWindow:
 
