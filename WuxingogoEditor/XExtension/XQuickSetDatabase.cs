@@ -23,20 +23,20 @@ public class XQuickSetDatabase : XBaseWindow
     }
 
 
-    static Object dbFile = null;
-    List<string> allTable = new List<string>();
+    private static Object dbFile = null;
+    private List<string> allTable = new List<string>();
 
-    List<string> allTableField = new List<string>();
+    private List<string> allTableField = new List<string>();
 
-    bool isShowTable = true;
+    private bool isShowTable = true;
 
-    Dictionary<string, List<object>> tableDataDict = new Dictionary<string, List<object>>();
-    Dictionary<string, Type> tableTypeDict = new Dictionary<string, Type>();
-    string filterStr = "";
+    private Dictionary<string, List<object>> tableDataDict = new Dictionary<string, List<object>>();
+    private Dictionary<string, Type> tableTypeDict = new Dictionary<string, Type>();
+    private string filterStr = "";
 
-    int dataTable = 0;
+    private int dataTable = 0;
 
-    int selectField = -1;
+    private int selectField = -1;
 
     private SqliteConnection dbConnection;
     private SqliteCommand dbCommand;
@@ -44,9 +44,12 @@ public class XQuickSetDatabase : XBaseWindow
 
     private string sqlSentence = "";
     private string sqlSentenceResult = "";
-    const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
+    
 
-    private GUILayoutOption option = GUILayout.Width( 150 );
+    private GUILayoutOption guiOption = GUILayout.Width( 150 );
+    
+    private const string GET_ALL_TABLE_NAME = "select name from sqlite_master where type='table' order by name;";
+    
     public override void OnXGUI()
     {
         //TODO List
@@ -75,7 +78,7 @@ public class XQuickSetDatabase : XBaseWindow
             }
         }
     }
-    public void GetAllTableName()
+    private void GetAllTableName()
     {
         allTable.Clear();
         allTableField.Clear();
@@ -86,9 +89,9 @@ public class XQuickSetDatabase : XBaseWindow
         }
         dataTable = 0;
     }
-    public void ReadAllTable()
+    private void ReadAllTable()
     {
-        if (CreateSpaceButton("DataBase", option))
+        if (CreateSpaceButton("DataBase", guiOption))
         {
             GetAllTableName();
         }
@@ -110,9 +113,9 @@ public class XQuickSetDatabase : XBaseWindow
         }
     }
 
-    public void CreateTableButton( string tableName )
+    private void CreateTableButton( string tableName )
     {
-        if( CreateSpaceButton( tableName, option) )
+        if( CreateSpaceButton( tableName, guiOption) )
         {
             dataTable = 0;
             allTableField.Clear();
@@ -120,12 +123,14 @@ public class XQuickSetDatabase : XBaseWindow
             SqliteDataReader recordTableReader = ExecuteQuery( sql );
             allTable.Clear();
             int count = recordTableReader.VisibleFieldCount;
+            /*
             for( int idx = 0; idx < count; idx++ )
             {
                 //  TODO loop in count
-//                string fieldTypeName = recordTableReader.GetName( idx );
+                string fieldTypeName = recordTableReader.GetName( idx );
             }
-
+            */
+            
             selectField = -1;
             isShowTable = true;
 
@@ -160,12 +165,12 @@ public class XQuickSetDatabase : XBaseWindow
         
 
     }
-    public void ReSelectField()
+    private void ReSelectField()
     {
 
     }
 
-    public Type[] totalTypeContent = new Type[]
+    private Type[] totalTypeContent = new Type[]
     {
         typeof(System.Boolean),
         typeof(System.Byte),
@@ -193,7 +198,7 @@ public class XQuickSetDatabase : XBaseWindow
             SelectableString<Type>( tableTypeDict[allTableField[pos]], totalTypeContent, (t)=>
             {
 
-            }, option );
+            }, guiOption );
         }
         EndHorizontal();
 
@@ -205,7 +210,7 @@ public class XQuickSetDatabase : XBaseWindow
            {
                selectField = pos;
                ReSelectField();
-           }, option );
+           }, guiOption );
 
         }
         EndHorizontal();
@@ -259,28 +264,28 @@ public class XQuickSetDatabase : XBaseWindow
     {
         if (t is int || t is System.Int32 || type == typeof(int))
         {
-            t = CreateIntField(Convert.ToInt32(t), option);
+            t = CreateIntField(Convert.ToInt32(t), guiOption);
         }
         else if (t is System.Int16)
         {
-            t = (short)CreateIntField(Convert.ToInt16(t), option );
+            t = (short)CreateIntField(Convert.ToInt16(t), guiOption );
         }
         else if (t is System.Int64)
         {
-            t = CreateLongField(Convert.ToInt64(t), option );
+            t = CreateLongField(Convert.ToInt64(t), guiOption );
         }
         else if (t is byte)
         {
             int value = Convert.ToInt32(t);
-            t = Convert.ToByte(CreateIntField(value, option) );
+            t = Convert.ToByte(CreateIntField(value, guiOption) );
         }
         else if (type == typeof(String))
         {
-            t = CreateStringField((string)t, option);
+            t = CreateStringField((string)t, guiOption);
         }
         else if (type == typeof(Single) || type == typeof(Double))
         {
-            t = CreateFloatField(Convert.ToSingle(t), option);
+            t = CreateFloatField(Convert.ToSingle(t), guiOption);
         }
         else if (type == typeof(Boolean))
         {
@@ -288,40 +293,40 @@ public class XQuickSetDatabase : XBaseWindow
             DoButton( v.ToString(), () =>
             {
                 t = !v;
-            }, option );
+            }, guiOption );
         }
         else if(type == typeof(DBNull))
         {
-            CreateLabel("DBNull", false, option);
+            CreateLabel("DBNull", false, guiOption);
         }
         else if (type.BaseType == typeof(Enum))
         {
-            t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject(type, 0), option);
+            t = CreateEnumSelectable("", (Enum)t ?? (Enum)Enum.ToObject(type, 0), guiOption);
         }
         else if (type.IsSubclassOf(typeof(Object)))
         {
-            t = CreateObjectField((Object)t, type, option);
+            t = CreateObjectField((Object)t, type, guiOption);
         }
         else if (t is Vector2)
         {
             Vector2 v = (Vector2)t;
-            t = CreateVector2Field(type.Name, v, option );
+            t = CreateVector2Field(type.Name, v, guiOption );
         }
         else if (t is Vector3)
         {
             Vector3 v = (Vector3)t;
-            t = CreateVector3Field(type.Name, v, option );
+            t = CreateVector3Field(type.Name, v, guiOption );
         }
         else if (t is Vector4)
         {
             Vector4 v = (Vector4)t;
-            t = CreateVector4Field(type.Name, v, option );
+            t = CreateVector4Field(type.Name, v, guiOption );
         }
         else if (t is Quaternion)
         {
             Quaternion q = (Quaternion)t;
             Vector4 v = new Vector4(q.x, q.y, q.z, q.w);
-            v = CreateVector4Field(type.Name, v, option );
+            v = CreateVector4Field(type.Name, v, guiOption );
             q.x = v.x;
             q.y = v.y;
             q.z = v.z;
@@ -344,7 +349,7 @@ public class XQuickSetDatabase : XBaseWindow
         }
         else
         {
-            CreateLabel(type.Name + " is not support", false, option );
+            CreateLabel(type.Name + " is not support", false, guiOption );
         }
 
         return t;

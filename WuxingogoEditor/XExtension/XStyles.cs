@@ -47,9 +47,10 @@ public class XStyles : XEditorScriptableObject
 	[X]
 	public static void InitBuildinStyle()
 	{
-		GetInstance().game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
-		GetInstance().inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
-		GetInstance().scene = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Scene);
+		var instance = GetInstance();
+		instance.game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
+		instance.inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
+		instance.scene = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Scene);
 	}
 	[X]
 	public void RemoveCustomSkin(string name)

@@ -44,8 +44,18 @@ namespace wuxingogo.tools
 				if (mInstance == null) {
 					mInstance = FindObjectOfType<T> ();
 					if (mInstance == null) {
-						GameObject obj = new GameObject (typeof(T).Name);
-						mInstance = obj.AddComponent<T>();
+						if( Application.isPlaying )
+						{
+							GameObject obj = new GameObject( typeof( T ).Name );
+							mInstance = obj.AddComponent<T>();
+						}
+						else
+						{
+							GameObject obj = new GameObject( typeof( T ).Name );
+                            mInstance = obj.AddComponent<T>();
+							obj.hideFlags = HideFlags.DontSave;
+						}
+						
 					}
 				}
 				return mInstance;

@@ -46,7 +46,7 @@ namespace wuxingogo.tools
 				result.Add( "" );
 				if( matches[i].Length > 0 ) {
 					
-					result[i] = value.CutString( matches[i].Index + 1, matches[i].Index + matches[i].Length - 1 );
+					result[i] = value.SubstringWithLength( matches[i].Index + 1, matches[i].Index + matches[i].Length - 1 );
 				}
 			}
 			return result.ToArray();
@@ -65,21 +65,28 @@ namespace wuxingogo.tools
 				pos = matches[i].Index + matches[i].Length;
 			}
 			if( pos < value.Length )
-				result += value.CutString( pos, value.Length );
+				result += value.SubstringWithLength( pos, value.Length );
 			return result;
 		}
 
-		public static string CutString(this string value, int start, int end){
+		public static string SubstringWithLength(this string value, int start, int end){
 			return value.Substring(start, end - start);
 		}
 
-		public static string CutOnCharLeft(string value, string single)
+		public static string Substring(string value, string single)
 		{
 			
 			if(value.Contains(single))
 			{
 				value = value.Substring(0, value.IndexOf(single));
 			}
+			return value;
+		}
+
+		public static string SubstringFromEnd(string value, string str)
+		{
+			var startIndex = value.LastIndexOf( "/" );
+			value = value.Substring(startIndex, value.Length - startIndex);
 			return value;
 		}
 

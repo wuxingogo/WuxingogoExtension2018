@@ -193,10 +193,10 @@ namespace wuxingogo.Reflection
             return t;
 
         }
-
+        
         void OpenInGenerateCodeWindow()
         {
-
+            /*
             wuxingogo.Code.CodeGenerateEditor codeEditor = InitWindow<wuxingogo.Code.CodeGenerateEditor>();
             wuxingogo.Code.XCodeObject codeObject = codeEditor.GenerateNewCode();
             wuxingogo.Code.XCodeClass classUnit = codeObject.classUnit;
@@ -228,9 +228,10 @@ namespace wuxingogo.Reflection
             }
 
 
-
+             */
 
         }
+       
 
         void ConvertToBase()
         {

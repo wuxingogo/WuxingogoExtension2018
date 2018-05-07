@@ -49,12 +49,16 @@ namespace wuxingogo.Runtime
 					var name = typeof( T ).Name;
 					m_instance = Resources.Load<T>(string.Format("GameManager/{0}", name));
 					m_instance.GetType().TryInvokeMethod( m_instance, "OnLoad" );
+
+					if( Application.isPlaying )
+					{
+						GameObject go = new GameObject(name);
+						go.hideFlags = HideFlags.DontSave;
 					
-					GameObject go = new GameObject(name);
-					go.hideFlags = HideFlags.DontSave;
+						var runtime = go.AddComponent<GameManagerRuntime>();
+						runtime.gameManger = m_instance;
+					}
 					
-					var runtime = go.AddComponent<GameManagerRuntime>();
-					runtime.gameManger = m_instance;
 				}
 
 				return m_instance;

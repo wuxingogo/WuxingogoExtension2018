@@ -52,7 +52,7 @@ namespace wuxingogo.Reflection
 
 			for( int pos = 0; pos < assemblies.Length; pos++ ) {
 				//  TODO loop in assemblies.Length
-				string currAssem = StringUtils.CutOnCharLeft( assemblies[pos].ManifestModule.Name, "." );
+				string currAssem = StringUtils.Substring( assemblies[pos].ManifestModule.Name, "." );
 				if( isPrecise ) {
 					if( currAssem.Equals( assemblyName ) )
 						return assemblies[pos];

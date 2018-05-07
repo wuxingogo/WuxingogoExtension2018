@@ -1042,7 +1042,7 @@ namespace wuxingogo.Editor
                 //     }
                     
                 // }
-                var s = tools.StringUtils.CutOnCharLeft( type.Name, "`" );
+                var s = tools.StringUtils.Substring( type.Name, "`" );
                 //CreateLabel( string.Format( "{0}<{1}> : {2}", s, result, fieldName ) );
             }
             else

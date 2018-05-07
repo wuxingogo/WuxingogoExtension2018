@@ -1,10 +1,10 @@
 ﻿//
-// XEditorScriptableObject.cs
+// SelectionUtils.cs
 //
 // Author:
 //       ly-user <52111314ly@gmail.com>
 //
-// Copyright (c) 2016 ly-user
+// Copyright (c) 2018 ly-user
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,20 +24,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
-using wuxingogo.Runtime;
+using Object = UnityEngine.Object;
 
 namespace wuxingogo.Editor
 {
-	public class XEditorScriptableObject : ScriptableObject
-	{
-		[X]
-		public void Dirty()
-		{
-			EditorUtility.SetDirty (this);
-		}
-	}
+    public class SelectionUtils
+    {
+
+        public static List<T> GetObject<T>() where T : Object
+        {
+            List<T> array = new List<T>();
+            var objects = Selection.objects;
+            for( int i = 0; i < objects.Length; i++ )
+            {
+                var obj = objects[ i ];
+                if( obj is T )
+                {
+                    array.Add( obj as T);
+                }
+            }
+            return array;
+        }
+    }
 }
-
-
