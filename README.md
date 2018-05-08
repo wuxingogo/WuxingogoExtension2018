@@ -43,7 +43,7 @@ Incremental update in one file
 
 ![github](ScreenShot/AssetBundle.jpg "github") 
 
-The project had been moved to https://github.com/wuxingogo/GameUpdaterTest
+The project have been moved to https://github.com/wuxingogo/GameUpdaterTest
 
 ####XBehaviour Window (Finite-State-Machine)
 
@@ -51,7 +51,7 @@ Finite-State-Machine Window.
 
 ![github](ScreenShot/BehaviourFSM.jpg "github") 
 
-This module had been moved to https://github.com/wuxingogo/Unity-BTFsm
+This module have been moved to https://github.com/wuxingogo/Unity-BTFsm
 
 ####XCodeGenerateEditor:
 
@@ -65,7 +65,7 @@ Compile Code From XReflectionWindow.
 
 ![github](ScreenShot/CodeGenerate.png "github") 
 
-This module had been move to https://github.com/wuxingogo/CodeDomEditor
+This module have been move to https://github.com/wuxingogo/CodeDomEditor
 
 ####XReflectionWindow:
 
