@@ -73,7 +73,7 @@ namespace wuxingogo.tools
 	    }
 	    protected virtual void Awake()
 	    {
-		    if( mInstance != null )
+		    if( mInstance != this )
 		    {
 			    XLogger.Log( "Found Singleton : " + mInstance.name );
 			    Destroy( gameObject );
