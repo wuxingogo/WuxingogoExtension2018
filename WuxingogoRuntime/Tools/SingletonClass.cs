@@ -53,7 +53,7 @@ namespace wuxingogo.tools
 						{
 							GameObject obj = new GameObject( typeof( T ).Name );
                             mInstance = obj.AddComponent<T>();
-							obj.hideFlags = HideFlags.DontSave;
+							
 						}
 						
 					}
@@ -62,7 +62,30 @@ namespace wuxingogo.tools
 			}
 		}
 
-        protected virtual void OnDestroy()
+	    protected virtual HideFlags gameObjectFlags
+	    {
+		    get { return HideFlags.DontSave; }
+	    }
+
+	    protected virtual bool isDontDestroy
+	    {
+		    get { return false; }
+	    }
+	    protected virtual void Awake()
+	    {
+		    if( mInstance != null )
+		    {
+			    XLogger.Log( "Found Singleton : " + mInstance.name );
+			    Destroy( gameObject );
+			    return;
+		    }
+		    if(isDontDestroy)
+			    DontDestroyOnLoad( gameObject );
+		    
+		    gameObject.hideFlags = gameObjectFlags;
+	    }
+
+	    protected virtual void OnDestroy()
         {
             mInstance = null;
         }
