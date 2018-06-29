@@ -1,15 +1,41 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using UnityEditor.Callbacks;
 using wuxingogo.Runtime;
 
 public static class XResources {
 
-	static XResources(){
-		string resPath = "Assets/Plugins/WuxingogoExtension/wuxingogo.psd";
-		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(resPath);
+	static XResources()
+	{
+		InitTexture();
 
 	}
+
+	public static void InitTexture()
+	{
+		XLogger.Log( "Resources Init with wuxingogo" );
+		var resPath = AssetDatabase.FindAssets( "wuxingogo t:texture" );
+		var path = AssetDatabase.AssetPathToGUID( resPath[ 0 ] );
+		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(path);
+		if( LogoTexture == null )
+		{
+			LogoTexture = AssetDatabase.LoadAssetAtPath<Texture>( FileUtil.GetProjectRelativePath(XEditorSetting.projectPath + "/wuxingogo.psd" ));
+		}
+	}
+//	[X]
+//	[DidReloadScripts]
+//	public static void ReloadScript()
+//	{
+//		if( LogoTexture == null )
+//		{
+//			var resPath = AssetDatabase.FindAssets( "wuxingogo t:texture" );
+//			var path = AssetDatabase.AssetPathToGUID( resPath[ 0 ] );
+//			LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(path);
+//			EditorPrefs.SetString("XLogo", AssetDatabase.GetAssetPath(LogoTexture));
+//		}
+//		
+//	}
 	public static Texture LogoTexture = null;
 	[X]
     public static void SaveAll()

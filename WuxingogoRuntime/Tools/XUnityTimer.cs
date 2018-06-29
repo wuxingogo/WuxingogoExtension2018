@@ -51,7 +51,7 @@ namespace wuxingogo.tools
         {
             m_watch.Stop();
             float ms = m_watch.ElapsedMilliseconds;
-            UnityEngine.Debug.Log( string.Format( "{0} finished: {1:0.00}ms total," +
+            XLogger.Log( string.Format( "{0} finished: {1:0.00}ms total," +
            " {2:0.000000}ms per test for {3} tests", m_timerName, ms, ms / m_numTests, m_numTests ) );
         }
     }

@@ -630,8 +630,8 @@ namespace wuxingogo.Editor
 			{
 				DateTime dateTime = ( DateTime )t;
 				
-				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
-				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
+//				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
+//				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
 				
 			}
             else if( typeof( IList ).IsAssignableFrom( type ) )
@@ -844,8 +844,8 @@ namespace wuxingogo.Editor
 			{
 				DateTime dateTime = ( DateTime )t;
 				
-				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
-				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
+//				string toString = CreateStringField( dateTime.ToString(XEditorSetting.CultureInfo));
+//				t = DateTime.Parse(toString, XEditorSetting.CultureInfo);
 				
 			}
 			else if( typeof( IList ).IsAssignableFrom( type ) )

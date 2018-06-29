@@ -31,7 +31,7 @@ namespace wuxingogo.Editor
 {
 	public class XHierarchySettingWindow : XBaseWindow
 	{
-		[MenuItem("Wuxingogo/Hierarchy Setting")]
+		[MenuItem("Wuxingogo/Setting/Hierarchy")]
 		static void OpenSetting()
 		{
 			InitWindow<XHierarchySettingWindow> ();

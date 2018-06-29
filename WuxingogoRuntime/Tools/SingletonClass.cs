@@ -37,30 +37,31 @@ namespace wuxingogo.tools
 	/// </summary>
 	public class SingletonC<T> : XMonoBehaviour where T : Component
     {
-        static T mInstance = null;
+	    static T mInstance = null;
 
-        public static T Inst { 
-			get {
-				if (mInstance == null) {
-					mInstance = FindObjectOfType<T> ();
-					if (mInstance == null) {
-						if( Application.isPlaying )
-						{
-							GameObject obj = new GameObject( typeof( T ).Name );
-							mInstance = obj.AddComponent<T>();
-						}
-						else
-						{
-							GameObject obj = new GameObject( typeof( T ).Name );
-                            mInstance = obj.AddComponent<T>();
-							
-						}
-						
-					}
-				}
-				return mInstance;
-			}
-		}
+	    public static T Inst { 
+		    get {
+			    if (mInstance == null) {
+				    mInstance = FindObjectOfType<T> ();
+				    if (mInstance == null) {
+					    GameObject obj = new GameObject (typeof(T).Name);
+					    mInstance = obj.AddComponent<T>();
+				    }
+			    }
+			    return mInstance;
+		    }
+	    }
+
+	    protected virtual void OnDestroy()
+	    {
+		    if(mInstance ==  this)
+		    	mInstance = null;
+	    }
+
+	    protected virtual void OnAwake()
+	    {
+		    
+	    }
 
 	    protected virtual HideFlags gameObjectFlags
 	    {
@@ -73,21 +74,23 @@ namespace wuxingogo.tools
 	    }
 	    protected virtual void Awake()
 	    {
-		    if( mInstance != this )
+		    if( mInstance != null )
 		    {
 			    XLogger.Log( "Found Singleton : " + mInstance.name );
 			    Destroy( gameObject );
 			    return;
 		    }
-		    if(isDontDestroy)
-			    DontDestroyOnLoad( gameObject );
+		    else
+		    {
+			    mInstance = this as T;
+			    if(isDontDestroy)
+				    DontDestroyOnLoad( gameObject );
 		    
-		    gameObject.hideFlags = gameObjectFlags;
-	    }
+			    gameObject.hideFlags = gameObjectFlags;
 
-	    protected virtual void OnDestroy()
-        {
-            mInstance = null;
-        }
+			    OnAwake();
+		    }
+		    
+	    }
     }
 }

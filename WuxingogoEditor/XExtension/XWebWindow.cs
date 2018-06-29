@@ -18,7 +18,7 @@ using wuxingogo.Reflection;
 
 public class XWebWindow : XBaseWindow
 {
-	[MenuItem( "Wuxingogo/Wuxingogo XWebWindow #]" )]
+	[MenuItem( "Wuxingogo/About" )]
     static void init()
     {
 		InitWindow<XWebWindow>();
@@ -29,7 +29,7 @@ public class XWebWindow : XBaseWindow
 		webViewType = XReflectionUtils.TryGetClass("WebView");
 		//Init web view
 		InitWebView();
-
+		
     }
 
     void InitWebView(){
@@ -44,10 +44,16 @@ public class XWebWindow : XBaseWindow
 
 		this.wantsMouseMove = true;
     }
+
+	private void OnEnable()
+	{
+		urlText = EditorPrefs.GetString("xwebview_store", "unity3d.com/cn/");
+	}
+
 	object webView; 
 	Type webViewType;
-	
-	string urlText = EditorPrefs.GetString("xwebview_store", "unity3d.com/cn/");
+
+	private string urlText;
 
     public override void OnXGUI()
     {

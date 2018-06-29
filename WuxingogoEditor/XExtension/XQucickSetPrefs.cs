@@ -9,7 +9,7 @@ public class XQucickSetPrefs : XBaseWindow {
 	float FloatValue = 0.0f;
 	string StringValue = "";
 	
-	[MenuItem ("Wuxingogo/Wuxingogo Quick Set Prefs ")]
+	[MenuItem ("Wuxingogo/Prefs Window")]
 	static void init () {
 		
 		InitWindow<XQucickSetPrefs>();

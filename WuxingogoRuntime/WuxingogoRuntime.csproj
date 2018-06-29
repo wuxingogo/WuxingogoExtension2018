@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Attribute\XSliderAttribute.cs" />
     <Compile Include="Runtime\XMonoBehaviour.cs" />
     <Compile Include="Tools\GameManagerRuntime.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />
     <Compile Include="Attribute\XAttribute.cs" />
-    <Compile Include="Attribute\XSerializeAttribute.cs" />
     <Compile Include="Runtime\XScriptableObject.cs" />
     <Compile Include="Tools\SerializeUtils.cs" />
     <Compile Include="Tools\UnityDictionary.cs" />
@@ -67,15 +65,9 @@
     <Compile Include="Tools\XReflectionUtils.cs" />
     <Compile Include="Tools\XRegexTools.cs" />
     <Compile Include="Attribute\EnumFlagAttribute.cs" />
-    <Compile Include="Attribute\XClassAttribute.cs" />
-    <Compile Include="Attribute\XFieldAttribute.cs" />
-    <Compile Include="Attribute\XMethodAttribute.cs" />
-    <Compile Include="Attribute\XPropertyAttribute.cs" />
     <Compile Include="Tools\SectorShape.cs" />
     <Compile Include="Tools\ShowFPS.cs" />
     <Compile Include="Tools\MathUtlis.cs" />
-    <Compile Include="Attribute\DisableExpresionAttribute.cs" />
-    <Compile Include="Attribute\XObjectAttribute.cs" />
     <Compile Include="Tools\GameManager.cs" />
     <Compile Include="Tools\XFileUtils.cs" />
     <Compile Include="Tools\AsynchronousFunc.cs" />

@@ -44,9 +44,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 {
 
 	protected Vector2 _scrollPos = Vector2.zero;
-	const int Xoffset = 5;
-	const int XButtonWidth = 100;
-	const int XButtonHeight = 20;
+	const int widthSize = 5;
 
 	public static T InitWindow<T>(params object[] args) where T : XBaseWindow
 	{
@@ -113,7 +111,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public void CreateSpaceBox()
 	{
-		GUILayout.Box( "", GUILayout.Width( this.position.width - Xoffset ), GUILayout.Height( 3 ) );
+		GUILayout.Box( "", GUILayout.Width( this.position.width - widthSize ), GUILayout.Height( 3 ) );
 	}
 
 	public static bool CreateSpaceButton(string btnName, params GUILayoutOption[] option)
@@ -400,7 +398,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 
 	}
-	[MenuItem("Wuxingogo/Select FocusedWindow")]
+	[MenuItem("Wuxingogo/Tools/Select Current Window")]
 	static void SelectWindow()
 	{
 		Selection.objects = new Object[]{ InspectorUtilites.GetInspectorWindow() };

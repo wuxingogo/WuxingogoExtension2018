@@ -31,9 +31,10 @@ using System;
 using System.Globalization;
 using wuxingogo.tools;
 using wuxingogo.Editor;
+using wuxingogo.Runtime;
 
 
-public class XEditorSetting : XBaseWindow
+public class XEditorSetting
 {
     public static string author = "Wuxingogo";
     public static string mail = "52111314ly@gmail.com";
@@ -52,13 +53,13 @@ public class XEditorSetting : XBaseWindow
         "along with this program.\n" + 
         "//\tIf not, see <http://www.gnu.org/licenses/>.\n";
 	
-    public const string PluginName = "Plugins/WuxingogoExtension";
+    public string PluginName = "Plugins/WuxingogoExtension";
 	public static string PluginPath{
 		get{
-			return XFileUtils.CombinePath(Application.dataPath, PluginName);
+			return projectPath;
 		}
 	}
-	public static string RelativeProjectPath = XFileUtils.CombinePath("Assets", PluginName);
+
 	public static string TemplatesPath{
 		get{
 			return XFileUtils.CombinePath(PluginPath,"Templates");
@@ -72,55 +73,78 @@ public class XEditorSetting : XBaseWindow
 	public static string ProjectPath => XFileUtils.GetAbsolutePath(Application.dataPath, "..");
 
 	public static CultureInfo CultureInfo = new CultureInfo("en-US");
-	
-    [MenuItem( "Wuxingogo/Wuxingogo XEditorSetting" )]
-    static void init()
-    {
-		InitWindow<XEditorSetting>();
-    }
 
-    public override void OnXGUI()
-    {
-        if (CreateSpaceButton("Save Asset"))
-        {
-            XResources.SaveAll();
-        }
-        
-//		DoButton("Get Cursor EditorIcon", ()=> isShowIcons = !isShowIcons);
-//		
-//		if(isShowIcons) ShowAllIcon();
-		BeginHorizontal();
+	[X]
+	void SaveAssets()
+	{
+		XResources.SaveAll();
+	}
+	[X]
+	void PersistentDataPath()
+	{
+		EditorUtility.RevealInFinder(Application.persistentDataPath);
+	}
+	[X]
+	void TemporaryCachePath()
+	{
+		EditorUtility.RevealInFinder(Application.temporaryCachePath);
+	}
+	[X]
+	void DataPath()
+	{
+		EditorUtility.RevealInFinder(Application.dataPath);
+	}
+	[X]
+	void StreamingAssetsPath()
+	{
+		EditorUtility.RevealInFinder(Application.streamingAssetsPath);
+	}
 
-		DoButton("persistentDataPath", ()=> {
-			EditorUtility.RevealInFinder(Application.persistentDataPath);
-		});
-		DoButton("temporaryCachePath", ()=> {
-			EditorUtility.RevealInFinder(Application.temporaryCachePath);
-		});
-		DoButton("dataPath", ()=> {
-			EditorUtility.RevealInFinder(Application.dataPath);
-		});
-		DoButton("streamingAssetsPath", ()=> {
-			EditorUtility.RevealInFinder(Application.streamingAssetsPath);
-		});
+	[X]
+	public float timeScale
+	{
+		get { return Time.timeScale; }
+		set { Time.timeScale = value; }
+	}
 
-	    string time = System.DateTime.Now.ToString();
+	[X]
+	public int targetFrameRate
+	{
+		get { return Application.targetFrameRate; }
+		set { Application.targetFrameRate = value; }
+	}
 
-		EndHorizontal ();
-
-		Time.timeScale = CreateFloatField ("TimeScale", Time.timeScale);
-
-		Application.targetFrameRate = CreateIntField ("FrameRate", Application.targetFrameRate);
-
-
-    }
-    
-    public void ShowAllIcon(){
-		
-		foreach (MouseCursor item in Enum.GetValues(typeof(MouseCursor)))
+	public static string projectPath
+	{
+		get { return EditorPrefs.GetString( "Plugin_Path", "Assets/Plugin/WuxingogoExtension/" ); }
+		set
 		{
-			DoButton(Enum.GetName(typeof(MouseCursor),item), ()=> XLogger.Log(item.ToString()));
-			EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), item);
+			EditorPrefs.SetString( "Plugin_Path", value );
 		}
-    }
+	}
+
+	[MenuItem( "Wuxingogo/Tools/Set Plugin path" )]
+	static void SetPath()
+	{
+		var folder = EditorUtility.OpenFolderPanel( "Path", projectPath, "WuxingogoExtension" );
+		XLogger.Log( folder );
+		projectPath = folder;
+		XResources.InitTexture();
+	}
+	
+	[InitializeOnLoad]
+	public class Autorun
+	{
+		static Autorun()
+		{
+			EditorApplication.update += RunOnce;
+		}
+ 
+		static void RunOnce()
+		{
+			EditorApplication.update -= RunOnce;
+			XStyles.InitBuildinStyle();
+			
+		}
+	}
 }

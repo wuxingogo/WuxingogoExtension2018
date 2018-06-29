@@ -18,12 +18,13 @@ public class XStyles : XEditorScriptableObject
 
 		XStyles xstyle = CreateInstance<XStyles> ();
 		GUISkin data = Instantiate (Selection.objects [0]) as GUISkin;
+		data.name = "CustomStyle";
 		xstyle.skin = data;
 		AssetDatabase.CreateAsset( xstyle, path );
 		AssetDatabase.AddObjectToAsset (data, path);
 		AssetDatabase.SaveAssets();
 	}
-
+	[X]
 	private static XStyles styles = null;
 	public GUISkin skin = null;
 
@@ -31,22 +32,30 @@ public class XStyles : XEditorScriptableObject
 	public GUISkin inspector;
 	public GUISkin scene;
 	public List<GUISkin> customSkin = new List<GUISkin>();
-
+	[X]
 	public static XStyles GetInstance()
 	{
 		if (styles == null) {
-			var path = FileUtil.GetProjectRelativePath (XEditorSetting.PluginPath + "/Templates/XGUIStyle.asset");
-			XLogger.Log (path);
-			
-			styles = AssetDatabase.LoadAssetAtPath<XStyles> (path);
-			XLogger.Log (styles == null);
+			var assetPaths = AssetDatabase.FindAssets( "t:XStyles" );
+		
+		
+			if( assetPaths.Length > 0 )
+			{
+				var path = AssetDatabase.GUIDToAssetPath( assetPaths[ 0 ] );
+				styles = AssetDatabase.LoadAssetAtPath<XStyles>( path );
+			}
+			if( styles == null )
+				styles = XStyles.CreateInstance<XStyles>();
 		}
 		return styles;
 	}
-	[MenuItem("Wuxingogo/Reimport Style")]
+	
+	[MenuItem("Wuxingogo/Tools/Reimport Style")]
 	[X]
 	public static void InitBuildinStyle()
 	{
+		styles = null;
+		
 		var instance = GetInstance();
 		instance.game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
 		instance.inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
@@ -115,5 +124,12 @@ public class XStyles : XEditorScriptableObject
 			EditorUtility.SetDirty( scene );
 		}
 		return style;
+	}
+
+	[X]
+	void GetInstancePath()
+	{
+		
+		XLogger.Log( AssetDatabase.GetAssetPath( GetInstance() ) );
 	}
 }

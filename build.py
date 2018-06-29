@@ -129,8 +129,10 @@ else:
     # CopyToProject("/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/")
     # CopyToProject("/Users/wuxingogo/Documents/Github/Unity_Shaders_Book-master/Assets/Plugins/WuxingogoExtension/")
     # CopyToProject("/Users/wuxingogo/Documents/Github/GameUpdater/Assets/Plugins/WuxingogoExtension/")
+    CopyToProject("/Users/apple/Documents/MusicAndroid/Music/Assets/Plugins/WuxingogoExtension/")
     CopyToProject("/Users/wuxingogo/Documents/UnityProject/MusicCopy/Assets/Plugins/WuxingogoExtension/")
     CopyToProject("/Users/wuxingogo/Documents/UnityProject/Music/Assets/Plugins/WuxingogoExtension/")
+    CopyToProject("/Users/apple/Documents/Projects_LoveTwoBalls_iOS/Assets/Plugins/WuxingogoExtension/")
 
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 

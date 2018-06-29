@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ScriptEditor\XSliderAttributeDrawer.cs" />
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\DecoratorEditor.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
