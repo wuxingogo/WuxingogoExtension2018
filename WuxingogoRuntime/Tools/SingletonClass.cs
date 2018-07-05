@@ -50,6 +50,7 @@ namespace wuxingogo.tools
 			    }
 			    return mInstance;
 		    }
+		    set { mInstance = value; }
 	    }
 
 	    protected virtual void OnDestroy()
