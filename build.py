@@ -133,7 +133,8 @@ else:
     CopyToProject("/Users/wuxingogo/Documents/UnityProject/MusicCopy/Assets/Plugins/WuxingogoExtension/")
     CopyToProject("/Users/wuxingogo/Documents/UnityProject/Music/Assets/Plugins/WuxingogoExtension/")
     CopyToProject("/Users/apple/Documents/Projects_LoveTwoBalls_iOS/Assets/Plugins/WuxingogoExtension/")
-
+    CopyToProject("/Users/apple/Documents/Github/19HelixArrow/Project/Twisty Arrow/Arrow/Assets/Twisty Arrow/Plugins/WuxingogoExtension/")
+    CopyToProject("/Users/apple/Documents/Github/2DPhysics/2DPhysics/Assets/Plugins/WuxingogoExtension/")
 #print currPath()  + "OutPutDll\WuxingogoEditor.dll"
 
 

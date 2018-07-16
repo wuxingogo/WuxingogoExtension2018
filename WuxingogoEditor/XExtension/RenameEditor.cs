@@ -7,7 +7,7 @@ using UnityEngine;
 public class RenameEditor : XBaseWindow {
 
 
-	[MenuItem( "Tools/Rename Window" )]
+	[MenuItem( "Wuxingogo/Tools/Rename Window" )]
 	public static void InitWindow()
 	{
 		InitWindow<RenameEditor>();

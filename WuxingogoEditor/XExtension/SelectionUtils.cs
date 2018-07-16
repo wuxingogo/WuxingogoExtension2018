@@ -32,10 +32,10 @@ using Object = UnityEngine.Object;
 
 namespace wuxingogo.Editor
 {
-    public class SelectionUtils
+    public class SelectionUtils : XBaseEditor
     {
 
-        public static List<T> GetObject<T>() where T : Object
+        public static List<T> GetObjects<T>() where T : Object
         {
             List<T> array = new List<T>();
             var objects = Selection.objects;
@@ -48,6 +48,20 @@ namespace wuxingogo.Editor
                 }
             }
             return array;
+        }
+
+        public static T GetObject<T>() where T : Object
+        {
+            return Selection.activeObject as T;
+        }
+
+        [MenuItem( "Wuxingogo/Tools/Selection Info" )]
+        public static void GetInfo()
+        {
+            var o = GetObject<Object>();
+            XLogger.Log( "name:" + o.name );  
+            XLogger.Log( "Type:" + o.GetType() );
+            XLogger.Log( "InstanceID:" + o.GetInstanceID() ); 
         }
     }
 }

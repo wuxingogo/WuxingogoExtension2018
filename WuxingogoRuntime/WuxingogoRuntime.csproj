@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Runtime\PlayerPrefsManager.cs" />
+    <Compile Include="Runtime\PrefsClass.cs" />
+    <Compile Include="Runtime\PrefsT.cs" />
     <Compile Include="Runtime\XMonoBehaviour.cs" />
     <Compile Include="Tools\GameManagerRuntime.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />

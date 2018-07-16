@@ -70,6 +70,7 @@
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\DecoratorEditor.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
+    <Compile Include="XExtension\RenameEditor.cs" />
     <Compile Include="XExtension\SelectionUtils.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
