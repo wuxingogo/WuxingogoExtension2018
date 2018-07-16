@@ -23,7 +23,7 @@ namespace wuxingogo.Reflection
     public class XReflectionWindow : XBaseWindow
     {
 
-        [MenuItem( "Wuxingogo/Reflection/Wuxingogo XReflectionWindow " )]
+        [MenuItem( "Wuxingogo/Tools/ReflectionWindow " )]
         static void Init()
         {
             InitWindow<XReflectionWindow>();

@@ -61,11 +61,11 @@ public class XWebWindow : XBaseWindow
 		if(CreateSpaceButton("DeFocus"))
 			webView.GetType().TryInvokeMethod(webView, "SetFocus", false);
 
-		DoButton<string>("UnityScript", SetUrl, "http://docs.unity3d.com/ScriptReference/index.html");
+		DoButton<string>("Unity Script", SetUrl, "http://docs.unity3d.com/ScriptReference/index.html");
+	    DoButton<string>("Unity Manual", SetUrl, "https://docs.unity3d.com/Manual/index.html");
 		DoButton<string>("Google", SetUrl, "www.gooogle.com");
-		DoButton<string>("Github", SetUrl, "github.com/wuxingogo");
-		DoButton<string>("Weibo", SetUrl, "weibo.com/52111314ly?source=blog");
 		DoButton<string>("Zhihu", SetUrl, "http://www.zhihu.com/");
+	    DoButton<string>("Github", SetUrl, "github.com/wuxingogo");
 
 		EndHorizontal();
 		
