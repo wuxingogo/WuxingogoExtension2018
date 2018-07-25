@@ -49,6 +49,16 @@ namespace wuxingogo.tools
 			return component;
 		}
 
+		public static Component As(this GameObject g, Type type )
+		{
+			var component = g.GetComponent( type );
+			if( component == null )
+			{
+				component = g.AddComponent( type );
+			}
+			return component;
+		}
+
 		public static T[] GetComponentsAsArray<T>( this GameObject[] gameObjects, bool includeChildren = false ) where T : Component
 		{
 			return GetComponentsAsList<T>( gameObjects, includeChildren ).ToArray();

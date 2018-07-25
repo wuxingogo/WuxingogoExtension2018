@@ -40,10 +40,10 @@ namespace wuxingogo.Reflection
 	public static class XReflectionUtils
 	{
 
-
-		private const BindingFlags INSTANCE_FLAGS = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
-		private const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy;
-		private const BindingFlags NOVIRTUAL_FLAGS = BindingFlags.DeclaredOnly;
+		public const BindingFlags DECLARED_ONLY = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+		public const BindingFlags INSTANCE_FLAGS = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public;
+		public const BindingFlags STATIC_FLAGS = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+		public const BindingFlags NOVIRTUAL_FLAGS = BindingFlags.DeclaredOnly;
 
 		public static Assembly TryGetAssembly(string assemblyName, bool isPrecise = true)
 		{
@@ -424,25 +424,74 @@ namespace wuxingogo.Reflection
 		
 		public static Component CopyComponent(Component original, GameObject destination) 
 		{ 
-			System.Type type = original.GetType(); 
+			Type type = original.GetType(); 
 			Component copy = destination.AddComponent(type); 
-			// Copied fields can be restricted with BindingFlags 
-			System.Reflection.FieldInfo[] fields = type.GetFields();  
-			foreach (System.Reflection.FieldInfo field in fields) 
+			FieldInfo[] fields = type.GetFields(); 
+			PropertyInfo[] properties = type.GetProperties(DECLARED_ONLY);  
+			foreach (FieldInfo field in fields) 
 			{ 
 				field.SetValue(copy, field.GetValue(original)); 
 			} 
+			foreach (PropertyInfo propertyInfo in properties) 
+			{
+				if( propertyInfo.CanRead )
+				{
+
+					if( propertyInfo.CanWrite )
+					{
+						try
+						{
+						
+							var propertyValue = propertyInfo.GetValue( original, null );
+							
+							propertyInfo.SetValue(copy, propertyValue, null); 
+							
+						}
+						catch( Exception e )
+						{
+							XLogger.Log( e );
+							throw;
+						}
+					}
+				}
+				
+			}  
 			return copy; 
 		} 
      
-		public static T CopyComponent<T>(T original, GameObject destination) where T : Component 
+		public static T CopyComponent<T>(T original, GameObject destination, BindingFlags bindingFlags = DECLARED_ONLY) where T : Component 
 		{ 
-			System.Type type = original.GetType(); 
+			Type type = original.GetType(); 
 			Component copy = destination.AddComponent(type); 
-			System.Reflection.FieldInfo[] fields = type.GetFields(); 
-			foreach (System.Reflection.FieldInfo field in fields) 
+			FieldInfo[] fields = type.GetFields(); 
+			PropertyInfo[] properties = type.GetProperties(bindingFlags);  
+			foreach (FieldInfo field in fields) 
 			{ 
 				field.SetValue(copy, field.GetValue(original)); 
+			} 
+			foreach (PropertyInfo propertyInfo in properties) 
+			{
+				if( propertyInfo.CanRead )
+				{
+
+					if( propertyInfo.CanWrite )
+					{
+						try
+						{
+						
+							var propertyValue = propertyInfo.GetValue( original, null );
+							
+							propertyInfo.SetValue(copy, propertyValue, null); 
+							
+						}
+						catch( Exception e )
+						{
+							XLogger.Log( e );
+							throw;
+						}
+					}
+				}
+				
 			} 
 			return copy as T; 
 		} 
