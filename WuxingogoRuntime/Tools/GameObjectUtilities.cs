@@ -175,6 +175,15 @@ namespace wuxingogo.tools
 
 			}
         }
+
+        public static void DeactiveAllChildren( Transform root )
+        {
+            for( int i = 0; i < root.childCount; i++ )
+            {
+                Transform t = root.GetChild( i );
+                t.gameObject.SetActive( false );
+            }
+        }
         public static void ChildrenAction(Transform root, System.Action<GameObject> action, bool isRecursion = true)
         {
             for (int i = 0; i < root.childCount; ++i)

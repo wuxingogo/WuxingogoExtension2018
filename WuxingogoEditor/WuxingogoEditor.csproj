@@ -72,6 +72,7 @@
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\RenameEditor.cs" />
     <Compile Include="XExtension\SelectionUtils.cs" />
+    <Compile Include="XExtension\ToolsSupport.cs" />
     <Compile Include="XExtension\XAssetLoader.cs" />
     <Compile Include="XExtension\XBaseEditor.cs" />
     <Compile Include="XExtension\XBaseWindow.cs" />
