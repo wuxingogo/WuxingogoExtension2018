@@ -70,7 +70,13 @@ public class XEditorSetting
 			return FileUtil.GetProjectRelativePath(PluginPath);
 		}
 	}
-	public static string ProjectPath => XFileUtils.GetAbsolutePath(Application.dataPath, "..");
+	public static string ProjectPath
+    {
+        get
+        {
+            return XFileUtils.GetAbsolutePath(Application.dataPath, "..");
+        }
+    }
 
 	public static CultureInfo CultureInfo = new CultureInfo("en-US");
 
@@ -143,7 +149,7 @@ public class XEditorSetting
 		static void RunOnce()
 		{
 			EditorApplication.update -= RunOnce;
-			XStyles.InitBuildinStyle();
+			//XStyles.InitBuildinStyle();
 			
 		}
 	}

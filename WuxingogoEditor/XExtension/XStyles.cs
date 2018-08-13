@@ -7,6 +7,7 @@ using wuxingogo.Editor;
 
 public class XStyles : XEditorScriptableObject
 {
+    /*
 	[MenuItem( "Assets/Create/Wuxingogo/GUI Style", false, 100 )]
 	public static void CreateStyleAsset()
 	{
@@ -26,12 +27,10 @@ public class XStyles : XEditorScriptableObject
 	}
 	[X]
 	private static XStyles styles = null;
-	public GUISkin skin = null;
 
-	public GUISkin game;
-	public GUISkin inspector;
-	public GUISkin scene;
 	public List<GUISkin> customSkin = new List<GUISkin>();
+
+  
 	[X]
 	public static XStyles GetInstance()
 	{
@@ -57,9 +56,6 @@ public class XStyles : XEditorScriptableObject
 		styles = null;
 		
 		var instance = GetInstance();
-		instance.game = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Game);
-		instance.inspector = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Inspector);
-		instance.scene = EditorGUIUtility.GetBuiltinSkin (EditorSkin.Scene);
 	}
 	[X]
 	public void RemoveCustomSkin(string name)
@@ -111,25 +107,26 @@ public class XStyles : XEditorScriptableObject
 		customSkin.Add (skin);
 	}
 
-	public GUIStyle FindStyle(string Name)
-	{
-		var style = scene.FindStyle( Name );
-		if( style == null )
-		{
-			style = new GUIStyle();
-			style.name = Name;
-			var styles = skin.customStyles.ToList();
-			styles.Add( style );
-			scene.customStyles = styles.ToArray();
-			EditorUtility.SetDirty( scene );
-		}
-		return style;
-	}
-
 	[X]
 	void GetInstancePath()
 	{
 		
 		XLogger.Log( AssetDatabase.GetAssetPath( GetInstance() ) );
 	}
+    */
+
+    private static GUISkin sceneSkin = null;
+    private static GUISkin inspectorSkin = null;
+    public static GUISkin builtSkin
+    {
+        get
+        {
+            if (sceneSkin == null)
+            {
+                sceneSkin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Scene);
+                inspectorSkin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Inspector);
+            }
+            return EditorGUIUtility.isProSkin ? sceneSkin : inspectorSkin;
+        }
+    }
 }

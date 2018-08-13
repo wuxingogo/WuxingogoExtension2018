@@ -10,8 +10,8 @@
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/OutPutDll/WuxingogoEditor.pdb
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.csproj.CoreCompileInputs.cache
 /Users/wuxingogo/Documents/Github/WuxingogoExtension/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb
-E:/Work/Wuxingogo/WuxingogoEditor/obj/Debug/WuxingogoEditor.dll
-E:/Work/Wuxingogo/WuxingogoEditor/obj/Debug/WuxingogoEditor.pdb
-E:/Work/Wuxingogo/WuxingogoEditor/obj/Debug/WuxingogoEditor.csprojResolveAssemblyReference.cache
-E:/Work/Wuxingogo/OutPutDll/WuxingogoEditor.dll
-E:/Work/Wuxingogo/OutPutDll/WuxingogoEditor.pdb
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojResolveAssemblyReference.cache
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+E:\Work\Wuxingogo\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+E:\Work\Wuxingogo\OutPutDll\WuxingogoEditor.dll
+E:\Work\Wuxingogo\OutPutDll\WuxingogoEditor.pdb

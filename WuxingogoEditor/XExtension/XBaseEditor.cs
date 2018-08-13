@@ -67,7 +67,7 @@ public class XBaseEditor : Editor
 
 	public static GUISkin Skin{
 		get{
-			return EditorGUIUtility.isProSkin ? XStyles.GetInstance().scene : XStyles.GetInstance ().inspector;
+			return XStyles.builtSkin;
 		}
 	}
 

@@ -21,7 +21,7 @@ namespace wuxingogo.Editor
         private static GUIStyle styleLock, styleLockUnselected, styleVisible;
 
 		private static bool showHideComponents = false;
- 
+        private static GUISkin skin = null;
 
         static QuickToggle()
         {
@@ -31,7 +31,7 @@ namespace wuxingogo.Editor
 
 			showHideComponents = EditorPrefs.GetBool(PrefKeyShowHideComponent, false);
             ShowQuickToggle(EditorPrefs.GetBool(PrefKeyShowToggle));
-
+            skin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Inspector);
         }
 
 
@@ -124,7 +124,7 @@ namespace wuxingogo.Editor
 					startIndex++;
 				}
 				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
-				if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, XStyles.GetInstance().GetCustomSkin("LightSkin").toggle)) {
+				if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, skin.toggle)) {
 					SetVisible (monos [i], !e);
 					EditorApplication.RepaintHierarchyWindow();
 					var window = InspectorUtilites.GetInspectorWindow ();
