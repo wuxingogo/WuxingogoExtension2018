@@ -15,13 +15,7 @@ public static class XResources {
 	public static void InitTexture()
 	{
 		XLogger.Log( "Resources Init with wuxingogo" );
-		var resPath = AssetDatabase.FindAssets( "wuxingogo t:texture" );
-		var path = AssetDatabase.AssetPathToGUID( resPath[ 0 ] );
-		LogoTexture =  AssetDatabase.LoadAssetAtPath<Texture>(path);
-		if( LogoTexture == null )
-		{
-			LogoTexture = AssetDatabase.LoadAssetAtPath<Texture>( FileUtil.GetProjectRelativePath(XEditorSetting.projectPath + "/wuxingogo.psd" ));
-		}
+
 	}
 //	[X]
 //	[DidReloadScripts]
@@ -36,7 +30,21 @@ public static class XResources {
 //		}
 //		
 //	}
-	public static Texture LogoTexture = null;
+	public static Texture LogoTexture
+	{
+		get
+		{
+			if( _logoTex == null )
+			{
+				var resPath = AssetDatabase.FindAssets( "wuxingogo t:texture" );
+				var guidPath = AssetDatabase.GUIDToAssetPath( resPath[ 0 ] );
+				_logoTex =  AssetDatabase.LoadAssetAtPath<Texture>(guidPath);
+			}
+			return _logoTex;
+		}
+	}
+
+	private static Texture _logoTex = null;
 	[X]
     public static void SaveAll()
     {
