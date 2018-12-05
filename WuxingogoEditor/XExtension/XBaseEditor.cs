@@ -155,11 +155,19 @@ public class XBaseEditor : Editor
 	{
 		return EditorGUILayout.Vector2Field (fieldName, value);
 	}
-
+	public static Vector2Int CreateVector2IntField(string fieldName, Vector2Int value)
+	{
+		return EditorGUILayout.Vector2IntField(fieldName, value);
+	}
 
 	public static Vector3 CreateVector3Field(string fieldName, Vector3 value)
 	{
 		return EditorGUILayout.Vector3Field (fieldName, value);
+	}
+	
+	public static Vector3Int CreateVector3IntField(string fieldName, Vector3Int value)
+	{
+		return EditorGUILayout.Vector3IntField(fieldName, value);
 	}
 
 	public static Vector4 CreateVector4Field(string fieldName, Vector4 value)

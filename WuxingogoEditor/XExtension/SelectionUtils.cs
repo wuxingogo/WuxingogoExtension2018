@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEditor;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace wuxingogo.Editor
@@ -45,6 +46,26 @@ namespace wuxingogo.Editor
                 if( obj is T )
                 {
                     array.Add( obj as T);
+                }
+            }
+            return array;
+        }
+
+        public static List<T> GetObjectsComponent<T>() where T : Component
+        {
+            List<T> array = new List<T>();
+            var gameObjects = Selection.gameObjects;
+            for( int i = 0; i < gameObjects.Length; i++ )
+            {
+                var obj = gameObjects[ i ];
+                var components = obj.GetComponentsInChildren<T>();
+                for( int j = 0; j < components.Length; j++ )
+                {
+                    var c = components[ j ];
+                    if( array.Contains( c ) == false )
+                    {
+                        array.Add( c );
+                    }
                 }
             }
             return array;

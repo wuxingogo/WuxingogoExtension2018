@@ -601,10 +601,18 @@ namespace wuxingogo.Editor
 			} else if (t is Vector2) {
 				Vector2 v = (Vector2)t;
 				t = CreateVector2Field (valueName, v);
-			} else if (t is Vector3) {
+			}else if (t is Vector2Int) {
+				Vector2Int v = (Vector2Int)t;
+				t = CreateVector2IntField (valueName, v);
+			}  
+			else if (t is Vector3) {
 				Vector3 v = (Vector3)t;
 				t = CreateVector3Field (valueName, v);
-			} else if (t is Vector4) {
+			}else if (t is Vector3Int) {
+				Vector3Int v = (Vector3Int)t;
+				t = CreateVector3IntField(valueName, v);
+			} 
+			else if (t is Vector4) {
 				Vector4 v = (Vector4)t;
 				t = CreateVector4Field (valueName, v);
 			}
