@@ -54,7 +54,7 @@ namespace wuxingogo.tools
 	    }
 
 	    protected virtual void OnDestroy()
-	    {
+	    {	
 		    if(mInstance ==  this)
 		    	mInstance = null;
 	    }
@@ -75,7 +75,7 @@ namespace wuxingogo.tools
 	    }
 	    protected virtual void Awake()
 	    {
-		    if( mInstance != null )
+		    if( mInstance != this )
 		    {
 			    XLogger.Log( "Found Singleton : " + mInstance.name );
 			    Destroy( gameObject );
@@ -83,7 +83,6 @@ namespace wuxingogo.tools
 		    }
 		    else
 		    {
-			    mInstance = this as T;
 			    if(isDontDestroy)
 				    DontDestroyOnLoad( gameObject );
 		    

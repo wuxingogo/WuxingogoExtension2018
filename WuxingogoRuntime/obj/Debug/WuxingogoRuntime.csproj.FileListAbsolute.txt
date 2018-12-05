@@ -15,3 +15,8 @@ E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
 E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.dll
 E:\Work\Wuxingogo\OutPutDll\WuxingogoRuntime.pdb
 E:\Work\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache
+D:\GithubProject\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
+D:\GithubProject\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+D:\GithubProject\Wuxingogo\OutPutDll\WuxingogoRuntime.dll
+D:\GithubProject\Wuxingogo\OutPutDll\WuxingogoRuntime.pdb
+D:\GithubProject\Wuxingogo\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojResolveAssemblyReference.cache

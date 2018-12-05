@@ -103,7 +103,7 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
 		SaveInEditor();
         return this;
     }
-
+	[X]
     public void Clear()
     {
         Keys.Clear();
@@ -132,5 +132,11 @@ public class UnityDictionary<TKey,TValue> : XScriptableObject
 	public bool ContainerValue(TValue value)
 	{
 		return Values.Contains (value);
+	}
+
+	public TKey GetValueKey(TValue value)
+	{
+		var index = Values.IndexOf(value);
+		return Keys[index];
 	}
 }
