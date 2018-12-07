@@ -107,7 +107,7 @@ namespace wuxingogo.Reflection
         {
             return GetEditorAssembly().GetType( typeName );
         }
-
+		// Need add namespace
 		public static Type GetUnityEditor(string typeName){
 			return AppDomain.CurrentDomain.Load( "UnityEditor" ).GetType(typeName);
 		}

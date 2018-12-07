@@ -37,8 +37,8 @@ namespace wuxingogo.tools
 	/// </summary>
 	public class SingletonC<T> : XMonoBehaviour where T : Component
     {
-	    static T mInstance = null;
-
+	    [X]
+	    protected static T mInstance = null;
 	    public static T Inst { 
 		    get {
 			    if (mInstance == null) {
@@ -57,11 +57,12 @@ namespace wuxingogo.tools
 	    {	
 		    if(mInstance ==  this)
 		    	mInstance = null;
+		    XLogger.Log(name + " OnDestroy");
 	    }
 
 	    protected virtual void OnAwake()
 	    {
-		    
+		    XLogger.Log(name + " OnAwake");
 	    }
 
 	    protected virtual HideFlags gameObjectFlags
@@ -75,7 +76,7 @@ namespace wuxingogo.tools
 	    }
 	    protected virtual void Awake()
 	    {
-		    if( mInstance != this )
+		    if( mInstance != null && mInstance != this )
 		    {
 			    XLogger.Log( "Found Singleton : " + mInstance.name );
 			    Destroy( gameObject );
@@ -83,6 +84,11 @@ namespace wuxingogo.tools
 		    }
 		    else
 		    {
+			    if (mInstance == null)
+			    {
+				    mInstance = this as T;
+			    }
+    
 			    if(isDontDestroy)
 				    DontDestroyOnLoad( gameObject );
 		    
