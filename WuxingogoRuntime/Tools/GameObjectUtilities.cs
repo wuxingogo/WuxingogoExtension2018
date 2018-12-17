@@ -153,13 +153,17 @@ namespace wuxingogo.tools
         public static void DestoryAllChildren(Transform root)
         {
 			bool isPlaying = Application.isPlaying;
-            for (int i = 0; i < root.childCount; ++i)
+
+            for (int i = root.childCount; i > 0; --i)
             {
-                Transform t = root.GetChild(i);
-				if (!isPlaying)
-					GameObject.DestroyImmediate (t.gameObject);
-				else
-                	GameObject.Destroy(t.gameObject);
+                if (isPlaying)
+                {
+                    GameObject.Destroy(root.GetChild(0).gameObject);
+                }
+                else
+                {
+                    GameObject.DestroyImmediate(root.GetChild(0).gameObject);
+                }
             }
         }
         public static void DestoryChild(Transform root, string childName)
