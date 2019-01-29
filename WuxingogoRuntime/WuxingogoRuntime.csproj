@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>..\OutPutDll\</OutputPath>
-    <DefineConstants>DEBUG;XLOG_ENABLE</DefineConstants>
+    <DefineConstants>DEBUG;XLOG_ENABLE;XLOG_WRITE_FILE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>

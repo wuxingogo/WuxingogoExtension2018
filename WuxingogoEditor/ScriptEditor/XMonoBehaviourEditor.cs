@@ -581,7 +581,11 @@ namespace wuxingogo.Editor
 				t = (short)CreateIntField (valueName, Convert.ToInt16 (t));
 			} else if (t is System.Int64) {
 				t = CreateLongField (valueName, Convert.ToInt64 (t));
-			} else if (t is byte) {
+			}else if (t is uint || type ==typeof(UInt32))
+			{
+				t = (uint)CreateIntField (valueName, Convert.ToInt32 (t));
+			} 
+			else if (t is byte ||  type ==typeof(Byte)) {
 				int value = Convert.ToInt32 (t);
 				t = Convert.ToByte (CreateIntField (valueName, value));
 			} else if (type == typeof(String)) {
@@ -749,7 +753,7 @@ namespace wuxingogo.Editor
                     BeginHorizontal();
 					var keyType = iteratorKey.Current.GetType ();
 					var valueType = dictionary [iteratorKey.Current].GetType ();
-					GetTypeGUI( iteratorKey.Current,keyType , keyType.Name, newList );
+					GetTypeGUI( iteratorKey.Current, keyType , keyType.Name, newList );
 					GetTypeGUI( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
                     EndHorizontal();
                     DrawListType( newList );
@@ -805,7 +809,11 @@ namespace wuxingogo.Editor
 				t = (short)EditorGUI.IntField (controlRect, valueName, Convert.ToInt16 (t));
 			} else if (t is System.Int64) {
 				t = EditorGUI.IntField (controlRect, valueName, (int)Convert.ToInt64 (t));
-			} else if (t is byte) {
+			}else if (t is uint || type ==typeof(UInt32))
+			{
+				t = (uint)EditorGUI.IntField (controlRect, valueName, Convert.ToInt32(t));
+			}  
+			else if (t is byte) {
 				int value = Convert.ToInt32 (t);
 				t = Convert.ToByte (EditorGUI.IntField (controlRect, valueName, value));
 			} else if (type == typeof(String)) {
@@ -965,48 +973,54 @@ namespace wuxingogo.Editor
 				if(!toggle)
 					return t;
 				DoButton ("Clear", () => dictionary.Clear());
-				while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
-				{
-					var newList = new List<object>();
-//					BeginHorizontal();
+                while( iteratorKey.MoveNext() && iteratorValue.MoveNext() )
+                {
+                    var newList = new List<object>();
+                    //BeginHorizontal();
 					var keyType = iteratorKey.Current.GetType ();
 					var valueType = dictionary [iteratorKey.Current].GetType ();
-					GetTypeGUIOpt( iteratorKey.Current, keyType , keyType.Name, newList );
-					GetTypeGUIOpt( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
-//					EndHorizontal();
-					DrawListType( newList );
-				}
+					GetTypeGUI( iteratorKey.Current, keyType , keyType.Name, newList );
+					GetTypeGUI( dictionary[iteratorKey.Current], valueType,valueType.Name, newList );
+                    //EndHorizontal();
+                    DrawListType( newList );
+                }
 
-			}
+            }
 
-			else if( t is IEnumerable && t is ICollection )
-			{
-				int count = ( ( ICollection )t ).Count;
-				IEnumerable b = ( IEnumerable )t;
-				var name = valueName;
-				bool toggle = DrawHeader( name + " : " + count, name, false, false );
-				if(!toggle)
-					return t;
-				foreach( var item in b )
-				{
-					var newList = new List<object>();
-					var itemType = item.GetType();	
-					GetTypeGUIOpt( item, itemType , itemType.Name, newList );
-					DrawListType( newList );
-				}
-			}
-			else if( t != null )
-			{
-				if( !nextShow.Contains( t ) )
-					nextShow.Add( t );
+//            else if( typeof( IEnumerable ).IsAssignableFrom( type ) )
+//            {
+//				bool toggle = DrawHeader( valueName, valueName, false, false );
+//				if(!toggle)
+//					return t;
+//				
+//                IEnumerable collection = ( IEnumerable )t;
+//				IEnumerator iteratorValue = collection.GetEnumerator();
+//	            
+//                int index = 0;
+//                var newList = new List<object>();
+//                while( iteratorValue.MoveNext() )
+//                {
+//					var valueType = iteratorValue.Current.GetType();
+//                    if( iteratorValue.Current != null )
+//						GetTypeGUI( iteratorValue.Current, valueType, valueType.Name + "_" + index, newList );
+//                    index++;
+//                }
+//            }
+            else if( t != null )
+            {
+                if( !nextShow.Contains( t ) )
+                    nextShow.Add( t );
 
-			}
-			else
-			{
-				CreateLabel( "NULL" );
-			}
+//                EditorGUILayout.Space();
+//                DrawHeader( type.Name, type.Name, false, false );
 
-			return t;
+            }
+            else
+            {
+                CreateLabel( "NULL" );
+            }
+
+            return t;
 
 		}
 

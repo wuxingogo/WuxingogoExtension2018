@@ -207,8 +207,9 @@ namespace wuxingogo.tools
             return obj;
         }
 
-        public static string GetFullPathName(GameObject obj, string oldStr)
+        public static string GetFullPathName(GameObject obj)
         {
+            string oldStr = "";
             GameObject o = obj;
 
             while (o.transform.parent != null)
@@ -216,7 +217,7 @@ namespace wuxingogo.tools
                 oldStr = "/" + o.name + oldStr;
                 o = o.transform.parent.gameObject;
             }
-            oldStr = "/" + o.name + oldStr;
+            oldStr =  o.name + oldStr;
             return oldStr;
         }
 
@@ -228,7 +229,7 @@ namespace wuxingogo.tools
             {
                 if (o.parent == obj.transform)
                 {
-                    return relitivePath;
+                    return relitivePath;    
                 }
                 else
                 {

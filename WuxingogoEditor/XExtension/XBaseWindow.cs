@@ -106,7 +106,7 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public virtual void OnXGUI()
 	{
-    
+		XMonoBehaviourEditor.ShowXAttributeMember(this);
 	}
 
 	public void CreateSpaceBox()
