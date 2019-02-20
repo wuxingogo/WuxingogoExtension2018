@@ -69,6 +69,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\DecoratorEditor.cs" />
+    <Compile Include="XExtension\MessageGather.cs" />
     <Compile Include="XExtension\RecoverEditor.cs" />
     <Compile Include="XExtension\RenameEditor.cs" />
     <Compile Include="XExtension\SelectionUtils.cs" />
