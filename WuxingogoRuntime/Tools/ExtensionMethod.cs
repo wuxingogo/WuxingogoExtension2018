@@ -243,6 +243,15 @@ namespace wuxingogo.tools
         }
 		
 		#endregion
+		
+		
+		#region ==== string	
+
+		public static string Format(this string lhs, params object[] rhs)
+		{
+			return string.Format(lhs, rhs);
+		}
+		#endregion
 	}
 
 

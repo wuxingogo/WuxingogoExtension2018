@@ -52,7 +52,7 @@ namespace wuxingogo.tools
 		    }
 		    set { mInstance = value; }
 	    }
-
+		[X]
 	    protected virtual void OnDestroy()
 	    {	
 		    if(mInstance ==  this)

@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEditor.Callbacks;
 using wuxingogo.Runtime;
 
-public static class XResources {
+	public static class XResources {
 
 	static XResources()
 	{
@@ -34,7 +34,7 @@ public static class XResources {
 	{
 		get
 		{
-			if( _logoTex == null )
+			if( _logoTex == null )	
 			{
 				var resPath = AssetDatabase.FindAssets( "wuxingogo t:texture" );
 				var guidPath = AssetDatabase.GUIDToAssetPath( resPath[ 0 ] );
