@@ -70,11 +70,11 @@ def CopyPluginDirectory(despath):
 
 
 
-print "remove all meta"
+print("remove all meta")
 path = os.getcwd()
 removefile("WuxingogoEditor", ".meta")
 removefile("WuxingogoRuntime", ".meta")
-print "remove all meta success"
+print("remove all meta success")
 
 UsePlatform()
 
@@ -109,7 +109,7 @@ if(sysstr =="Windows"):
 
     #copyfile( currPath()+"\\" + editorSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Editor\WuxingogoEditor.dll")
     #copyfile( currPath()+"\\" + runtimeSourceFile, "E:\Work\UnityProject\PhysicsDemo\Assets\Plugins\WuxingogoExtension\Plugins\WuxingogoRuntime.dll")
-    CopyToProject("E:/Work/UnityProject/2018/Test/Assets/Plugins/WuxingogoExtension/")
+    CopyToProject("C:/Project/gayou/Client/GameCollection/Assets/Plugins/WuxingogoExtension/")
 else:
     # copyfile(currPath()+"/" + editorSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Editor/WuxingogoEditor.dll")
     # copyfile(currPath()+"/" + runtimeSourceFile,"/Users/Wuxingogo/Documents/UnityProject/Casting/OneSideWar/Assets/Plugins/WuxingogoExtension/Plugins/WuxingogoRuntime.dll")

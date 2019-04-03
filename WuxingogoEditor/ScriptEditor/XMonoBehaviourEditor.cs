@@ -588,7 +588,18 @@ namespace wuxingogo.Editor
 			else if (t is byte ||  type ==typeof(Byte)) {
 				int value = Convert.ToInt32 (t);
 				t = Convert.ToByte (CreateIntField (valueName, value));
-			} else if (type == typeof(String)) {
+            }
+            else if (t is byte[])
+            {
+                byte[] memory = (byte[])t;
+                string str = System.Text.Encoding.Default.GetString(memory);
+                string str1 = CreateStringField(valueName, str);
+                if (str != str1)
+                {
+                    t = System.Text.Encoding.Default.GetBytes(str1);
+                }
+            }
+            else if (type == typeof(String)) {
 				t = CreateStringField (valueName, (string)t);
 			} else if (type == typeof(Single)) {
 				t = CreateFloatField (valueName, Convert.ToSingle (t));
@@ -816,7 +827,18 @@ namespace wuxingogo.Editor
 			else if (t is byte) {
 				int value = Convert.ToInt32 (t);
 				t = Convert.ToByte (EditorGUI.IntField (controlRect, valueName, value));
-			} else if (type == typeof(String)) {
+			}
+            else if (t is byte[])
+            {
+                byte[] memory = (byte[])t;
+                string str = System.Text.Encoding.Default.GetString(memory);
+                string str1 = EditorGUI.TextField(controlRect, valueName, str);
+                if(str != str1)
+                {
+                    t = System.Text.Encoding.Default.GetBytes(str1);
+                }
+            }
+            else if (type == typeof(String)) {
 				t = EditorGUI.TextField (controlRect, valueName, (string)t);
 			} else if (type == typeof(Single)) {
 				t = EditorGUI.FloatField (controlRect, valueName, Convert.ToSingle (t));
@@ -856,7 +878,8 @@ namespace wuxingogo.Editor
 					EditorGUI.Vector2Field (controlRect, "", m.GetRow(i));
 					//EndVertical ();
 				}
-			}else if( t is DateTime )
+			}
+            else if( t is DateTime )
 			{
 				DateTime dateTime = ( DateTime )t;
 				
