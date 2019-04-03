@@ -581,7 +581,7 @@ namespace wuxingogo.Editor
 				t = (short)CreateIntField (valueName, Convert.ToInt16 (t));
 			} else if (t is System.Int64) {
 				t = CreateLongField (valueName, Convert.ToInt64 (t));
-			}else if (t is uint || type ==typeof(UInt32))
+			}else if (t is uint || type ==typeof(UInt32) || t is ushort)
 			{
 				t = (uint)CreateIntField (valueName, Convert.ToInt32 (t));
 			} 
@@ -593,7 +593,7 @@ namespace wuxingogo.Editor
             {
                 byte[] memory = (byte[])t;
                 string str = System.Text.Encoding.Default.GetString(memory);
-                string str1 = CreateStringField(valueName, str);
+                string str1 = CreateStringField( valueName, str);
                 if (str != str1)
                 {
                     t = System.Text.Encoding.Default.GetBytes(str1);
@@ -820,7 +820,7 @@ namespace wuxingogo.Editor
 				t = (short)EditorGUI.IntField (controlRect, valueName, Convert.ToInt16 (t));
 			} else if (t is System.Int64) {
 				t = EditorGUI.IntField (controlRect, valueName, (int)Convert.ToInt64 (t));
-			}else if (t is uint || type ==typeof(UInt32))
+			}else if (t is uint || type ==typeof(UInt32) || t is ushort)
 			{
 				t = (uint)EditorGUI.IntField (controlRect, valueName, Convert.ToInt32(t));
 			}  
