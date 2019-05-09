@@ -14,7 +14,7 @@ using wuxingogo.Runtime;
 
 	public static void InitTexture()
 	{
-		XLogger.Log( "Resources Init with wuxingogo" );
+		//XLogger.Log( "Resources Init with wuxingogo" );
 
 	}
 //	[X]

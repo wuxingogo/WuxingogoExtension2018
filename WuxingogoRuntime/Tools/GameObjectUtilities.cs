@@ -260,5 +260,26 @@ namespace wuxingogo.tools
                 return go.transform;
             return null;
         }
+        /// <summary>
+        /// Find Child component by name
+        /// </summary>
+        /// <param name="component"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T FindChildComponent<T>(this Component component) where T : Component
+        {
+            var name = typeof(T).Name;
+            var transform = component.transform;
+            var child = transform.Find(name);
+            if (child == null)
+            {
+                GameObject go = new GameObject(name);
+                go.SetParent(transform);
+                GameObjectUtilities.AlignTransform(go.transform, transform );
+                return go.AddComponent<T>();
+            }
+
+            return child.GetComponent<T>();
+        }
     }
 }

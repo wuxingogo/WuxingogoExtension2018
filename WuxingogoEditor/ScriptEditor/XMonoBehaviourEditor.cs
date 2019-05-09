@@ -63,9 +63,9 @@ namespace wuxingogo.Editor
                 ShowProperties<XAttribute>( target );
 	            EditorGUI.indentLevel--;
             }
-            catch
+            catch(Exception ex)
             {
-
+				Debug.Log(ex);
             }
 
         }
