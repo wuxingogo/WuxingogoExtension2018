@@ -34,7 +34,6 @@ $RECYCLE.BIN/
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-.DS_Store
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -98,3 +97,4 @@ WuxingogoRuntime/BehaviorCore/XBehaviorFSM.cs.meta
 WuxingogoRuntime/BehaviorCore/XBehaviorState.cs.meta
 
 \.idea/\.idea\.WuxingogoEditor/\.idea/
+/WuxingogoEditor.sln.DotSettings.user
