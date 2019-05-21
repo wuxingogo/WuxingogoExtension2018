@@ -266,20 +266,30 @@ namespace wuxingogo.tools
         /// <param name="component"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T FindChildComponent<T>(this Component component) where T : Component
+        public static T FindChildComponent<T>(this Component component, bool needCreate = true) where T : Component
         {
             var name = typeof(T).Name;
             var transform = component.transform;
             var child = transform.Find(name);
             if (child == null)
             {
-                GameObject go = new GameObject(name);
-                go.SetParent(transform);
-                GameObjectUtilities.AlignTransform(go.transform, transform );
-                return go.AddComponent<T>();
+                if (needCreate)
+                    return CreateChildComponent<T>(component);
+                else
+                    return null;
             }
 
             return child.GetComponent<T>();
+        }
+
+        public static T CreateChildComponent<T>(this Component component) where T : Component
+        {
+            var name = typeof(T).Name;
+            var transform = component.transform;
+            GameObject go = new GameObject(name);
+            go.SetParent(transform);
+            AlignTransform(go.transform, transform );
+            return go.AddComponent<T>();
         }
     }
 }

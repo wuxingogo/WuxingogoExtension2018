@@ -247,9 +247,25 @@ namespace wuxingogo.tools
 		
 		#region ==== string	
 
-		public static string Format(this string lhs, params object[] rhs)
+		public static string StringFormat(this string lhs, params object[] rhs)
 		{
 			return string.Format(lhs, rhs);
+		}
+		
+		// https://answers.unity.com/questions/266244/how-can-i-add-copypaste-clipboard-support-to-my-ga.html
+		// This needs to be added to a public static class to be used like an extension
+		public static void CopyToClipboard(this string s)
+		{
+			// TextEditor te = new TextEditor();
+			// te.text = s;
+			// te.SelectAll();
+			// te.Copy();
+			GUIUtility.systemCopyBuffer = s;
+		}
+
+		public static string GetClipboardString()
+		{
+			return GUIUtility.systemCopyBuffer;;
 		}
 		#endregion
 	}

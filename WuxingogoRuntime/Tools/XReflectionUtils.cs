@@ -356,6 +356,19 @@ namespace wuxingogo.Reflection
             return GetUnitySolotion().GetTypes().Where( sub => sub.IsSubclassOf( type ) );
         }
 
+        public static List<Type> FindAllSubClass(Type type)
+        {
+	        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+	        List<Type> totalTypes = new List<Type>();
+	        for (int i = 0; i < assemblies.Length; i++)
+	        {
+		        var types = assemblies[i].GetTypes().Where(sub => sub.IsSubclassOf(type));
+		        totalTypes.AddRange(types);
+	        }
+
+	        return totalTypes;
+        }
+
 		public static bool isSubClassOrEquals<T>(this Type type)
 		{
 			return type.IsSubclassOf( typeof( T ) ) || type == typeof( T );
@@ -408,6 +421,13 @@ namespace wuxingogo.Reflection
 				method.Invoke( null, new object[] { asset, parent } );
 
 			}
+		}
+
+		public static void SetDirty(UnityEngine.Object asset)
+		{
+			System.Type type = Reflection.XReflectionUtils.GetEditorType( "wuxingogo.Editor.AssetsUtilites" );
+			var method = type.GetMethod( "SetDirty" );
+			method.Invoke( null, new object[] { asset } );
 		}
 
 		public static void Save(XScriptableObject asset)

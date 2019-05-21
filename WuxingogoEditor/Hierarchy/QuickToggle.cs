@@ -8,7 +8,11 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using System;
 using System.Diagnostics;
+using System.Linq;
+using UnityEditor.Callbacks;
+using wuxingogo.Reflection;
 using wuxingogo.Runtime;
+using wuxingogo.tools;
 
 namespace wuxingogo.Editor
 {
@@ -23,6 +27,8 @@ namespace wuxingogo.Editor
 		private static bool showHideComponents = false;
         private static GUISkin skin = null;
 
+        private static System.Type[] hierchyTypes;
+        private static object[] hierchyObjects;
         static QuickToggle()
         {
             if (EditorPrefs.HasKey(PrefKeyShowToggle) == false) {
@@ -34,6 +40,18 @@ namespace wuxingogo.Editor
             skin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Inspector);
         }
 
+        [DidReloadScripts]
+        static void DidReloadScripts()
+        {
+	        hierchyTypes = XReflectionUtils.FindAllSubClass(typeof(HierchyAbstract)).ToArray();
+	        hierchyObjects = new object[hierchyTypes.Length];
+	        // XLogger.Log("Didreload script quick toogle {0}".StringFormat(hierchyTypes.Length));
+	        for (int i = 0; i < hierchyTypes.Length; i++)
+	        {
+		        hierchyObjects[i] = Activator.CreateInstance(hierchyTypes[i]);
+		        // XLogger.Log("hierchyObjects {0}".StringFormat(hierchyObjects[i].ToString()));
+	        }
+        }
 
 		internal static void Toggle()
 		{
@@ -69,68 +87,99 @@ namespace wuxingogo.Editor
             EditorApplication.RepaintHierarchyWindow();
         }
 
+        public static Rect GetNextRect(float rectIndex)
+        {
+	        Rect lockRect = new Rect(selectionRect)
+	        {
+		        xMin = selectionRect.xMax - selectionRect.height * rectIndex
+	        };
+	        rectCount++;
+	        return lockRect;
+        }
+        public static Rect GetNextRect()
+        {
+	        Rect lockRect = new Rect(selectionRect)
+	        {
+		        xMin = selectionRect.xMax - selectionRect.height * rectCount
+	        };
+	        rectCount++;
+	        return lockRect;
+        }
+
+        private static int rectCount = 1;
+        private static Rect selectionRect = Rect.zero;
         private static void DrawHierarchyItem(int instanceId, Rect selectionRect)
         {
-			try{
-            BuildStyles();
+			try
+			{
+				rectCount = 0;
+				QuickToggle.selectionRect = selectionRect;
+				
+				BuildStyles();
+	
+				GameObject target = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
+				if (target == null)
+					return;
 
-            GameObject target = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
-            if (target == null)
-                return;
-
-            // Reserve the draw rects
-            Rect visRect = new Rect(selectionRect)
-            {
-                xMin = selectionRect.xMax - (selectionRect.height * 2.1f),
-                xMax = selectionRect.xMax - selectionRect.height
-            };
-            Rect lockRect = new Rect(selectionRect)
-            {
-                xMin = selectionRect.xMax - selectionRect.height
-            };
-           // Draw the visibility toggle
-            bool isActive = target.activeSelf;
-            if (isActive != GUI.Toggle(visRect, isActive, GUIContent.none, styleVisible))
-            {
-                SetVisible(target, !isActive);
-                EditorApplication.RepaintHierarchyWindow();
-            }
-
-            // Draw lock toggle
-            bool isLocked = (target.hideFlags & HideFlags.NotEditable) > 0;
-            // Decide which GUIStyle to use for the button
-            // If this item is currently selected, show the visible lock style, if not, invisible lock style
-            GUIStyle lockStyle = (Selection.activeInstanceID == instanceId) ? styleLock : styleLockUnselected;
-            if (isLocked != GUI.Toggle(lockRect, isLocked, GUIContent.none, lockStyle))
-            {
-                SetLockObject(target, !isLocked);
-                EditorApplication.RepaintHierarchyWindow();
-            }
-			var monos = target.GetComponents<Behaviour> ();
-			int startIndex = 0;
-			for (int i = 0; i < monos.Length; i++) {
-				if(monos [i] == null)
-				{	
-					continue;
-				}
-				var e = monos [i].enabled;
-				Rect monoRect = new Rect(selectionRect)
+				Rect lockRect = GetNextRect();
+				// Draw lock toggle
+				bool isLocked = (target.hideFlags & HideFlags.NotEditable) > 0;
+				// Decide which GUIStyle to use for the button
+				// If this item is currently selected, show the visible lock style, if not, invisible lock style
+				GUIStyle lockStyle = (Selection.activeInstanceID == instanceId) ? styleLock : styleLockUnselected;
+				if (isLocked != GUI.Toggle(lockRect, isLocked, GUIContent.none, lockStyle))
 				{
-					xMin = selectionRect.xMax - (startIndex+3)* selectionRect.height
-				};
-				if ((monos [i].hideFlags & HideFlags.HideInInspector) != 0 || showHideComponents) {
-					continue;
-				} else {
-					startIndex++;
-				}
-				var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
-				if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, skin.toggle)) {
-					SetVisible (monos [i], !e);
+					SetLockObject(target, !isLocked);
 					EditorApplication.RepaintHierarchyWindow();
-					var window = InspectorUtilites.GetInspectorWindow ();
-					window.Repaint ();
 				}
-			}
+				
+				
+				// Reserve the draw rects
+				Rect visRect = GetNextRect(2.1f);
+				visRect.xMax = selectionRect.xMax - selectionRect.height;
+				
+			  
+			   // Draw the visibility toggle
+				bool isActive = target.activeSelf;
+				if (isActive != GUI.Toggle(visRect, isActive, GUIContent.none, styleVisible))
+				{
+					SetVisible(target, !isActive);
+					EditorApplication.RepaintHierarchyWindow();
+				}
+	
+				
+				var monos = target.GetComponents<Behaviour> ();
+				int startIndex = 0;
+				for (int i = 0; i < monos.Length; i++) {
+					if(monos [i] == null)
+					{	
+						continue;
+					}
+					var e = monos [i].enabled;
+					Rect monoRect = GetNextRect();
+					
+					if ((monos [i].hideFlags & HideFlags.HideInInspector) != 0 || showHideComponents) {
+						continue;
+					} else {
+						startIndex++;
+					}
+					var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
+					if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, skin.toggle)) {
+						SetVisible (monos [i], !e);
+						EditorApplication.RepaintHierarchyWindow();
+						var window = InspectorUtilites.GetInspectorWindow ();
+						window.Repaint ();
+					}
+				}
+
+
+				for (int i = 0; i < hierchyTypes.Length; i++)
+				{
+					var t = hierchyTypes[i];
+					t.TryInvokeMethod(hierchyObjects[i], "OnGUI", instanceId);
+				}
+				
+
 			}catch(Exception e) {
 				XLogger.Log (e.ToString ());
 				var lineNumber = 0;
@@ -147,7 +196,7 @@ namespace wuxingogo.Editor
 			}
         }
 
-        private static Object[] GatherObjects(GameObject root)
+        public static Object[] GatherObjects(GameObject root)
         {
             List<UnityEngine.Object> objects = new List<UnityEngine.Object>();
             Stack<GameObject> recurseStack = new Stack<GameObject>(new GameObject[] { root });

@@ -36,6 +36,13 @@ namespace wuxingogo.Editor
 		{
 			AssetDatabase.AddObjectToAsset( @object, parent );
 		}
+
+		public static void SetDirty(Object @object)
+		{
+			EditorUtility.SetDirty(@object);
+			AssetDatabase.Refresh();
+		}
+	
 		public static T[] FindAssetsByType<T>() where T : Object
 		{
 

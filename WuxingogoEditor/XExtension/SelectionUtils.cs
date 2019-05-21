@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
+using wuxingogo.tools;
 using Object = UnityEngine.Object;
 
 namespace wuxingogo.Editor
@@ -76,7 +77,7 @@ namespace wuxingogo.Editor
             return Selection.activeObject as T;
         }
 
-        [MenuItem( "Wuxingogo/Tools/Selection Info" )]
+        [MenuItem( "Wuxingogo/Tools/Selection/Info" )]
         public static void GetInfo()
         {
             var o = GetObject<Object>();
@@ -84,5 +85,23 @@ namespace wuxingogo.Editor
             XLogger.Log( "Type:" + o.GetType() );
             XLogger.Log( "InstanceID:" + o.GetInstanceID() ); 
         }
+
+        [MenuItem("Wuxingogo/Tools/Selection/Copy Path")]
+        public static void CopyPath()
+        {
+            var objs = GetObjects<Object>();
+            string content = "";
+            for (int i = 0; i < objs.Count; i++)
+            {
+                var obj = objs[i];
+                var path = AssetDatabase.GetAssetPath(obj);
+
+                content += path + "\n";
+            }
+            content.CopyToClipboard();
+           
+        }
+        
+
     }
 }

@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System.Diagnostics;
 using UnityEngine;
 using wuxingogo.Reflection;
 using wuxingogo.Runtime;
@@ -63,6 +64,13 @@ namespace wuxingogo.Runtime
 
 				return m_instance;
 			}
+		}
+		[Conditional("UNITY_EDITOR")]
+		// call in editor
+		[X]
+		public void SetDirty()
+		{
+			XReflectionUtils.SetDirty(this);
 		}
 	}
 }

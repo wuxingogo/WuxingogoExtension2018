@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Hierarchy\HierchyAbstract.cs" />
     <Compile Include="XExtension\AssetsUtilites.cs" />
     <Compile Include="XExtension\DecoratorEditor.cs" />
     <Compile Include="XExtension\MessageGather.cs" />
