@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Diagnostics;
+using wuxingogo.Reflection;
 
 
 namespace wuxingogo.Runtime
@@ -46,6 +48,12 @@ namespace wuxingogo.Runtime
 			DestroyImmediate (this, true);
 		}
 
-
+		[Conditional("UNITY_EDITOR")]
+		// call in editor
+		[X]
+		public void SetDirty()
+		{
+			XReflectionUtils.SetDirty(this);
+		}
     }
 }

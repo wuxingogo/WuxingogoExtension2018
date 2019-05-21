@@ -93,7 +93,7 @@ namespace wuxingogo.Editor
 	        {
 		        xMin = selectionRect.xMax - selectionRect.height * rectIndex
 	        };
-	        rectCount++;
+	        rectCount+= Mathf.FloorToInt(rectIndex);
 	        return lockRect;
         }
         public static Rect GetNextRect()
@@ -156,13 +156,14 @@ namespace wuxingogo.Editor
 						continue;
 					}
 					var e = monos [i].enabled;
-					Rect monoRect = GetNextRect();
+					
 					
 					if ((monos [i].hideFlags & HideFlags.HideInInspector) != 0 || showHideComponents) {
 						continue;
 					} else {
 						startIndex++;
 					}
+					Rect monoRect = GetNextRect();
 					var guiContent = EditorGUIUtility.ObjectContent (monos [i], monos [i].GetType());
 					if (guiContent != null && guiContent.image != null && e != GUI.Toggle (monoRect, e, guiContent.image, skin.toggle)) {
 						SetVisible (monos [i], !e);

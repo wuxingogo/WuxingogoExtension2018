@@ -65,12 +65,6 @@ namespace wuxingogo.Runtime
 				return m_instance;
 			}
 		}
-		[Conditional("UNITY_EDITOR")]
-		// call in editor
-		[X]
-		public void SetDirty()
-		{
-			XReflectionUtils.SetDirty(this);
-		}
+		
 	}
 }
