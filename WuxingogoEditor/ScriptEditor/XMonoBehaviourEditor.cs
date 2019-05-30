@@ -705,10 +705,19 @@ namespace wuxingogo.Editor
 			} else if (t is Vector2) {
 				Vector2 v = (Vector2)t;
 				t = EditorGUI.Vector2Field (controlRect, valueName, v);
-			} else if (t is Vector3) {
+			}else if (t is Vector2Int) {
+				Vector2Int v = (Vector2Int)t;
+				t = EditorGUI.Vector2IntField (controlRect, valueName, v);
+			}
+			else if (t is Vector3Int) {
+				Vector3Int v = (Vector3Int)t;
+				t = EditorGUI.Vector3IntField (controlRect, valueName, v);
+			}
+			else if (t is Vector3) {
 				Vector3 v = (Vector3)t;
 				t = EditorGUI.Vector3Field (controlRect, valueName, v);
-			} else if (t is Vector4) {
+			}
+			else if (t is Vector4) {
 				Vector4 v = (Vector4)t;
 				t = EditorGUI.Vector4Field (controlRect, valueName, v);
 			} else if (t is Quaternion) {
