@@ -86,8 +86,8 @@ namespace wuxingogo.Editor
             XLogger.Log( "InstanceID:" + o.GetInstanceID() ); 
         }
 
-        [MenuItem("Wuxingogo/Tools/Selection/Copy Path")]
-        public static void CopyPath()
+        [MenuItem("Wuxingogo/Tools/Selection/Copy Asset Path")]
+        public static void CopyAssetPath()
         {
             var objs = GetObjects<Object>();
             string content = "";
@@ -99,9 +99,21 @@ namespace wuxingogo.Editor
                 content += path + "\n";
             }
             content.CopyToClipboard();
-           
         }
         
-
+        [MenuItem("Wuxingogo/Tools/Selection/Copy GameObject Path")]
+        public static void CopyGameObjectPath()
+        {
+            var objs = Selection.gameObjects;
+            
+            string content = "";
+            for (int i = 0; i < objs.Length; i++)
+            {
+                var obj = objs[i];
+                var path = GameObjectUtilities.GetFullPathName(obj);
+                content += path + "\n";
+            }
+            content.CopyToClipboard();
+        }
     }
 }

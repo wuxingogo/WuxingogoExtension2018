@@ -44,6 +44,8 @@ namespace wuxingogo.Editor
         private Dictionary<object, bool> groupDict = new Dictionary<object, bool>();
 		public static BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 		public static BindingFlags staticFlag = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
+
+		private static Type XType = typeof(XAttribute);
         public override void OnXGUI()
         {
             base.OnXGUI();
@@ -58,9 +60,11 @@ namespace wuxingogo.Editor
             try
             {
 	            EditorGUI.indentLevel++;
-                ShowXMethods<XAttribute>( target );
-                ShowXFields<XAttribute>( target );
-                ShowProperties<XAttribute>( target );
+	            var type = target.GetType();
+	            
+                ShowXMethods<XAttribute>( target, type );
+                ShowXFields<XAttribute>( target,type  );
+                ShowProperties<XAttribute>( target, type );
 	            EditorGUI.indentLevel--;
             }
             catch(Exception ex)
@@ -76,9 +80,9 @@ namespace wuxingogo.Editor
 			{
 				var c = GUI.contentColor;
 				GUI.contentColor = EditorGUIUtility.isProSkin ? new Color( 1f, 1f, 1f, 0.7f ) : new Color( 0f, 0f, 0f, 0.7f );
-				ShowStaticMethod<XAttribute>(type);
-				ShowStaticXField<XAttribute>(type);
-				ShowStaticProperties<XAttribute>(type);
+				ShowXMethods<XAttribute>(null, type);
+				ShowXFields<XAttribute>(null, type);
+				ShowProperties<XAttribute>(null, type);
 				GUI.contentColor = c;
 			}
 			catch
@@ -99,8 +103,8 @@ namespace wuxingogo.Editor
 
             if( !minimalistic )
                 GUILayout.Space( 3f );
-//            if( !forceOn && !state )
-//                GUI.backgroundColor = new Color( 0.8f, 0.8f, 0.8f );
+            // if( !forceOn && !state )
+            //     GUI.backgroundColor = new Color( 0.8f, 0.8f, 0.8f );
             BeginHorizontal();
             GUI.changed = false;
 	        
@@ -112,10 +116,10 @@ namespace wuxingogo.Editor
                     text = "\u25BA" + ( char )0x200a + text;
 
                 BeginHorizontal();
-//	            GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
+	            // GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
                 if( !GUILayout.Toggle( true, text, "PreToolbar2", GUILayout.MinWidth( 20f ) ) )
                     state = !state;
-//                GUI.contentColor = Color.white;
+                // GUI.contentColor = Color.white;
                 EndHorizontal();
             }
             else
@@ -126,7 +130,8 @@ namespace wuxingogo.Editor
                 else
                     text = "\u25BA " + text;
 	            BeginHorizontal();
-//	            GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
+	            // GUILayout.Space ( EditorGUI.indentLevel * TAB_SIZE);
+	            
                 if( !GUILayout.Toggle( true, text, "dragtab", GUILayout.MinWidth( 20f ) ) )
                     state = !state;
 	            EndHorizontal();
@@ -138,7 +143,7 @@ namespace wuxingogo.Editor
             if( !minimalistic )
                 GUILayout.Space( 2f );
             EndHorizontal();
-            GUI.backgroundColor = Color.white;
+            //GUI.backgroundColor = Color.white;
             if( !forceOn && !state )
                 GUILayout.Space( 3f );
             return state;
@@ -159,76 +164,16 @@ namespace wuxingogo.Editor
 				}
 			}
 		}
-		static void ShowStaticMethod<T>(Type type) where T : Attribute
-		{
-			if( type == null )
-				return;
-
-			var methods = type.GetMethods( staticFlag );
-			bool noAttribute = true;
-
-			foreach( var info in methods )
-			{
-				if (info.GetAttribute<T> () != null) {
-					noAttribute = false;
-				}
-			}
-			if( noAttribute )
-				return;
-
-			bool toggle = DrawHeader( "Method", "Method", false, false );
-
-			if( !toggle )
-			{
-				return;
-			}
-
-			List<object> nextShow = new List<object>();
-
-
-
-			foreach( var info in methods )
-			{
-				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
-				{
-					BeginVertical();
-
-					DrawFieldHeader( info.ReturnType,  info.Name );
-					ParameterInfo[] paras = info.GetParameters();
-
-					if( !methodParameters.ContainsKey( info ) )
-					{
-						object[] o = new object[paras.Length];
-						methodParameters.Add( info, o );
-					}
-					object[] objects = methodParameters[info];
-
-
-					for( int pos = 0; pos < paras.Length; pos++ )
-					{
-						if ( (paras[pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null ) {
-							objects [pos] = paras [pos].DefaultValue;
-						}
-						BeginHorizontal();
-						DrawFieldHeader( paras[pos].ParameterType, paras[pos].Name );
-						objects[pos] = GetTypeGUI( objects[pos], paras[pos].ParameterType, paras[pos].Name, nextShow );
-						EndHorizontal();
-					}
-					if( CreateSpaceButton( info.Name ) )
-					{
-						info.Invoke( null, objects );
-					}
-
-					EndVertical();
-				}
-			}
-		}
-		static void ShowXMethods<T>( object target )
+		
+		static void ShowXMethods<T>( object target, Type type )
         {
-            if( target == null )
-                return;
-
-            var methods = target.GetType().GetMethods( bindFlags );
+	        MethodInfo[] methods = null;
+	        if (target == null)
+		        methods = type.GetMethods( staticFlag );
+	        else
+		        methods = type.GetMethods( bindFlags );
+		    //MethodInfo[] methods = target.GetType().GetMethods( bindFlags );
+	        
             bool noAttribute = true;
             foreach( var info in methods )
             {
@@ -254,52 +199,156 @@ namespace wuxingogo.Editor
 
             foreach( var info in methods )
             {
-                foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
-                {
-					DrawFieldHeader( info.ReturnType,  info.Name );
-					ParameterInfo[] paras = info.GetParameters();
-
-					if (!methodParameters.ContainsKey (info)) {
-						object[] o = new object[paras.Length];
-						methodParameters.Add (info, o);
-					}
-					object[] objects = methodParameters [info];
-
-					if (paras.Length != 0) {
-						
-
-						using (new GUILayout.HorizontalScope ( Skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
-							for (int pos = 0; pos < paras.Length; pos++) {
-								if ((paras [pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null) {
-									objects [pos] = paras [pos].DefaultValue;
-								}
-	                       
-								DrawFieldHeader (paras [pos].ParameterType, paras [pos].Name);
-								objects [pos] = GetTypeGUI (objects [pos], paras [pos].ParameterType, paras [pos].Name, nextShow);
-	                       
-							}
-						}
-
-					}
-
-					if (CreateSpaceButton (info.Name)) {
-						var invokeValue = info.Invoke (target, objects);
-						if(invokeValue != null)
-						{
-							XLogger.Log(info.Name + " return : " + invokeValue.ToString());
-						}
-					}
-
-                }
+	            DrawMethod(info, target, nextShow);
             }
         }
 
+		static void DrawMethod(MethodInfo info, object target, List<object> nextShow)
+		{
+			var xAttributes = info.GetCustomAttributes(XType, true);
+			foreach( var att in xAttributes )
+			{
+				DrawFieldHeader( info.ReturnType,  info.Name );
+				ParameterInfo[] paras = info.GetParameters();
 
-		static void ShowXFields<T>( object target )
-        {
-            if( target == null )
-                return;
-            var Fields = target.GetType().GetFields( bindFlags );
+				if (!methodParameters.ContainsKey (info)) {
+					object[] o = new object[paras.Length];
+					methodParameters.Add (info, o);
+				}
+				object[] objects = methodParameters [info];
+
+				if (paras.Length != 0) {
+						
+					//Use horizontal layout
+					using (new GUILayout.VerticalScope ( Skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
+					
+					//using (new GUILayout.AreaScope ( Skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
+						for (int pos = 0; pos < paras.Length; pos++) {
+							if ((paras [pos].Attributes & ParameterAttributes.HasDefault) != ParameterAttributes.None && objects [pos] == null) {
+								objects [pos] = paras [pos].DefaultValue;
+							}
+							
+							DrawFieldHeader (paras [pos].ParameterType, paras [pos].Name);
+							objects [pos] = GetTypeGUIOpt (objects [pos], paras [pos].ParameterType, paras [pos].Name, nextShow);
+							   
+						}
+						
+						if (GUILayout.Button (info.Name)) {
+							var invokeValue = info.Invoke (target, objects);
+							if(invokeValue != null)
+							{
+								XLogger.Log(info.Name + " return : " + invokeValue.ToString());
+							}
+						}
+					}
+
+				}
+
+				
+			}
+		}
+
+		static void DrawProperty(PropertyInfo property, bool isStatic, object target)
+		{
+			var xAttributes = property.GetCustomAttributes(XType, true);
+			foreach( var att in xAttributes )
+			{
+				List<object> nextShow = new List<object>();
+
+
+				BeginVertical();
+
+				try
+				{
+					object result = null;
+					if (isStatic) {
+						result = property.GetValue( null, null );
+					} else {
+						result = property.GetValue( target, null );
+					}
+
+					DrawFieldHeader( property.PropertyType, property.Name );
+
+					EditorGUI.BeginDisabledGroup( !property.CanWrite );
+					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
+					EditorGUI.EndDisabledGroup();
+
+					if( !newValue.Equals( result ) )
+						property.SetValue( target, newValue, null );
+				}catch(Exception e){
+					// XLogger.LogError(e.Message);
+				}
+
+				EndVertical();
+
+				foreach( var entry in nextShow )
+				{
+					var type = entry.GetType();
+					bool isShow = DrawHeader( type.Name, type.Name, false, false );
+					if( isShow )
+					{
+						ShowXAttributeMember( entry );
+					}
+				}
+			}
+		}
+
+		static void DrawField(FieldInfo field, object target)
+		{
+			var xAttributes = field.GetCustomAttributes(XType, true);
+			foreach( var att in xAttributes)
+			{
+				List<object> nextShow = new List<object>();
+
+				BeginVertical();
+
+				try{
+					DrawFieldHeader( field.FieldType,  field.Name );
+
+					object result;
+					if (field.IsStatic) {
+						result = field.GetValue( null );
+					} else {
+						result = field.GetValue( target );
+					}
+					
+
+					var newValue = GetTypeGUIOpt
+						( result, field.FieldType,field.Name, nextShow );
+					//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
+					if (!newValue.Equals(result))
+					{
+						if (field.IsStatic)
+							field.SetValue( null, newValue );
+						else
+							field.SetValue( target, newValue );
+					}
+				}catch(Exception e)
+				{
+					// XLogger.Log(e.Message);
+				}
+
+				EndVertical();
+
+				foreach( var entry in nextShow )
+				{
+					var type = entry.GetType();
+					bool isShow = DrawHeader( type.Name, type.Name, false, false );
+
+					if( isShow )
+					{
+						ShowXAttributeMember( entry );
+					}
+				}
+			}
+		}
+		static void ShowXFields<T>( object target, Type type)
+		{
+			FieldInfo[] Fields = null;
+			if (target == null)
+				Fields = type.GetFields( staticFlag );
+			else
+				Fields = target.GetType().GetFields( bindFlags );
             bool noAttribute = true;
             foreach( var info in Fields )
             {
@@ -322,125 +371,27 @@ namespace wuxingogo.Editor
 
             foreach( var field in Fields )
             {
-                foreach( var att in field.GetCustomAttributes( typeof( T ), true ) )
-                {
-                    List<object> nextShow = new List<object>();
-
-                    BeginVertical();
-
-					try{
-						DrawFieldHeader( field.FieldType,  field.Name );
-
-						object result;
-						if (field.IsStatic) {
-							result = field.GetValue( null );
-						} else {
-							result = field.GetValue( target );
-						}
-					
-
-						var newValue = GetTypeGUIOpt
-							( result, field.FieldType,field.Name, nextShow );
-						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-						if( !newValue.Equals( result ) )
-							field.SetValue( target, newValue );
-					}catch(Exception e)
-					{
-						// XLogger.Log(e.Message);
-					}
-
-                    EndVertical();
-
-                    foreach( var entry in nextShow )
-                    {
-                        var type = entry.GetType();
-                        bool isShow = DrawHeader( type.Name, type.Name, false, false );
-
-                        if( isShow )
-                        {
-                            ShowXAttributeMember( entry );
-                        }
-                    }
-                }
+	            DrawField(field, target);
             }
 
             
 
         }
 
-		static void ShowStaticXField<T>(Type type)
-		{
-			if( type == null )
-				return;
-			var Fields = type.GetFields( staticFlag );
-			bool noAttribute = true;
-			foreach( var info in Fields )
-			{
-				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
-				{
-					noAttribute = false;
-					break;
-				}
-			}
-			if( noAttribute )
-				return;
+		
 
-			bool toggle = DrawHeader( "Field", "Field", false, false );
-
-			if( !toggle )
-			{
-				return;
-			}
-
-
-			foreach( var field in Fields )
-			{
-				foreach( var att in field.GetCustomAttributes( typeof( T ), true ) )
-				{
-					List<object> nextShow = new List<object>();
-
-					BeginVertical();
-					try {
-
-						DrawFieldHeader( field.FieldType,  field.Name );
-
-						object result = field.GetValue( null );
-
-
-
-						var newValue = GetTypeGUIOpt( result, field.FieldType, field.Name, nextShow );
-						//XLogger.Log (nextShow.Count + " result : " + result + " field.FieldType " + field.FieldType );
-						if( !newValue.Equals( result ) )
-							field.SetValue( null, newValue );
-					}catch(Exception e)
-					{
-						// XLogger.Log(e.Message);
-					}
-
-					EndVertical();
-
-					foreach( var entry in nextShow )
-					{
-						var t = entry.GetType();
-						bool isShow = DrawHeader( t.Name, t.Name, false, false );
-
-						if( isShow )
-						{
-							ShowXAttributeMember( entry );
-						}
-					}
-				}
-			}
-
-
-		}
-
-		static void ShowProperties<T>( object target )
+		static void ShowProperties<T>( object target, Type type )
         {
-            if( target == null )
-                return;
-
-            var Properties = target.GetType().GetProperties( bindFlags );
+	        PropertyInfo[] Properties = null;
+	        bool isStatic = false;
+	        if (target == null)
+	        {
+		        isStatic = true;
+		        Properties = type.GetProperties( staticFlag );
+	        }
+	        else
+		        Properties = target.GetType().GetProperties( bindFlags );
+	        
             bool noAttribute = true;
             foreach( var info in Properties )
             {
@@ -463,112 +414,11 @@ namespace wuxingogo.Editor
 
             foreach( var property in Properties )
             {
-                foreach( var att in property.GetCustomAttributes( typeof( XAttribute ), true ) )
-                {
-                    List<object> nextShow = new List<object>();
-
-
-                    BeginVertical();
-
-					try {
-						object result = property.GetValue( target, null );
-
-
-						DrawFieldHeader( property.PropertyType, property.Name );
-
-						EditorGUI.BeginDisabledGroup( !property.CanWrite );
-						var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
-						EditorGUI.EndDisabledGroup();
-
-						if( !newValue.Equals( result ) )
-							property.SetValue( target, newValue, null );
-					}catch(Exception e){
-						// XLogger.LogError(e.Message);
-					}
-
-                    EndVertical();
-
-                    foreach( var entry in nextShow )
-                    {
-                        var type = entry.GetType();
-                        bool isShow = DrawHeader( type.Name, type.Name, false, false );
-                        if( isShow )
-                        {
-                            ShowXAttributeMember( entry );
-                        }
-                    }
-                }
+                DrawProperty(property, isStatic, target);
             }
 
             
         }
-
-		static void ShowStaticProperties<T>( Type type )
-		{
-			if( type == null )
-				return;
-
-			var Properties = type.GetProperties( staticFlag );
-			bool noAttribute = true;
-			foreach( var info in Properties )
-			{
-				foreach( var att in info.GetCustomAttributes( typeof( T ), true ) )
-				{
-					noAttribute = false;
-					break;
-				}
-			}
-			if( noAttribute )
-				return;
-			bool toggle = DrawHeader( "Property", "Property", false, false );
-
-			if( !toggle )
-			{
-				return;
-			}
-
-
-
-			foreach( var property in Properties )
-			{
-				foreach( var att in property.GetCustomAttributes( typeof( XAttribute ), true ) )
-				{
-					List<object> nextShow = new List<object>();
-
-
-					BeginVertical();
-
-					object result = property.GetValue( null, null );
-
-
-					DrawFieldHeader( property.PropertyType, property.Name );
-
-					EditorGUI.BeginDisabledGroup( !property.CanWrite );
-					var newValue = GetTypeGUI( result, property.PropertyType, property.Name, nextShow );
-					EditorGUI.EndDisabledGroup();
-
-					if( !newValue.Equals( result ) )
-						property.SetValue( null, newValue, null );
-
-
-					EndVertical();
-
-					foreach( var entry in nextShow )
-					{
-						var t = entry.GetType();
-						bool isShow = DrawHeader( entry.ToString(), t.Name, false, false );
-						if( isShow )
-						{
-							ShowXAttributeMember( entry );
-						}
-					}
-				}
-			}
-
-
-		}
-
-
 
         GUILayoutOption widthOption = GUILayout.MaxWidth( 150 );
 		protected static object GetTypeGUI( object t, Type type, string valueName, List<object> nextShow )
