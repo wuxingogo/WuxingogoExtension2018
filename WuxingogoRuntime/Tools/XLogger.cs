@@ -29,7 +29,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Mime;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
+using wuxingogo.Data;
 using wuxingogo.Runtime;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
@@ -42,7 +44,29 @@ public class XLogger
 	public const string PREDEFINE = "XLOG_ENABLE";
 
     public const string LOG_TO_FILE = "XLOG_WRITE_FILE";
-    static public bool EnableLog = true;
+
+    static public bool EnableLog
+    {
+        get
+        {
+            if (enable == null)
+            {
+                enable = PlayerPrefs.GetInt(PREDEFINE, 1) == 1;
+            }
+
+            return (bool)enable;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(PREDEFINE, value ? 1 : 0);
+            enable = value;
+        }
+    }
+
+    private static bool? enable = null;
+
+    
+    
 	[System.Diagnostics.Conditional(PREDEFINE)]
     static public void Log( object message )
     {

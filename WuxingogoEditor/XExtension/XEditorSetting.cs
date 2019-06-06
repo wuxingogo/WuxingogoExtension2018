@@ -29,12 +29,13 @@ using System.Collections;
 using UnityEditor;
 using System;
 using System.Globalization;
+using System.Linq;
 using wuxingogo.tools;
 using wuxingogo.Editor;
 using wuxingogo.Runtime;
 
 
-public class XEditorSetting
+public class XEditorSetting : XMonoBehaviourEditor
 {
     public static string author = "Wuxingogo";
     public static string mail = "52111314ly@gmail.com";
@@ -136,6 +137,53 @@ public class XEditorSetting
 		XLogger.Log( folder );
 		projectPath = folder;
 		XResources.InitTexture();
+	}
+	
+	[MenuItem( "Wuxingogo/Setting/Toggle Runtime Log" )]
+	static void EnableLogRuntime()
+	{
+		XLogger.EnableLog = !XLogger.EnableLog;
+		Debug.Log("Log Enable : {0}.".StringFormat(XLogger.EnableLog));
+	}
+	[MenuItem( "Wuxingogo/Setting/Toggle Define Log" )]
+	static void EnableLogStatic()
+	{
+
+		var defineSymbols = CurrentBuildDefine;
+		
+		if (defineSymbols.Contains(XLogger.PREDEFINE) == false)
+		{
+			defineSymbols = defineSymbols +";"+ XLogger.PREDEFINE;
+			Debug.Log("Log Enable : {0}.".StringFormat(true));
+		}
+		else
+		{
+			defineSymbols = defineSymbols.Replace(XLogger.PREDEFINE, "");
+			Debug.Log("Log Enable : {0}.".StringFormat(false));
+		}
+		//XLogger.Log(defineSymbols+ "======"+ CurrentBuildDefine);
+		CurrentBuildDefine = defineSymbols;
+		
+	}
+	[X]
+	public static string CurrentBuildDefine
+	{
+		get
+		{
+			var buildTarget = EditorUserBuildSettings.activeBuildTarget;
+			var targetGroup = BuildPipeline.GetBuildTargetGroup(buildTarget);
+			var defineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+
+			return defineSymbols;
+		}
+		set
+		{
+			var buildTarget = EditorUserBuildSettings.activeBuildTarget;
+			var targetGroup = BuildPipeline.GetBuildTargetGroup(buildTarget);
+			
+			PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, value);
+		}
+		
 	}
 	
 	[InitializeOnLoad]

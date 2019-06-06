@@ -217,7 +217,7 @@ namespace wuxingogo.Editor
 				}
 				object[] objects = methodParameters [info];
 
-				if (paras.Length != 0) {
+				//if (paras.Length != 0) {
 						
 					//Use horizontal layout
 					using (new GUILayout.VerticalScope ( Skin.textArea, GUILayout.MaxWidth (ForcusWindow.position.width - 40))) {
@@ -242,7 +242,7 @@ namespace wuxingogo.Editor
 						}
 					}
 
-				}
+				//}
 
 				
 			}
