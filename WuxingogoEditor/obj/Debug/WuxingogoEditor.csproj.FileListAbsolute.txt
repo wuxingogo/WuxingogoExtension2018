@@ -27,3 +27,10 @@ D:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
 D:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojAssemblyReference.cache
 D:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csproj.CoreCompileInputs.cache
 D:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csproj.CopyComplete
+F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csprojAssemblyReference.cache
+F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csproj.CoreCompileInputs.cache
+F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+F:\project\WuxingogoExtension\OutPutDll\WuxingogoEditor.dll
+F:\project\WuxingogoExtension\OutPutDll\WuxingogoEditor.pdb
+F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csproj.CopyComplete

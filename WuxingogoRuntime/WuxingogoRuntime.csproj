@@ -43,10 +43,6 @@
     <Reference Include="UnityEngine">
       <HintPath>..\OutPutDll\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\OutPutDll\UnityEngine.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -56,7 +52,6 @@
     <Compile Include="Runtime\XMonoBehaviour.cs" />
     <Compile Include="Tools\GameManagerRuntime.cs" />
     <Compile Include="Tools\GameObjectUtilities.cs" />
-    <Compile Include="Tools\ShowFPSUGUI.cs" />
     <Compile Include="Tools\XLogger.cs" />
     <Compile Include="Tools\SingletonClass.cs" />
     <Compile Include="Attribute\DisableAttribute.cs" />

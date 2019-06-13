@@ -25,3 +25,10 @@ D:\project\WuxingogoExtension\OutPutDll\WuxingogoRuntime.pdb
 D:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
 D:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
 D:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\ResolveAssemblyReference.cache
+F:\project\WuxingogoExtension\OutPutDll\WuxingogoRuntime.dll
+F:\project\WuxingogoExtension\OutPutDll\WuxingogoRuntime.pdb
+F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csprojAssemblyReference.cache
+F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csproj.CoreCompileInputs.cache
+F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csproj.CopyComplete
+F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
+F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
