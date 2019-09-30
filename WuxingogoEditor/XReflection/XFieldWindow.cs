@@ -8,6 +8,7 @@ namespace wuxingogo.Reflection
     using System.Collections.Generic;
     using System;
     using Object = UnityEngine.Object;
+    using wuxingogo.tools;
 
     public class XFieldWindow : XBaseWindow
     {
@@ -74,99 +75,31 @@ namespace wuxingogo.Reflection
                         EditorGUILayout.BeginVertical();
 
                         object value = field.GetValue( Target );
-                        object changeValue = null;
-                        if( field.FieldType == typeof( System.Int32 ) )
-                        {
-                            changeValue = CreateIntField( field.Name + ": int", ( int )value );
-                        }
-                        else if( field.FieldType == typeof( System.Int64 ) )
-                        {
-                            changeValue = CreateIntField( field.Name + ": int", ( int )value );
-                        }
-                        else if( field.FieldType == typeof( System.Byte ) )
-                        {
-                            changeValue = CreateIntField( field.Name + ": byte", ( int )value );
-                        }
-                        else if( field.FieldType == typeof( System.Single ) )
-                        {
-                            changeValue = CreateFloatField( field.Name + ": float", ( float )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( System.Array ) )
-                        {
-                            Object[] array = value as Object[];
-                            if( null != array )
-                            {
-                                for( int i = 0; i < array.Length; i++ )
-                                {
-                                    array[i] = CreateObjectField( field.Name + "[" + i + "]", array[i] );
-                                }
-                                changeValue = array;
-                            }
-                            else
-                                changeValue = value;
-                        }
-                        else if( field.FieldType == typeof( System.Boolean ) )
-                        {
-                            changeValue = CreateCheckBox( field.Name + ": bool", ( bool )value );
-                        }
-                        else if( field.FieldType == typeof( System.String ) )
-                        {
-                            changeValue = CreateStringField( field.Name + ": string", ( string )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( System.Enum ) )
-                        {
-                            changeValue = CreateEnumSelectable( field.Name + ": string", ( System.Enum )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( UnityEngine.Object ) )
-                        {
-
-                            changeValue = CreateObjectField( field.Name + ": " + field.FieldType, ( UnityEngine.Object )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( UnityEngine.Behaviour ) )
-                        {
-
-                            changeValue = CreateObjectField( field.Name + ": " + field.FieldType, ( UnityEngine.Behaviour )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( UnityEngine.MonoBehaviour ) )
-                        {
-
-                            changeValue = CreateObjectField( field.Name + ": " + field.FieldType, ( UnityEngine.Behaviour )value );
-                        }
-                        else if( field.FieldType.BaseType == typeof( System.Object ) )
-                        {
-                            changeValue = value;
-                        }
-                        else if( field.FieldType.BaseType == typeof( System.ValueType ) )
-                        {
-                            changeValue = value;
-                        }
-                        else
-                        {
-                            changeValue = CreateObjectField( field.Name + ": " + field.FieldType, ( Object )value );
-                        }
-                        if( GUI.changed && changeValue != value && uObject != null )
+                        Type fieldType = field.FieldType;
+                        string fieldName = field.Name;
+                        object changeValue = GetValue(fieldType, fieldName, value);
+                        if (GUI.changed && changeValue != value && uObject != null)
                         {
                             //							Logger.Log("gui change");
-                            Undo.RecordObject( uObject, "Record ScrObject" );
+                            Undo.RecordObject(uObject, "Record ScrObject");
                             try
                             {
-                                field.SetValue( Target, changeValue );
+                                field.SetValue(Target, changeValue);
                             }
                             catch
                             {
-                                
+
                             }
                             Repaint();
                         }
 
                         EditorGUILayout.EndVertical();
-
                     }
                 }
             }
 
         }
-
+       
         System.Type showType;
 
         string targetType;

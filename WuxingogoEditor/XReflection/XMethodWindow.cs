@@ -109,7 +109,7 @@ namespace wuxingogo.Reflection
                         #region Show all method Parameter Info
                         for( int pos = 0; pos < paras.Length; pos++ )
                         {
-                            myParameters[pos] = GetTypeGUI( myParameters[pos], paras[pos].ParameterType );
+                            myParameters[pos] = GetValue( paras[pos].ParameterType, paras[pos].Name, myParameters[pos]);
 
                         }
                         #endregion

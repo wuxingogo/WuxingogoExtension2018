@@ -34,3 +34,8 @@ F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
 F:\project\WuxingogoExtension\OutPutDll\WuxingogoEditor.dll
 F:\project\WuxingogoExtension\OutPutDll\WuxingogoEditor.pdb
 F:\project\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.csproj.CopyComplete
+E:\OtherProject\Github\WuxingogoExtension\OutPutDll\WuxingogoEditor.dll
+E:\OtherProject\Github\WuxingogoExtension\OutPutDll\WuxingogoEditor.pdb
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.dll
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoEditor\obj\Debug\WuxingogoEditor.pdb
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoEditor\obj\Debug\ResolveAssemblyReference.cache

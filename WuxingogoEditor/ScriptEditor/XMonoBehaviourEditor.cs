@@ -456,7 +456,15 @@ namespace wuxingogo.Editor
 			} else if (type == typeof(Boolean)) {
 				t = CreateCheckBox (valueName, Convert.ToBoolean (t));
 			} else if (type.BaseType == typeof(Enum)) {
-				t = CreateEnumSelectable (valueName, (Enum)t ?? (Enum)Enum.ToObject (type, 0));
+                if(type.GetAttribute<FlagsAttribute>() != null)
+                {
+                    t = CreateEnumFlagsField(valueName, (Enum)t ?? (Enum)Enum.ToObject(type, 0));
+                }
+                else
+                {
+                    t = CreateEnumPopup(valueName, (Enum)t ?? (Enum)Enum.ToObject(type, 0));
+                }
+				
 			} else if (type.IsSubclassOf (typeof(Object))) {
 				t = CreateObjectField (valueName, (Object)t, type);
 			}else if (t is Rect) {

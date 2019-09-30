@@ -243,10 +243,14 @@ public class XBaseEditor : Editor
         EditorGUILayout.PropertyField( property, options );
     }
 
-	public static Enum CreateEnumSelectable(string fieldName, Enum value)
+	public static Enum CreateEnumPopup(string fieldName, Enum value)
 	{
-		return EditorGUILayout.EnumPopup( fieldName, value );
+        return EditorGUILayout.EnumPopup( fieldName, value );
 	}
+    public static Enum CreateEnumFlagsField(string fieldName, Enum value)
+    {
+        return EditorGUILayout.EnumFlagsField(fieldName, value);
+    }
 
 	public static int CreateSelectableFromString(int rootID, string[] array)
 	{

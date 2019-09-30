@@ -64,50 +64,12 @@ public class XPropertyWindow : XBaseWindow
 							return;
 						}
 						object value = property.GetValue( Target, null );
-						object changeValue = null;
+                        var type = property.DeclaringType;
 
 
-						if( property.PropertyType == typeof( System.Int32 ) ) {
-							changeValue = CreateIntField( property.Name + ": int", (int)value );
-						} else if( property.PropertyType == typeof( System.Int64 ) ) {
-//							CreateIntField(field.Name + ": int" , (int)value);
-						} else if( property.PropertyType == typeof( System.Byte ) ) {
-							changeValue = CreateIntField( property.Name + ": byte", ((int)(byte)(value)) );
-						} else if( property.PropertyType == typeof( System.Single ) ) {
-							changeValue = CreateFloatField( property.Name + ": float", (float)value );
-						} else if( property.PropertyType.BaseType == typeof( System.Array ) ) {
-							Object[] array = value as Object[];
-							if( null != array ) {
-								for( int i = 0; i < array.Length; i++ ) {
-									array[i] = CreateObjectField( property.Name + "[" + i + "]", array[i] );
-								}
-								changeValue = array;
-							} else
-								changeValue = value;
-						} else if( property.PropertyType == typeof( System.Boolean ) ) {
-							changeValue = CreateCheckBox( property.Name + ": bool", (bool)value );
-						} else if( property.PropertyType == typeof( System.String ) ) {
-							changeValue = CreateStringField( property.Name + ": string", (string)value );
-						} else if( property.PropertyType.BaseType == typeof( System.Enum ) ) {
-							changeValue = CreateEnumSelectable( property.Name + ": string", (System.Enum)value );
-						}
-						else if( property.PropertyType.BaseType == typeof( UnityEngine.Object ) ) {
-							
-							changeValue = CreateObjectField( property.Name + ": " + property.PropertyType, (UnityEngine.Object)value );
-						} else if( property.PropertyType.BaseType == typeof( UnityEngine.Behaviour ) ) {
-							
-							changeValue = CreateObjectField( property.Name + ": " + property.PropertyType, (UnityEngine.Behaviour)value );
-						} else if( property.PropertyType.BaseType == typeof( UnityEngine.MonoBehaviour ) ) {
-							
-							changeValue = CreateObjectField( property.Name + ": " + property.PropertyType, (UnityEngine.Behaviour)value );
-						} else if( property.PropertyType.BaseType == typeof( System.Object ) ) {
-							
-							changeValue = value;
-						} else if( property.PropertyType.BaseType == typeof( System.ValueType ) ) {
-							changeValue = value;
-						} else {
-						}
-						if( GUI.changed && changeValue != value && uObject != null ) {
+                        object changeValue = GetValue(type, type.Name, value);
+
+                        if ( GUI.changed && changeValue != value && uObject != null ) {
 							Undo.RecordObject( uObject, "Record ScrObject" );
 							try
 							{

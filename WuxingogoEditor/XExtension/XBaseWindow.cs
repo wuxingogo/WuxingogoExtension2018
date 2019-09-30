@@ -33,6 +33,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using wuxingogo.Editor;
+using wuxingogo.tools;
 
 /**
  * [XBaseWindow 基础类]
@@ -270,13 +271,13 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 
 	public static System.Enum CreateEnumPopup(string fieldName, System.Enum value)
 	{
-		return EditorGUILayout.EnumMaskField( fieldName, value );
+		return EditorGUILayout.EnumPopup( fieldName, value );
 	}
 
-	public static System.Enum CreateEnumPopup(System.Enum value)
-	{
-		return EditorGUILayout.EnumMaskField( value );
-	}
+    public static System.Enum CreateEnumFlagsField(string fieldName, System.Enum value)
+    {
+        return EditorGUILayout.EnumFlagsField(value);
+    }
 
 	public static int CreateSelectableFromString(int rootID, string[] array, params GUILayoutOption[] option )
 	{
@@ -431,5 +432,87 @@ public class XBaseWindow : EditorWindow, IHasCustomMenu
 		}
 		return null;
 	}
+
+    public static object GetValue(Type fieldType, string fieldName, object value)
+    {
+        object changeValue = value;
+        if (fieldType == typeof(System.Int32))
+        {
+            changeValue = CreateIntField(fieldName + ": int", (int)value);
+        }
+        else if (fieldType == typeof(System.Int64))
+        {
+            changeValue = CreateIntField(fieldName + ": int", (int)value);
+        }
+        else if (fieldType == typeof(System.Byte))
+        {
+            changeValue = CreateIntField(fieldName + ": byte", (int)value);
+        }
+        else if (fieldType == typeof(System.Single))
+        {
+            changeValue = CreateFloatField(fieldName + ": float", (float)value);
+        }
+        else if (fieldType.BaseType == typeof(System.Array))
+        {
+            Object[] array = value as Object[];
+            if (null != array)
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = CreateObjectField(fieldName + "[" + i + "]", array[i]);
+                }
+                changeValue = array;
+            }
+            else
+                changeValue = value;
+        }
+        else if (fieldType == typeof(System.Boolean))
+        {
+            changeValue = CreateCheckBox(fieldName + ": bool", (bool)value);
+        }
+        else if (fieldType == typeof(System.String))
+        {
+            changeValue = CreateStringField(fieldName + ": string", (string)value);
+        }
+        else if (fieldType == typeof(System.Enum))
+        {
+            if (fieldType.GetAttribute<FlagsAttribute>() != null)
+            {
+                changeValue = CreateEnumFlagsField(fieldName, (Enum)value ?? (Enum)Enum.ToObject(fieldType, 0));
+            }
+            else
+            {
+                changeValue = CreateEnumPopup(fieldName, (Enum)value ?? (Enum)Enum.ToObject(fieldType, 0));
+            }
+        }
+        else if (fieldType.BaseType == typeof(UnityEngine.Object))
+        {
+
+            changeValue = CreateObjectField(fieldName + ": " + fieldType, (UnityEngine.Object)value);
+        }
+        else if (fieldType.BaseType == typeof(UnityEngine.Behaviour))
+        {
+
+            changeValue = CreateObjectField(fieldName + ": " + fieldType, (UnityEngine.Behaviour)value);
+        }
+        else if (fieldType.BaseType == typeof(UnityEngine.MonoBehaviour))
+        {
+
+            changeValue = CreateObjectField(fieldName + ": " + fieldType, (UnityEngine.Behaviour)value);
+        }
+        else if (fieldType.BaseType == typeof(System.Object))
+        {
+            changeValue = value;
+        }
+        else if (fieldType.BaseType == typeof(System.ValueType))
+        {
+            changeValue = value;
+        }
+        else
+        {
+            changeValue = CreateObjectField(fieldName + ": " + fieldType, (Object)value);
+        }
+        return changeValue;
+    }
 }
 
