@@ -31,11 +31,11 @@
     <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
   </PropertyGroup>
   <PropertyGroup>
-    <SolutionDir>D:\project\WuxingogoExtension\</SolutionDir>
+    <SolutionDir>E:\OtherProject\Github\WuxingogoExtension\</SolutionDir>
     <SolutionExt>.sln</SolutionExt>
     <SolutionFileName>WuxingogoRuntime.sln</SolutionFileName>
     <SolutionName>WuxingogoRuntime</SolutionName>
-    <SolutionPath>D:\project\WuxingogoExtension\WuxingogoRuntime.sln</SolutionPath>
+    <SolutionPath>E:\OtherProject\Github\WuxingogoExtension\WuxingogoRuntime.sln</SolutionPath>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>

@@ -99,8 +99,24 @@ namespace wuxingogo.Editor
                 content += path + "\n";
             }
             content.CopyToClipboard();
+            XLogger.Log(content);
         }
-        
+        [MenuItem("Wuxingogo/Tools/Selection/Copy Asset Absoulte Path")]
+        public static void CopyAssetAbsolutePath()
+        {
+            var objs = GetObjects<Object>();
+            string content = "";
+            for (int i = 0; i < objs.Count; i++)
+            {
+                var obj = objs[i];
+                var path = AssetDatabase.GetAssetPath(obj);
+
+                content += XEditorSetting.ProjectPath + "\\"+ path + "\n";
+            }
+            content.CopyToClipboard();
+            XLogger.Log(content);
+        }
+
         [MenuItem("Wuxingogo/Tools/Selection/Copy GameObject Path")]
         public static void CopyGameObjectPath()
         {
@@ -114,6 +130,29 @@ namespace wuxingogo.Editor
                 content += path + "\n";
             }
             content.CopyToClipboard();
+            XLogger.Log(content);
+        }
+
+        [MenuItem("Wuxingogo/Tools/Selection/Copy Current Folder Path")]
+        public static void CopyFolder()
+        {
+            if(Selection.activeObject != null)
+            {
+                var assetPath = GetAssetFolder(Selection.activeObject);
+                assetPath.CopyToClipboard();
+                XLogger.Log(assetPath);
+            }
+            else
+            {
+                XLogger.Log("Active Object was null.");
+            }
+        }
+
+        public static string GetAssetFolder(Object target)
+        {
+            var assetPath = AssetDatabase.GetAssetPath(target);
+            assetPath = assetPath.Substring(0, assetPath.LastIndexOf("/"));
+            return assetPath;
         }
     }
 }

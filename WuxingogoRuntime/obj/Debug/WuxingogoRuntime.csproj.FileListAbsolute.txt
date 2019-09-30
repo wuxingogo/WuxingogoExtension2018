@@ -32,3 +32,8 @@ F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csproj
 F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.csproj.CopyComplete
 F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
 F:\project\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+E:\OtherProject\Github\WuxingogoExtension\OutPutDll\WuxingogoRuntime.dll
+E:\OtherProject\Github\WuxingogoExtension\OutPutDll\WuxingogoRuntime.pdb
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.dll
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoRuntime\obj\Debug\WuxingogoRuntime.pdb
+E:\OtherProject\Github\WuxingogoExtension\WuxingogoRuntime\obj\Debug\ResolveAssemblyReference.cache

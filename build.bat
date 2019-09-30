@@ -1,1 +1,2 @@
-start python build.py
+python build.py
+pause()

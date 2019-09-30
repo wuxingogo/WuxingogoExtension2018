@@ -40,11 +40,11 @@
     <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
   </PropertyGroup>
   <PropertyGroup>
-    <SolutionDir>D:\project\WuxingogoExtension\</SolutionDir>
+    <SolutionDir>E:\OtherProject\Github\WuxingogoExtension\</SolutionDir>
     <SolutionExt>.sln</SolutionExt>
     <SolutionFileName>WuxingogoEditor.sln</SolutionFileName>
     <SolutionName>WuxingogoEditor</SolutionName>
-    <SolutionPath>D:\project\WuxingogoExtension\WuxingogoEditor.sln</SolutionPath>
+    <SolutionPath>E:\OtherProject\Github\WuxingogoExtension\WuxingogoEditor.sln</SolutionPath>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>

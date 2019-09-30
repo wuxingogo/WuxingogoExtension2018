@@ -74,6 +74,7 @@
     <Compile Include="Tools\GizmosScope.cs" />
     <Compile Include="Tools\ExtensionMethod.cs" />
     <Compile Include="Attribute\IBehaviour.cs" />
+    <Compile Include="Tools\XUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
