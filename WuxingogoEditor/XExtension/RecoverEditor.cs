@@ -55,16 +55,15 @@ internal class RecoveryEditor : Editor
 
             serializedObject.Update();
             var property = serializedObject.FindProperty( "m_Script" );
-            EditorGUILayout.PropertyField( serializedObject.FindProperty( "m_Script" ) );
+            EditorGUILayout.PropertyField( property );
             serializedObject.ApplyModifiedProperties();
 
 
             if( candidates.Count == 0 )
             {
-                GetPropertyPaths( serializedObject, "m_Script" );
                 var propertyPaths = GetPropertyPaths( serializedObject, "m_Script" );
-
-                foreach( var script in MonoImporter.GetAllRuntimeMonoScripts() )
+                var monoScripts = MonoImporter.GetAllRuntimeMonoScripts();
+                foreach ( var script in monoScripts)
                 {
                     var type = script.GetClass();
 
@@ -151,7 +150,7 @@ internal class RecoveryEditor : Editor
         if( GUILayout.Button( "Recovery" ) )
         {
 
-            serializedObject.UpdateIfDirtyOrScript();
+            serializedObject.UpdateIfRequiredOrScript();
             serializedObject.FindProperty( "m_Script" ).objectReferenceValue = monoScript;
             serializedObject.ApplyModifiedProperties();
 
