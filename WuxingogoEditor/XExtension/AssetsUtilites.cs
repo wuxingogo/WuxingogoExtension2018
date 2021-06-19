@@ -46,7 +46,7 @@ namespace wuxingogo.Editor
 		public static T[] FindAssetsByType<T>() where T : Object
 		{
 
-			var totalAssetGuid = AssetDatabase.FindAssets( string.Format( "t:{0}", typeof( T ) ) );
+			var totalAssetGuid = AssetDatabase.FindAssets( string.Format( "t:{0}", typeof( T ).Name ) );
 			List<T> totalAssets = new List<T>();
 			for( int i = 0; i < totalAssetGuid.Length; i++ )
 			{
